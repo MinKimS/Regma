@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Dialogue 1
   m_EditorClassIdentifier: 
+  speakers:
+  - speaker: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    imgIdx: 0
+  - speaker: {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+    imgIdx: 1
+  - speaker: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+    imgIdx: 3
   sentences:
-  - speaker: 22222
+  - speakerIdx: 0
     dlgTexts: 436364
-  - speaker: 345
+  - speakerIdx: 1
     dlgTexts: sdf245
-  - speaker: 4467
+  - speakerIdx: 1
     dlgTexts: 245
+  - speakerIdx: 2
+    dlgTexts: Final Sentence
+  nextDlg: {fileID: 0}
