@@ -63,18 +63,17 @@ public class DialogueController : MonoBehaviour
     {
         //다음 대화로 넘어가기
         //대화 출력중에는 넘어가지 못함
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) && dlgState == DlgState.DONE)
         {
-            //마지막 대사인 경우 클릭 시 숨기기
-            if(setenceIdx > curDlg.sentences.Count -1)
-            {
-                DialogueHide();
-            }
-
             //다음 대사로 넘어가기
-            if(dlgState == DlgState.DONE && setenceIdx < curDlg.sentences.Count)
+            if(setenceIdx < curDlg.sentences.Count)
             {
                 PlaySentence();
+            }
+            //마지막 대사인 경우 클릭 시 숨기기
+            else
+            {
+                DialogueHide();
             }
         }
     }
@@ -139,6 +138,7 @@ public class DialogueController : MonoBehaviour
         dlgText.text = "";
         speaker.text = "";
         nextArrow.enabled = false;
+        HideChrImg();
     }
     //다음 새로운 대화로 넘어가기
     public void NextDlg()
@@ -175,6 +175,16 @@ public class DialogueController : MonoBehaviour
                 //이미지 보이기
                 speakerImg[curDlg.speakers[i].imgIdx].enabled=true;
             }
+        }
+    }
+
+    //등장했던 캐릭터 숨기기
+    public void HideChrImg()
+    {
+        for(int i = 0; i<curDlg.speakers.Count; i++)
+        {
+            //이미지 숨기기
+            speakerImg[curDlg.speakers[i].imgIdx].enabled=false;
         }
     }
 
