@@ -19,6 +19,8 @@ public class DialogueController : MonoBehaviour
     public TextMeshProUGUI dlgText;
     //화자이름
     public TextMeshProUGUI speaker;
+    //대화창 배경
+    Image DlgBg;
 
     //화자 오브젝트
     public GameObject[] speakersObj;
@@ -40,9 +42,13 @@ public class DialogueController : MonoBehaviour
     private void Awake() {
         speakerImg = new Image[speakersObj.Length];    
         speakerRectTr = new RectTransform[speakersObj.Length];    
+
+        dlgText.text = "";
+        speaker.text = "";
     }
     void Start()
     {
+        DlgBg = GetComponent<Image>();
         for(int i =0; i<speakersObj.Length; i++)
         {
             speakerImg[i] = speakersObj[i].GetComponent<Image>();
@@ -57,9 +63,19 @@ public class DialogueController : MonoBehaviour
     {
         //다음 대화로 넘어가기
         //대화 출력중에는 넘어가지 못함
-        if(Input.GetKeyDown(KeyCode.Return) && dlgState == DlgState.DONE && setenceIdx < curDlg.sentences.Count)
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            PlayNextSentence();
+            //마지막 대사인 경우 클릭 시 숨기기
+            if(setenceIdx > curDlg.sentences.Count -1)
+            {
+                DialogueHide();
+            }
+
+            //다음 대사로 넘어가기
+            if(dlgState == DlgState.DONE && setenceIdx < curDlg.sentences.Count)
+            {
+                PlaySentence();
+            }
         }
     }
     
@@ -113,12 +129,16 @@ public class DialogueController : MonoBehaviour
     //대화창 보이기
     public void DialogueShow()
     {
-        gameObject.SetActive(true);
+        DlgBg.enabled = true;
     }
     //대화창 숨기기
     public void DialogueHide()
     {
-        gameObject.SetActive(false);
+        DlgBg.enabled = false;
+        
+        dlgText.text = "";
+        speaker.text = "";
+        nextArrow.enabled = false;
     }
     //다음 새로운 대화로 넘어가기
     public void NextDlg()
@@ -199,38 +219,38 @@ public class DialogueController : MonoBehaviour
     //처음 대화 시작
     public void StartDlg()
     {
+        DialogueShow();
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
         if(curDlg.speakers.Count>0)
         {
             ShowChrImg();
         }
-        //사람인 경우
-        if(curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speaker != null)
-        {
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speaker));
-        }
-        //오브젝트인 경우
-        else
-        {
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts));
-        }
-        setenceIdx++;
+        //대화 진행
+        PlaySentence();
     }
 
-    public void PlayNextSentence()
+    //다음 대화 진행
+    public void PlaySentence()
     {
-        //사람인 경우
-        if(curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speaker != null)
+        //사람인 경우의 대화진행
+        if(curDlg.speakers.Count != 0)
         {
             SetChrImg();
             StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speaker));
         }
-        //오브젝트인 경우
-        else
-        {
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts));
-        }
         setenceIdx++;
+    }
+
+    //오브젝트 대화 진행
+    public void PlayObjDlg()
+    {
+        setenceIdx=0;
+        //인식한 오브젝트의 대화를 가져옴
+        //추후 변경될 예정
+        ObjData ObjData = GetComponent<ObjData>();
+
+        //대화 진행
+        StartCoroutine(TypingDlg(ObjData.objDlg.sentences[setenceIdx].dlgTexts));
     }
 }
