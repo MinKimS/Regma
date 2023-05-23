@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dowon
   m_EditorClassIdentifier: 
   speakerName: ddd
-  speakerSprite: {fileID: 21300000, guid: 3cf6fdcf439c5a14bb5916e88742bb28, type: 3}
+  speakerSprite: {fileID: 21300000, guid: 4d80ebceacf439d4bab29bb5945d62b2, type: 3}

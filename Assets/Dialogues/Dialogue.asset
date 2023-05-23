@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   speakers:
-  - {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
     dlgTexts: 1dfdf
   - speakerIdx: 0
     dlgTexts: 2bnnff
-  - speakerIdx: 1
+  - speakerIdx: 0
     dlgTexts: ASGJKWEvcmklsd
   nextDlg: {fileID: 11400000, guid: 94527c906e22d844fb5adbec570b480a, type: 2}
