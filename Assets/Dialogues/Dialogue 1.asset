@@ -13,16 +13,13 @@ MonoBehaviour:
   m_Name: Dialogue 1
   m_EditorClassIdentifier: 
   speakers:
-  - speaker: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
-    imgIdx: 0
-  - speaker: {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
-    imgIdx: 1
-  - speaker: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
-    imgIdx: 3
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+  - {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+  - {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
   sentences:
   - speakerIdx: 0
     dlgTexts: 436364
-  - speakerIdx: 1
+  - speakerIdx: 2
     dlgTexts: sdf245
   - speakerIdx: 1
     dlgTexts: 245

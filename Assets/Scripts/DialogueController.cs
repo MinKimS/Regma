@@ -23,11 +23,11 @@ public class DialogueController : MonoBehaviour
     Image DlgBg;
 
     //화자 오브젝트
-    public GameObject[] speakersObj;
+    public GameObject speakersObj;
     //화자 이미지들
-    private Image[] speakerImg;
+    private Image speakerImg;
     //화자 크기
-    private RectTransform[] speakerRectTr;
+    private RectTransform speakerRectTr;
 
     //말 끝남표시(확인용)
     public Image nextArrow;
@@ -35,13 +35,12 @@ public class DialogueController : MonoBehaviour
     public Dialogue curDlg;
     //현재 출력되는 대화 인덱스
     private int setenceIdx = 0;
+    public float typingSpeed = 0.1f;
 
     private Color imgToDark = new Color32(100,100,100,255);
     private Color imgToBright = new Color32(255,255,255,255);
 
-    private void Awake() {
-        speakerImg = new Image[speakersObj.Length];    
-        speakerRectTr = new RectTransform[speakersObj.Length];    
+    private void Awake() { 
 
         dlgText.text = "";
         speaker.text = "";
@@ -49,11 +48,8 @@ public class DialogueController : MonoBehaviour
     void Start()
     {
         DlgBg = GetComponent<Image>();
-        for(int i =0; i<speakersObj.Length; i++)
-        {
-            speakerImg[i] = speakersObj[i].GetComponent<Image>();
-            speakerRectTr[i] = speakersObj[i].GetComponent<RectTransform>();
-        }
+        speakerImg = speakersObj.GetComponent<Image>();
+        speakerRectTr = speakersObj.GetComponent<RectTransform>();
 
         //대화 출력 테스트용
         StartDlg();
@@ -96,7 +92,7 @@ public class DialogueController : MonoBehaviour
         while(dlgWordIdx != text.Length)
         {
             dlgText.text += text[dlgWordIdx++];
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(typingSpeed);
         }
         dlgState = DlgState.DONE;
         
@@ -126,12 +122,12 @@ public class DialogueController : MonoBehaviour
     }
 
     //대화창 보이기
-    public void DialogueShow()
+    private void DialogueShow()
     {
         DlgBg.enabled = true;
     }
     //대화창 숨기기
-    public void DialogueHide()
+    private void DialogueHide()
     {
         DlgBg.enabled = false;
         
@@ -152,78 +148,24 @@ public class DialogueController : MonoBehaviour
     }
 
     //캐릭터 처음 등장 시키기
-    public void ShowChrImg()
+    private void ShowChrImg()
     {
-        //등장할 캐릭터가 1명인 경우
-        if(curDlg.speakers.Count<2)
-        {
-            //이미지 설정
-            speakerImg[curDlg.speakers[0].imgIdx].sprite = curDlg.speakers[0].speaker.speakerSprite;
-            //이미지 보이기
-            speakerImg[curDlg.speakers[0].imgIdx].enabled=true;
-        }
-        //등장할 캐릭터가 2명이상인 경우
-        else
-        {
-            //출현시킬 캐릭터 설정
-            SetChrImg();
-            //출현할 캐릭터 보이기
-            for(int i = 0; i<curDlg.speakers.Count; i++)
-            {
-                //이미지 설정
-                speakerImg[curDlg.speakers[i].imgIdx].sprite = curDlg.speakers[i].speaker.speakerSprite;
-                //이미지 보이기
-                speakerImg[curDlg.speakers[i].imgIdx].enabled=true;
-            }
-        }
+        //이미지 보이기
+        speakerImg.enabled=true;
     }
 
     //등장했던 캐릭터 숨기기
-    public void HideChrImg()
+    private void HideChrImg()
     {
-        for(int i = 0; i<curDlg.speakers.Count; i++)
-        {
-            //이미지 숨기기
-            speakerImg[curDlg.speakers[i].imgIdx].enabled=false;
-        }
+        //이미지 숨기기
+        speakerImg.enabled=false;
     }
 
     //캐릭터 이미지 설정
     public void SetChrImg()
     {
-        //현재 말하고 있는 캐릭터 인덱스랑 다르면 말하지 않는 것으로 설정
-        for(int i = 0; i<curDlg.speakers.Count; i++)
-        {
-            if(i!=curDlg.sentences[setenceIdx].speakerIdx)
-            {
-                //어둡게 설정
-                ChgImgToDark(speakerImg[curDlg.speakers[i].imgIdx]);
-                //작게 설정
-                SetImgScale(speakerRectTr[curDlg.speakers[i].imgIdx], 0.8f);
-            }
-            //말하고 있는 캐릭터 설정
-            else
-            {
-                ChgImgToBright(speakerImg[curDlg.speakers[i].imgIdx]);
-                SetImgScale(speakerRectTr[curDlg.speakers[i].imgIdx], 1f);
-            }
-        }
-    }
-
-    //이미지 크기 설정
-    public void SetImgScale(RectTransform rectTr, float scale)
-    {
-        rectTr.localScale = new Vector3(scale, scale);
-    }
-    //이미지 어둡게 변경
-    public void ChgImgToDark(Image img)
-    {
-        img.color = imgToDark;
-    }
-    //이미지 밝게 변경
-    public void ChgImgToBright(Image img)
-    {
-        img.color = imgToBright;
+        //이미지 설정
+        speakerImg.sprite = curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerSprite;
     }
 
     //처음 대화 시작
@@ -235,6 +177,7 @@ public class DialogueController : MonoBehaviour
         if(curDlg.speakers.Count>0)
         {
             ShowChrImg();
+            SetChrImg();
         }
         //대화 진행
         PlaySentence();
@@ -247,7 +190,7 @@ public class DialogueController : MonoBehaviour
         if(curDlg.speakers.Count != 0)
         {
             SetChrImg();
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speaker));
+            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx]));
         }
         setenceIdx++;
     }

@@ -678,13 +678,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dlgText: {fileID: 482878838}
   speaker: {fileID: 188738419}
-  speakersObj:
-  - {fileID: 749693908}
-  - {fileID: 1685443340}
-  - {fileID: 1918993202}
-  - {fileID: 878224714}
+  speakersObj: {fileID: 749693908}
   nextArrow: {fileID: 290757597}
   curDlg: {fileID: 11400000, guid: 8b9a7fc37cda3ed458b81bfed1008c28, type: 2}
+  typingSpeed: 0.1
 --- !u!1 &365674806
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   speakers:
-  - speaker: {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
-    imgIdx: 0
-  - speaker: {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
-    imgIdx: 1
+  - {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
     dlgTexts: 1dfdf
