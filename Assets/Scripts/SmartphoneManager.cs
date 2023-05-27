@@ -146,28 +146,25 @@ public class SmartphoneManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             //얻은 아이템 항목 선택
-            if((selectedOption<maxPicSlot-1 || selectedOption<maxFilesSlot-1))
+            if(isOpenFiles && maxFilesSlot!=0 && selectedOption<maxFilesSlot-1)
             {
-                if(isOpenFiles && maxFilesSlot!=0)
-                {
-                    //선택 해제 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
+                //선택 해제 표시
+                filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
 
-                    selectedOption+=2;
+                selectedOption+=2;
 
-                    //선택되어 있는 상태 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
-                }
-                if(isOpenPictures && maxPicSlot!=0)
-                {
-                    //선택 해제 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
+                //선택되어 있는 상태 표시
+                filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+            }
+            if(isOpenPictures && maxPicSlot!=0 && selectedOption<maxPicSlot-1)
+            {
+                //선택 해제 표시
+                picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
 
-                    selectedOption+=2;
+                selectedOption+=2;
 
-                    //선택되어 있는 상태 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
-                }
+                //선택되어 있는 상태 표시
+                picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
             }
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow))
@@ -180,7 +177,7 @@ public class SmartphoneManager : MonoBehaviour
                 invenOption[0].color = Color.gray;
             }
             //얻은 아이템 항목 선택
-            if(selectedOption%2==0)
+            if(selectedOption%2==0 && (isOpenFiles||isOpenPictures))
             {
                 if(isOpenFiles && maxFilesSlot!=0)
                 {
@@ -214,7 +211,7 @@ public class SmartphoneManager : MonoBehaviour
                 invenOption[1].color = Color.gray;
             }
             //얻은 아이템 항목 선택
-            if(selectedOption%2!=0)
+            if(selectedOption%2!=0 && (isOpenFiles||isOpenPictures))
             {
                 //얻은 아이템의 수에 따라 항목 이동 가능여부 결정
                 if(isOpenFiles && maxFilesSlot!=0 && maxFilesSlot!=selectedOption)
