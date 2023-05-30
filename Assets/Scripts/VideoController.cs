@@ -12,6 +12,7 @@ public class VideoController : MonoBehaviour
     void EndReached(VideoPlayer vp)
     {
         gameObject.SetActive(false);
+        TimelineManager.instance.SetTimelineStart(0);
     }
 
     private void OnDisable() {

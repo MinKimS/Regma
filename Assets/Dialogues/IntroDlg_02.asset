@@ -12,9 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: IntroDlg_02
   m_EditorClassIdentifier: 
+  dlgID: 2
   speakers:
+  - {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+  - {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+  - {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
   sentences:
   - speakerIdx: 0
     dlgTexts: dfdfs
+    eventType: 0
+  - speakerIdx: 2
+    dlgTexts: ff
+    eventType: 0
+  - speakerIdx: 3
+    dlgTexts: gsdv
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: ?????
+    eventType: 0
+  - speakerIdx: 1
+    dlgTexts: dfsfsffd
+    eventType: 0
+  - speakerIdx: 3
+    dlgTexts: fa aef a
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: vsgwe r
+    eventType: 0
+  - speakerIdx: 2
+    dlgTexts: bdr dfv w rb
+    eventType: 0
   nextDlg: {fileID: 0}

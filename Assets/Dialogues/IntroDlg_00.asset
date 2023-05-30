@@ -12,17 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: IntroDlg_00
   m_EditorClassIdentifier: 
+  dlgID: 0
   speakers:
-  - {fileID: 0}
   - {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   - {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
   - {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
   sentences:
   - speakerIdx: -1
-    dlgTexts: Ask what is font of dialogue to use korean.
+    dlgTexts: 1222
+    eventType: 0
   - speakerIdx: -1
     dlgTexts: dsf
+    eventType: 0
   - speakerIdx: -1
     dlgTexts: ghd
+    eventType: 2
+  - speakerIdx: 3
+    dlgTexts: strssss
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: ahhhhhh
+    eventType: 0
+  - speakerIdx: 2
+    dlgTexts: 2
+    eventType: 0
+  - speakerIdx: 1
+    dlgTexts: ahhhhhh
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: sdg
+    eventType: 0
+  - speakerIdx: 3
+    dlgTexts: dfgdfgd dgfgdgdfdfgdfg g
+    eventType: 0
   nextDlg: {fileID: 11400000, guid: d6078173475878040b4600d03eac660f, type: 2}
