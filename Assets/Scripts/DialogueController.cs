@@ -31,8 +31,6 @@ public class DialogueController : MonoBehaviour
 
     //말 끝남표시(확인용)
     public Image nextArrow;
-    //현재 출력될 대화
-    public Dialogue curDlg;
     //현재 출력되는 대화 인덱스
     private int setenceIdx = 0;
     public float typingSpeed = 0.1f;
@@ -62,7 +60,7 @@ public class DialogueController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return) && dlgState == DlgState.DONE)
         {
             //다음 대사로 넘어가기
-            if(setenceIdx < curDlg.sentences.Count)
+            if(setenceIdx < DialogueManager.instance.curDlg.sentences.Count)
             {
                 PlaySentence();
             }
@@ -76,8 +74,8 @@ public class DialogueController : MonoBehaviour
     
     //-------------
 
-    //사람의 대화 출력
-    private IEnumerator TypingDlg(string text, Speaker curSpeaker)
+    //대화 출력
+    private IEnumerator TypingDlg(string text, string curSpeakerName)
     {
         nextArrow.enabled = false;
         
@@ -86,35 +84,20 @@ public class DialogueController : MonoBehaviour
         int dlgWordIdx = 0;
 
         //말하는 애 설정
-        speaker.text = curSpeaker.speakerName;
+        if(DialogueManager.instance.curDlg.sentences[setenceIdx].speakerIdx!=-1)
+        {
+            speaker.text = curSpeakerName;
+        }
+        else
+        {
+            speaker.text = "";
+        }
 
         //대화 출력하는 부분
         while(dlgWordIdx != text.Length)
         {
             dlgText.text += text[dlgWordIdx++];
             yield return new WaitForSeconds(typingSpeed);
-        }
-        dlgState = DlgState.DONE;
-        
-        nextArrow.enabled = true;
-    }
-    
-    //사람이 아닌 거에 대한 대화 출력
-    private IEnumerator TypingDlg(string text)
-    {
-        nextArrow.enabled = false;
-        
-        dlgState = DlgState.TYPING;
-        dlgText.text = "";
-        int dlgWordIdx = 0;
-
-        speaker.text = "";
-
-        //대화 출력하는 부분
-        while(dlgWordIdx != text.Length)
-        {
-            dlgText.text += text[dlgWordIdx++];
-            yield return new WaitForSeconds(0.05f);
         }
         dlgState = DlgState.DONE;
         
@@ -139,11 +122,11 @@ public class DialogueController : MonoBehaviour
     //다음 새로운 대화로 넘어가기
     public void NextDlg()
     {
-        if(curDlg.nextDlg != null)
+        if(DialogueManager.instance.curDlg.nextDlg != null)
         {
             //새로운 대화로 설정
             setenceIdx = 0;
-            curDlg = curDlg.nextDlg;
+            DialogueManager.instance.curDlg = DialogueManager.instance.curDlg.nextDlg;
         }
     }
 
@@ -165,7 +148,16 @@ public class DialogueController : MonoBehaviour
     public void SetChrImg()
     {
         //이미지 설정
-        speakerImg.sprite = curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+        //사람인경우
+        if(DialogueManager.instance.curDlg.sentences[setenceIdx].speakerIdx!=-1)
+        {
+            if(!speakerImg.enabled){speakerImg.enabled = true;}
+            speakerImg.sprite = DialogueManager.instance.curDlg.speakers[DialogueManager.instance.curDlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+        }
+        else
+        {
+            speakerImg.enabled = false;
+        }
     }
 
     //처음 대화 시작
@@ -174,7 +166,7 @@ public class DialogueController : MonoBehaviour
         DialogueShow();
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
-        if(curDlg.speakers.Count>0)
+        if(DialogueManager.instance.curDlg.speakers.Count>0)
         {
             ShowChrImg();
             SetChrImg();
@@ -186,24 +178,31 @@ public class DialogueController : MonoBehaviour
     //다음 대화 진행
     public void PlaySentence()
     {
-        //사람인 경우의 대화진행
-        if(curDlg.speakers.Count != 0)
+        if(DialogueManager.instance.curDlg.speakers.Count != 0)
         {
             SetChrImg();
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx]));
+            //사람인경우
+            if(DialogueManager.instance.curDlg.sentences[setenceIdx].speakerIdx!=-1){
+                StartCoroutine(TypingDlg(DialogueManager.instance.curDlg.sentences[setenceIdx].dlgTexts, DialogueManager.instance.curDlg.speakers[DialogueManager.instance.curDlg.sentences[setenceIdx].speakerIdx].speakerName));
+            }
+            //사람 아닌경우
+            else
+            {
+                StartCoroutine(TypingDlg(DialogueManager.instance.curDlg.sentences[setenceIdx].dlgTexts, ""));
+            }
         }
         setenceIdx++;
     }
 
-    //오브젝트 대화 진행
-    public void PlayObjDlg()
-    {
-        setenceIdx=0;
-        //인식한 오브젝트의 대화를 가져옴
-        //추후 변경될 예정
-        ObjData ObjData = GetComponent<ObjData>();
+    // //오브젝트 대화 진행
+    // public void PlayObjDlg()
+    // {
+    //     setenceIdx=0;
+    //     //인식한 오브젝트의 대화를 가져옴
+    //     //추후 변경될 예정
+    //     ObjData ObjData = GetComponent<ObjData>();
 
-        //대화 진행
-        StartCoroutine(TypingDlg(ObjData.objDlg.sentences[setenceIdx].dlgTexts));
-    }
+    //     //대화 진행
+    //     StartCoroutine(TypingDlg(ObjData.objDlg.sentences[setenceIdx].dlgTexts));
+    // }
 }

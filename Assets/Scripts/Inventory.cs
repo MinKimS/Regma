@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     //인벤 항목들
-    public GameObject slots;
+    public RectTransform slotRT;
     //슬롯의 정보들
     public List<GameObject> slotList;
     //슬롯의 데이터 정보들

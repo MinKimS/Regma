@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
+  m_Name: IntroDlg_00
+  m_EditorClassIdentifier: 
+  speakers:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+  - {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+  - {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
+  sentences:
+  - speakerIdx: -1
+    dlgTexts: Ask what is font of dialogue to use korean.
+  - speakerIdx: -1
+    dlgTexts: dsf
+  - speakerIdx: -1
+    dlgTexts: ghd
+  nextDlg: {fileID: 11400000, guid: d6078173475878040b4600d03eac660f, type: 2}

@@ -14,10 +14,23 @@ public class SmartphoneManager : MonoBehaviour
     public GameObject filesInvenObj;
     //사진 인벤토리
     public GameObject picsInvenObj;
+    //톡이 나오는 곳
+    public GameObject talkParent;
+    private RectTransform talkParentRT;
+
     //인벤 선택란
     public Image[] invenOption;
     //톡 스크롤 영역
     public ScrollRect talkScR;
+    public Scrollbar talkScBar;
+    //플레이어의 톡
+    public GameObject playerTalk;
+    //타인의 톡
+    public GameObject anotherTalk;
+    //입장 톡
+    public GameObject InOutTalk;
+    //가장 최근에 온 톡
+    public TalkData LastTalk;
 
     //인벤정보
     private Inventory picsInven;
@@ -42,6 +55,18 @@ public class SmartphoneManager : MonoBehaviour
     public int maxPicSlot = 0;
     //얻은 파일 아이템 수
     public int maxFilesSlot = 0;
+    //인벤의 현재 선택된 슬롯이 화면상 첫번째 라인인가
+    private bool isFirstLine = false;
+    //인벤의 현재 선택된 슬롯이 화면상 마지막 라인인가
+    private bool isLastLine = false;
+    //인벤의 첫번째 라인의 첫번째 슬롯 번호
+    private int firstLineFirstNum = 1;
+    //인벤의 마지막 라인의 첫번째 슬롯 번호
+    private int lastLineFirstNum = 5;
+    //인벤 스크롤 시 사용되는 수치
+    Vector2 invenOriginPos;
+    Vector2 invenUpValue;
+    Vector2 invenDownValue;
 
     private void Awake() {
         if(instance == null)
@@ -53,10 +78,27 @@ public class SmartphoneManager : MonoBehaviour
         else Destroy(gameObject);
     }
     private void Start() {
-        picsInven = picsInvenObj.GetComponent<Inventory>();
-        filesInven = filesInvenObj.GetComponent<Inventory>();
+        picsInven = picsInvenObj.GetComponentInChildren<Inventory>();
+        filesInven = filesInvenObj.GetComponentInChildren<Inventory>();
+
+        //인벤 스크롤 시 사용되는 수치
+        invenOriginPos = new Vector2(0f, -630f);
+        invenUpValue = new Vector2(0f,-300f);
+        invenDownValue = new Vector2(0f,300f);
+
+        HidePhone();
+
+        talkParentRT=talkParent.GetComponent<RectTransform>();
     }
     private void Update() {
+        //테스트
+        if(Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            //AddTalk(true, "00000333330304 45r");
+            
+            AddTalk(false, "LALALALALa", null);
+        }
+
         //폰 열기
         if(Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!isOpenInven&&isOpenPhone))
         {
@@ -100,7 +142,8 @@ public class SmartphoneManager : MonoBehaviour
             {
                 if(talkScR.verticalNormalizedPosition < 1f)
                 {
-                    talkScR.verticalNormalizedPosition += talkScrollSpeed;
+                    //talkScR.verticalNormalizedPosition += talkScrollSpeed;
+                    talkScBar.value += talkScrollSpeed;
                 }
             }
         }
@@ -111,7 +154,8 @@ public class SmartphoneManager : MonoBehaviour
             {
                 if(talkScR.verticalNormalizedPosition > 0f)
                 {
-                    talkScR.verticalNormalizedPosition -= talkScrollSpeed;
+                    //talkScR.verticalNormalizedPosition -= talkScrollSpeed;
+                    talkScBar.value -= talkScrollSpeed;
                 }
             }
         }
@@ -123,48 +167,76 @@ public class SmartphoneManager : MonoBehaviour
             {
                 if(isOpenFiles && maxFilesSlot!=0)
                 {
-                    //선택 해제 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
+                    SetSelectInvenItem(-2, filesInven);
 
-                    selectedOption-=2;
-
-                    //선택되어 있는 상태 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
+                    if(isFirstLine)
+                    {
+                        ShowOutLine(filesInven, -2, true);
+                    }
+                    //화면상 첫번째 라인이지 체크
+                    if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                    {
+                        isFirstLine = true;
+                    } 
                 }
                 if(isOpenPictures && maxPicSlot!=0)
                 {
-                    //선택 해제 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
+                    SetSelectInvenItem(-2, picsInven);
 
-                    selectedOption-=2;
-
-                    //선택되어 있는 상태 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
+                    if(isFirstLine)
+                    {
+                        ShowOutLine(picsInven, -2, true);
+                    }
+                    //화면상 첫번째 라인이지 체크
+                    if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                    {
+                        isFirstLine = true;
+                    }
                 }
+            }
+            if(isLastLine)
+            {
+                isLastLine=false;
             }
         }
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             //얻은 아이템 항목 선택
             if(isOpenFiles && maxFilesSlot!=0 && selectedOption<maxFilesSlot-1)
-            {
-                //선택 해제 표시
-                filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-
-                selectedOption+=2;
-
-                //선택되어 있는 상태 표시
-                filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+            {  
+                SetSelectInvenItem(2, filesInven);
+                     
+                //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
+                if(isLastLine)
+                {
+                    ShowOutLine(filesInven, 2, false);
+                }
+                //화면상 마지막 라인이지 체크
+                if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
+                {
+                    isLastLine = true;
+                } 
             }
             if(isOpenPictures && maxPicSlot!=0 && selectedOption<maxPicSlot-1)
+            {   
+                SetSelectInvenItem(2, picsInven);
+
+                //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
+                if(isLastLine)
+                {
+                    ShowOutLine(picsInven, 2, false);
+                }
+                //화면상 마지막 라인이지 체크
+                if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
+                {
+                    isLastLine = true;
+                }  
+            }
+            if(isFirstLine)
             {
-                //선택 해제 표시
-                picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-
-                selectedOption+=2;
-
-                //선택되어 있는 상태 표시
-                picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                isFirstLine=false;
             }
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow))
@@ -181,23 +253,12 @@ public class SmartphoneManager : MonoBehaviour
             {
                 if(isOpenFiles && maxFilesSlot!=0)
                 {
-                    //선택 해제 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-                    
-                    selectedOption--;
-
-                    //선택되어 있는 상태 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    SetSelectInvenItem(-1, filesInven);
                 }
                 if(isOpenPictures && maxPicSlot!=0)
                 {
                     //선택 해제 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-                    
-                    selectedOption--;
-
-                    //선택되어 있는 상태 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    SetSelectInvenItem(-1, picsInven);
                 }
             }
         }
@@ -216,23 +277,11 @@ public class SmartphoneManager : MonoBehaviour
                 //얻은 아이템의 수에 따라 항목 이동 가능여부 결정
                 if(isOpenFiles && maxFilesSlot!=0 && maxFilesSlot!=selectedOption)
                 {
-                    //선택 해제 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-                    
-                    selectedOption++;
-
-                    //선택되어 있는 상태 표시
-                    filesInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    SetSelectInvenItem(1, filesInven);
                 }
                 if(isOpenPictures && maxPicSlot!=0 && maxPicSlot!=selectedOption)
                 {
-                    //선택 해제 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
-                    
-                    selectedOption++;
-
-                    //선택되어 있는 상태 표시
-                    picsInven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+                    SetSelectInvenItem(1, picsInven);
                 }
             }
         }
@@ -271,7 +320,7 @@ public class SmartphoneManager : MonoBehaviour
     }
 
     //파일함 보이는 여부 설정
-    public void SetFilesActive(bool state)
+    private void SetFilesActive(bool state)
     {
         if(state)
         {
@@ -281,6 +330,11 @@ public class SmartphoneManager : MonoBehaviour
             {
                 filesInven.slotList[0].GetComponent<Image>().color = Color.gray;
                 selectedOption = 1;
+                lastLineFirstNum = 5;
+                firstLineFirstNum = 1;
+                isLastLine=false;
+                isFirstLine=true;
+                filesInven.slotRT.anchoredPosition = invenOriginPos;
             }
         }
         else
@@ -291,7 +345,7 @@ public class SmartphoneManager : MonoBehaviour
         isOpenFiles = state;
     }
     //사진함 보이는 여부 설정
-    public void SetPicsActive(bool state)
+    private void SetPicsActive(bool state)
     {
         if(state)
         {
@@ -301,6 +355,11 @@ public class SmartphoneManager : MonoBehaviour
             {
                 picsInven.slotList[0].GetComponent<Image>().color = Color.gray;
                 selectedOption = 1;
+                lastLineFirstNum = 5;
+                firstLineFirstNum = 1;
+                isLastLine=false;
+                isFirstLine=true;
+                picsInven.slotRT.anchoredPosition = invenOriginPos;
             }
         }
         else
@@ -319,7 +378,8 @@ public class SmartphoneManager : MonoBehaviour
     {
         //가장 최근의 톡부터 보이도록 설정
         phoneCanvas.gameObject.SetActive(true);
-        talkScR.verticalNormalizedPosition = 0f;
+        // talkScR.verticalNormalizedPosition = 0f;
+        talkScBar.value = 0f;
         isOpenPhone = true;
     }
     //폰 숨기기
@@ -349,13 +409,13 @@ public class SmartphoneManager : MonoBehaviour
         isOpenInven = false;
     }
     //카톡보내기
-    public void SendTalk()
+    private void SendTalk()
     {
         print("send talk");
     }
     //아이템 설정
     //아이템 획득시 호출
-    public void SetItemToInven(bool isFile, int index, GotItemData gotItem)
+    private void SetItemToInven(bool isFile, int index, GotItemData gotItem)
     {
         //인벤에 보이는 이미지 설정
         if(isFile)
@@ -368,5 +428,72 @@ public class SmartphoneManager : MonoBehaviour
             picsInven.gotItemList.Add(gotItem);
             picsInven.slotList[index].GetComponent<Image>().sprite=picsInven.slotDataList[index].item.itemSprite;
         }
+    }
+    
+    //선택된 슬롯 변경
+    private void SetSelectInvenItem(int value, Inventory inven)
+    {
+        //선택 해제 표시
+        inven.slotList[selectedOption-1].GetComponent<Image>().color = Color.white;
+
+        selectedOption+=value;
+
+        //선택되어 있는 상태 표시
+        inven.slotList[selectedOption-1].GetComponent<Image>().color = Color.gray;
+    }
+    //화면밖에 있는 라인 보이기
+    private void ShowOutLine(Inventory inven, int value, bool isUp)
+    {
+        if(isUp) {inven.slotRT.anchoredPosition += invenUpValue;}
+        else {inven.slotRT.anchoredPosition += invenDownValue;}
+        firstLineFirstNum+=value;
+        lastLineFirstNum+=value;
+    }
+    
+    //톡 추가
+    private void AddTalk(bool isPlayer, string text, Sprite sp)
+    {
+        bool isBottom = talkScBar.value <= 0.0001f;
+        
+        TalkData talk = Instantiate(isPlayer ? playerTalk : anotherTalk).GetComponent<TalkData>();
+        talk.transform.SetParent(talkParent.transform, false);
+        talk.talkText.text = text;
+
+        //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
+        bool isSameUser = LastTalk != null && LastTalk.userName == talk.userName;
+        
+        //이어지는 톡 설정
+        talk.tail.SetActive(!isSameUser);
+        if(!isPlayer)
+        {
+            talk.profileImage.gameObject.SetActive(!isSameUser);
+            talk.nameText.gameObject.SetActive(!isSameUser);
+            talk.nameText.text = talk.name;
+            if(sp!=null)
+            {
+                talk.profileImage.sprite = sp;
+            }
+        }
+
+        LastTalk = talk;
+
+        StartCoroutine(FitLayout(talkParentRT, 0.03f));
+
+        //플레이어 톡이 아닌경우
+        if(!isPlayer&&!isBottom) {return;}
+        Invoke("ScrollToBottom", 0.03f);
+    }
+
+    //레이아웃 버그 해소
+    IEnumerator FitLayout(RectTransform rt, float time)
+    {
+        yield return new WaitForSeconds(time);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
+    }
+
+    //가장 최근 본인 톡 보이기
+    void ScrollToBottom()
+    {
+        talkScBar.value = 0f;
     }
 }
