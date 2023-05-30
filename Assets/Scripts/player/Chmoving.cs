@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chmoving : MonoBehaviour
 {
-    private float moveSpeed = 1f;
+    private float moveSpeed = 5f;
     private float runSpeed = 2f;
     private float jumpForce = 2f; // 점프 힘을 두 배로 증가시킴
 
