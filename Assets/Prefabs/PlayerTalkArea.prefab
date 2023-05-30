@@ -95,6 +95,8 @@ MonoBehaviour:
   readNumText: {fileID: 7513178075005663891}
   talkText: {fileID: 7513178075582375202}
   nameText: {fileID: 0}
+  textRT: {fileID: 7513178075582375203}
+  talkRT: {fileID: 7513178074867529615}
   tail: {fileID: 7513178076522215115}
   profileImage: {fileID: 0}
   userName: 

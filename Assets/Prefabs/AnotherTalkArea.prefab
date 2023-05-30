@@ -464,8 +464,10 @@ MonoBehaviour:
   readNumText: {fileID: 6739030046356120325}
   talkText: {fileID: 6739030045622838542}
   nameText: {fileID: 6739030045453885625}
+  textRT: {fileID: 6739030045622838543}
+  talkRT: {fileID: 6739030045931762116}
   tail: {fileID: 6739030045655160979}
-  profileImage: {fileID: 6739030046364293978}
+  profileImage: {fileID: 6739030047225372656}
   userName: 
   readNum: 0
 --- !u!1 &6739030046356120376
