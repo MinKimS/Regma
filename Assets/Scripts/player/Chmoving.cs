@@ -5,8 +5,8 @@ using UnityEngine;
 public class Chmoving : MonoBehaviour
 {
     private float moveSpeed = 5f;
-    private float runSpeed = 2f;
-    private float jumpForce = 2f; // 점프 힘을 두 배로 증가시킴
+    private float runSpeed = 5f;
+    private float jumpForce = 3f; // 점프 힘을 두 배로 증가시킴
 
     private bool isRunning = false;
     //private bool isJumping = false;
@@ -17,7 +17,7 @@ public class Chmoving : MonoBehaviour
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
     int JumpCnt;
-    int JumpCount = 2;
+    int JumpCount = 3;
 
 
     private void Start()
