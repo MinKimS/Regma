@@ -143,7 +143,7 @@ public class DialogueManager : MonoBehaviour
 
         SetNextDlg();
 
-        if(TimelineManager.instance.Tlstate == TimelineManager.TlState.Stop)
+        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
             TimelineManager.instance.SetTimelineResume();
         }
@@ -207,6 +207,11 @@ public class DialogueManager : MonoBehaviour
     //다음 대화 진행
     public void PlaySentence()
     {
+        if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        {
+            TimelineManager.instance.SetTimelineResume();
+        }
+
         SetChrImg();
         //사람인경우
         if(curDlg.sentences[setenceIdx].speakerIdx!=-1){
@@ -217,7 +222,6 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, ""));
         }
-        
         setenceIdx++;
     }
 }

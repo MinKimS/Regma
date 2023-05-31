@@ -20,21 +20,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
   sentences:
   - speakerIdx: 1
-    dlgTexts: iiinnnnnnngogogogogo
+    dlgTexts: "\uB9DE\uC544\uC694, \uC77C\uB2E8 \uB4E4\uC5B4\uAC00\uBCF4\uC8E0."
     eventType: 0
   - speakerIdx: 3
-    dlgTexts: dfsdf
+    dlgTexts: "\uC57C, \uB108\uBD80\uD130 \uB4E4\uC5B4\uAC00."
     eventType: 0
   - speakerIdx: 1
-    dlgTexts: sla tjsdla
+    dlgTexts: "\uB2D8 \uC120\uC784."
     eventType: 0
   - speakerIdx: 2
-    dlgTexts: wprk ajswj emfdjrkfrp
+    dlgTexts: "\uC81C\uAC00 \uBA3C\uC800 \uB4E4\uC5B4\uAC08\uAC8C\uC694. \uB2E4\uB4E4
+      \uD5E4\uB4DC \uB79C\uD134 \uD0A4\uC2DC\uACE0 \uCC28\uB840\uB85C \uB4E4\uC5B4\uC624\uC138\uC694."
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: wkwk sksms Whfqhfktj enldp tjsmsrp dkslfh
+    dlgTexts: "\uC790\uC790, \uB098\uB294 \uCAC4\uBCF4\uB77C\uC11C \uB4A4\uC5D0 \uC11C\uB294\uAC8C
+      \uC544\uB2C8\uACE0 \uC9C0\uCF1C\uC8FC\uB824\uACE0 \uADF8\uB7EC\uB294 \uAC70\uC57C 
+      \uAC70\uC57C, \uC54C\uC558\uC9C0?"
+    eventType: 2
+  - speakerIdx: 0
+    dlgTexts: "\uADF8\uB7EC\uB2C8\uAE4C"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uC81C\uAC00\_\uB9E8\_\uB4A4\uC5D0\_\uC124\uAC8C\uC694!"
     eventType: 0
   - speakerIdx: 1
-    dlgTexts: rmsep fosxjs
+    dlgTexts: "\uADFC\uB370\_\uB79C\uD134\_\uBD88\uC774\_\uC57D\uD55C\_\uAC74\uAC00?\_\uC548\uC774\_\uC548\uBCF4\uC774\uC9C0\_\uC54A\uC544\uC694?"
     eventType: 0
   nextDlg: {fileID: 0}

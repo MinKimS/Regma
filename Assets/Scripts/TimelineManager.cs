@@ -16,7 +16,7 @@ public class TimelineManager : MonoBehaviour
     }
     TlState tlstate = TlState.Stop;
 
-    public TlState Tlstate{
+    public TlState _Tlstate{
         get{
             return tlstate;
         }
@@ -37,6 +37,9 @@ public class TimelineManager : MonoBehaviour
     }
     private void Start() {
         pd = GameObject.Find("Timeline").GetComponentsInChildren<PlayableDirector>();
+
+        //test
+        SetTimelineStart(0);
     }
 
     public void SetTimelineStart(int playTimelineIdx=0)

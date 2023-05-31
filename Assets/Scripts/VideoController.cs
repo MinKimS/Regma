@@ -7,7 +7,10 @@ public class VideoController : MonoBehaviour
 {
     public VideoPlayer vPlayer;
     private void Start() {
-        vPlayer.loopPointReached+=EndReached;
+        //테스트를 위해
+        //TimelineManager.instance.SetTimelineStart(0);
+        //-------------------------
+        //vPlayer.loopPointReached+=EndReached;
     }
     void EndReached(VideoPlayer vp)
     {
