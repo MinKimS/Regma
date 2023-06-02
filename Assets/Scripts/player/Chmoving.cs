@@ -84,5 +84,17 @@ public class Chmoving : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Book"))
+        {
+            Bookcontrol bookControl = collision.GetComponent<Bookcontrol>();
+            if (bookControl != null)
+            {
+                bookControl.ShowImage();
+            }
+        }
+    }
+
 
 }
