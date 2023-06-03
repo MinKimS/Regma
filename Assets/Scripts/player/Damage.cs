@@ -6,24 +6,25 @@ using UnityEngine.UI;
 
 public class Damage : MonoBehaviour
 {
-    public Image hpScreen;
+    public Image HpScreen;
+    bool isActive = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        HpScreen.color = Color.clear;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player") && !isActive)
+        {
+            isActive = true;
+            ShowHpScreen();
+        }
     }
 
-   //if()
-
-    IEnumerator ShowBloodScreen()
+    void ShowHpScreen()
     {
-        yield return new WaitForSeconds(0.1f);
+        HpScreen.color = new Color(1f, 1f, 1f, 1f);
     }
 }
