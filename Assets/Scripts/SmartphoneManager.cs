@@ -8,6 +8,8 @@ public class SmartphoneManager : MonoBehaviour
     public static SmartphoneManager instance;
     //핸드폰 ui가 있는 캔버스
     public Canvas phoneCanvas;
+    //핸드폰
+    public GameObject phonePanel;
     //핸드폰 인벤토리
     public GameObject phoneInven;
     //파일 인벤토리
@@ -17,6 +19,7 @@ public class SmartphoneManager : MonoBehaviour
     //톡이 나오는 곳
     public GameObject talkParent;
     private RectTransform talkParentRT;
+    public bool isOKSendTalk = false;
 
     //인벤 선택란
     public Image[] invenOption;
@@ -28,13 +31,32 @@ public class SmartphoneManager : MonoBehaviour
     //타인의 톡
     public GameObject anotherTalk;
     //입장 톡
-    public GameObject InOutTalk;
+    public GameObject inOutTalk;
+    //공지 톡
+    public GameObject announcementTalk;
+    //플레이어가 보낼 수 있는 톡
+    public GameObject sendTalk;
     //가장 최근에 온 톡
-    public TalkData LastTalk;
+    public TalkData lastTalk;
+    //톡을 보내는 영역
+    public GameObject talkInputArea;
+    private int TalkMemberNum = 5;
+    public List<sendTalkData> sendTalkList;
+    //보낼 톡 내용들
+    public List<string> sendTalkContentList = new List<string>();
+    //받을 톡 내용들
+    public List<List<string>> receiveTalkContentList = new List<List<string>>();
+    public int sendTalkIdx = 0;
+    public int receiveTalkIdx = 0;
+    RectTransform talkInputAreaRT;
+    int showedCount = 0;
+    public RectTransform inputArea;
 
     //인벤정보
-    private Inventory picsInven;
-    private Inventory filesInven;
+    [HideInInspector]
+    public Inventory picsInven;
+    [HideInInspector]
+    public Inventory filesInven;
 
     //폰 보이는 여부
     private bool isOpenPhone = false;
@@ -80,6 +102,7 @@ public class SmartphoneManager : MonoBehaviour
     private void Start() {
         picsInven = picsInvenObj.GetComponentInChildren<Inventory>();
         filesInven = filesInvenObj.GetComponentInChildren<Inventory>();
+        talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
 
         //인벤 스크롤 시 사용되는 수치
         invenOriginPos = new Vector2(0f, -630f);
@@ -88,17 +111,11 @@ public class SmartphoneManager : MonoBehaviour
 
         HidePhone();
 
+        SetList();
+
         talkParentRT=talkParent.GetComponent<RectTransform>();
     }
     private void Update() {
-        //테스트
-        if(Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            //AddTalk(true, "00000333330304 45r");
-            
-            AddTalk(false, "LALALALALa", null);
-        }
-
         //폰 열기
         if(Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!isOpenInven&&isOpenPhone))
         {
@@ -162,6 +179,10 @@ public class SmartphoneManager : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
+            if(isOpenPhone&&!isOpenInven&&selectedOption > 1)
+            {
+                SelectTalk(-1);
+            }
             //얻은 아이템 항목 선택
             if(selectedOption>2)
             {
@@ -203,6 +224,10 @@ public class SmartphoneManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
+            if(isOpenPhone&&!isOpenInven&&selectedOption < showedCount)
+            {
+                SelectTalk(1);
+            }
             //얻은 아이템 항목 선택
             if(isOpenFiles && maxFilesSlot!=0 && selectedOption<maxFilesSlot-1)
             {  
@@ -310,6 +335,12 @@ public class SmartphoneManager : MonoBehaviour
             {
                 print(picsInven.slotDataList[selectedOption-1].item.itemName);
             }
+            //톡 선택
+            if(isOpenPhone&&!isOpenInven&& isOKSendTalk)
+            {
+                AddTalk(sendTalkList[selectedOption-1].text);
+                HideSendTalk();
+            }
         }
         if(Input.GetKeyDown(KeyCode.Delete))
         {
@@ -374,20 +405,20 @@ public class SmartphoneManager : MonoBehaviour
         isOpenPictures = state;
     }
     //폰 보이기
-    private void ShowPhone()
+    public void ShowPhone()
     {
         //가장 최근의 톡부터 보이도록 설정
-        phoneCanvas.gameObject.SetActive(true);
+        phonePanel.gameObject.SetActive(true);
         // talkScR.verticalNormalizedPosition = 0f;
         talkScBar.value = 0f;
         isOpenPhone = true;
     }
     //폰 숨기기
-    private void HidePhone()
+    public void HidePhone()
     {
         //인벤이 켜져있으면 함께 끄기
         if(!isOpenInven) {HideInven();}
-        phoneCanvas.gameObject.SetActive(false);
+        phonePanel.gameObject.SetActive(false);
         isOpenPhone = false;
     }
     //인벤 보이기
@@ -408,27 +439,22 @@ public class SmartphoneManager : MonoBehaviour
         phoneInven.gameObject.SetActive(false);
         isOpenInven = false;
     }
-    //카톡보내기
-    private void SendTalk()
-    {
-        print("send talk");
-    }
-    //아이템 설정
-    //아이템 획득시 호출
-    private void SetItemToInven(bool isFile, int index, GotItemData gotItem)
-    {
-        //인벤에 보이는 이미지 설정
-        if(isFile)
-        {
-            filesInven.gotItemList.Add(gotItem);
-            filesInven.slotList[index].GetComponent<Image>().sprite=filesInven.slotDataList[index].item.itemSprite;
-        }
-        else
-        {
-            picsInven.gotItemList.Add(gotItem);
-            picsInven.slotList[index].GetComponent<Image>().sprite=picsInven.slotDataList[index].item.itemSprite;
-        }
-    }
+    // //아이템 설정
+    // //아이템 획득시 호출
+    // private void SetItemToInven(bool isFile, int index, GotItemData gotItem)
+    // {
+    //     //인벤에 보이는 이미지 설정
+    //     if(isFile)
+    //     {
+    //         filesInven.gotItemList.Add(gotItem);
+    //         filesInven.slotList[index].GetComponent<Image>().sprite=filesInven.slotDataList[index].item.itemSprite;
+    //     }
+    //     else
+    //     {
+    //         picsInven.gotItemList.Add(gotItem);
+    //         picsInven.slotList[index].GetComponent<Image>().sprite=picsInven.slotDataList[index].item.itemSprite;
+    //     }
+    // }
     
     //선택된 슬롯 변경
     private void SetSelectInvenItem(int value, Inventory inven)
@@ -451,36 +477,82 @@ public class SmartphoneManager : MonoBehaviour
     }
     
     //톡 추가
-    private void AddTalk(bool isPlayer, string text, Sprite sp)
-    {
-        bool isBottom = talkScBar.value <= 0.0001f;
-        
-        TalkData talk = Instantiate(isPlayer ? playerTalk : anotherTalk).GetComponent<TalkData>();
+    public void AddTalk(string text)
+    {        
+        TalkData talk = Instantiate(playerTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
-        bool isSameUser = LastTalk != null && LastTalk.userName == talk.userName;
+        bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
         
         //이어지는 톡 설정
         talk.tail.SetActive(!isSameUser);
-        if(!isPlayer)
+        
+        talk.readNum = TalkMemberNum - 1;
+        talk.readNumText.text = talk.readNum.ToString();
+
+        lastTalk = talk;
+
+        StartCoroutine(FitLayout(talkParentRT, 0.03f));
+        StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
+
+        Invoke("ScrollToBottom", 0.03f);
+
+        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
+            TimelineManager.instance.SetTimelineResume();
+        }
+    }
+
+    public void AddTalk(bool isAnnouncement, string userName, string text, Sprite sp)
+    {
+        TalkData talk = Instantiate(isAnnouncement ? announcementTalk : anotherTalk).GetComponent<TalkData>();
+        talk.transform.SetParent(talkParent.transform, false);
+        talk.talkText.text = text;
+        if(!isAnnouncement) talk.userName = userName;
+
+        //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
+        bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
+        
+        //이어지는 톡 설정
+        talk.tail.SetActive(!isSameUser);
+        if(!isAnnouncement)
+        {   
             talk.profileImage.gameObject.SetActive(!isSameUser);
             talk.nameText.gameObject.SetActive(!isSameUser);
-            talk.nameText.text = talk.name;
+            talk.nameText.text = talk.userName;
             if(sp!=null)
             {
                 talk.profileImage.sprite = sp;
             }
         }
+        talk.readNum = TalkMemberNum - 2;
+        talk.readNumText.text = talk.readNum.ToString();
 
-        LastTalk = talk;
+        lastTalk = talk;
+
+        Invoke("ScrollToBottom", 0.03f);
+        StartCoroutine(FitLayout(talkParentRT, 0.03f));
+    }
+
+    public void AddInOutTalk(bool isIn, string text)
+    {        
+        TalkData talk = Instantiate(inOutTalk).GetComponent<TalkData>();
+        talk.transform.SetParent(talkParent.transform, false);
+
+        if(isIn)
+        {
+            talk.talkText.text = text + "님이 들어왔습니다.";
+        }
+        else
+        {
+            talk.talkText.text = text;
+        }
+
+        lastTalk = talk;
 
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
-
-        //플레이어 톡이 아닌경우
-        if(!isPlayer&&!isBottom) {return;}
         Invoke("ScrollToBottom", 0.03f);
     }
 
@@ -495,5 +567,85 @@ public class SmartphoneManager : MonoBehaviour
     void ScrollToBottom()
     {
         talkScBar.value = 0f;
+    }
+
+    public void SetSendTalk(int count)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            sendTalkData sendTalk = sendTalkList[i];
+            sendTalk.gameObject.SetActive(true);
+            sendTalk.text = sendTalkContentList[sendTalkIdx];
+            sendTalk.talkText.text = sendTalkList[i].text;
+            sendTalkList[i].talkText.enabled = true;
+            sendTalkIdx++;
+        }
+        showedCount = count;
+
+        sendTalkList[0].talkColor = Color.white;
+        selectedOption = 1;
+
+        StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
+        StartCoroutine(FitLayout(inputArea, 0.03f));
+    }
+
+    public void HideSendTalk()
+    {
+        for(int i =0; i< showedCount; i++)
+        {
+            sendTalkList[i].talkText.text = "";
+            sendTalkList[i].talkText.enabled = false;
+            sendTalkList[i].gameObject.SetActive(false);
+            isOKSendTalk = false;
+        }
+        StartCoroutine(FixLayoutGroup());
+
+        TimelineManager.instance.SetTimelineResume();
+    }
+    
+    IEnumerator FixLayoutGroup()
+    {
+        VerticalLayoutGroup vlg = talkInputArea.GetComponent<VerticalLayoutGroup>();
+        vlg.enabled = false;
+        yield return new WaitForEndOfFrame();
+        vlg.enabled = true;
+    }
+
+    public void SelectTalk(int value)
+    {
+        //선택 해제 표시
+        sendTalkList[selectedOption-1].talkColor = Color.white;
+        print(selectedOption);
+        selectedOption+=value;
+
+        //선택되어 있는 상태 표시
+        sendTalkList[selectedOption-1].talkColor = Color.gray;
+        print(selectedOption);
+    }
+
+    private void SetList()
+    {
+        sendTalkContentList.Add("다들 어디에요?");
+        sendTalkContentList.Add("보면 어딘지 말하세요");
+        sendTalkContentList.Add("누구세요?");
+        sendTalkContentList.Add("아호 님! 나는 거실이에요.");
+        sendTalkContentList.Add("현관문이고 뭐고 아무것도 안보여요.");
+        sendTalkContentList.Add("아호님 소리 못들었어요.");
+        sendTalkContentList.Add("나도 소리 쳤는데;;");
+        sendTalkContentList.Add("서로 소리가 안들리나봐요.");
+        sendTalkContentList.Add("네");
+        sendTalkContentList.Add("너 대체 누구냐고?");
+
+        receiveTalkContentList.Add(new List<string> {"익명", "안녕?"});
+        receiveTalkContentList.Add(new List<string> {"익명", "반가워"});
+        receiveTalkContentList.Add(new List<string> {"아호", "다들 어딨어요?"});
+        receiveTalkContentList.Add(new List<string> {"아호", "나 여기 주방이고"});
+        receiveTalkContentList.Add(new List<string> {"아호", "문 앞에 서있는데"});
+        receiveTalkContentList.Add(new List<string> {"아호", "어디로 가는건지 모르겠어요."});
+        receiveTalkContentList.Add(new List<string> {"아호", "도원 님이에요?"});
+        receiveTalkContentList.Add(new List<string> {"아호", "소리 지르고 있는데 안 들려요?"});
+        receiveTalkContentList.Add(new List<string> {"아호", "우선 빨리 열어보죠."});
+        receiveTalkContentList.Add(new List<string> {"아호", "저도 여는 방법 찾아볼테니까 도원 님도 찾아봐요."});
+        receiveTalkContentList.Add(new List<string> {"익명", "오늘도 일기 써야하는데… 안 쓰면 혼나.."});
     }
 }

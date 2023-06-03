@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
     private void Start() {
         speakerImg = speakersObj.GetComponent<Image>();
         speakerRectTr = speakersObj.GetComponent<RectTransform>();
-        curDlg = dialogueList[0];
+        curDlg = dialogueList[1];
 
         SceneManager.sceneLoaded += SceneChangeEvent;
     }
@@ -147,6 +147,10 @@ public class DialogueManager : MonoBehaviour
         {
             TimelineManager.instance.SetTimelineResume();
         }
+        else
+        {
+            TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
+        }
     }
     //다음 새로운 대화로 설정
     public void SetNextDlg()
@@ -192,6 +196,8 @@ public class DialogueManager : MonoBehaviour
     //처음 대화 시작
     public void PlayDlg()
     {
+        if(SmartphoneManager.instance != null)
+            SmartphoneManager.instance.isOKSendTalk=false;
         DialogueShow();
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
