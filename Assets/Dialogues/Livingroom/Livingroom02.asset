@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Livingroom02
   m_EditorClassIdentifier: 
-  dlgID: 2
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
-  - speakerIdx: 0
-    dlgTexts: "\uC5EC\uAE30\uAC00\_\uC5B4\uB514\uC57C\u2026\_\uC55E\uC774\_\uC548\uBCF4\uC5EC."
-    eventType: 0
   - speakerIdx: 0
     dlgTexts: "...\uD5C9"
     eventType: 0

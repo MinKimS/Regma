@@ -93,9 +93,6 @@ public class SmartphoneManager : MonoBehaviour
     Vector2 invenDownValue;
 
     bool isSendTalkReady = false;
-    [HideInInspector]
-    public List<TalkData> sendTalks;
-
     private void Awake() {
         if(instance == null)
         {

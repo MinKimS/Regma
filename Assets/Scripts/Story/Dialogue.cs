@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "Story/New Dialogue")]
 public class Dialogue : ScriptableObject
 {
-    public int dlgID;
     public enum EventType
     {
         None,

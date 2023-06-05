@@ -176,6 +176,7 @@ public class DialogueManager : MonoBehaviour
         {
             TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
         }
+        isSingleDlg = false;
     }
     //다음 새로운 대화로 설정
     public void SetNextDlg()

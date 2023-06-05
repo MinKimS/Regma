@@ -45,7 +45,7 @@ public class TimelineManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadSceneEvent;
         
         //test
-        //SetTimelineStart(0);
+        SetTimelineStart(0);
     }
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)

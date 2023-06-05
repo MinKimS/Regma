@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Livingroom00
   m_EditorClassIdentifier: 
-  dlgID: 0
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
@@ -20,6 +19,12 @@ MonoBehaviour:
     dlgTexts: "\uC73C\u2026"
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: "\uBB50\uC57C.\_\uC9C0\uC560\_\uB2D8?\_\uC544\uD638\_\uB2D8?\_\uC784\uC911\_\uB2D8?"
+    dlgTexts: ??
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uBB50\uC57C."
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uC9C0\uC560\_\uB2D8?\_\uC544\uD638\_\uB2D8?\_\uC784\uC911\_\uB2D8?"
     eventType: 0
   nextDlg: {fileID: 11400000, guid: 653543c112748434f8e61a5a090f8906, type: 2}
