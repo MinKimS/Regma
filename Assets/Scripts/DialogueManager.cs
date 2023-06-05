@@ -167,15 +167,6 @@ public class DialogueManager : MonoBehaviour
         HideChrImg();
 
         SetNextDlg(dlg);
-
-        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
-        {
-            TimelineManager.instance.SetTimelineResume();
-        }
-        else
-        {
-            TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
-        }
         isSingleDlg = false;
     }
     //다음 새로운 대화로 설정

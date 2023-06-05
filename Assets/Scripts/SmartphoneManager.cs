@@ -526,7 +526,7 @@ public class SmartphoneManager : MonoBehaviour
         talk.tail.SetActive(!isSameUser);
         if(!isAnnouncement)
         {   
-            talk.profileImage.gameObject.SetActive(!isSameUser);
+            talk.profile.gameObject.SetActive(!isSameUser);
             talk.nameText.gameObject.SetActive(!isSameUser);
             talk.nameText.text = talk.userName;
 
@@ -653,11 +653,11 @@ public class SmartphoneManager : MonoBehaviour
         receiveTalkContentList.Add(new List<string> {"아호", "다들 어딨어요?"});
         receiveTalkContentList.Add(new List<string> {"아호", "나 여기 주방이고"});
         receiveTalkContentList.Add(new List<string> {"아호", "문 앞에 서있는데"});
-        receiveTalkContentList.Add(new List<string> {"아호", "어디로 가는건지 모르겠어요."});
+        receiveTalkContentList.Add(new List<string> {"아호", "어디로 가는건지\n모르겠어요."});
         receiveTalkContentList.Add(new List<string> {"아호", "도원 님이에요?"});
-        receiveTalkContentList.Add(new List<string> {"아호", "소리 지르고 있는데 안 들려요?"});
+        receiveTalkContentList.Add(new List<string> {"아호", "소리 지르고 있는데\n안 들려요?"});
         receiveTalkContentList.Add(new List<string> {"아호", "우선 빨리 열어보죠."});
-        receiveTalkContentList.Add(new List<string> {"아호", "저도 여는 방법 찾아볼테니까 도원 님도 찾아봐요."});
-        receiveTalkContentList.Add(new List<string> {"익명", "오늘도 일기 써야하는데… 안 쓰면 혼나.."});
+        receiveTalkContentList.Add(new List<string> {"아호", "저도 여는 방법 찾아볼테니까\n도원 님도 찾아봐요."});
+        receiveTalkContentList.Add(new List<string> {"익명", "오늘도 일기 써야하는데…\n안 쓰면 혼나.."});
     }
 }

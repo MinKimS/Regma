@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 340, y: 0}
-  m_SizeDelta: {x: 680, y: 0}
+  m_SizeDelta: {x: 445, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3902645245538652461
 MonoBehaviour:
@@ -92,12 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f176c65278c204a8aa99803867040e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkId: 0
   readNumText: {fileID: 0}
   talkText: {fileID: 6324094727516878616}
   nameText: {fileID: 0}
   textRT: {fileID: 0}
   talkRT: {fileID: 0}
   tail: {fileID: 0}
+  profile: {fileID: 0}
   profileImage: {fileID: 0}
   userName: 
   readNum: 0
@@ -139,8 +141,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 340, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 222.5, y: 0}
+  m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6324094726060327832
 CanvasRenderer:
@@ -163,14 +165,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47199476, g: 0.63350797, b: 0.6981132, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.33962265, g: 0.43253827, b: 0.509434, a: 0.60784316}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: c4ee80111c2404b448f7ef8fbc4a8984, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -196,7 +198,7 @@ MonoBehaviour:
     m_Left: 15
     m_Right: 15
     m_Top: 10
-    m_Bottom: 10
+    m_Bottom: 13
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -313,8 +315,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

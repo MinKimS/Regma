@@ -10,6 +10,7 @@ public class TalkData : MonoBehaviour
     public TextMeshProUGUI readNumText, talkText, nameText;
     public RectTransform textRT, talkRT;
     public GameObject tail;
+    public Image profile;
     public Image profileImage;
     public string userName;
     public int readNum;

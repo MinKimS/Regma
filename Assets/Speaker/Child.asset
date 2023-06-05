@@ -16,4 +16,4 @@ MonoBehaviour:
   speakerName: ???
   speakerSprite: {fileID: 0}
   talkName: "\uC775\uBA85"
-  talkProfileSp: {fileID: 0}
+  talkProfileSp: {fileID: 21300000, guid: f87fa8e5111d34c4887051a948ec246e, type: 3}
