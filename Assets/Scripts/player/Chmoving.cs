@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Chmoving : MonoBehaviour
 {
+    public Animator animator;
+
     private float moveSpeed = 5f;
     private float runSpeed = 5f;
-    private float jumpForce = 5f; // 점프 힘을 두 배로 증가시킴
+    private float jumpForce = 5f;
+    private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
-    //private bool isJumping = false;
     private Rigidbody2D rb;
+    private bool isMoving = false;
 
     bool isGround;
     [SerializeField] Transform pos;
@@ -19,35 +22,23 @@ public class Chmoving : MonoBehaviour
     int JumpCnt;
     int JumpCount = 5;
 
-
     private void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         JumpCnt = JumpCount;
     }
-
-    private void FixedUpdate()
-    {
-        float moveInputX = Input.GetAxis("Horizontal");
-        //float moveInputY = Input.GetAxis("Vertical");
-
-        // 좌우 이동
-        rb.velocity = new Vector2(moveInputX * GetSpeed(), rb.velocity.y);
-
-    }
-
 
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-
-        if (isGround == true && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0) // 이중 점프 허용
+        if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
         }
 
-        if (isGround == false && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+        if (!isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
         }
@@ -69,6 +60,32 @@ public class Chmoving : MonoBehaviour
         else
         {
             isRunning = false;
+        }
+
+        float moveInputX = Input.GetAxisRaw("Horizontal");
+
+        if (moveInputX != 0)
+        {
+            isMoving = true;
+            currentMoveSpeed = moveSpeed * moveInputX;
+            animator.SetBool("walk", true);
+        }
+        else
+        {
+            isMoving = false;
+            currentMoveSpeed = 0f;
+            animator.SetBool("walk", false);
+        }
+
+        // 좌우 이동
+        rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+    }
+
+    private void LateUpdate()
+    {
+        if (isMoving)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -95,6 +112,4 @@ public class Chmoving : MonoBehaviour
             }
         }
     }
-
-
 }
