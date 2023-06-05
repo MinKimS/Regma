@@ -42,16 +42,19 @@ public class TimelineManager : MonoBehaviour
     }
     private void Start() {
         SetPlayableDirector();
-        // SceneManager.sceneLoaded += LoadSceneEvent;
+        SceneManager.sceneLoaded += LoadSceneEvent;
+        
+        //test
+        //SetTimelineStart(0);
     }
 
-    // private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
-    // {
-    //     if(scene.name != "LoadingScene")
-    //     {
-    //         SetPlayableDirector();
-    //     }
-    // }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name != "LoadingScene")
+        {
+            SetTimelineStart(0);
+        }
+    }
 
     public void SetPlayableDirector()
     {

@@ -38,6 +38,8 @@ public class SmartphoneManager : MonoBehaviour
     public GameObject sendTalk;
     //가장 최근에 온 톡
     public TalkData lastTalk;
+    //가장 최근에 온 플레이어 톡
+    public TalkData lastPlayerTalk;
     //톡을 보내는 영역
     public GameObject talkInputArea;
     private int TalkMemberNum = 5;
@@ -90,6 +92,10 @@ public class SmartphoneManager : MonoBehaviour
     Vector2 invenUpValue;
     Vector2 invenDownValue;
 
+    bool isSendTalkReady = false;
+    [HideInInspector]
+    public List<TalkData> sendTalks;
+
     private void Awake() {
         if(instance == null)
         {
@@ -116,38 +122,41 @@ public class SmartphoneManager : MonoBehaviour
         talkParentRT=talkParent.GetComponent<RectTransform>();
     }
     private void Update() {
-        //폰 열기
-        if(Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!isOpenInven&&isOpenPhone))
+        if((TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
         {
-            if(!isOpenPhone)
-            {
-                ShowPhone();
-            }
-            else
-            {
-                if(isOpenInven){HideInven();}
-                HidePhone();
-            }
-        }
-        //인벤 열기
-        if(Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&isOpenInven))
-        {
-            if(!isOpenInven)
+            //폰 열기
+            if((Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!isOpenInven&&isOpenPhone))&&!isSendTalkReady)
             {
                 if(!isOpenPhone)
                 {
                     ShowPhone();
-                    ShowInven();
                 }
                 else
                 {
-                    ShowInven();
+                    if(isOpenInven){HideInven();}
+                    HidePhone();
                 }
             }
-            else
+            //인벤 열기
+            if((Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&isOpenInven))&&!isSendTalkReady)
             {
-                HideInven();
-                HidePhone();
+                if(!isOpenInven)
+                {
+                    if(!isOpenPhone)
+                    {
+                        ShowPhone();
+                        ShowInven();
+                    }
+                    else
+                    {
+                        ShowInven();
+                    }
+                }
+                else
+                {
+                    HideInven();
+                    HidePhone();
+                }
             }
         }
 
@@ -493,6 +502,7 @@ public class SmartphoneManager : MonoBehaviour
         talk.readNumText.text = talk.readNum.ToString();
 
         lastTalk = talk;
+        lastPlayerTalk = talk;
 
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
         StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
@@ -505,12 +515,12 @@ public class SmartphoneManager : MonoBehaviour
         }
     }
 
-    public void AddTalk(bool isAnnouncement, string userName, string text, Sprite sp)
+    public void AddTalk(bool isAnnouncement, Speaker user, string text)
     {
         TalkData talk = Instantiate(isAnnouncement ? announcementTalk : anotherTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
-        if(!isAnnouncement) talk.userName = userName;
+        if(!isAnnouncement) talk.userName = user.talkName;
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
@@ -522,9 +532,11 @@ public class SmartphoneManager : MonoBehaviour
             talk.profileImage.gameObject.SetActive(!isSameUser);
             talk.nameText.gameObject.SetActive(!isSameUser);
             talk.nameText.text = talk.userName;
-            if(sp!=null)
+
+
+            if(user.talkProfileSp!=null)
             {
-                talk.profileImage.sprite = sp;
+                talk.profileImage.sprite = user.talkProfileSp;
             }
         }
         talk.readNum = TalkMemberNum - 2;
@@ -566,11 +578,12 @@ public class SmartphoneManager : MonoBehaviour
     //가장 최근 본인 톡 보이기
     void ScrollToBottom()
     {
-        talkScBar.value = 0f;
+        talkScBar.value = -0.001f;
     }
 
     public void SetSendTalk(int count)
     {
+        isSendTalkReady = true;
         for(int i = 0; i < count; i++)
         {
             sendTalkData sendTalk = sendTalkList[i];
@@ -599,6 +612,8 @@ public class SmartphoneManager : MonoBehaviour
             isOKSendTalk = false;
         }
         StartCoroutine(FixLayoutGroup());
+
+        isSendTalkReady = false;
 
         TimelineManager.instance.SetTimelineResume();
     }

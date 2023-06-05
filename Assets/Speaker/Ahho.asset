@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c530335f4f62ad4aafa0c03d1fcc11e, type: 3}
   m_Name: Ahho
   m_EditorClassIdentifier: 
+  speakerID: 0
   speakerName: "\uC544\uD638"
   speakerSprite: {fileID: 21300000, guid: 231736b16ee2cba4abb100e741033704, type: 3}
+  talkName: "\uC544\uD638"
+  talkProfileSp: {fileID: 21300000, guid: 08a4ab654aad66347ac61f7246d69178, type: 3}

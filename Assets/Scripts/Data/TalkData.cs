@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TalkData : MonoBehaviour
 {
+    public int talkId;
     public TextMeshProUGUI readNumText, talkText, nameText;
     public RectTransform textRT, talkRT;
     public GameObject tail;

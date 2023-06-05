@@ -19,15 +19,31 @@ public class DialogueController : MonoBehaviour
         //대화 출력중에는 넘어가지 못함
         if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.DONE && DialogueManager.instance._dlgState != DialogueManager.DlgState.End)
         {
-            //다음 대사로 넘어가기
-            if(DialogueManager.instance.SetenceIdx < DialogueManager.instance.curDlg.sentences.Count)
+            if(!DialogueManager.instance.isSingleDlg)
             {
-                DialogueManager.instance.PlaySentence();
+                //다음 대사로 넘어가기
+                if(DialogueManager.instance.SetenceIdx < DialogueManager.instance.curDlg.sentences.Count)
+                {
+                    DialogueManager.instance.PlaySentence();
+                }
+                //마지막 대사인 경우 클릭 시 숨기기
+                else
+                {
+                    DialogueManager.instance.DialogueHide();
+                }
             }
-            //마지막 대사인 경우 클릭 시 숨기기
             else
             {
-                DialogueManager.instance.DialogueHide();
+                //다음 대사로 넘어가기
+                if(DialogueManager.instance.SetenceIdx < DialogueManager.instance.singleDlg.sentences.Count)
+                {
+                    DialogueManager.instance.PlaySentence(DialogueManager.instance.singleDlg);
+                }
+                //마지막 대사인 경우 클릭 시 숨기기
+                else
+                {
+                    DialogueManager.instance.DialogueHide(DialogueManager.instance.singleDlg);
+                }
             }
         }
     }

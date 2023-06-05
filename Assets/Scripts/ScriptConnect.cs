@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ScriptConnect : MonoBehaviour
 {
-    private void Start() {
-        //TimelineManager.instance.SetTimelineStart(0);
-    }
     public void ShowDlgWithPause()
     {
         DialogueManager.instance.PlayDlg();
@@ -15,6 +12,11 @@ public class ScriptConnect : MonoBehaviour
     public void ShowDlgWithoutPause()
     {
         DialogueManager.instance.PlayDlg();
+    }
+
+    public void SetCurTimelineEnd()
+    {
+        TimelineManager.instance._Tlstate = TimelineManager.TlState.Stop;
     }
 
     public void PauseTimeline()
@@ -37,9 +39,9 @@ public class ScriptConnect : MonoBehaviour
         SmartphoneManager.instance.isOKSendTalk = true;
     }
 
-    public void AddTalkOther()
+    public void AddTalkOther(Speaker user)
     {
-        SmartphoneManager.instance.AddTalk(false, SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][0], SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][1], null);
+        SmartphoneManager.instance.AddTalk(false, user, SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][1]);
         SmartphoneManager.instance.receiveTalkIdx++;
     }
 
@@ -55,29 +57,13 @@ public class ScriptConnect : MonoBehaviour
 
     public void ReduceReadNum()
     {
-        print("reduce");
+        SmartphoneManager.instance.lastPlayerTalk.readNum--;
+        SmartphoneManager.instance.lastPlayerTalk.readNumText.text = SmartphoneManager.instance.lastPlayerTalk.readNum.ToString();
     }
 
     public void StartNextTimeline(int num)
     {
-        print("test");
         TimelineManager.instance.SetTimelineStart(num);
-    }
-    public void AddTalksWithDelay(int talkCount)
-    {
-        StartCoroutine(AddTalks(talkCount));
-    }
-
-    IEnumerator AddTalks(int count)
-    {
-        for(int i = 0; i<count; i++)
-        {
-            SmartphoneManager.instance.AddTalk(false, SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][0], SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][1], null);
-            SmartphoneManager.instance.receiveTalkIdx++;
-            yield return new WaitForSeconds(1f);
-        }
-
-        AddTalkPlayer(1);
     }
 
     public void TestPoint()

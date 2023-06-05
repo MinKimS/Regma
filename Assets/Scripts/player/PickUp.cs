@@ -19,7 +19,7 @@ public class PickUp : MonoBehaviour
             {
                 if(!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
                 {
-                    SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = item.itemImg;
+                    SetItem(i, item);
                     SmartphoneManager.instance.filesInven.slotDataList[i].isFull = true;
                     SmartphoneManager.instance.maxFilesSlot++;
                     break;
@@ -29,5 +29,13 @@ public class PickUp : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-   
+
+    private void SetItem(int i, ItemData item)
+    {
+        ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+        itemData.itemName = item.itemName;
+        itemData.itemImg = item.itemImg;
+        SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
+        SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+    }
 }

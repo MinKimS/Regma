@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     public List<Dialogue> dialogueList;
     //현재 출력될 대화
     public Dialogue curDlg;
+    public Dialogue singleDlg;
 
 
     //대화 출력여부 확인용
@@ -22,7 +23,9 @@ public class DialogueManager : MonoBehaviour
         DONE,
         End
     }
-    DlgState dlgState = DlgState.TYPING;
+    DlgState dlgState = DlgState.End;
+
+    public bool isSingleDlg = false;
 
     //대화텍스트
     public TextMeshProUGUI dlgText;
@@ -152,14 +155,46 @@ public class DialogueManager : MonoBehaviour
             TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
         }
     }
+    //대화창 숨기기
+    public void DialogueHide(Dialogue dlg)
+    {
+        DlgBg.enabled = false;
+        
+        dlgText.text = "";
+        speaker.text = "";
+        nextArrow.enabled = false;
+        dlgState = DlgState.End;
+        HideChrImg();
+
+        SetNextDlg(dlg);
+
+        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        {
+            TimelineManager.instance.SetTimelineResume();
+        }
+        else
+        {
+            TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
+        }
+    }
     //다음 새로운 대화로 설정
     public void SetNextDlg()
     {
+        setenceIdx = 0;
         if(curDlg.nextDlg != null)
         {
             //새로운 대화로 설정
-            setenceIdx = 0;
             curDlg = curDlg.nextDlg;
+        }
+    }
+    //다음 새로운 대화로 설정
+    public void SetNextDlg(Dialogue dlg)
+    {
+        setenceIdx = 0;
+        if(dlg.nextDlg != null)
+        {
+            //새로운 대화로 설정
+            dlg = dlg.nextDlg;
         }
     }
 
@@ -193,6 +228,22 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //캐릭터 이미지 설정
+    private void SetChrImg(Dialogue dlg)
+    {
+        //이미지 설정
+        //사람인경우
+        if(dlg.sentences[setenceIdx].speakerIdx!=-1)
+        {
+            if(!speakerImg.enabled){speakerImg.enabled = true;}
+            speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+        }
+        else
+        {
+            speakerImg.enabled = false;
+        }
+    }
+
     //처음 대화 시작
     public void PlayDlg()
     {
@@ -208,6 +259,25 @@ public class DialogueManager : MonoBehaviour
         }
         //대화 진행
         PlaySentence();
+    }
+
+    //처음 대화 시작(흐름없이 나오는 중간에 언제나 나올 수 있는 대화)
+    public void PlayDlg(Dialogue dlg)
+    {
+        isSingleDlg = true;
+        singleDlg = dlg;
+        if(SmartphoneManager.instance != null)
+            SmartphoneManager.instance.isOKSendTalk=false;
+        DialogueShow();
+        //등장캐릭터가 나오는 경우에만 캐릭터 설정
+        //오브젝트인 경우에는 설정x
+        if(curDlg.speakers.Count>0)
+        {
+            ShowChrImg();
+            SetChrImg(dlg);
+        }
+        //대화 진행
+        PlaySentence(dlg);
     }
 
     //다음 대화 진행
@@ -227,6 +297,67 @@ public class DialogueManager : MonoBehaviour
         else
         {
             StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, ""));
+        }
+        setenceIdx++;
+    }
+
+    //다음 대화 진행
+    public void PlaySentence(Dialogue dlg)
+    {
+        if(dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        {
+            TimelineManager.instance.SetTimelineResume();
+        }
+
+        SetChrImg();
+        //사람인경우
+        if(dlg.sentences[setenceIdx].speakerIdx!=-1){
+            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+        }
+        //사람 아닌경우
+        else
+        {
+            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
+        }
+        setenceIdx++;
+    }
+
+    public void OutPutDialogue(Dialogue dlg)
+    {
+        if(SmartphoneManager.instance != null)
+            SmartphoneManager.instance.isOKSendTalk=false;
+        DialogueShow();
+        //등장캐릭터가 나오는 경우에만 캐릭터 설정
+        //오브젝트인 경우에는 설정x
+        if(dlg.speakers.Count>0)
+        {
+            ShowChrImg();
+            if(dlg.sentences[setenceIdx].speakerIdx!=-1)
+            {
+                if(!speakerImg.enabled){speakerImg.enabled = true;}
+                speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+            }
+            else
+            {
+                speakerImg.enabled = false;
+            }
+        }
+        
+        //대화 진행
+        if(dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        {
+            TimelineManager.instance.SetTimelineResume();
+        }
+
+        SetChrImg();
+        //사람인경우
+        if(dlg.sentences[setenceIdx].speakerIdx!=-1){
+            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+        }
+        //사람 아닌경우
+        else
+        {
+            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
         }
         setenceIdx++;
     }
