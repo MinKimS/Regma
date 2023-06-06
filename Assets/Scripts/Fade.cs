@@ -17,6 +17,11 @@ public class Fade : MonoBehaviour
         StartCoroutine(FadeIn(time));
     }
 
+    public void SetBlack()
+    {
+        blackImg.color = new Color(0,0,0, 1);
+    }
+
     IEnumerator FadeOut(float time)
     {
         TimelineManager.instance.SetTimelinePause();

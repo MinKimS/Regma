@@ -45,6 +45,22 @@ public class PlayerInteraction : MonoBehaviour
                             Door door = obj.thisObj.GetComponent<Door>();
                             door.ShowDoorImg();
                             break;
+                        case 2:
+                            obj.isInteracting=true;
+                            ItemData item = obj.GetComponent<ItemData>();
+                            for(int i =0; i< SmartphoneManager.instance.filesInven.slotList.Count; i++ )
+                            {
+                                if(!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
+                                {
+                                    SetItem(i, item);
+                                    SmartphoneManager.instance.filesInven.slotDataList[i].isFull = true;
+                                    SmartphoneManager.instance.maxFilesSlot++;
+                                    break;
+                                }
+                            }
+                            obj.isInteracting=false;
+                            obj.gameObject.SetActive(false);
+                            break;
                         default:
                             break;
                     }
@@ -86,5 +102,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             interactionObj = null;
         }
+    }
+
+    private void SetItem(int i, ItemData item)
+    {
+        ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+        itemData.itemName = item.itemName;
+        itemData.itemImg = item.itemImg;
+        itemData.itemID = item.itemID;
+        SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
+        SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
     }
 }

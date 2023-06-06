@@ -10,6 +10,7 @@ public class Pot : MonoBehaviour
     BoxCollider2D potColl;
     public GameObject Event;
     public Diary diary;
+    public BoxCollider2D blacketColl;
 
     private void Start() {
         potTr = GetComponent<Transform>();
@@ -40,5 +41,7 @@ public class Pot : MonoBehaviour
     public void EndPushPot()
     {
         potColl.isTrigger = true;
+        potColl.enabled = false;
+        blacketColl.enabled = true;
     }
 }

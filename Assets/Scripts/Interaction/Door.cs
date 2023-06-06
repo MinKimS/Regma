@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     {
         doorDetailImg.enabled = true;
         
-        Invoke("StartCurDoorEvent", 3.0f);
+        Invoke("StartCurDoorEvent", 1.0f);
     }
     public void HideDoorImg()
     {
