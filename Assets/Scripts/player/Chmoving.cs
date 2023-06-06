@@ -46,11 +46,13 @@ public class Chmoving : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             JumpCnt--;
+            animator.SetBool("jump", true);
         }
 
         if (isGround)
         {
             JumpCnt = JumpCount;
+            animator.SetBool("jump", false);
         }
 
         if (Input.GetKey(KeyCode.LeftControl))
