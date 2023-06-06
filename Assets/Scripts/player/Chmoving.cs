@@ -8,7 +8,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 5f;
-    private float jumpForce = 10f;
+    private float jumpForce = 5f;
     private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
