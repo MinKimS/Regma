@@ -9,6 +9,8 @@ public class Pot : MonoBehaviour
     float playerPushPos;
     BoxCollider2D potColl;
     public GameObject Event;
+    //얻게 되는 아이템의 콜라이더
+    public BoxCollider2D itemColl;
 
     private void Start() {
         potTr = GetComponent<Transform>();
@@ -35,5 +37,10 @@ public class Pot : MonoBehaviour
     public void EndPushPot()
     {
         potColl.isTrigger = true;
+    }
+
+    public void SetItemCanGet()
+    {
+        itemColl.enabled = true;
     }
 }
