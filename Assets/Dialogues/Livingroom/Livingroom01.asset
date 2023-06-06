@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Livingroom01
   m_EditorClassIdentifier: 
+  dlgID: 1
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:

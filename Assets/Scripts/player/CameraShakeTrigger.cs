@@ -32,15 +32,6 @@ public class CameraShakeTrigger : MonoBehaviour
         }
     }
 
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-        if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("player"))
-        {
-            StartCoroutine(ShakeCoroutine());
-        }
-
-        }
-
     IEnumerator ShakeCoroutine()
     {
         Vector3 t_originEuler = transform.eulerAngles;
