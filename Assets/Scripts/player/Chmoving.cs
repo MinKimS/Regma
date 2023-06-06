@@ -8,7 +8,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 5f;
-    private float jumpForce = 5f;
+    private float jumpForce = 10f;
     private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
@@ -113,5 +113,15 @@ public class Chmoving : MonoBehaviour
                 bookControl.ShowImage();
             }
         }
+
+        //if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("player"))
+        //{
+        //    // 카메라 컨트롤러의 StartCameraShake 메서드 호출
+        //    cameraController.StartCameraShake();
+        //}
+
     }
+
+
+ 
 }
