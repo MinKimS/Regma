@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
     //대화창 숨기기
     public void DialogueHide()
     {
-        if(curDlg.sentences[setenceIdx].speakerIdx == -1)
+        if(curDlg.sentences[setenceIdx-1].speakerIdx == -1)
         {
             DlgRT.anchoredPosition += (Vector2.right*300);
         }

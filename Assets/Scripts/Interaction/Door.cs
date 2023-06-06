@@ -14,7 +14,6 @@ public class Door : MonoBehaviour
         doorDetailImg.enabled = true;
         
         Invoke("StartCurDoorEvent", 3.0f);
-        EventManager.instance.ActiveEvent(2);
     }
     public void HideDoorImg()
     {
@@ -27,6 +26,7 @@ public class Door : MonoBehaviour
             TimelineManager.instance.SetTimelineStart(4);
             isEventActive = true;
             doorDetailImg.enabled = false;
+            EventManager.instance.ActiveEvent(2);
         }
     }
 }

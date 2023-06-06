@@ -115,9 +115,9 @@ public class SmartphoneManager : MonoBehaviour
         talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
 
         //인벤 스크롤 시 사용되는 수치
-        invenOriginPos = new Vector2(0f, -630f);
-        invenUpValue = new Vector2(0f,-300f);
-        invenDownValue = new Vector2(0f,300f);
+        invenOriginPos = new Vector2(15f, -15f);
+        invenUpValue = new Vector2(0f,-70);
+        invenDownValue = new Vector2(0f,70f);
 
         HidePhone();
 
@@ -526,10 +526,10 @@ public class SmartphoneManager : MonoBehaviour
         lastTalk = talk;
         lastPlayerTalk = talk;
 
+        Invoke("ScrollToBottom", 0.03f);
+
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
         StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
-
-        Invoke("ScrollToBottom", 0.03f);
 
         if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
@@ -586,21 +586,21 @@ public class SmartphoneManager : MonoBehaviour
 
         lastTalk = talk;
 
-        StartCoroutine(FitLayout(talkParentRT, 0.03f));
         Invoke("ScrollToBottom", 0.03f);
+        StartCoroutine(FitLayout(talkParentRT, 0.03f));
     }
 
     //레이아웃 버그 해소
     IEnumerator FitLayout(RectTransform rt, float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
     }
 
     //가장 최근 본인 톡 보이기
     void ScrollToBottom()
     {
-        talkScBar.value = -0.001f;
+        talkScBar.value = 0.0001f;
     }
 
     public void SetSendTalk(int count)
@@ -652,12 +652,10 @@ public class SmartphoneManager : MonoBehaviour
     {
         //선택 해제 표시
         sendTalkList[selectedOption-1].talkColor = Color.white;
-        print(selectedOption);
         selectedOption+=value;
 
         //선택되어 있는 상태 표시
         sendTalkList[selectedOption-1].talkColor = Color.gray;
-        print(selectedOption);
     }
 
     private void SetList()

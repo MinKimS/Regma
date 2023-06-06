@@ -9,6 +9,7 @@ public class Pot : MonoBehaviour
     float playerPushPos;
     BoxCollider2D potColl;
     public GameObject Event;
+    public Diary diary;
 
     private void Start() {
         potTr = GetComponent<Transform>();
@@ -17,6 +18,8 @@ public class Pot : MonoBehaviour
         playerPushPos = potTr.position.x - 1.5f;
     }
 
+
+    //화분 밀기
     public void PushPot(Transform chPos)
     {
         chPos.position = new Vector3(playerPushPos, chPos.position.y);
@@ -24,6 +27,7 @@ public class Pot : MonoBehaviour
         Event.SetActive(true);
     }
 
+    //화분 밀기 취소
     public void CancelPush(Transform chPos)
     {
         chPos.position = new Vector3(potTr.position.x - 1.5f, chPos.position.y);
@@ -32,6 +36,7 @@ public class Pot : MonoBehaviour
         Event.SetActive(false);
     }
 
+    //장애물이 안되게 설정
     public void EndPushPot()
     {
         potColl.isTrigger = true;

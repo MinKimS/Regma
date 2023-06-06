@@ -66,8 +66,8 @@ public class ScriptConnect : MonoBehaviour
         TimelineManager.instance.SetTimelineStart(num);
     }
 
-    public void TestPoint()
+    public void TestPoint(string text)
     {
-        print("timeline");
+        print(text);
     }
 }

@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     Rigidbody2D rb;
     public GameObject interactionObj;
     InteractionObjData obj;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -22,36 +23,44 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //오브젝트와 상호작용
-        if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && (Input.GetKeyDown(KeyCode.E) && interactionObj!=null))
+        if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             if(!obj.isInteracting)
             {
-                switch(obj.ObjID)
+                if(Input.GetKeyDown(KeyCode.E))
                 {
-                    case 0:
-                        obj.isInteracting=true;
-                        Pot pot = obj.thisObj.GetComponent<Pot>();
-                        print(gameObject.transform);
-                        pot.PushPot(gameObject.transform);
-                        break;
-                    case 1:
-                        obj.isInteracting=true;
-                        Door door = obj.thisObj.GetComponent<Door>();
-                        door.ShowDoorImg();
-                        break;
-                    default:
-                        break;
+                    switch(obj.ObjID)
+                    {
+                        case 0:
+                            Pot pot = obj.thisObj.GetComponent<Pot>();
+                            if(pot.diary.isHaveOpened)
+                            {
+                                obj.isInteracting=true;
+                                pot.PushPot(gameObject.transform);
+                            }
+                            break;
+                        case 1:
+                            obj.isInteracting=true;
+                            Door door = obj.thisObj.GetComponent<Door>();
+                            door.ShowDoorImg();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if(obj!=null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+                {
+                    CancelEvent();
                 }
             }
         }
-        else if(obj!=null && obj.isInteracting && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
-        {
-            CancelEvent();
-        }
     }
 
-    private void CancelEvent()
+    public void CancelEvent()
     {
         switch(obj.ObjID)
         {
