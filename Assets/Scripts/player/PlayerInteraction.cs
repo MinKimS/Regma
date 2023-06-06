@@ -32,34 +32,25 @@ public class PlayerInteraction : MonoBehaviour
                     case 0:
                         obj.isInteracting=true;
                         Pot pot = obj.thisObj.GetComponent<Pot>();
+                        print(gameObject.transform);
                         pot.PushPot(gameObject.transform);
                         break;
                     default:
                         break;
                 }
             }
-            else
+        }
+        else if(obj!=null && obj.isInteracting && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            switch(obj.ObjID)
             {
-                CancelEvent();
+                case 0:
+                    obj.thisObj.GetComponent<Pot>().CancelPush(gameObject.transform);
+                    break;
             }
-        }
-        if(obj!=null && obj.isInteracting && Input.GetKeyDown(KeyCode.Escape))
-        {
-            CancelEvent();
+            obj.isInteracting = false;
         }
     }
-
-    private void CancelEvent()
-    {
-        switch(obj.ObjID)
-        {
-            case 0:
-                obj.thisObj.GetComponent<Pot>().CancelPush(gameObject.transform);
-                break;
-        }
-        obj.isInteracting = false;
-    }
-
     private void FixedUpdate() {
         Debug.DrawRay(rb.position, seeDir * 1f, Color.yellow);
         RaycastHit2D rh = Physics2D.Raycast(rb.position, seeDir, 1f, LayerMask.GetMask("Obj"));

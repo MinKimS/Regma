@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Bookcontrol : MonoBehaviour
 {
-    public GameObject book;
+    public GameObject activeBook;
     public Image bookImage;
 
     void Start()
@@ -14,7 +14,7 @@ public class Bookcontrol : MonoBehaviour
         gameObject.SetActive(false); // 충돌 이전에는 비활성화 상태로 시작
 
         // activeBook가 활성화되어 있는 경우에만 gameObject를 활성화합니다.
-        if (book.activeSelf)
+        if (activeBook.activeSelf)
         {
             gameObject.SetActive(true);
         }
@@ -30,7 +30,7 @@ public class Bookcontrol : MonoBehaviour
 
     public void ShowImage()
     {
-        book.SetActive(true);
+        activeBook.SetActive(true);
         bookImage.enabled = true;
         gameObject.SetActive(true); // 캔버스 활성화
 
