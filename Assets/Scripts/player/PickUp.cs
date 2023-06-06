@@ -35,6 +35,7 @@ public class PickUp : MonoBehaviour
         ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
         itemData.itemName = item.itemName;
         itemData.itemImg = item.itemImg;
+        itemData.itemID = item.itemID;
         SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
         SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
     }

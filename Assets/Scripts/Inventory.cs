@@ -15,4 +15,29 @@ public class Inventory : MonoBehaviour
         slotList = new List<GameObject>();
         slotDataList = new List<SlotData>();
     }
+
+    //==============인벤토리에서 상호작용하면 생기는 이벤트들 관련===================
+    private Diary diary;
+    //인벤토리 아이템 상호작용해서 수행중인것이 있는지 여부
+    private bool isInvenItemActive = false;
+
+    public bool IsInvenItemActive{
+        get{
+            return isInvenItemActive;
+        }
+    }
+    
+    //일기장
+    public void ShowDiary()
+    {
+        if(!diary.isHaveOpened) {diary.isHaveOpened = true;}
+        diary.gameObject.SetActive(true);
+        isInvenItemActive = true;
+    }
+    public void HideDiary()
+    {
+        diary.gameObject.SetActive(false);
+        isInvenItemActive = false;
+    }
+
 }
