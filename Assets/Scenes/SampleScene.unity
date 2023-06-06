@@ -2146,7 +2146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219385252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.2462, y: -1.18, z: 0}
+  m_LocalPosition: {x: 28.21, y: -4.94, z: 0}
   m_LocalScale: {x: 2.6264338, y: 1.6897559, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2165,8 +2165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488daae756254b443b86532de744385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeBook: {fileID: 258019838}
+  book: {fileID: 0}
   bookImage: {fileID: 901107415}
+  bookAnimator: {fileID: 0}
 --- !u!50 &219385257
 Rigidbody2D:
   serializedVersion: 4
@@ -2204,7 +2205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &228005623
 Transform:
   m_ObjectHideFlags: 0
@@ -2286,7 +2287,7 @@ GameObject:
   - component: {fileID: 258019839}
   - component: {fileID: 258019843}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2386,8 +2387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488daae756254b443b86532de744385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeBook: {fileID: 258019838}
+  book: {fileID: 258019838}
   bookImage: {fileID: 901107415}
+  bookAnimator: {fileID: 901107418}
 --- !u!1 &269601823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,6 +3229,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403889345}
   m_CullTransparentMesh: 1
+--- !u!1 &417363579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417363580}
+  - component: {fileID: 417363581}
+  - component: {fileID: 417363582}
+  - component: {fileID: 417363583}
+  m_Layer: 0
+  m_Name: shake
+  m_TagString: shake
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &417363580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417363579}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7094574, y: -9.040458, z: 0.17409337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1171161778}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &417363581
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417363579}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2012177, y: 0.46006605}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9030457, y: 0.079967916}
+  m_EdgeRadius: 0
+--- !u!114 &417363582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417363579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraController: {fileID: 519420034}
+  shake: {fileID: 417363579}
+  m_force: 100
+  m_offset: {x: 10, y: 10, z: 10}
+--- !u!50 &417363583
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417363579}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &427480162
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,8 +4143,8 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.023529414, g: 0.22352943, b: 0.1254902, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4153,6 +4252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 519420034}
+  shake: {fileID: 417363579}
   m_force: 100
   m_offset: {x: 10, y: 10, z: 10}
 --- !u!1 &527227842
@@ -5231,7 +5331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667326308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.91, y: -3.58, z: 0}
+  m_LocalPosition: {x: 30.6, y: -4.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6317,6 +6417,7 @@ GameObject:
   - component: {fileID: 901107416}
   - component: {fileID: 901107415}
   - component: {fileID: 901107417}
+  - component: {fileID: 901107418}
   m_Layer: 5
   m_Name: book
   m_TagString: Untagged
@@ -6333,16 +6434,16 @@ RectTransform:
   m_GameObject: {fileID: 901107413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.53, y: 0.97, z: 0.53}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 258019842}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 0}
+  m_SizeDelta: {x: 964, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901107415
 MonoBehaviour:
@@ -6364,7 +6465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47df1f3f1acaa5a49873710ab4e30284, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae4569e9ccedb924889751548b890fad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6394,8 +6495,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488daae756254b443b86532de744385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeBook: {fileID: 258019838}
+  book: {fileID: 258019838}
   bookImage: {fileID: 901107415}
+  bookAnimator: {fileID: 901107418}
+--- !u!95 &901107418
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901107413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9cabf0c25bd4a9f4ea91f8c72f1d9290, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &923269168
 GameObject:
   m_ObjectHideFlags: 0
@@ -7930,6 +8053,8 @@ Transform:
   m_Children:
   - {fileID: 1876477957}
   - {fileID: 1709474737}
+  - {fileID: 2058489694}
+  - {fileID: 417363580}
   m_Father: {fileID: 1888907026}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11255,9 +11380,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1709474737}
   - component: {fileID: 1709474738}
-  m_Layer: 0
+  - component: {fileID: 1709474739}
+  m_Layer: 6
   m_Name: "\uCC45\uC7A5"
-  m_TagString: Untagged
+  m_TagString: shake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11329,6 +11455,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1709474739
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709474736}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.45701933, y: -1.9283315}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 13.4, y: 18.4}
+    newSize: {x: 13.4, y: 18.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 12.485961, y: 0.34102607}
+  m_EdgeRadius: 0
 --- !u!1 &1711232007
 GameObject:
   m_ObjectHideFlags: 0
@@ -13766,6 +13918,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055903238}
   m_CullTransparentMesh: 1
+--- !u!1 &2058489693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058489694}
+  - component: {fileID: 2058489696}
+  - component: {fileID: 2058489695}
+  - component: {fileID: 2058489697}
+  m_Layer: 0
+  m_Name: bookcollision
+  m_TagString: Book
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058489694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058489693}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.96, y: -8.53, z: 0.14186674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1171161778}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2058489695
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058489693}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.18595886, y: 0.4991578}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.39318085, y: 1.9983153}
+  m_EdgeRadius: 0
+--- !u!50 &2058489696
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058489693}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2058489697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058489693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488daae756254b443b86532de744385b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  book: {fileID: 258019838}
+  bookImage: {fileID: 901107415}
+  bookAnimator: {fileID: 901107418}
 --- !u!1 &2059644238
 GameObject:
   m_ObjectHideFlags: 0

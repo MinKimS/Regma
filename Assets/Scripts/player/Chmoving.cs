@@ -55,7 +55,7 @@ public class Chmoving : MonoBehaviour
             animator.SetBool("jump", false);
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
         }

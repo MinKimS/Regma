@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Book
-  - Test
+  - shake
   layers:
   - Default
   - TransparentFX
