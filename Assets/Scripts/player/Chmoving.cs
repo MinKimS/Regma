@@ -32,55 +32,58 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-
-        if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+        //대화중, 핸드폰 킨 상태에서는 움직이지 않게 설정
+        if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            rb.velocity = Vector2.up * jumpForce;
-        }
+            if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
 
-        if (!isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-        }
+            if (!isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            JumpCnt--;
-            animator.SetBool("jump", true);
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                JumpCnt--;
+                animator.SetBool("jump", true);
+            }
 
-        if (isGround)
-        {
-            JumpCnt = JumpCount;
-            animator.SetBool("jump", false);
-        }
+            if (isGround)
+            {
+                JumpCnt = JumpCount;
+                animator.SetBool("jump", false);
+            }
 
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
-        }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
 
-        float moveInputX = Input.GetAxisRaw("Horizontal");
+            float moveInputX = Input.GetAxisRaw("Horizontal");
 
-        if (moveInputX != 0)
-        {
-            isMoving = true;
-            currentMoveSpeed = moveSpeed * moveInputX;
-            animator.SetBool("walk", true);
-        }
-        else
-        {
-            isMoving = false;
-            currentMoveSpeed = 0f;
-            animator.SetBool("walk", false);
-        }
+            if (moveInputX != 0)
+            {
+                isMoving = true;
+                currentMoveSpeed = moveSpeed * moveInputX;
+                animator.SetBool("walk", true);
+            }
+            else
+            {
+                isMoving = false;
+                currentMoveSpeed = 0f;
+                animator.SetBool("walk", false);
+            }
 
-        // 좌우 이동
-        rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+            // ?¿? ???
+            rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+        }
     }
 
     private void LateUpdate()

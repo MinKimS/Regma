@@ -92,7 +92,14 @@ public class SmartphoneManager : MonoBehaviour
     Vector2 invenUpValue;
     Vector2 invenDownValue;
 
+    //플레이어가 보내는 톡을 보낼 준비가 되었는지 여부
     bool isSendTalkReady = false;
+
+    public bool IsOpenPhone
+    {
+        get{return isOpenPhone;}
+    }
+
     private void Awake() {
         if(instance == null)
         {
@@ -425,6 +432,12 @@ public class SmartphoneManager : MonoBehaviour
     //폰 보이기
     public void ShowPhone()
     {
+        if(!DialogueManager.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        {
+            DialogueManager.instance.playerAnim.SetBool("walk", false);
+            DialogueManager.instance.playerAnim.SetBool("jump", false);
+        }
+
         //가장 최근의 톡부터 보이도록 설정
         phonePanel.gameObject.SetActive(true);
         // talkScR.verticalNormalizedPosition = 0f;

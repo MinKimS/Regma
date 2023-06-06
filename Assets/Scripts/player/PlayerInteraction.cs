@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //오브젝트와 상호작용
-        if((Input.GetKeyDown(KeyCode.E) && interactionObj!=null))
+        if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && (Input.GetKeyDown(KeyCode.E) && interactionObj!=null))
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             if(!obj.isInteracting)
@@ -33,6 +33,11 @@ public class PlayerInteraction : MonoBehaviour
                         obj.isInteracting=true;
                         Pot pot = obj.thisObj.GetComponent<Pot>();
                         pot.PushPot(gameObject.transform);
+                        break;
+                    case 1:
+                        obj.isInteracting=true;
+                        Door door = obj.thisObj.GetComponent<Door>();
+                        door.ShowDoorImg();
                         break;
                     default:
                         break;
@@ -55,6 +60,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             case 0:
                 obj.thisObj.GetComponent<Pot>().CancelPush(gameObject.transform);
+                break;
+            case 1:
+                obj.thisObj.GetComponent<Door>().HideDoorImg();
                 break;
         }
         obj.isInteracting = false;
