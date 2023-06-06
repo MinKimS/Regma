@@ -119,7 +119,7 @@ public class SmartphoneManager : MonoBehaviour
         talkParentRT=talkParent.GetComponent<RectTransform>();
     }
     private void Update() {
-        if((TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
+        if((TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !filesInven.IsInvenItemActive)
         {
             //폰 열기
             if((Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!isOpenInven&&isOpenPhone))&&!isSendTalkReady)
@@ -157,202 +157,214 @@ public class SmartphoneManager : MonoBehaviour
             }
         }
 
-        //화살표키==================================
-        if(Input.GetKey(KeyCode.UpArrow))
+        if(filesInven.IsInvenItemActive && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            //톡 화면 스크롤
-            if(isOpenPhone&&!isOpenInven)
-            {
-                if(talkScR.verticalNormalizedPosition < 1f)
-                {
-                    //talkScR.verticalNormalizedPosition += talkScrollSpeed;
-                    talkScBar.value += talkScrollSpeed;
-                }
-            }
+            filesInven.HideDiary();
         }
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-            //톡 화면 스크롤
-            if(isOpenPhone&&!isOpenInven)
-            {
-                if(talkScR.verticalNormalizedPosition > 0f)
-                {
-                    //talkScR.verticalNormalizedPosition -= talkScrollSpeed;
-                    talkScBar.value -= talkScrollSpeed;
-                }
-            }
-        }
-        
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if(isOpenPhone&&!isOpenInven&&selectedOption > 1)
-            {
-                SelectTalk(-1);
-            }
-            //얻은 아이템 항목 선택
-            if(selectedOption>2)
-            {
-                if(isOpenFiles && maxFilesSlot!=0)
-                {
-                    SetSelectInvenItem(-2, filesInven);
 
-                    //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
-                    if(isFirstLine)
+        if(!filesInven.IsInvenItemActive)
+        {
+            //화살표키==================================
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                //톡 화면 스크롤
+                if(isOpenPhone&&!isOpenInven)
+                {
+                    if(talkScR.verticalNormalizedPosition < 1f)
                     {
-                        ShowOutLine(filesInven, -2, true);
+                        //talkScR.verticalNormalizedPosition += talkScrollSpeed;
+                        talkScBar.value += talkScrollSpeed;
                     }
-                    //화면상 첫번째 라인이지 체크
-                    if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                }
+            }
+            if(Input.GetKey(KeyCode.DownArrow))
+            {
+                //톡 화면 스크롤
+                if(isOpenPhone&&!isOpenInven)
+                {
+                    if(talkScR.verticalNormalizedPosition > 0f)
                     {
-                        isFirstLine = true;
+                        //talkScR.verticalNormalizedPosition -= talkScrollSpeed;
+                        talkScBar.value -= talkScrollSpeed;
+                    }
+                }
+            }
+            
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if(isOpenPhone&&!isOpenInven&&selectedOption > 1)
+                {
+                    SelectTalk(-1);
+                }
+                //얻은 아이템 항목 선택
+                if(selectedOption>2)
+                {
+                    if(isOpenFiles && maxFilesSlot!=0)
+                    {
+                        SetSelectInvenItem(-2, filesInven);
+
+                        //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
+                        if(isFirstLine)
+                        {
+                            ShowOutLine(filesInven, -2, true);
+                        }
+                        //화면상 첫번째 라인이지 체크
+                        if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                        {
+                            isFirstLine = true;
+                        } 
+                    }
+                    if(isOpenPictures && maxPicSlot!=0)
+                    {
+                        SetSelectInvenItem(-2, picsInven);
+
+                        //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
+                        if(isFirstLine)
+                        {
+                            ShowOutLine(picsInven, -2, true);
+                        }
+                        //화면상 첫번째 라인이지 체크
+                        if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                        {
+                            isFirstLine = true;
+                        }
+                    }
+                }
+                if(isLastLine)
+                {
+                    isLastLine=false;
+                }
+            }
+            if(Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if(isOpenPhone&&!isOpenInven&&selectedOption < showedCount)
+                {
+                    SelectTalk(1);
+                }
+                //얻은 아이템 항목 선택
+                if(isOpenFiles && maxFilesSlot!=0 && selectedOption<maxFilesSlot-1)
+                {  
+                    SetSelectInvenItem(2, filesInven);
+                        
+                    //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
+                    if(isLastLine)
+                    {
+                        ShowOutLine(filesInven, 2, false);
+                    }
+                    //화면상 마지막 라인이지 체크
+                    if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
+                    {
+                        isLastLine = true;
                     } 
                 }
-                if(isOpenPictures && maxPicSlot!=0)
-                {
-                    SetSelectInvenItem(-2, picsInven);
+                if(isOpenPictures && maxPicSlot!=0 && selectedOption<maxPicSlot-1)
+                {   
+                    SetSelectInvenItem(2, picsInven);
 
-                    //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
-                    if(isFirstLine)
+                    //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
+                    if(isLastLine)
                     {
-                        ShowOutLine(picsInven, -2, true);
+                        ShowOutLine(picsInven, 2, false);
                     }
-                    //화면상 첫번째 라인이지 체크
-                    if(selectedOption == firstLineFirstNum || selectedOption == firstLineFirstNum+1)
+                    //화면상 마지막 라인이지 체크
+                    if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
                     {
-                        isFirstLine = true;
+                        isLastLine = true;
+                    }  
+                }
+                if(isFirstLine)
+                {
+                    isFirstLine=false;
+                }
+            }
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //파일 선택
+                if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
+                {
+                    selectedInvenOption = 0;
+                    invenOption[1].color = Color.white;
+                    invenOption[0].color = Color.gray;
+                }
+                //얻은 아이템 항목 선택
+                if(selectedOption%2==0 && (isOpenFiles||isOpenPictures))
+                {
+                    if(isOpenFiles && maxFilesSlot!=0)
+                    {
+                        SetSelectInvenItem(-1, filesInven);
+                    }
+                    if(isOpenPictures && maxPicSlot!=0)
+                    {
+                        //선택 해제 표시
+                        SetSelectInvenItem(-1, picsInven);
                     }
                 }
             }
-            if(isLastLine)
+            if(Input.GetKeyDown(KeyCode.RightArrow))
             {
-                isLastLine=false;
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if(isOpenPhone&&!isOpenInven&&selectedOption < showedCount)
-            {
-                SelectTalk(1);
-            }
-            //얻은 아이템 항목 선택
-            if(isOpenFiles && maxFilesSlot!=0 && selectedOption<maxFilesSlot-1)
-            {  
-                SetSelectInvenItem(2, filesInven);
-                     
-                //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
-                if(isLastLine)
+                //사진 선택
+                if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
                 {
-                    ShowOutLine(filesInven, 2, false);
+                    selectedInvenOption = 1;
+                    invenOption[0].color = Color.white;
+                    invenOption[1].color = Color.gray;
                 }
-                //화면상 마지막 라인이지 체크
-                if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
+                //얻은 아이템 항목 선택
+                if(selectedOption%2!=0 && (isOpenFiles||isOpenPictures))
                 {
-                    isLastLine = true;
-                } 
+                    //얻은 아이템의 수에 따라 항목 이동 가능여부 결정
+                    if(isOpenFiles && maxFilesSlot!=0 && maxFilesSlot!=selectedOption)
+                    {
+                        SetSelectInvenItem(1, filesInven);
+                    }
+                    if(isOpenPictures && maxPicSlot!=0 && maxPicSlot!=selectedOption)
+                    {
+                        SetSelectInvenItem(1, picsInven);
+                    }
+                }
             }
-            if(isOpenPictures && maxPicSlot!=0 && selectedOption<maxPicSlot-1)
-            {   
-                SetSelectInvenItem(2, picsInven);
+            //화살표키---------------------
 
-                //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
-                if(isLastLine)
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
                 {
-                    ShowOutLine(picsInven, 2, false);
+                    if(selectedInvenOption==0)
+                    {
+                        SetFilesActive(true);
+                        SetPicsActive(false);
+                    }
+                    if(selectedInvenOption==1)
+                    {
+                        SetPicsActive(true);
+                        SetFilesActive(false);
+                    }
                 }
-                //화면상 마지막 라인이지 체크
-                if(selectedOption == lastLineFirstNum || selectedOption == lastLineFirstNum+1)
+                else if(isOpenFiles && maxFilesSlot!=0)
                 {
-                    isLastLine = true;
-                }  
-            }
-            if(isFirstLine)
-            {
-                isFirstLine=false;
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            //파일 선택
-            if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
-            {
-                selectedInvenOption = 0;
-                invenOption[1].color = Color.white;
-                invenOption[0].color = Color.gray;
-            }
-            //얻은 아이템 항목 선택
-            if(selectedOption%2==0 && (isOpenFiles||isOpenPictures))
-            {
-                if(isOpenFiles && maxFilesSlot!=0)
-                {
-                    SetSelectInvenItem(-1, filesInven);
+                    //일기장
+                    if(filesInven.slotDataList[selectedOption-1].item.itemID == 0)
+                    {
+                        filesInven.ShowDiary();
+                    }
                 }
-                if(isOpenPictures && maxPicSlot!=0)
+                else if(isOpenPictures && maxPicSlot!=0)
                 {
-                    //선택 해제 표시
-                    SetSelectInvenItem(-1, picsInven);
+                    print(picsInven.slotDataList[selectedOption-1].item.itemName);
+                }
+                //톡 선택
+                if(isOpenPhone&&!isOpenInven&& isOKSendTalk)
+                {
+                    AddTalk(sendTalkList[selectedOption-1].text);
+                    HideSendTalk();
                 }
             }
-        }
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            //사진 선택
-            if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
+            if(Input.GetKeyDown(KeyCode.Delete))
             {
-                selectedInvenOption = 1;
-                invenOption[0].color = Color.white;
-                invenOption[1].color = Color.gray;
+                //서랍창 나가기
+                if(isOpenFiles) {SetFilesActive(false);}
+                if(isOpenPictures) {SetPicsActive(false);}
             }
-            //얻은 아이템 항목 선택
-            if(selectedOption%2!=0 && (isOpenFiles||isOpenPictures))
-            {
-                //얻은 아이템의 수에 따라 항목 이동 가능여부 결정
-                if(isOpenFiles && maxFilesSlot!=0 && maxFilesSlot!=selectedOption)
-                {
-                    SetSelectInvenItem(1, filesInven);
-                }
-                if(isOpenPictures && maxPicSlot!=0 && maxPicSlot!=selectedOption)
-                {
-                    SetSelectInvenItem(1, picsInven);
-                }
-            }
-        }
-        //화살표키---------------------
-
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            if(isOpenInven&&!isOpenFiles&&!isOpenPictures)
-            {
-                if(selectedInvenOption==0)
-                {
-                    SetFilesActive(true);
-                    SetPicsActive(false);
-                }
-                if(selectedInvenOption==1)
-                {
-                    SetPicsActive(true);
-                    SetFilesActive(false);
-                }
-            }
-            else if(isOpenFiles && maxFilesSlot!=0)
-            {
-                print(filesInven.slotDataList[selectedOption-1].item.itemName);
-            }
-            else if(isOpenPictures && maxPicSlot!=0)
-            {
-                print(picsInven.slotDataList[selectedOption-1].item.itemName);
-            }
-            //톡 선택
-            if(isOpenPhone&&!isOpenInven&& isOKSendTalk)
-            {
-                AddTalk(sendTalkList[selectedOption-1].text);
-                HideSendTalk();
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.Delete))
-        {
-            //서랍창 나가기
-            if(isOpenFiles) {SetFilesActive(false);}
-            if(isOpenPictures) {SetPicsActive(false);}
         }
     }
 
