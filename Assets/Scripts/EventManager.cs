@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    public static EventManager instance;
+
+    private void Awake() {
+        instance = this;
+    }
+
     //비활성화 됬다가 활성화 되는 이벤트들
     public GameObject[] Events;
 
