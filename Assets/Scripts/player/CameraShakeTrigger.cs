@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraShakeTrigger : MonoBehaviour
 {
     public CameraController cameraController;
-
+    public GameObject shake;
     [SerializeField] float m_force = 0f;
     [SerializeField] Vector3 m_offset = Vector3.zero;
 
@@ -21,19 +21,14 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    StartCoroutine(ShakeCoroutine());
-        //}
-
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("shake"))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             StartCoroutine(ShakeCoroutine());
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            StopAllCoroutines();
+            StartCoroutine(Reset());
         }
     }
 
@@ -58,8 +53,6 @@ public class CameraShakeTrigger : MonoBehaviour
         }
     }
 
-
-
     IEnumerator Reset()
     {
         while (Quaternion.Angle(transform.rotation, m_originRot) > 0f)
@@ -68,6 +61,4 @@ public class CameraShakeTrigger : MonoBehaviour
             yield return null;
         }
     }
-
-
 }

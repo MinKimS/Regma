@@ -32,7 +32,7 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-        //´ëÈ­Áß, ÇÚµåÆù Å² »óÅÂ¿¡¼­´Â ¿òÁ÷ÀÌÁö ¾Ê°Ô ¼³Á¤
+        //ï¿½ï¿½È­ï¿½ï¿½, ï¿½Úµï¿½ï¿½ï¿½ Å² ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
         if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
@@ -57,14 +57,14 @@ public class Chmoving : MonoBehaviour
                 animator.SetBool("jump", false);
             }
 
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                isRunning = true;
-            }
-            else
-            {
-                isRunning = false;
-            }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
 
             float moveInputX = Input.GetAxisRaw("Horizontal");
 
@@ -81,7 +81,7 @@ public class Chmoving : MonoBehaviour
                 animator.SetBool("walk", false);
             }
 
-            // ?¢¯? ???
+            // ?ï¿½ï¿½? ???
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
         }
     }
@@ -119,7 +119,7 @@ public class Chmoving : MonoBehaviour
 
         //if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("player"))
         //{
-        //    // Ä«¸Þ¶ó ÄÁÆ®·Ñ·¯ÀÇ StartCameraShake ¸Þ¼­µå È£Ãâ
+        //    // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ StartCameraShake ï¿½Þ¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½
         //    cameraController.StartCameraShake();
         //}
 
