@@ -32,6 +32,7 @@ public class PlayerInteraction : MonoBehaviour
                     case 0:
                         obj.isInteracting=true;
                         Pot pot = obj.thisObj.GetComponent<Pot>();
+                        print(gameObject.transform);
                         pot.PushPot(gameObject.transform);
                         break;
                     case 1:
@@ -43,12 +44,8 @@ public class PlayerInteraction : MonoBehaviour
                         break;
                 }
             }
-            else
-            {
-                CancelEvent();
-            }
         }
-        if(obj!=null && obj.isInteracting && Input.GetKeyDown(KeyCode.Escape))
+        else if(obj!=null && obj.isInteracting && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             CancelEvent();
         }
