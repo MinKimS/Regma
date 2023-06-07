@@ -92,7 +92,14 @@ public class SmartphoneManager : MonoBehaviour
     Vector2 invenUpValue;
     Vector2 invenDownValue;
 
+    //플레이어가 보내는 톡을 보낼 준비가 되었는지 여부
     bool isSendTalkReady = false;
+
+    public bool IsOpenPhone
+    {
+        get{return isOpenPhone;}
+    }
+
     private void Awake() {
         if(instance == null)
         {
@@ -108,9 +115,9 @@ public class SmartphoneManager : MonoBehaviour
         talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
 
         //인벤 스크롤 시 사용되는 수치
-        invenOriginPos = new Vector2(0f, -630f);
-        invenUpValue = new Vector2(0f,-300f);
-        invenDownValue = new Vector2(0f,300f);
+        invenOriginPos = new Vector2(15f, -15f);
+        invenUpValue = new Vector2(0f,-70);
+        invenDownValue = new Vector2(0f,70f);
 
         HidePhone();
 
@@ -425,6 +432,12 @@ public class SmartphoneManager : MonoBehaviour
     //폰 보이기
     public void ShowPhone()
     {
+        if(!DialogueManager.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        {
+            DialogueManager.instance.playerAnim.SetBool("walk", false);
+            DialogueManager.instance.playerAnim.SetBool("jump", false);
+        }
+
         //가장 최근의 톡부터 보이도록 설정
         phonePanel.gameObject.SetActive(true);
         // talkScR.verticalNormalizedPosition = 0f;
@@ -513,10 +526,10 @@ public class SmartphoneManager : MonoBehaviour
         lastTalk = talk;
         lastPlayerTalk = talk;
 
+        Invoke("ScrollToBottom", 0.03f);
+
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
         StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
-
-        Invoke("ScrollToBottom", 0.03f);
 
         if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
@@ -573,21 +586,21 @@ public class SmartphoneManager : MonoBehaviour
 
         lastTalk = talk;
 
-        StartCoroutine(FitLayout(talkParentRT, 0.03f));
         Invoke("ScrollToBottom", 0.03f);
+        StartCoroutine(FitLayout(talkParentRT, 0.03f));
     }
 
     //레이아웃 버그 해소
     IEnumerator FitLayout(RectTransform rt, float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
     }
 
     //가장 최근 본인 톡 보이기
     void ScrollToBottom()
     {
-        talkScBar.value = -0.001f;
+        talkScBar.value = 0.0001f;
     }
 
     public void SetSendTalk(int count)
@@ -639,12 +652,10 @@ public class SmartphoneManager : MonoBehaviour
     {
         //선택 해제 표시
         sendTalkList[selectedOption-1].talkColor = Color.white;
-        print(selectedOption);
         selectedOption+=value;
 
         //선택되어 있는 상태 표시
         sendTalkList[selectedOption-1].talkColor = Color.gray;
-        print(selectedOption);
     }
 
     private void SetList()
