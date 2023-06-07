@@ -19,13 +19,13 @@ public class PickUp : MonoBehaviour
     {
         if(collision.tag.Equals("Player"))
         {
-            //ì¸ë²¤ì— ì•„ì´í…œ ì €ì¥
+            //ÀÎº¥¿¡ ¾ÆÀÌÅÛ ÀúÀå
             ItemData item = GetComponent<ItemData>();
             if(item == null)
             {
                 print("No Item Data.");
             }
-            //ë¹„ì–´ìˆëŠ” ìŠ¬ë¡¯ì—ë§Œ ì €ì¥
+            //ºñ¾îÀÖ´Â ½½·Ô¿¡¸¸ ÀúÀå
             for(int i =0; i< SmartphoneManager.instance.filesInven.slotList.Count; i++ )
             {
                 if(!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
