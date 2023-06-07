@@ -69,11 +69,11 @@ public class Diary : MonoBehaviour
     private void Update() {
         if(SmartphoneManager.instance.filesInven.IsInvenItemActive&&!isFliping)
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPages[flipPageIdx].rotation.y<=0&&flipPageIdx<2)
+            if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
             {
                 FlipPage(true);
             }
-            if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPages[flipPageIdx-1].rotation.y>=1&&flipPageIdx>0)
+            if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPageIdx>0&&flipPages[flipPageIdx-1].rotation.y>=1)
             {
                 FlipPage(false);
             }
