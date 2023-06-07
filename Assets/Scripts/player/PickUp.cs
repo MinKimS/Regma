@@ -12,13 +12,19 @@ public class PickUp : MonoBehaviour
 
     void Start()
     {
-        HpScreen.color = Color.clear;
+        if(HpScreen != null)
+            HpScreen.color = Color.clear;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag.Equals("Player"))
         {
+            if(HpScreen != null)
+            {
+                ShowHpScreen();
+                return;
+            }
             //인벤에 아이템 저장
             ItemData item = GetComponent<ItemData>();
             if(item == null)
@@ -46,7 +52,6 @@ public class PickUp : MonoBehaviour
             //    HpScreen.enabled = true;
             //    gameObject.SetActive(true);
             //}
-            ShowHpScreen();
         }
     }
     public void ShowHpScreen()
@@ -56,11 +61,14 @@ public class PickUp : MonoBehaviour
 
     private void SetItem(int i, ItemData item)
     {
-        ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
-        itemData.itemName = item.itemName;
-        itemData.itemImg = item.itemImg;
-        itemData.itemID = item.itemID;
-        SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
-        SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+        if(item != null)
+        {
+            ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+            itemData.itemName = item.itemName;
+            itemData.itemImg = item.itemImg;
+            itemData.itemID = item.itemID;
+            SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
+            SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+        }
     }
 }
