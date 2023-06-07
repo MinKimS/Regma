@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Book
   - shake
-  - Item
   layers:
   - Default
   - TransparentFX

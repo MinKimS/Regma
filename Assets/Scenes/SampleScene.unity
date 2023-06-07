@@ -3636,105 +3636,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  itemID: 1
-  itemName: fkfkfk
-  itemImg: {fileID: 21300000, guid: c7aa62ae78ffca0498c89e5f45f94c0e, type: 3}
---- !u!114 &427480164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427480162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bbadffb7c443547ac5223aa5c00019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemHp: {fileID: 0}
-  HpScreen: {fileID: 0}
---- !u!58 &427480165
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427480162}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!212 &427480166
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427480162}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &427480167
-=======
->>>>>>> yh
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 4, y: -5}
   m_UseGraphicAlpha: 1
 --- !u!4 &427480164
-<<<<<<< HEAD
-=======
->>>>>>> c255f0e9f8a30aebae004bc849fa87e4cd4b5814
->>>>>>> yh
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5325,7 +5230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9755616d6b0d8478e5b6a1a13c5ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemHp: {fileID: 0}
   HpScreen: {fileID: 1240159876}
 --- !u!1 &606496680
 GameObject:
@@ -5911,7 +5815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66de19515c6f9554eb9b297d8ff219db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 667326314}
+  animator: {fileID: 0}
   pos: {fileID: 1378315513}
   islayer:
     serializedVersion: 2
@@ -9367,8 +9271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bbadffb7c443547ac5223aa5c00019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemHp: {fileID: 0}
-  HpScreen: {fileID: 0}
 --- !u!58 &1211226103
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9578,15 +9480,13 @@ GameObject:
   - component: {fileID: 1240159875}
   - component: {fileID: 1240159877}
   - component: {fileID: 1240159876}
-  - component: {fileID: 1240159878}
-  - component: {fileID: 1240159879}
   m_Layer: 5
-  m_Name: Hp
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1240159875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9645,34 +9545,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240159874}
   m_CullTransparentMesh: 1
---- !u!114 &1240159878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240159874}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9755616d6b0d8478e5b6a1a13c5ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemHp: {fileID: 1456909592}
-  HpScreen: {fileID: 1240159876}
---- !u!114 &1240159879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240159874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bbadffb7c443547ac5223aa5c00019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemHp: {fileID: 0}
-  HpScreen: {fileID: 0}
 --- !u!1 &1278207424
 GameObject:
   m_ObjectHideFlags: 0
@@ -10822,7 +10694,7 @@ GameObject:
   - component: {fileID: 1456909594}
   - component: {fileID: 1456909593}
   m_Layer: 5
-  m_Name: CanvasHp
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12216,12 +12088,12 @@ GameObject:
   - component: {fileID: 1677565847}
   - component: {fileID: 1677565846}
   m_Layer: 0
-  m_Name: Hptest
-  m_TagString: Item
+  m_Name: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1677565846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12234,8 +12106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bbadffb7c443547ac5223aa5c00019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemHp: {fileID: 1456909592}
-  HpScreen: {fileID: 1240159876}
 --- !u!58 &1677565847
 CircleCollider2D:
   m_ObjectHideFlags: 0
