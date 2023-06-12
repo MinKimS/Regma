@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SmartphoneManager : MonoBehaviour
 {
     public static SmartphoneManager instance;
+    public TalkNotification notification;
     //핸드폰 ui가 있는 캔버스
     public Canvas phoneCanvas;
     //핸드폰
@@ -437,6 +438,9 @@ public class SmartphoneManager : MonoBehaviour
     //폰 보이기
     public void ShowPhone()
     {
+        //톡 알림 표시 표시중이면 비활성화
+        notification.SetTalkIconState();
+
         if(!DialogueManager.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
             DialogueManager.instance.playerAnim.SetBool("walk", false);
@@ -573,6 +577,9 @@ public class SmartphoneManager : MonoBehaviour
 
         Invoke("ScrollToBottom", 0.03f);
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
+
+        //카톡을 안보고있을 때 톡이 온경우 톡이 온것을 알림
+        notification.SetTalkIconState();
     }
 
     public void AddInOutTalk(bool isIn, string text)
