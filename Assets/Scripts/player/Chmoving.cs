@@ -32,7 +32,7 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-        //��ȭ��, �ڵ��� Ų ���¿����� �������� �ʰ� ����
+       
         if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
@@ -81,7 +81,7 @@ public class Chmoving : MonoBehaviour
                 animator.SetBool("walk", false);
             }
 
-            // ?��? ???
+          
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
         }
     }
@@ -117,11 +117,7 @@ public class Chmoving : MonoBehaviour
             }
         }
 
-        //if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("player"))
-        //{
-        //    // ī�޶� ��Ʈ�ѷ��� StartCameraShake �޼��� ȣ��
-        //    cameraController.StartCameraShake();
-        //}
+       
 
     }
 
