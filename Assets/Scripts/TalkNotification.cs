@@ -21,35 +21,26 @@ public class TalkNotification : MonoBehaviour
         curTr.anchoredPosition = hidePos;
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Tab))
+    //톡 알림 표시 상태 설정
+    public void SetShowTalkIconState()
+    {
+        //보지 않은 톡이 온경우
+        if(!isTalkIconShow && (SmartphoneManager.instance.IsOpenInven || !SmartphoneManager.instance.IsOpenPhone))
         {
-            SetTalkIconState();
+            talkIcon.enabled = true;
+            StartCoroutine(MoveTalkPos(showPos));
+            isTalkIconShow = true;
         }
     }
 
     //톡 알림 표시 상태 설정
-    public void SetTalkIconState()
+    public void SetHideTalkIconState()
     {
-        //보지 않은 톡이 온경우
-        if(!isTalkIconShow)
+        if(isTalkIconShow && SmartphoneManager.instance.IsOpenPhone&&!SmartphoneManager.instance.IsOpenInven)
         {
-            if(SmartphoneManager.instance.IsOpenInven || !SmartphoneManager.instance.IsOpenPhone)
-            {
-                talkIcon.enabled = true;
-                StartCoroutine(MoveTalkPos(showPos));
-                isTalkIconShow = true;
-            }
-        }
-        //톡을 본 경우
-        else
-        {
-            if(SmartphoneManager.instance.IsOpenPhone&&!SmartphoneManager.instance.IsOpenInven)
-            {
-                talkIcon.enabled = false;
-                curTr.anchoredPosition = hidePos;
-                isTalkIconShow = false;
-            }
+            talkIcon.enabled = false;
+            curTr.anchoredPosition = hidePos;
+            isTalkIconShow = false;
         }
     }
     

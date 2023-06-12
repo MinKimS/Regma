@@ -439,7 +439,7 @@ public class SmartphoneManager : MonoBehaviour
     public void ShowPhone()
     {
         //톡 알림 표시 표시중이면 비활성화
-        notification.SetTalkIconState();
+        notification.SetHideTalkIconState();
 
         if(!DialogueManager.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
@@ -579,7 +579,7 @@ public class SmartphoneManager : MonoBehaviour
         StartCoroutine(FitLayout(talkParentRT, 0.03f));
 
         //카톡을 안보고있을 때 톡이 온경우 톡이 온것을 알림
-        notification.SetTalkIconState();
+        notification.SetShowTalkIconState();
     }
 
     public void AddInOutTalk(bool isIn, string text)
