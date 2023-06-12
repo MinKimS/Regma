@@ -100,6 +100,11 @@ public class SmartphoneManager : MonoBehaviour
         get{return isOpenPhone;}
     }
 
+    public bool IsOpenInven
+    {
+        get{return isOpenInven;}
+    }
+
     private void Awake() {
         if(instance == null)
         {

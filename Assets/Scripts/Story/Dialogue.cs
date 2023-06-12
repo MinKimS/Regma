@@ -9,8 +9,7 @@ public class Dialogue : ScriptableObject
 {
     public enum EventType
     {
-        None,
-        Anim,
+        None,//아무일 없음
         Timeline,
     }
     //이번 대화에 등장할 캐릭터 리스트
