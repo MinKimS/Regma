@@ -19,52 +19,61 @@ public class Chmoving : MonoBehaviour
     [SerializeField] Transform pos;
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
-    int JumpCnt;
+    bool isJumping = false;
     int JumpCount = 5;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        JumpCnt = JumpCount;
     }
 
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-       
-        if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+
+        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            if (isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+            if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
+                isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
             }
 
-            if (!isGround && Input.GetKeyDown(KeyCode.Space) && JumpCnt > 0)
+            if (!isGround && Input.GetKeyDown(KeyCode.Space))
             {
+                isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                JumpCnt--;
-                animator.SetBool("jump", true);
             }
 
             if (isGround)
             {
-                JumpCnt = JumpCount;
+                JumpCount = 0;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+            {
+                JumpCount++;
+                isJumping = true;
+            }
+
+            if (JumpCount > 0)
+            {
+                animator.SetBool("jump", true);
+            }
+            else
+            {
                 animator.SetBool("jump", false);
             }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
-        }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
 
             float moveInputX = Input.GetAxisRaw("Horizontal");
 
@@ -81,7 +90,6 @@ public class Chmoving : MonoBehaviour
                 animator.SetBool("walk", false);
             }
 
-          
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
         }
     }
@@ -116,11 +124,5 @@ public class Chmoving : MonoBehaviour
                 bookControl.ShowImage();
             }
         }
-
-       
-
     }
-
-
- 
 }
