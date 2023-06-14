@@ -21,15 +21,15 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    StartCoroutine(ShakeCoroutine());
-        //}
-        //else if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    StopAllCoroutines();
-        //    StartCoroutine(Reset());
-        //}
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(ShakeCoroutine());
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            StopAllCoroutines();
+            StartCoroutine(Reset());
+        }
 
     }
 
@@ -39,12 +39,12 @@ public class CameraShakeTrigger : MonoBehaviour
         {
             StartCoroutine(ShakeCoroutine());
             print("dd");
-            
+
         }
 
     }
 
-   public IEnumerator ShakeCoroutine()
+    public IEnumerator ShakeCoroutine()
     {
         Vector3 t_originEuler = transform.eulerAngles;
         while (true)
@@ -55,9 +55,19 @@ public class CameraShakeTrigger : MonoBehaviour
             Vector3 t_randomRot = t_originEuler + new Vector3(t_rotX, t_rotY, t_rotZ);
             Quaternion t_rot = Quaternion.Euler(t_randomRot);
 
+            float t_force = m_force; // 원하는 흔들림의 세기를 조정하기 위해 힘의 값을 임시로 저장합니다.
+
             while (Quaternion.Angle(transform.rotation, t_rot) > 0.1f)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, t_rot, m_force * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, t_rot, t_force * Time.deltaTime);
+
+                // 흔들림의 힘을 감소시킵니다.
+                t_force -= t_force * Time.deltaTime;
+                if (t_force < 1f)
+                {
+                    t_force = 1f; // 최소 흔들림 힘을 1로 유지합니다.
+                }
+
                 yield return null;
             }
 

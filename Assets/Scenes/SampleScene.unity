@@ -2945,6 +2945,7 @@ GameObject:
   - component: {fileID: 258019840}
   - component: {fileID: 258019839}
   - component: {fileID: 258019843}
+  - component: {fileID: 258019844}
   m_Layer: 5
   m_Name: CanvasBook
   m_TagString: Untagged
@@ -3049,6 +3050,22 @@ MonoBehaviour:
   book: {fileID: 258019838}
   bookImage: {fileID: 901107415}
   bookAnimator: {fileID: 901107418}
+--- !u!114 &258019844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258019838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraController: {fileID: 519420034}
+  shake: {fileID: 1620223280}
+  m_force: 100
+  m_offset: {x: 10, y: 10, z: 10}
 --- !u!1 &269601823
 GameObject:
   m_ObjectHideFlags: 0
@@ -4315,7 +4332,6 @@ GameObject:
   - component: {fileID: 417363580}
   - component: {fileID: 417363581}
   - component: {fileID: 417363583}
-  - component: {fileID: 417363584}
   m_Layer: 0
   m_Name: shake
   m_TagString: shake
@@ -4348,7 +4364,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 18.46316, y: 0.46006605}
@@ -4385,22 +4401,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &417363584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417363579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420034}
-  shake: {fileID: 0}
-  m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
 --- !u!1 &427480162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5268,7 +5268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.83, y: -2.3, z: -39.56223}
+  m_LocalPosition: {x: -6.74, y: -1.58, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5337,9 +5337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 519420034}
-  shake: {fileID: 1620223280}
+  shake: {fileID: 0}
   m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
+  m_offset: {x: 100, y: 100, z: 100}
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13808,7 +13808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620223280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.33, y: -0.63, z: 0}
+  m_LocalPosition: {x: 46.4, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -14521,10 +14521,10 @@ GameObject:
   - component: {fileID: 1709474737}
   - component: {fileID: 1709474738}
   - component: {fileID: 1709474739}
-  - component: {fileID: 1709474740}
+  - component: {fileID: 1709474741}
   m_Layer: 6
   m_Name: "\uCC45\uC7A5"
-  m_TagString: shake
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14622,22 +14622,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.485961, y: 0.34102607}
   m_EdgeRadius: 0
---- !u!114 &1709474740
-MonoBehaviour:
+--- !u!50 &1709474741
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709474736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420034}
-  shake: {fileID: 0}
-  m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1711232007
 GameObject:
   m_ObjectHideFlags: 0
