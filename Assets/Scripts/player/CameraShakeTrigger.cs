@@ -21,27 +21,30 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(ShakeCoroutine());
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            StopAllCoroutines();
-            StartCoroutine(Reset());
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    StartCoroutine(ShakeCoroutine());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    StopAllCoroutines();
+        //    StartCoroutine(Reset());
+        //}
+
     }
 
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-        if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("player"))
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("shake") && gameObject.CompareTag("Player"))
         {
             StartCoroutine(ShakeCoroutine());
+            print("dd");
+            
         }
 
-        }
+    }
 
-    IEnumerator ShakeCoroutine()
+   public IEnumerator ShakeCoroutine()
     {
         Vector3 t_originEuler = transform.eulerAngles;
         while (true)

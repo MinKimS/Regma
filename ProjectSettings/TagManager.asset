@@ -7,11 +7,12 @@ TagManager:
   - Book
   - shake
   - Item
+  - Tv
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
