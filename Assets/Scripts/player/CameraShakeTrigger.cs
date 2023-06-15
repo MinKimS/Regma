@@ -11,22 +11,23 @@ public class CameraShakeTrigger : MonoBehaviour
 
     Quaternion m_originRot;
 
+    GameObject camObj;
+
     void Start()
     {
         m_originRot = transform.rotation;
 
         // Get the CameraController component attached to the camera
         cameraController = Camera.main.GetComponent<CameraController>();
+        camObj = cameraController.gameObject;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(ShakeCoroutine());
         }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +41,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
     IEnumerator ShakeCoroutine()
     {
-        Vector3 t_originEuler = transform.eulerAngles;
+        Vector3 t_originEuler = camObj.transform.eulerAngles;
         while (true)
         {
             float t_rotX = Random.Range(-m_offset.x, m_offset.x);
@@ -49,9 +50,9 @@ public class CameraShakeTrigger : MonoBehaviour
             Vector3 t_randomRot = t_originEuler + new Vector3(t_rotX, t_rotY, t_rotZ);
             Quaternion t_rot = Quaternion.Euler(t_randomRot);
 
-            while (Quaternion.Angle(transform.rotation, t_rot) > 0.1f)
+            while (Quaternion.Angle(camObj.transform.rotation, t_rot) > 0.1f)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, t_rot, m_force * Time.deltaTime);
+                camObj.transform.rotation = Quaternion.RotateTowards(camObj.transform.rotation, t_rot, m_force * Time.deltaTime);
                 yield return null;
             }
 
@@ -63,9 +64,9 @@ public class CameraShakeTrigger : MonoBehaviour
 
     IEnumerator Reset()
     {
-        while (Quaternion.Angle(transform.rotation, m_originRot) > 0f)
+        while (Quaternion.Angle(camObj.transform.rotation, m_originRot) > 0f)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, m_originRot, m_force * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(camObj.transform.rotation, m_originRot, m_force * Time.deltaTime);
             yield return null;
         }
     }

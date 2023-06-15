@@ -1229,7 +1229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3.6942, y: -3.595398}
+  m_AnchoredPosition: {x: 3.6942, y: -3.595459}
   m_SizeDelta: {x: 452.3883, y: -197.3608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87917003
@@ -2945,7 +2945,6 @@ GameObject:
   - component: {fileID: 258019840}
   - component: {fileID: 258019839}
   - component: {fileID: 258019843}
-  - component: {fileID: 258019844}
   m_Layer: 5
   m_Name: CanvasBook
   m_TagString: Untagged
@@ -3050,22 +3049,6 @@ MonoBehaviour:
   book: {fileID: 258019838}
   bookImage: {fileID: 901107415}
   bookAnimator: {fileID: 901107418}
---- !u!114 &258019844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258019838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420034}
-  shake: {fileID: 1620223280}
-  m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
 --- !u!1 &269601823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,7 +3335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 519420034}
-  shake: {fileID: 1620223280}
   m_force: 0
   m_offset: {x: 0, y: 0, z: 0}
 --- !u!1 &338089657
@@ -5200,7 +5182,6 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
@@ -5324,22 +5305,6 @@ MonoBehaviour:
   fixedPosition: {x: 0, y: 2.3, z: -10}
   center: {x: 19.9, y: 0}
   mapSize: {x: 56.8, y: 6.35}
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420034}
-  shake: {fileID: 1620223280}
-  m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6196,7 +6161,6 @@ GameObject:
   - component: {fileID: 585343138}
   - component: {fileID: 585343137}
   - component: {fileID: 585343139}
-  - component: {fileID: 585343140}
   - component: {fileID: 585343141}
   m_Layer: 6
   m_Name: Object1
@@ -6298,22 +6262,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34490693, y: 0.16774058}
   m_EdgeRadius: 0
---- !u!114 &585343140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585343136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420034}
-  shake: {fileID: 0}
-  m_force: 100
-  m_offset: {x: 10, y: 10, z: 10}
 --- !u!50 &585343141
 Rigidbody2D:
   serializedVersion: 4
@@ -13851,7 +13799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 519420034}
-  shake: {fileID: 1620223280}
   m_force: 100
   m_offset: {x: 10, y: 10, z: 10}
 --- !u!1 &1649050781
@@ -17451,7 +17398,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390924479}
   m_HandleRect: {fileID: 390924478}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
