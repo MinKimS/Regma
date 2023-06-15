@@ -32,6 +32,8 @@ public class Chmoving : MonoBehaviour
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
+        print("ff" + isGround);
+
         if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
