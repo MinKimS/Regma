@@ -95,7 +95,9 @@ public class Chmoving : MonoBehaviour
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
         }
 
-        float verticalInput = Input.GetAxis("Vertical");
+       
+
+            float verticalInput = Input.GetAxis("Vertical");
 
         if (verticalInput > 0)
         {

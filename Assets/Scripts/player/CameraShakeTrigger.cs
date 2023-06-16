@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraShakeTrigger : MonoBehaviour
 {
     public CameraController cameraController;
+    public GameObject canvasBook;
 
     [SerializeField] float m_force = 0f;
     [SerializeField] Vector3 m_offset = Vector3.zero;
@@ -44,6 +45,12 @@ public class CameraShakeTrigger : MonoBehaviour
         Vector3 t_originEuler = camObj.transform.eulerAngles;
         while (true)
         {
+            if (!canvasBook.activeSelf)
+            {
+                canvasBook.SetActive(true);
+                StartCoroutine(Reset());
+            }
+
             float t_rotX = Random.Range(-m_offset.x, m_offset.x);
             float t_rotY = Random.Range(-m_offset.y, m_offset.y);
             float t_rotZ = Random.Range(-m_offset.z, m_offset.z);
@@ -60,13 +67,11 @@ public class CameraShakeTrigger : MonoBehaviour
         }
     }
 
-
-
     IEnumerator Reset()
     {
         while (Quaternion.Angle(camObj.transform.rotation, m_originRot) > 0f)
         {
-            transform.rotation = Quaternion.RotateTowards(camObj.transform.rotation, m_originRot, m_force * Time.deltaTime);
+            camObj.transform.rotation = Quaternion.RotateTowards(camObj.transform.rotation, m_originRot, m_force * Time.deltaTime);
             yield return null;
         }
     }

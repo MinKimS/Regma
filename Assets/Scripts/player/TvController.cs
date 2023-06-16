@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TvController : MonoBehaviour
@@ -25,5 +23,23 @@ public class TvController : MonoBehaviour
         // TV를 끄는 애니메이션을 재생합니다.
         animator.SetBool("IsTVOn", false);
         canvas.SetActive(false); // 애니메이션이 종료되면 캔버스를 비활성화합니다.
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tv") && Input.GetKey(KeyCode.E))
+        {
+            print("gg");
+            SetTVOn();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tv"))
+        {
+            print("gg");
+            SetTVOff();
+        }
     }
 }

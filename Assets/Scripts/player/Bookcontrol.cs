@@ -48,7 +48,7 @@ public class Bookcontrol : MonoBehaviour
         isAnimationPlaying = true;
         yield return new WaitForSeconds(bookAnimator.GetCurrentAnimatorStateInfo(0).length);
 
-        yield return new WaitForSeconds(2f); // 2초 대기
+        yield return new WaitForSeconds(1f); // 2초 대기
 
         bookImage.enabled = false;
         isAnimationPlaying = false;
