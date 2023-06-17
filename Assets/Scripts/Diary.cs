@@ -10,9 +10,6 @@ public class Diary : MonoBehaviour
     public GameObject[] pages;
     int flipPageIdx = 0;
     bool isFliping = false;
-    [HideInInspector]
-    //일기를 읽은 후 할 수있는 상호작용 체크용
-    public bool isHaveOpened = false;
 
     private void FlipPage(bool isLeft)
     {

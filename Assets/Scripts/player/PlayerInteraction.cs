@@ -26,24 +26,31 @@ public class PlayerInteraction : MonoBehaviour
         if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
-            if(!obj.isInteracting)
+            if(obj.isOkInteracting)
             {
+                if(obj.isInteracting)
+                {
+                    if(obj!=null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+                    {
+                        CancelEvent();
+                    }
+                    return;
+                }
                 if(Input.GetKeyDown(KeyCode.E))
                 {
                     switch(obj.ObjID)
                     {
                         case 0:
                             Pot pot = obj.thisObj.GetComponent<Pot>();
-                            if(pot.diary.isHaveOpened)
-                            {
-                                obj.isInteracting=true;
-                                pot.PushPot(gameObject.transform);
-                            }
+                            obj.isInteracting=true;
+                            pot.PushPot(gameObject.transform);
                             break;
                         case 1:
                             obj.isInteracting=true;
                             Door door = obj.thisObj.GetComponent<Door>();
-                            door.ShowDoorImg();
+                            door.StartCurDoorEvent();
+                            obj.isInteracting=false;
+                            obj.isOkInteracting = false;
                             break;
                         case 2:
                             obj.isInteracting=true;
@@ -58,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
                                     break;
                                 }
                             }
-                            obj.isInteracting=false;
+                            obj.isOkInteracting=false;
                             obj.gameObject.SetActive(false);
                             break;
                         default:
@@ -66,16 +73,10 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                if(obj!=null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
-                {
-                    CancelEvent();
-                }
-            }
         }
     }
 
+    //진행중인 상호작용 취소
     public void CancelEvent()
     {
         switch(obj.ObjID)

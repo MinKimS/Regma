@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 4.350000000000001
+  m_Time: 4.466666666666667
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 60c54ccaae886d648af48e9da5d0190a, type: 2}
@@ -259,7 +259,6 @@ MonoBehaviour:
     - {fileID: -7908055284899098593}
     - {fileID: -2136105532410784819}
     - {fileID: -6047614628417855450}
-    - {fileID: 410116463450454173}
     - {fileID: 7750879049790492691}
     - {fileID: -712617012912686405}
 --- !u!114 &-4611552474872293657
@@ -358,22 +357,6 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 1195703750295043184}
---- !u!114 &410116463450454173
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 5
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 60c54ccaae886d648af48e9da5d0190a, type: 2}
 --- !u!114 &1195703750295043184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,6 +422,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 1.75
+        value: -1100
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.9166666
         value: -1100
         inSlope: 0
         outSlope: 0
@@ -656,6 +648,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 1.75
+        value: -1100
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.9166666
         value: -1100
         inSlope: 0
         outSlope: 0

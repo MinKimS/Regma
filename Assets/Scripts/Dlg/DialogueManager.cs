@@ -125,6 +125,7 @@ public class DialogueManager : MonoBehaviour
             speaker.text = "";
         }
 
+
         //대화 출력하는 부분
         while(dlgWordIdx != text.Length)
         {

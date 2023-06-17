@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
+  m_Name: Talk L3 2
+  m_EditorClassIdentifier: 
+  afterEndTalk: 2
+  timelineName: 
+  runEvent: {fileID: 0}
+  TalkContexts:
+  - user: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    talkText: "\uC6B0\uC120"
+    TalkSendDelay: 0.5
+  - user: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    talkText: "\uBE68\uB9AC \uC5F4\uC5B4\uBCF4\uC8E0"
+    TalkSendDelay: 1
+  - user: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    talkText: "\uC800\uB3C4 \uC5EC\uB294 \uBC29\uBC95 \uCC3E\uC544\uBCFC\uD14C\uB2C8\uAE4C"
+    TalkSendDelay: 2
+  - user: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    talkText: "\uB3C4\uC6D0\uB2D8\uB3C4 \uCC3E\uC544\uBD10\uC694"
+    TalkSendDelay: 1
+  answerTalk:
+  - {fileID: 11400000, guid: 940a1afb65564a4419e8d740cc27d293, type: 2}
+  nextTalk: {fileID: 11400000, guid: af794485fa2bb9342ae3e149fc451735, type: 2}
+  isInTimeline: 1
