@@ -31,10 +31,8 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-
-        print("ff" + isGround);
-
-        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+      
+        if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
@@ -101,7 +99,7 @@ public class Chmoving : MonoBehaviour
 
         if (verticalInput > 0)
         {
-            // À§ ¹æÇâÅ°¸¦ ´©¸£¸é "Tv on / off" ¾Ö´Ï¸ÞÀÌ¼ÇÀ» Àç»ýÇÕ´Ï´Ù.
+            // ìœ„ ë°©í–¥í‚¤ë¥¼ ëˆ„ë¥´ë©´ "Tv on / off" ì• ë‹ˆë©”ì´ì…˜ì„ ìž¬ìƒí•©ë‹ˆë‹¤.
             animator.SetBool("Tv", true);
         }
         else if (verticalInput < 0)
@@ -111,7 +109,7 @@ public class Chmoving : MonoBehaviour
         }
         else
         {
-            // ¹æÇâÅ°¸¦ ´©¸£Áö ¾ÊÀ¸¸é ¸ðµç ¾Ö´Ï¸ÞÀÌ¼ÇÀ» Á¤ÁöÇÕ´Ï´Ù.
+            // ë°©í–¥í‚¤ë¥¼ ëˆ„ë¥´ì§€ ì•Šìœ¼ë©´ ëª¨ë“  ì• ë‹ˆë©”ì´ì…˜ì„ ì •ì§€í•©ë‹ˆë‹¤.
             animator.SetBool("Tv", false);
         }
     }

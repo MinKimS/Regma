@@ -17,7 +17,8 @@ public class Inventory : MonoBehaviour
     }
 
     //==============인벤토리에서 상호작용하면 생기는 이벤트들 관련===================
-    public Diary diary;
+    public InteractionObjData pot;
+    public GameObject diary;
     //인벤토리 아이템 상호작용해서 수행중인것이 있는지 여부
     private bool isInvenItemActive = false;
 
@@ -35,7 +36,7 @@ public class Inventory : MonoBehaviour
     }
     public void HideDiary()
     {
-        if(!diary.isHaveOpened) {diary.isHaveOpened = true;}
+        if(!pot.isOkInteracting) {pot.isOkInteracting = true;}
         diary.gameObject.SetActive(false);
         isInvenItemActive = false;
     }

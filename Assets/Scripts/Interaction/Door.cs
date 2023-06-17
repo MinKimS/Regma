@@ -7,7 +7,11 @@ public class Door : MonoBehaviour
 {
     //문 자세히 보기
     public Image doorDetailImg;
-    bool isEventActive=false;
+    Animator anim;
+
+    private void Start() {
+        anim = GetComponent<Animator>();
+    }
 
     public void ShowDoorImg()
     {
@@ -19,14 +23,15 @@ public class Door : MonoBehaviour
     {
         doorDetailImg.enabled = false;
     }
-    void StartCurDoorEvent()
+    public void StartCurDoorEvent()
     {
-        if(!isEventActive)
-        {
-            TimelineManager.instance.SetTimelineStart(4);
-            isEventActive = true;
-            doorDetailImg.enabled = false;
-            EventManager.instance.ActiveEvent(2);
-        }
+        TimelineManager.instance.SetTimelineStart("DoorEvent 0");
+        doorDetailImg.enabled = false;
+        EventManager.instance.ActiveEvent(2);
+    }
+
+    public void SetAnimKnock(bool value)
+    {
+        anim.SetBool("isKnock", value);
     }
 }

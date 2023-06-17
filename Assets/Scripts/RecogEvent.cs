@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class RecogEvent : MonoBehaviour
 {
     public UnityEvent ActiveRecogEvent;
-    //나중엔 제거
+    //이벤트 설명 용(나중엔 제거)
     [TextArea]
     public string descriptionEvent;
     private void OnTriggerEnter2D(Collider2D other) {

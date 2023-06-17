@@ -14,15 +14,6 @@ public class ScriptConnect : MonoBehaviour
         DialogueManager.instance.PlayDlg();
     }
 
-    public void SetCurTimelineEnd()
-    {
-        TimelineManager.instance._Tlstate = TimelineManager.TlState.Stop;
-    }
-
-    public void PauseTimeline()
-    {
-        TimelineManager.instance.SetTimelinePause();
-    }
     public void LoadingInTimeline(string nextScene)
     {
         LoadingManager.LoadScene(nextScene);
@@ -33,26 +24,9 @@ public class ScriptConnect : MonoBehaviour
         SmartphoneManager.instance.ShowPhone();
     }
 
-    public void AddTalkPlayer(int count)
-    {
-        SmartphoneManager.instance.SetSendTalk(count);
-        SmartphoneManager.instance.isOKSendTalk = true;
-    }
-
-    public void AddTalkOther(Speaker user)
-    {
-        SmartphoneManager.instance.AddTalk(false, user, SmartphoneManager.instance.receiveTalkContentList[SmartphoneManager.instance.receiveTalkIdx][1]);
-        SmartphoneManager.instance.receiveTalkIdx++;
-    }
-
     public void AddInOutTalk(string name)
     {
         SmartphoneManager.instance.AddInOutTalk(true, name);
-    }
-
-    public void HidePhone()
-    {
-        SmartphoneManager.instance.HidePhone();
     }
 
     public void ReduceReadNum()
