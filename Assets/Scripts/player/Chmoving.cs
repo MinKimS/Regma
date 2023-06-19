@@ -31,7 +31,7 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
-      
+
         if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
@@ -92,7 +92,10 @@ public class Chmoving : MonoBehaviour
 
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
         }
-
+        else
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
        
 
             float verticalInput = Input.GetAxis("Vertical");

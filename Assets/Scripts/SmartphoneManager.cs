@@ -39,6 +39,8 @@ public class SmartphoneManager : MonoBehaviour
     public GameObject inOutTalk;
     //공지 톡
     public GameObject announcementTalk;
+    //영상 톡
+    public GameObject videoTalk;
     //플레이어가 보낼 수 있는 톡
     public GameObject sendTalk;
     //가장 최근에 온 톡
@@ -124,7 +126,7 @@ public class SmartphoneManager : MonoBehaviour
         talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
 
         //인벤 스크롤 시 사용되는 수치
-        invenOriginPos = new Vector2(15f, -15f);
+        invenOriginPos = new Vector2(17f, -15f);
         invenUpValue = new Vector2(0f,-70);
         invenDownValue = new Vector2(0f,70f);
 
@@ -448,6 +450,7 @@ public class SmartphoneManager : MonoBehaviour
                 isLastLine=false;
                 isFirstLine=true;
                 filesInven.slotRT.anchoredPosition = invenOriginPos;
+                filesInven.slotRT.offsetMin = invenOriginPos;
             }
         }
         else
@@ -573,8 +576,8 @@ public class SmartphoneManager : MonoBehaviour
 
         Invoke("ScrollToBottom", 0.03f);
 
-        StartCoroutine(FitLayout(talkParentRT, 0.03f));
-        StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
+        StartCoroutine(FitLayout(talkParentRT));
+        StartCoroutine(FitLayout(talkInputAreaRT));
     }
 
     public void AddTalk(bool isAnnouncement, Speaker user, string text)
@@ -607,7 +610,7 @@ public class SmartphoneManager : MonoBehaviour
         lastTalk = talk;
 
         Invoke("ScrollToBottom", 0.03f);
-        StartCoroutine(FitLayout(talkParentRT, 0.03f));
+        StartCoroutine(FitLayout(talkParentRT));
 
         notification.SetHideTalkIconState();
     }
@@ -629,11 +632,11 @@ public class SmartphoneManager : MonoBehaviour
         lastTalk = talk;
 
         Invoke("ScrollToBottom", 0.03f);
-        StartCoroutine(FitLayout(talkParentRT, 0.03f));
+        StartCoroutine(FitLayout(talkParentRT));
     }
 
     //레이아웃 버그 해소
-    IEnumerator FitLayout(RectTransform rt, float time)
+    IEnumerator FitLayout(RectTransform rt)
     {
         yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
@@ -674,8 +677,8 @@ public class SmartphoneManager : MonoBehaviour
         sendTalkList[0].talkColor = Color.white;
         selectedOption = 1;
 
-        StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
-        StartCoroutine(FitLayout(inputArea, 0.03f));
+        StartCoroutine(FitLayout(talkInputAreaRT));
+        StartCoroutine(FitLayout(inputArea));
     }
 
     //플레이어가 보낼 톡이 1개인 경우
@@ -697,24 +700,9 @@ public class SmartphoneManager : MonoBehaviour
         selectedOption = 1;
         isOKSendTalk = true;
 
-        StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
-        StartCoroutine(FitLayout(inputArea, 0.03f));
+        StartCoroutine(FitLayout(talkInputAreaRT));
+        StartCoroutine(FitLayout(inputArea));
     }
-
-    // public void SetNextSendTalk(string nextSendTalk)
-    // {
-    //     // isSendTalkReady = true;
-    //     sendTalkData sendTalk = sendTalkList[0];
-    //     sendTalk.gameObject.SetActive(true);
-    //     sendTalk.talkText.text = sendTalk.text = nextSendTalk;
-    //     sendTalkList[0].talkText.enabled = true;
-
-    //     sendTalkList[0].talkColor = Color.white;
-    //     selectedOption = 1;
-
-    //     StartCoroutine(FitLayout(talkInputAreaRT, 0.03f));
-    //     StartCoroutine(FitLayout(inputArea, 0.03f));
-    // }
 
     public void HideSendTalk()
     {
@@ -748,5 +736,34 @@ public class SmartphoneManager : MonoBehaviour
 
         //선택되어 있는 상태 표시
         sendTalkList[selectedOption-1].talkColor = Color.gray;
+    }
+
+    public void AddVideoTalk(Speaker user)
+    {
+        TalkData talk = Instantiate(videoTalk).GetComponent<TalkData>();
+        talk.transform.SetParent(talkParent.transform, false);
+        talk.userName = user.talkName;
+
+        //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
+        bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
+        
+        talk.profile.gameObject.SetActive(!isSameUser);
+        talk.nameText.gameObject.SetActive(!isSameUser);
+        talk.nameText.text = talk.userName;
+
+
+        if(user.talkProfileSp!=null)
+        {
+            talk.profileImage.sprite = user.talkProfileSp;
+        }
+        talk.readNum = TalkMemberNum - 2;
+        talk.readNumText.text = talk.readNum.ToString();
+
+        lastTalk = talk;
+
+        Invoke("ScrollToBottom", 0.03f);
+        StartCoroutine(FitLayout(talkParentRT));
+
+        notification.SetHideTalkIconState();
     }
 }

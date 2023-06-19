@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     //말 끝남표시(확인용)
     public Image nextArrow;
     //현재 출력되는 대화 인덱스
+    [SerializeField]
     private int setenceIdx = 0;
     public float typingSpeed = 0.1f;
 
@@ -115,16 +116,25 @@ public class DialogueManager : MonoBehaviour
         dlgText.text = "";
         int dlgWordIdx = 0;
 
-        //말하는 애 설정
-        if(curDlg.sentences[setenceIdx].speakerIdx!=-1)
+        if(!isSingleDlg)
         {
-            speaker.text = curSpeakerName;
+            //말하는 애 설정
+            if(curDlg.sentences[setenceIdx].speakerIdx!=-1)
+            {
+                speaker.text = curSpeakerName;
+            }
+            else
+            {
+                speaker.text = "";
+            }
         }
         else
         {
-            speaker.text = "";
+            if(singleDlg.sentences[setenceIdx].speakerIdx!=1)
+            { speaker.text = curSpeakerName; }
+            else
+            { speaker.text = ""; }
         }
-
 
         //대화 출력하는 부분
         while(dlgWordIdx != text.Length)
@@ -155,6 +165,11 @@ public class DialogueManager : MonoBehaviour
     }
     private void DialogueShow(Dialogue dlg)
     {
+        if(!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        {
+            playerAnim.SetBool("walk", false);
+            playerAnim.SetBool("jump", false);
+        }
         if(dlg.sentences[setenceIdx].speakerIdx == -1)
         {
             DlgRT.anchoredPosition -= (Vector2.right*300);
@@ -244,12 +259,22 @@ public class DialogueManager : MonoBehaviour
     //캐릭터 이미지 설정
     private void SetChrImg()
     {
+        Dialogue dlg;
+        if(!isSingleDlg)
+        {
+            dlg = curDlg;
+        }
+        else
+        {
+            dlg = singleDlg;
+        }
+
         //이미지 설정
         //사람인경우
-        if(curDlg.sentences[setenceIdx].speakerIdx!=-1)
+        if(dlg.sentences[setenceIdx].speakerIdx!=-1)
         {
             if(!speakerImg.enabled){speakerImg.enabled = true;}
-            speakerImg.sprite = curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+            speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;
         }
         else
         {
@@ -293,6 +318,7 @@ public class DialogueManager : MonoBehaviour
     //처음 대화 시작(흐름없이 나오는 중간에 언제나 나올 수 있는 대화)
     public void PlayDlg(Dialogue dlg)
     {
+        setenceIdx = 0;
         isSingleDlg = true;
         singleDlg = dlg;
         if(SmartphoneManager.instance != null)
@@ -316,6 +342,8 @@ public class DialogueManager : MonoBehaviour
         {
             TimelineManager.instance.SetTimelineResume();
         }
+        
+        SetChrImg();
 
         //사람인경우
         if(curDlg.sentences[setenceIdx].speakerIdx!=-1){
@@ -342,6 +370,8 @@ public class DialogueManager : MonoBehaviour
         {
             TimelineManager.instance.SetTimelineResume();
         }
+
+        SetChrImg();
 
         //사람인경우
         if(dlg.sentences[setenceIdx].speakerIdx!=-1){

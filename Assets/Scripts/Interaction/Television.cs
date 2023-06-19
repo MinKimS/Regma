@@ -4,14 +4,67 @@ using UnityEngine;
 
 public class Television : MonoBehaviour
 {
-    //[일기장을 읽기 전인 경우]
-    //tv화면 켜짐(지지직 화면으로)
-    //지지직 소리가 나옴
-    //대화창이 나옴
+    Animator tvAnim;
+    public Dialogue[] dlg;
+    public Sprite[] channelSprite;
+    int channelIndex = 0;
+    public InteractionObjData interactionData;
+    bool isOnTv = false;
+    public Door door;
 
-    //[일기장을 읽은 경우 미니게임 상호작용 가능]
+    private void Start() {
+        tvAnim = GetComponent<Animator>();
+    }
+    private void Update() {
+        if(isOnTv)
+        {
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                channelIndex++;
+                if(channelIndex > channelSprite.Length)
+                {
+                    channelIndex = 0;
+                }
+                print(channelIndex);
+            }
+            if(Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                channelIndex--;
+                if(channelIndex < 0)
+                {
+                    channelIndex = channelSprite.Length-1;
+                }
+                print(channelIndex);
+            }
+            if(channelIndex == 2)
+            {
+                isOnTv = false;
+                DialogueManager.instance.PlayDlg(dlg[1]);
+                door.checkWorkDo++;
+                door.isOpen = true;
+                interactionData.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
+    }
+
+    //책 읽기전 tv켜기
+    public void TVOnBeforeReadingDiary()
+    {
+        DialogueManager.instance.PlayDlg(dlg[0]);
+    }
     
-    //----채널변경----
-    //채널 인덱스 증가
-    //tv화면 현재 채널 인덱스의 화면으로 변경
+    //책 읽은 후 tv켜기
+    public void TVOnAfterReadingDairy()
+    {
+        tvAnim.SetBool("Tv", true);
+        isOnTv = true;
+    }
+
+    //tv off
+    public void TVOff()
+    {
+        tvAnim.SetBool("Tv", false);
+        interactionData.isInteracting = false;
+        isOnTv = false;
+    }
 }

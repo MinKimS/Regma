@@ -9,6 +9,7 @@ public class TimelineManager : MonoBehaviour
     public static TimelineManager instance;
     public PlayableDirector[] pd;
     private int curPD = 0;
+    Animator playerAnim;
 
     public enum TlState
     {
@@ -45,7 +46,9 @@ public class TimelineManager : MonoBehaviour
         SetPlayableDirector();
         SceneManager.sceneLoaded += LoadSceneEvent;
 
-        // SetTimelineStart(0);
+        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
+        SetTimelineStart(0);
     }
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
@@ -63,6 +66,12 @@ public class TimelineManager : MonoBehaviour
 
     public void SetTimelineStart(string timelineName)
     {
+        if(!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        {
+            playerAnim.SetBool("walk", false);
+            playerAnim.SetBool("jump", false);
+        }
+
         int playTimelineIdx = -1;
         for(int i = 0; i<pd.Length; i++)
         {

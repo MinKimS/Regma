@@ -10,6 +10,7 @@ public class Diary : MonoBehaviour
     public GameObject[] pages;
     int flipPageIdx = 0;
     bool isFliping = false;
+    public GameObject itemDiary;
 
     private void FlipPage(bool isLeft)
     {
@@ -75,5 +76,10 @@ public class Diary : MonoBehaviour
                 FlipPage(false);
             }
         }
+    }
+
+    public void FallDiary()
+    {
+        itemDiary.SetActive(true);
     }
 }

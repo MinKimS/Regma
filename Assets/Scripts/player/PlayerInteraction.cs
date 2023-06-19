@@ -26,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
-            if(obj.isOkInteracting)
+            if(obj != null && obj.isOkInteracting)
             {
                 if(obj.isInteracting)
                 {
@@ -38,22 +38,20 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 if(Input.GetKeyDown(KeyCode.E))
                 {
+                    obj.isInteracting=true;
                     switch(obj.ObjID)
                     {
                         case 0:
                             Pot pot = obj.thisObj.GetComponent<Pot>();
-                            obj.isInteracting=true;
                             pot.PushPot(gameObject.transform);
                             break;
                         case 1:
-                            obj.isInteracting=true;
                             Door door = obj.thisObj.GetComponent<Door>();
                             door.StartCurDoorEvent();
                             obj.isInteracting=false;
                             obj.isOkInteracting = false;
                             break;
                         case 2:
-                            obj.isInteracting=true;
                             ItemData item = obj.GetComponent<ItemData>();
                             for(int i =0; i< SmartphoneManager.instance.filesInven.slotList.Count; i++ )
                             {
@@ -68,7 +66,40 @@ public class PlayerInteraction : MonoBehaviour
                             obj.isOkInteracting=false;
                             obj.gameObject.SetActive(false);
                             break;
+                        case 3:
+                            Television tv = obj.thisObj.GetComponent<Television>();
+                            //after reading diary
+                            tv.TVOnAfterReadingDairy();
+                            break;
                         default:
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    switch(obj.ObjID)
+                    {
+                        case 0:
+                            obj.thisObj.GetComponent<Pot>().PotDlg(0);
+                            break;
+                        case 1:
+                            if(obj.thisObj.GetComponent<Door>().checkWorkDo >2)
+                            {
+                                print("move next stage");
+                            }
+                            break;
+                        case 3:
+                            Television tv = obj.thisObj.GetComponent<Television>();
+                            //before reading diary
+                            tv.TVOnBeforeReadingDiary();
+                            break;
+                        //소파, 책장
+                        case 4:
+                        case 5:
+                            DialogueManager.instance.PlayDlg(obj.objDlg[0]);
                             break;
                     }
                 }
@@ -86,6 +117,9 @@ public class PlayerInteraction : MonoBehaviour
                 break;
             case 1:
                 obj.thisObj.GetComponent<Door>().HideDoorImg();
+                break;
+            case 3:
+                obj.thisObj.GetComponent<Television>().TVOff();
                 break;
         }
         obj.isInteracting = false;

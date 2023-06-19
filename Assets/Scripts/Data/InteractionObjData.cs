@@ -14,4 +14,6 @@ public class InteractionObjData : MonoBehaviour
     {
         isOkInteracting = value;
     }
+
+    public Dialogue[] objDlg;
 }

@@ -32,15 +32,15 @@ public class LoadingManager : MonoBehaviour
         while(!asOp.isDone)
         {
             yield return null;
-
+            timer += Time.unscaledDeltaTime;
             //로딩이 순간적으로 지나가는 거 방지
             if(asOp.progress < 0.9f)
             {
                 progressImg.fillAmount = Mathf.Lerp(progressImg.fillAmount, asOp.progress, timer);
+                if(progressImg.fillAmount >= asOp.progress) { timer = 0f; }
             }
             else
             {
-                timer += Time.unscaledDeltaTime;
                 progressImg.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 //다음 씬으로 이동
                 if(progressImg.fillAmount == 1.0f)
