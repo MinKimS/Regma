@@ -6,6 +6,9 @@ public class Chmoving : MonoBehaviour
 {
     public Animator animator;
 
+    public AudioClip jumpSound; // 점프 사운드
+    public AudioSource walkAudioSource; // 걷는 소리 소스
+
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
     private float jumpForce = 7f;
@@ -14,6 +17,7 @@ public class Chmoving : MonoBehaviour
     private bool isRunning = false;
     private Rigidbody2D rb;
     private bool isMoving = false;
+    private bool isJumpingWithMovement = false;
 
     bool isGround;
     [SerializeField] Transform pos;
@@ -32,18 +36,20 @@ public class Chmoving : MonoBehaviour
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-        if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone&&TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
+        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
+                PlayJumpSound(); // 점프 사운드 재생
             }
 
             if (!isGround && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
+                PlayJumpSound(); // 점프 사운드 재생
             }
 
             if (isGround)
@@ -82,12 +88,26 @@ public class Chmoving : MonoBehaviour
                 isMoving = true;
                 currentMoveSpeed = moveSpeed * moveInputX;
                 animator.SetBool("walk", true);
+                if (isJumping)
+                {
+                    StopWalkSound();
+                    isJumpingWithMovement = true;
+                }
+                else
+                {
+                    if (!isJumpingWithMovement && isGround) // 추가된 조건
+                    {
+                        PlayWalkSound();
+                    }
+                    isJumpingWithMovement = false;
+                }
             }
             else
             {
                 isMoving = false;
                 currentMoveSpeed = 0f;
                 animator.SetBool("walk", false);
+                StopWalkSound();
             }
 
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
@@ -95,25 +115,7 @@ public class Chmoving : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-       
-
-            float verticalInput = Input.GetAxis("Vertical");
-
-        if (verticalInput > 0)
-        {
-            // 위 방향키를 누르면 "Tv on / off" 애니메이션을 재생합니다.
-            animator.SetBool("Tv", true);
-        }
-        else if (verticalInput < 0)
-        {
-            
-            animator.SetBool("Tv", true);
-        }
-        else
-        {
-            // 방향키를 누르지 않으면 모든 애니메이션을 정지합니다.
-            animator.SetBool("Tv", false);
+            StopWalkSound();
         }
     }
 
@@ -146,6 +148,30 @@ public class Chmoving : MonoBehaviour
             {
                 bookControl.ShowImage();
             }
+        }
+    }
+
+    void PlayJumpSound()
+    {
+        if (jumpSound != null && !isJumpingWithMovement)
+        {
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position); // 점프 사운드 재생
+        }
+    }
+
+    void PlayWalkSound()
+    {
+        if (walkAudioSource != null && walkAudioSource.clip != null && !walkAudioSource.isPlaying && !isJumpingWithMovement)
+        {
+            walkAudioSource.Play();
+        }
+    }
+
+    void StopWalkSound()
+    {
+        if (walkAudioSource != null && walkAudioSource.clip != null && walkAudioSource.isPlaying && !isJumpingWithMovement)
+        {
+            walkAudioSource.Stop();
         }
     }
 }
