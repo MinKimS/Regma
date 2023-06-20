@@ -24,6 +24,7 @@ public class Pot : MonoBehaviour
     InteractionObjData interactionData;
     public Dialogue[] dlg;
     public Door door;
+    public Inventory inven;
 
     private void Start() {
         potTr = GetComponent<Transform>();
@@ -139,6 +140,8 @@ public class Pot : MonoBehaviour
     //타임라인에서 사용
     public void EndPushPot()
     {
+        inven.potEvent[0].SetActive(false);
+        inven.potEvent[1].SetActive(false);
         isPushing = false;
         playerAnim.SetBool("isPush",false);
         potColl.isTrigger = true;
@@ -147,5 +150,6 @@ public class Pot : MonoBehaviour
         PotDlg(1);
         door.checkWorkDo++;
         door.isOpen = true;
+        if(door.checkWorkDo > 2 && door.isOpen){door.SetDoorOpen();}
     }
 }

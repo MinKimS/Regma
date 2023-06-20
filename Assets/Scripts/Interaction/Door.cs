@@ -10,18 +10,20 @@ public class Door : MonoBehaviour
     Animator anim;
     public int checkWorkDo = 0;
     public bool isOpen = false;
+    public GameObject diaryEvent;
 
     private void Start() {
         anim = GetComponent<Animator>();
     }
-
     private void Update() {
-        if(checkWorkDo > 2 && isOpen)
-        {
-            isOpen = false;
-            print("open door");
-            TimelineManager.instance.SetTimelineStart("LT F");
-        }
+        if(Input.GetKeyDown(KeyCode.Return) && checkWorkDo > 2 && isOpen)
+        {SetDoorOpen();}
+    }
+
+    public void SetDoorOpen() {
+        isOpen = false;
+        print("open door");
+        TimelineManager.instance.SetTimelineStart("LT F");
     }
 
     public void ShowDoorImg()
@@ -39,6 +41,7 @@ public class Door : MonoBehaviour
         TimelineManager.instance.SetTimelineStart("DoorEvent 0");
         doorDetailImg.enabled = false;
         EventManager.instance.ActiveEvent(2);
+        diaryEvent.SetActive(true);
     }
 
     public void SetAnimKnock(bool value)

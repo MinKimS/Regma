@@ -18,4 +18,4 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uC73C\u2026"
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: cd3a4471f539a1e40a9cf5d048aaaba3, type: 2}
+  nextDlg: {fileID: 11400000, guid: d17dce018e61ebe45ae453c029781595, type: 2}

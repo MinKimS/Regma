@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> slotList;
     //슬롯의 데이터 정보들
     public List<SlotData> slotDataList;
+    public GameObject[] potEvent;
 
     public Inventory(){
         slotList = new List<GameObject>();
@@ -37,7 +38,13 @@ public class Inventory : MonoBehaviour
     }
     public void HideDiary()
     {
-        if(!pot.isOkInteracting) {pot.isOkInteracting = true;}
+        if(!pot.isOkInteracting)
+        {
+            pot.isOkInteracting = true;
+            
+            potEvent[0].SetActive(true);
+            potEvent[1].SetActive(true);
+        }
         if(!tv.isOkInteracting) {tv.isOkInteracting = true;}
         diary.gameObject.SetActive(false);
         isInvenItemActive = false;
