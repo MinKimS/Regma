@@ -8,37 +8,63 @@ public class IntroController : MonoBehaviour
 {
     public Image introImg;
     public Sprite[] introImgs;
-    int IntroImgidx = 0;
+    int introImgidx = 0;
     int introDlgIdx = 0;
 
     public TextMeshProUGUI dlgText;
+    public float typingSpeed = 0.5f;
+    bool isTyping = false;
 
     //인트로에 나오는 대사
     List<string> dlgIntro = new List<string>();
 
     private void Start() {
-        introImg.sprite = introImgs[IntroImgidx++];
+        introImg.sprite = introImgs[introImgidx++];
         SetIntroDlg();
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(isTyping == false && Input.GetKeyDown(KeyCode.Return))
         {
             dlgText.text = "";
-            if(IntroImgidx < introImgs.Length)
+            if(introImgidx < introImgs.Length)
             {
-                introImg.sprite =  introImgs[IntroImgidx];
-                if(IntroImgidx!=0&&IntroImgidx!=1&&IntroImgidx!=8&&IntroImgidx!=13&&IntroImgidx!=17&&IntroImgidx!=20)
+                ChgImg();
+                if(introImgidx!=0&&introImgidx!=1&&introImgidx!=8&&introImgidx!=13&&introImgidx!=17&&introImgidx!=20&&introImgidx!=21)
                 {
-                    dlgText.text = dlgIntro[introDlgIdx++];
+                    StartCoroutine(TypingDlg(dlgIntro[introDlgIdx++]));
                 }
-                IntroImgidx++;
+                if(introImgidx==20)
+                {
+                    Invoke("ChgImg", 0.5f);
+                }
+                introImgidx++;
             }
             else
             {
                 LoadingManager.LoadScene("SampleScene");
             }
         }
+    }
+
+    void ChgImg()
+    {
+        introImg.sprite =  introImgs[introImgidx];
+    }
+
+    private IEnumerator TypingDlg(string text)
+    {        
+        isTyping = true;
+        dlgText.text = "";
+        int dlgWordIdx = 0;
+
+        //대화 출력하는 부분
+        while(dlgWordIdx != text.Length)
+        {
+            dlgText.text += text[dlgWordIdx++];
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        isTyping = false;
     }
 
     void SetIntroDlg()
