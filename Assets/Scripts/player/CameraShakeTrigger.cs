@@ -13,6 +13,7 @@ public class CameraShakeTrigger : MonoBehaviour
     Quaternion m_originRot; // 초기값
 
     GameObject camObj;
+    Collider2D collidingObject;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake"))
         {
             canvasBook.SetActive(true);
             StopAllCoroutines();
@@ -37,7 +38,16 @@ public class CameraShakeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("shake"))
         {
+            collidingObject = collision; // 충돌한 오브젝트 정보 저장
             StartCoroutine(ShakeCoroutine());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("shake"))
+        {
+            collidingObject = null; // 충돌한 오브젝트 정보 초기화
         }
     }
 
@@ -64,10 +74,13 @@ public class CameraShakeTrigger : MonoBehaviour
 
     IEnumerator Reset()
     {
-        while (Quaternion.Angle(camObj.transform.rotation, m_originRot) > 0f)
+        while (Quaternion.Angle(camObj.transform.rotation, m_originRot) > 0.1f)
         {
             camObj.transform.rotation = Quaternion.RotateTowards(camObj.transform.rotation, m_originRot, m_force * Time.deltaTime);
             yield return null;
         }
+
+        // 정확한 리셋을 위해 강제로 초기 회전값으로 설정
+        camObj.transform.rotation = m_originRot;
     }
 }
