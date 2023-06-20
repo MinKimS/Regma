@@ -29,7 +29,7 @@ public class TvController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tv") && Input.GetKey(KeyCode.E))
         {
-            print("gg");
+            
             SetTVOn();
         }
     }
@@ -38,7 +38,7 @@ public class TvController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tv"))
         {
-            print("gg");
+            
             SetTVOff();
         }
     }

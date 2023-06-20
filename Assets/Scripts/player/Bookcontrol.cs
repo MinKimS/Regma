@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Bookcontrol : MonoBehaviour
 {
+    private AudioSource audioSource;
+    public AudioClip tearingSound;
     public GameObject book;
     public Image bookImage;
 
@@ -24,14 +26,29 @@ public class Bookcontrol : MonoBehaviour
         {
             gameObject.SetActive(isActive);
         }
+
+        // AudioSource 컴포넌트를 가져옵니다.
+        audioSource = GetComponent<AudioSource>();
+
+        // 오디오 소스가 없는 경우에는 컴포넌트를 추가합니다.
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isAnimationPlaying)
         {
+            if (clickCount == 0)
+            {
+                TearingSound(); // 소리 재생
+            }
+
             clickCount++;
-            if (clickCount >= 10)
+
+            if (clickCount >= 7)
             {
                 bookAnimator.SetBool("cut", true);
                 StartCoroutine(WaitForAnimation());
@@ -42,6 +59,7 @@ public class Bookcontrol : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator WaitForAnimation()
     {
@@ -70,5 +88,13 @@ public class Bookcontrol : MonoBehaviour
         book.SetActive(true);
         bookImage.enabled = true;
         gameObject.SetActive(true); // 캔버스 활성화
+    }
+
+    void TearingSound()
+    {
+        if (clickCount == 0 && tearingSound != null)
+        {
+            audioSource.PlayOneShot(tearingSound);
+        }
     }
 }
