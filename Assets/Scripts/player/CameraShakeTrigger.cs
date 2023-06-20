@@ -8,26 +8,28 @@ public class CameraShakeTrigger : MonoBehaviour
     public GameObject canvasBook;
 
     [SerializeField] float m_force = 0f;
-    [SerializeField] Vector3 m_offset = Vector3.zero;
+    [SerializeField] Vector3 m_offset = Vector3.zero; // 방향
 
-    Quaternion m_originRot;
+    Quaternion m_originRot; // 초기값
 
     GameObject camObj;
 
     void Start()
     {
-        m_originRot = transform.rotation;
-
         // Get the CameraController component attached to the camera
         cameraController = Camera.main.GetComponent<CameraController>();
         camObj = cameraController.gameObject;
+
+        m_originRot = camObj.transform.rotation;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(ShakeCoroutine());
+            canvasBook.SetActive(true);
+            StopAllCoroutines();
+            StartCoroutine(Reset());
         }
     }
 
@@ -36,7 +38,6 @@ public class CameraShakeTrigger : MonoBehaviour
         if (collision.CompareTag("shake"))
         {
             StartCoroutine(ShakeCoroutine());
-            print("dd");
         }
     }
 
@@ -45,12 +46,6 @@ public class CameraShakeTrigger : MonoBehaviour
         Vector3 t_originEuler = camObj.transform.eulerAngles;
         while (true)
         {
-            if (!canvasBook.activeSelf)
-            {
-                canvasBook.SetActive(true);
-                StartCoroutine(Reset());
-            }
-
             float t_rotX = Random.Range(-m_offset.x, m_offset.x);
             float t_rotY = Random.Range(-m_offset.y, m_offset.y);
             float t_rotZ = Random.Range(-m_offset.z, m_offset.z);
