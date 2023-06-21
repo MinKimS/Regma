@@ -18,4 +18,4 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uAE85!!!!"
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: 067de95045a62e44fb95bff1ef9d8722, type: 2}
+  nextDlg: {fileID: 11400000, guid: 5ccd69abc29ee7c438de08a9eb3d19b7, type: 2}
