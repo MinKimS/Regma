@@ -5,16 +5,6 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    static public CameraManager instance;
-    private void Awake() {
-        if(instance == null)
-        { 
-            instance = this;
-            DontDestroyOnLoad(instance);
-        }
-        else { Destroy(gameObject); }
-    }
-
     // 카메라 영역 제한
     [SerializeField]
     Vector2 center;

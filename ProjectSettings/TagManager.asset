@@ -8,6 +8,8 @@ TagManager:
   - shake
   - Item
   - Tv
+  - Mob
+  - Node
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - Obj
-  - 
+  - Mob
   - 
   - 
   - 

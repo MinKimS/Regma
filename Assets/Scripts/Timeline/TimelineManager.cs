@@ -48,14 +48,14 @@ public class TimelineManager : MonoBehaviour
 
         playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
 
-        SetTimelineStart(0);
+        //SetTimelineStart(0);
     }
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
         if(scene.name != "LoadingScene")
         {
-            SetTimelineStart(0);
+            //SetTimelineStart(0);
         }
     }
 
