@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -22,6 +23,11 @@ public class MoveAlongThePath : MonoBehaviour
 
     //sound
     public float soundRecogArea = 2f;
+
+    private void Awake()
+    {
+        Time.fixedDeltaTime = 0.01f;
+    }
 
     private void Start()
     {
@@ -51,20 +57,24 @@ public class MoveAlongThePath : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (node != null)
         {
-            //y축으로 이동 안하게 바꿀 예정
-            transform.position = Vector3.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.deltaTime);
+            //move
+            transform.position = Vector2.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.fixedDeltaTime);
+        }
+    }
 
-            if ((node.transform.position.y > pos.position.y) && (targetPos.position.y > pos.position.y))
-            {
-                Debug.DrawRay(rb.position, Vector2.down, Color.yellow);
-                bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
+    private void Update()
+    {
+        //jump
+        if ((node.transform.position.y > pos.position.y) && (targetPos.position.y > pos.position.y))
+        {
+            Debug.DrawRay(rb.position, Vector2.down, Color.yellow);
+            bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
 
-                if(isOnGround && Time.time - lastJumpTime >= jumpCoolTime) { Jump(); }
-            }
+            if (isOnGround && Time.time - lastJumpTime >= jumpCoolTime) { Jump(); }
         }
     }
 
@@ -75,6 +85,7 @@ public class MoveAlongThePath : MonoBehaviour
 
     void Jump()
     {
+        print("jump");
         rb.AddForce(Vector2.up * jumpForce);
         lastJumpTime = Time.time;
     }
