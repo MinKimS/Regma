@@ -9,14 +9,16 @@ public class CameraShakeTrigger : MonoBehaviour
 
     [SerializeField] float m_force = 0f;
     [SerializeField] Vector3 m_offset = Vector3.zero; // 방향
+    [SerializeField] GameObject shake;
 
     Quaternion m_originRot; // 초기값
 
     GameObject camObj;
     Collider2D collidingObject;
-
+    private bool isActive = true;
     void Start()
     {
+        gameObject.SetActive(isActive);
         // Get the CameraController component attached to the camera
         cameraController = Camera.main.GetComponent<CameraController>();
         camObj = cameraController.gameObject;
@@ -48,6 +50,8 @@ public class CameraShakeTrigger : MonoBehaviour
         if (collision.CompareTag("shake"))
         {
             collidingObject = null; // 충돌한 오브젝트 정보 초기화
+            isActive = false;
+            collision.gameObject.SetActive(isActive);
         }
     }
 

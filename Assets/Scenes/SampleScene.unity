@@ -13609,6 +13609,7 @@ MonoBehaviour:
   canvasBook: {fileID: 258019838}
   m_force: 100
   m_offset: {x: 10, y: 10, z: 10}
+  shake: {fileID: 417363579}
 --- !u!114 &1620223289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15283,8 +15284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02335c844703824386c8a490f5dd69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightComponent: {fileID: 0}
-  LightObj: {fileID: 0}
 --- !u!1 &1826662069
 GameObject:
   m_ObjectHideFlags: 0
