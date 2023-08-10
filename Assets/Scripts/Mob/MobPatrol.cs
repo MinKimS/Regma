@@ -26,31 +26,28 @@ public class MobPatrol : MonoBehaviour
 
     private void Update()
     {
-        if(!mobTrace.IsTrace)
+        //Rotate at a turning Point
+        if (LTurningPos.position.x >= transform.position.x)
         {
-            //Rotate at a turning Point
-            if (LTurningPos.position.x >= transform.position.x)
-            {
-                print("turn Right");
-                isGoRight = true;
-                sp.flipX = !sp.flipX;
-            }
-            if (RTurningPos.position.x <= transform.position.x)
-            {
-                print("turn Left");
-                isGoRight = false;
-                sp.flipX = !sp.flipX;
-            }
+            print("turn Right");
+            isGoRight = true;
+            sp.flipX = !sp.flipX;
+        }
+        if (RTurningPos.position.x <= transform.position.x)
+        {
+            print("turn Left");
+            isGoRight = false;
+            sp.flipX = !sp.flipX;
+        }
 
-            //Move
-            if (isGoRight)
-            {
-                transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-            }
+        //Move
+        if (isGoRight)
+        {
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
     }
 }

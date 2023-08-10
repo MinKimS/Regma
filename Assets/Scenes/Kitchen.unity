@@ -2608,7 +2608,7 @@ Transform:
   - {fileID: 143796540}
   - {fileID: 288716581}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609504207
 GameObject:
@@ -6652,7 +6652,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1474855608
 GameObject:
@@ -7716,7 +7716,7 @@ Transform:
   - {fileID: 1182986257}
   - {fileID: 217265806}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1631359695
 GameObject:
@@ -7905,39 +7905,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671434170}
   m_CullTransparentMesh: 1
---- !u!1 &1677206279
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1677206280}
-  m_Layer: 0
-  m_Name: TurningPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1677206280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677206279}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1898735761}
-  - {fileID: 1848269178}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717477552
 GameObject:
   m_ObjectHideFlags: 0
@@ -8531,7 +8498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1848269178}
   m_Layer: 0
-  m_Name: RT1
+  m_Name: SoundMaker
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8544,13 +8511,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848269177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.79, y: -5.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1677206280}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861429632
 GameObject:
@@ -8791,37 +8758,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870143289}
   m_CullTransparentMesh: 1
---- !u!1 &1898735760
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1898735761}
-  m_Layer: 0
-  m_Name: LT1
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1898735761
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898735760}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.45, y: -5.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1677206280}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904957058
 GameObject:
   m_ObjectHideFlags: 0
@@ -9038,7 +8974,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1929636646
 MonoBehaviour:
@@ -9052,10 +8988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b6626525856ae4aa339940598eed9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceTarget: {fileID: 652935791}
   traceRange: 8
-  traceStopRange: 2.5
-  traceSpeed: 3
+  traceStopRange: 10
 --- !u!1 &1986240927
 GameObject:
   m_ObjectHideFlags: 0
@@ -9390,7 +9324,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112165488
 GameObject:
@@ -9624,10 +9558,9 @@ GameObject:
   - component: {fileID: 2131774073}
   - component: {fileID: 2131774072}
   - component: {fileID: 2131774071}
-  - component: {fileID: 2131774070}
-  - component: {fileID: 2131774075}
   - component: {fileID: 2131774076}
   - component: {fileID: 2131774077}
+  - component: {fileID: 2131774078}
   m_Layer: 8
   m_Name: Mob
   m_TagString: Mob
@@ -9635,21 +9568,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2131774070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131774069}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8998d2418394fba46a6698ddd8512816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LTurningPos: {fileID: 1898735761}
-  RTurningPos: {fileID: 1848269178}
-  moveSpeed: 2
 --- !u!50 &2131774071
 Rigidbody2D:
   serializedVersion: 4
@@ -9765,22 +9683,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2131774075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131774069}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b6626525856ae4aa339940598eed9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traceTarget: {fileID: 652935791}
-  traceRange: 8
-  traceStopRange: 2.5
-  traceSpeed: 3
 --- !u!114 &2131774076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9814,4 +9716,17 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  soundRecogArea: 2
+--- !u!114 &2131774078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131774069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b6626525856ae4aa339940598eed9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traceRange: 5
+  traceStopRange: 10

@@ -38,14 +38,14 @@ public class Inventory : MonoBehaviour
     }
     public void HideDiary()
     {
-        if(!pot.isOkInteracting)
+        if(pot.GmEventIdx<1)
         {
-            pot.isOkInteracting = true;
-            
+            pot.GmEventIdx++;
+
             potEvent[0].SetActive(true);
             potEvent[1].SetActive(true);
         }
-        if(!tv.isOkInteracting) {tv.isOkInteracting = true;}
+        if(tv.GmEventIdx < 1) {tv.GmEventIdx++;}
         diary.gameObject.SetActive(false);
         isInvenItemActive = false;
     }

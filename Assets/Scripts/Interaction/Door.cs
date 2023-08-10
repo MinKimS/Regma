@@ -11,9 +11,11 @@ public class Door : MonoBehaviour
     public int checkWorkDo = 0;
     public bool isOpen = false;
     public GameObject diaryEvent;
+    InteractionObjData interactionObjData;
 
     private void Start() {
         anim = GetComponent<Animator>();
+        interactionObjData = GetComponent<InteractionObjData>();
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Return) && checkWorkDo > 2 && isOpen)
@@ -42,10 +44,20 @@ public class Door : MonoBehaviour
         doorDetailImg.enabled = false;
         EventManager.instance.ActiveEvent(2);
         diaryEvent.SetActive(true);
+        interactionObjData.IsInteracting = false;
+        interactionObjData.IsOkInteracting = false;
     }
 
     public void SetAnimKnock(bool value)
     {
         anim.SetBool("isKnock", value);
+    }
+
+    public void MoveNextStage()
+    {
+        if(checkWorkDo > 2)
+        {
+            print("move next stage");
+        }
     }
 }

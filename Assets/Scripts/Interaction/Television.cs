@@ -19,6 +19,7 @@ public class Television : MonoBehaviour
     {
         tvAnim = GetComponent<Animator>();
         //audioSource = GetComponent<AudioSource>();
+        interactionData.IsOkInteracting = true;
     }
 
     private void Update()
@@ -77,7 +78,7 @@ public class Television : MonoBehaviour
     public void TVOff()
     {
         tvAnim.SetBool("Tv", false);
-        interactionData.isInteracting = false;
+        interactionData.IsInteracting = false;
         isOnTv = false;
     }
 

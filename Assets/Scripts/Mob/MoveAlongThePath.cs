@@ -10,6 +10,7 @@ public class MoveAlongThePath : MonoBehaviour
     Transform targetPos;
     public float traceSpeed = 3f;
     Node node = null;
+    Node nextNode = null;
 
     Transform pos;
 
@@ -20,9 +21,17 @@ public class MoveAlongThePath : MonoBehaviour
     public float jumpCoolTime = 2f;
     public float fromPosToGroundDist = 0.1f;
     public LayerMask groundLayer;
+    //첫 점프때 바로 점프하게 하기 위해
+    bool isJumped = false;
+    float disToNode;
 
-    //sound
-    public float soundRecogArea = 2f;
+    bool isTrace = false;
+
+    public bool IsTrace
+    {
+        get { return isTrace; }
+        set { isTrace = value; }
+    }
 
     private void Awake()
     {
@@ -51,6 +60,10 @@ public class MoveAlongThePath : MonoBehaviour
             if (path.Count > 0)
             {
                 node = path.Pop();
+                if(path.Count > 0)
+                {
+                    nextNode = path.Peek();
+                }
             }
 
             yield return wait;
@@ -59,7 +72,7 @@ public class MoveAlongThePath : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (node != null)
+        if (isTrace && node != null)
         {
             //move
             transform.position = Vector2.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.fixedDeltaTime);
@@ -69,12 +82,19 @@ public class MoveAlongThePath : MonoBehaviour
     private void Update()
     {
         //jump
-        if ((node.transform.position.y > pos.position.y) && (targetPos.position.y > pos.position.y))
+        if(isTrace)
         {
-            Debug.DrawRay(rb.position, Vector2.down, Color.yellow);
-            bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
+            disToNode = (node.transform.position - pos.position).magnitude;
 
-            if (isOnGround && Time.time - lastJumpTime >= jumpCoolTime) { Jump(); }
+            if ((nextNode.transform.position.y > node.transform.position.y) && (disToNode < 1f))
+            {
+                Debug.DrawRay(rb.position, Vector2.down, Color.yellow);
+                bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
+                if (!isJumped || (isOnGround && Time.time - lastJumpTime >= jumpCoolTime))
+                {
+                    Jump();
+                }
+            }
         }
     }
 
@@ -88,5 +108,6 @@ public class MoveAlongThePath : MonoBehaviour
         print("jump");
         rb.AddForce(Vector2.up * jumpForce);
         lastJumpTime = Time.time;
+        if(!isJumped) { isJumped = true; }        
     }
 }

@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     Vector2 seeDir;
     Rigidbody2D rb;
+
     public GameObject interactionObj;
     InteractionObjData obj;
 
@@ -26,103 +27,34 @@ public class PlayerInteraction : MonoBehaviour
         if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
-            if(obj != null && obj.isOkInteracting)
+            //do interaction
+            if(obj != null && obj.IsOkInteracting)
             {
-                if(obj.isInteracting)
+                //상호작용 중엔 x
+                if(!obj.IsInteracting)
                 {
-                    if(obj!=null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        CancelEvent();
-                    }
-                    return;
-                }
-                if(Input.GetKeyDown(KeyCode.E))
-                {
-                    obj.isInteracting=true;
-                    switch(obj.ObjID)
-                    {
-                        case 0:
-                            Pot pot = obj.thisObj.GetComponent<Pot>();
-                            pot.PushPot(gameObject.transform);
-                            break;
-                        case 1:
-                            Door door = obj.thisObj.GetComponent<Door>();
-                            door.StartCurDoorEvent();
-                            obj.isInteracting=false;
-                            obj.isOkInteracting = false;
-                            break;
-                        case 2:
-                            ItemData item = obj.GetComponent<ItemData>();
-                            for(int i =0; i< SmartphoneManager.instance.filesInven.slotList.Count; i++ )
-                            {
-                                if(!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
-                                {
-                                    SetItem(i, item);
-                                    SmartphoneManager.instance.filesInven.slotDataList[i].isFull = true;
-                                    SmartphoneManager.instance.maxFilesSlot++;
-                                    break;
-                                }
-                            }
-                            obj.isOkInteracting=false;
-                            obj.gameObject.SetActive(false);
-                            break;
-                        case 3:
-                            Television tv = obj.thisObj.GetComponent<Television>();
-                            //after reading diary
-                            tv.TVOnAfterReadingDairy();
-                            break;
-                        default:
-                            break;
+                        if (obj.gmEvent.Length > 0)
+                        {
+                            obj.gmEvent[obj.GmEventIdx].Raise();
+                        }
                     }
                 }
             }
+            //cancel interaction
             else
             {
-                if(Input.GetKeyDown(KeyCode.E))
+                if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
                 {
-                    switch(obj.ObjID)
+                    if(obj.cancelEvent.Length > 0)
                     {
-                        case 0:
-                            obj.thisObj.GetComponent<Pot>().PotDlg(0);
-                            break;
-                        case 1:
-                            if(obj.thisObj.GetComponent<Door>().checkWorkDo >2)
-                            {
-                                print("move next stage");
-                            }
-                            break;
-                        case 3:
-                            Television tv = obj.thisObj.GetComponent<Television>();
-                            //before reading diary
-                            tv.TVOnBeforeReadingDiary();
-                            break;
-                        //소파, 책장
-                        case 4:
-                        case 5:
-                            DialogueManager.instance.PlayDlg(obj.objDlg[0]);
-                            break;
+                        obj.cancelEvent[obj.CancelEventIdx].Raise();
+                        obj.IsInteracting = false;
                     }
                 }
             }
         }
-    }
-
-    //진행중인 상호작용 취소
-    public void CancelEvent()
-    {
-        switch(obj.ObjID)
-        {
-            case 0:
-                obj.thisObj.GetComponent<Pot>().CancelPush(gameObject.transform);
-                break;
-            case 1:
-                obj.thisObj.GetComponent<Door>().HideDoorImg();
-                break;
-            case 3:
-                obj.thisObj.GetComponent<Television>().TVOff();
-                break;
-        }
-        obj.isInteracting = false;
     }
 
     private void FixedUpdate() {

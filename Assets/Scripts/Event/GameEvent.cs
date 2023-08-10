@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "GameEvent", menuName = "Game/GameEvent", order = 0)]
 public class GameEvent : ScriptableObject {
     //실행시킬 이벤트가 저장된 곳
-    private List<GameEventListener> listeners = new List<GameEventListener>();
+    private UnityEvent listeners = new UnityEvent();
 
     public void Raise() 
-    {  
-        for(int i = listeners.Count -1; i >= 0; i--)
-        {
-            listeners[i].OnEventRaised(); 
-        }
+    {
+        listeners.Invoke();
     }  
-    public void RegisterListener(GameEventListener listener) 
+    public void RegisterListener(UnityAction listener) 
     { 
-        listeners.Add(listener); 
+        listeners.AddListener(listener); 
     }  
-    public void UnregisterListener(GameEventListener listener) 
+    public void UnregisterListener(UnityAction listener) 
     { 
-        listeners.Remove(listener); 
+        listeners.RemoveListener(listener); 
     } 
 }

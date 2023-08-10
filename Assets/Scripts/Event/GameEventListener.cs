@@ -2,16 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static GameEventListener;
 
 public class GameEventListener : MonoBehaviour
 {
-    //event에 저장시킬 이벤트를 지정
-    public GameEvent Event;
-    public UnityEvent Response;
+    [System.Serializable]
+    public struct GmEventResponse
+    {
+        public GameEvent gmEvent;
+        public UnityEvent response;
+    }
+
+    public GmEventResponse[] gmEventResponses;
+
     private void OnEnable()
-    { Event.RegisterListener(this); }
+    {
+        foreach(var gmEventResponse in gmEventResponses)
+        {
+            gmEventResponse.gmEvent.RegisterListener(gmEventResponse.response.Invoke);
+        }
+    }
     private void OnDisable()
-    { Event.UnregisterListener(this); }
-    public void OnEventRaised()
-    { Response.Invoke(); }
+    {
+        foreach (var gmEventResponse in gmEventResponses)
+        {
+            gmEventResponse.gmEvent.UnregisterListener(gmEventResponse.response.Invoke);
+        }
+    }
 }
