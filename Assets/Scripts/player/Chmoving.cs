@@ -26,6 +26,9 @@ public class Chmoving : MonoBehaviour
     bool isJumping = false;
     int JumpCount = 5;
 
+   
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -34,6 +37,9 @@ public class Chmoving : MonoBehaviour
 
     private void Update()
     {
+
+      
+
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
         if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
