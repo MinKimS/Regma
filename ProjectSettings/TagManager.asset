@@ -10,6 +10,7 @@ TagManager:
   - Tv
   - Mob
   - Node
+  - RefriObject
   - SlowObj
   layers:
   - Default

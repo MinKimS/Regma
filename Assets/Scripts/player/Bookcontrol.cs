@@ -18,14 +18,14 @@ public class Bookcontrol : MonoBehaviour
 
     void Start()
     {
-        // isActive 변수에 따라 gameObject의 활성화/비활성화를 설정합니다.
-        gameObject.SetActive(isActive); // 충돌 이전에는 isActive 변수에 따라 활성화 상태를 설정합니다.
+        //// isActive 변수에 따라 gameObject의 활성화/비활성화를 설정합니다. 8.16
+        //gameObject.SetActive(isActive); // 충돌 이전에는 isActive 변수에 따라 활성화 상태를 설정합니다.
 
-        // activeBook가 활성화되어 있는 경우에만 gameObject를 활성화합니다.
-        if (book.activeSelf)
-        {
-            gameObject.SetActive(isActive);
-        }
+        //// activeBook가 활성화되어 있는 경우에만 gameObject를 활성화합니다.
+        //if (book.activeSelf)
+        //{
+        //    gameObject.SetActive(isActive);
+        //}
 
         // AudioSource 컴포넌트를 가져옵니다.
         audioSource = GetComponent<AudioSource>();
@@ -48,7 +48,7 @@ public class Bookcontrol : MonoBehaviour
 
             clickCount++;
 
-            if (clickCount >= 7)
+            if (clickCount >= 4)
             {
                 bookAnimator.SetBool("cut", true);
                 StartCoroutine(WaitForAnimation());
@@ -75,20 +75,20 @@ public class Bookcontrol : MonoBehaviour
         gameObject.SetActive(isActive); // 비활성화 상태로 설정합니다.
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isActive && collision.gameObject.CompareTag("Book") && gameObject.CompareTag("player"))
-        {
-            ShowImage();
-        }
-    }
+    //void OnCollisionEnter2D(Collision2D collision) // 8.16
+    //{
+    //    if (isActive && collision.gameObject.CompareTag("Book") && gameObject.CompareTag("player"))
+    //    {
+    //        ShowImage();
+    //    }
+    //}
 
-    public void ShowImage()
-    {
-        book.SetActive(true);
-        bookImage.enabled = true;
-        gameObject.SetActive(true); // 캔버스 활성화
-    }
+    //public void ShowImage() // 8,16
+    //{
+    //    book.SetActive(true);
+    //    bookImage.enabled = true;
+    //    gameObject.SetActive(true); // 캔버스 활성화
+    //}
 
     void TearingSound()
     {
