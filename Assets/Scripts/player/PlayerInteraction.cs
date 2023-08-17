@@ -14,11 +14,11 @@ public class PlayerInteraction : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if(Input.GetAxisRaw("Horizontal") < 0)
         {
             seeDir = Vector2.left;
         }
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetAxisRaw("Horizontal") > 0)
         {
             seeDir = Vector2.right;
         }
@@ -28,7 +28,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             //do interaction
-            if(obj != null && obj.IsOkInteracting)
+            if(obj != null && obj.isOkInteracting)
             {
                 //상호작용 중엔 x
                 if(!obj.IsInteracting)
@@ -38,6 +38,7 @@ public class PlayerInteraction : MonoBehaviour
                         if (obj.gmEvent.Length > 0)
                         {
                             obj.gmEvent[obj.GmEventIdx].Raise();
+                            obj.IsInteracting = true;
                         }
                     }
                 }

@@ -45,7 +45,7 @@ public class Door : MonoBehaviour
         EventManager.instance.ActiveEvent(2);
         diaryEvent.SetActive(true);
         interactionObjData.IsInteracting = false;
-        interactionObjData.IsOkInteracting = false;
+        interactionObjData.isOkInteracting = false;
     }
 
     public void SetAnimKnock(bool value)

@@ -26,13 +26,16 @@ public class Chmoving : MonoBehaviour
     bool isJumping = false;
     int JumpCount = 5;
 
-   
+    PlayerHanging pHanging;
 
+    bool isOkPlayerMove = true;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        pHanging = GetComponent<PlayerHanging>();
     }
 
     private void Update()
@@ -42,7 +45,7 @@ public class Chmoving : MonoBehaviour
 
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End)
+        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End && !pHanging.IsHanging && isOkPlayerMove)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
@@ -179,5 +182,9 @@ public class Chmoving : MonoBehaviour
         {
             walkAudioSource.Stop();
         }
+    }
+    public void SetIsOkPlayerMove(bool value)
+    {
+        isOkPlayerMove = value;
     }
 }

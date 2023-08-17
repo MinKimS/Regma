@@ -9,14 +9,10 @@ public class InteractionObjData : MonoBehaviour
     int gmEventIdx = 0;
     int cancelEventIdx = 0;
 
-    bool isOkInteracting = false;
+    //수정예정
+    public bool isOkInteracting = false;
     bool isInteracting = false;
 
-    public bool IsOkInteracting
-    {
-        get { return isOkInteracting; }
-        set { isOkInteracting = value;}
-    }
     public bool IsInteracting
     { 
         get { return isInteracting; }

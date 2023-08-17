@@ -32,7 +32,7 @@ public class Pot : MonoBehaviour
         playerAnim = player.GetComponent<Animator>();
         playerPos = player.GetComponent<Transform>();
 
-        interactionData.IsOkInteracting = true;
+        interactionData.isOkInteracting = true;
     }
 
     private void OnCollisionStay2D(Collision2D other) {

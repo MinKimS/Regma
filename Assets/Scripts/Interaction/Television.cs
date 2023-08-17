@@ -19,7 +19,7 @@ public class Television : MonoBehaviour
     {
         tvAnim = GetComponent<Animator>();
         //audioSource = GetComponent<AudioSource>();
-        interactionData.IsOkInteracting = true;
+        interactionData.isOkInteracting = true;
     }
 
     private void Update()
