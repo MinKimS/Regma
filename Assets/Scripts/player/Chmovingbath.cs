@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chmoving : MonoBehaviour
+public class Chmovingbath : MonoBehaviour
 {
     public Animator animator;
 
-    public AudioClip jumpSound; // ì í”„ ì‚¬ìš´ë“œ
-    public AudioSource walkAudioSource; // ê±·ëŠ” ì†Œë¦¬ ì†ŒìŠ¤
+    public AudioClip jumpSound; // Á¡ÇÁ »ç¿îµå
+    public AudioSource walkAudioSource; // °È´Â ¼Ò¸® ¼Ò½º
 
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
@@ -26,7 +26,7 @@ public class Chmoving : MonoBehaviour
     bool isJumping = false;
     int JumpCount = 5;
 
-   // PlayerHanging pHanging;
+    // PlayerHanging pHanging;
 
     //bool isOkPlayerMove = true;
 
@@ -41,24 +41,22 @@ public class Chmoving : MonoBehaviour
     private void Update()
     {
 
-      
+
 
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End) //&& !pHanging.IsHanging && isOkPlayerMove)
-        {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
-                PlayJumpSound(); // ì í”„ ì‚¬ìš´ë“œ ì¬ìƒ
+                PlayJumpSound(); // Á¡ÇÁ »ç¿îµå Àç»ı
             }
 
             if (!isGround && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
-                PlayJumpSound(); // ì í”„ ì‚¬ìš´ë“œ ì¬ìƒ
+                PlayJumpSound(); // Á¡ÇÁ »ç¿îµå Àç»ı
             }
 
             if (isGround)
@@ -104,7 +102,7 @@ public class Chmoving : MonoBehaviour
                 }
                 else
                 {
-                    if (!isJumpingWithMovement && isGround) // ì¶”ê°€ëœ ì¡°ê±´
+                    if (!isJumpingWithMovement && isGround) // Ãß°¡µÈ Á¶°Ç
                     {
                         PlayWalkSound();
                     }
@@ -120,12 +118,7 @@ public class Chmoving : MonoBehaviour
             }
 
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-            StopWalkSound();
-        }
+       
     }
 
     private void LateUpdate()
@@ -164,7 +157,7 @@ public class Chmoving : MonoBehaviour
     {
         if (jumpSound != null && !isJumpingWithMovement)
         {
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position); // ì í”„ ì‚¬ìš´ë“œ ì¬ìƒ
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position); // Á¡ÇÁ »ç¿îµå Àç»ı
         }
     }
 

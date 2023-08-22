@@ -328,6 +328,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fca6a5854a47d194d841fff83eecdde6, type: 2}
   cancelEvent:
   - {fileID: 11400000, guid: ca1b48fa45ff9d24194eea0b9e4a8325, type: 2}
+  isOkInteracting: 0
   objDlg: []
 --- !u!114 &10438851
 MonoBehaviour:
@@ -5207,6 +5208,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 954190e37e392fc41be1441bd7ba2cd9, type: 2}
   cancelEvent:
   - {fileID: 11400000, guid: 468a9b54dcb679b47953667351e7f6e0, type: 2}
+  isOkInteracting: 0
   objDlg: []
 --- !u!61 &526410390
 BoxCollider2D:
@@ -8385,6 +8387,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35ac6ccf9f8c55f45b0205e48c42ef82, type: 2}
   cancelEvent:
   - {fileID: 11400000, guid: 93ebd279e9fca0b4faa374c53e5d7bae, type: 2}
+  isOkInteracting: 0
   objDlg: []
 --- !u!61 &1047426058
 BoxCollider2D:
@@ -11076,6 +11079,7 @@ MonoBehaviour:
   gmEvent:
   - {fileID: 11400000, guid: baa66c85ab23fc74093c8ce808f2a30b, type: 2}
   cancelEvent: []
+  isOkInteracting: 0
   objDlg:
   - {fileID: 11400000, guid: f571350e29d0f1c45aaadc50d5ed2a37, type: 2}
 --- !u!114 &1293313977
@@ -17570,7 +17574,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390924479}
   m_HandleRect: {fileID: 390924478}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17903,6 +17907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmEvent: []
   cancelEvent: []
+  isOkInteracting: 0
   objDlg:
   - {fileID: 11400000, guid: cab90b560a7e9d242875d3414a30ef74, type: 2}
 --- !u!1 &2067249805
