@@ -12,6 +12,8 @@ TagManager:
   - Node
   - RefriObject
   - SlowObj
+  - Toy
+  - DrainageHole
   layers:
   - Default
   - TransparentFX
