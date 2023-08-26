@@ -13,6 +13,12 @@ public class BathMobController : MonoBehaviour
     bool isMobSeeFishingRod = false;
     bool isMobStuck = false;
 
+    Transform playerPos;
+    public Transform fRod;
+
+    public Transform PlayerPos
+    { get { return playerPos; } }
+
     public bool IsMobInWater
     {
         get { return isMobInWater; }
@@ -21,6 +27,7 @@ public class BathMobController : MonoBehaviour
 
     public bool IsMobTryCatch
     {
+        get { return isMobTryCatch; }
         set { isMobTryCatch = value; }
     }
     public bool IsMobSeeFishingRod
@@ -37,6 +44,7 @@ public class BathMobController : MonoBehaviour
         hand = GetComponentInChildren<BathMobHand>();
         eye = GetComponentInChildren<BathMobEye>();
         movement = GetComponent<BathMobMovement>();
+        playerPos = GameObject.FindWithTag("Player").transform;
     }
 
     private void Start()
@@ -66,7 +74,7 @@ public class BathMobController : MonoBehaviour
         else
         {
             float v = Input.GetAxisRaw("Vertical");
-            if(eye.IsFindPlayer)
+            if(!isMobTryCatch && eye.IsFindPlayer && v != 0 && !hand.IsMoveHand)
             {
                 isMobTryCatch = true;
                 print("Fgacha");

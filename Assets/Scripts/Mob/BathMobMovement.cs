@@ -19,7 +19,6 @@ public class BathMobMovement : MonoBehaviour
     //물 안밖으로 나갈때의 이동 값
     public float moveOutOfWaterValue = 8f;
 
-    Transform playerPos;
 
     bool isMoving = false;
 
@@ -29,7 +28,6 @@ public class BathMobMovement : MonoBehaviour
     private void Awake()
     {
         bmc = GetComponentInParent<BathMobController>();
-        playerPos = GameObject.FindWithTag("Player").transform;
     }
 
     private void Start()
@@ -39,7 +37,7 @@ public class BathMobMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!bmc.IsMobSeeFishingRod && !isMoving && playerPos.position.x > movePos[movePosIdx].position.x)
+        if (!bmc.IsMobSeeFishingRod && !isMoving && bmc.PlayerPos.position.x > movePos[movePosIdx].position.x)
         {
             StartCoroutine(MoveNextPos());
         }
@@ -102,7 +100,7 @@ public class BathMobMovement : MonoBehaviour
         transform.position = seeFishingRodPos;
 
         //약간의 움직임
-        while (!bmc.IsMobStuck)
+        while (!bmc.IsMobStuck && !bmc.IsMobTryCatch)
         {
             while (Vector2.Distance(transform.position, seeFishingRodPos + Vector2.up) > 0.1f)
             {

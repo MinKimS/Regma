@@ -19,8 +19,6 @@ public class BathMobHand : MonoBehaviour
 
     bool isMoveHand = false;
 
-    public Transform FishingRodPos;
-
     public bool IsMoveHand
     {
         get { return isMoveHand; }
@@ -65,7 +63,14 @@ public class BathMobHand : MonoBehaviour
         //낚시대를 잡은 경우
         if(collision.CompareTag("FishingRod"))
         {
+            bc.enabled = false;
 
+            GameObject fRod = collision.gameObject;
+            fRod.transform.SetParent(transform);
+
+            targetPosY = transform.position.y -8f;
+            targetPos = new Vector2(transform.position.x, targetPosY);
+            StartCoroutine(DropPlayer());
         }
     }
 
@@ -73,7 +78,6 @@ public class BathMobHand : MonoBehaviour
     //장난감을 향해 손 이동
     public IEnumerator GoCatchToy()
     {
-        bc.enabled = true;
         //장난감으로 가기
         while (Vector2.Distance(transform.position, ToyList[TargetToyIdx].position)>0.1f)
         {
@@ -81,6 +85,7 @@ public class BathMobHand : MonoBehaviour
             yield return null;
         }
 
+        bc.enabled = true;
         isMoveHand = false;
         TargetToyIdx++;
     }
@@ -88,13 +93,14 @@ public class BathMobHand : MonoBehaviour
     //낚시대를 향해 손 이동
     public IEnumerator GoCatchFishingRod()
     {
-        bc.enabled = true;
+        bmc.fRod.gameObject.GetComponent<FishingRod>().IsCaught = true;
 
-        while(Vector2.Distance(transform.position, FishingRodPos.position) > 0.1f)
+        while (Vector2.Distance(transform.position, bmc.fRod.position) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, FishingRodPos.position, 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, bmc.fRod.position, 0.1f);
             yield return null;
         }
+        bc.enabled = true;
 
         isMoveHand = false;
     }
@@ -113,6 +119,25 @@ public class BathMobHand : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         BackOriginPos();
+    }
+
+    //플레이어를 끌어내리기
+    IEnumerator DropPlayer()
+    {
+        //아래로 빠르게 쭉 내림
+        while (transform.position.y >= targetPosY + 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, 0.05f);
+            yield return null;
+        }
+
+        //플레이어가 아래로 내려옴
+        bmc.PlayerPos.position = transform.position + Vector3.left * 3;
+        bmc.PlayerPos.rotation = Quaternion.Euler(0f, 0f, 180f);
+        yield return new WaitForSeconds(1.5f);
+        Rigidbody2D pRb = bmc.PlayerPos.GetComponent<Rigidbody2D>();
+        pRb.gravityScale = 0f;
+        pRb.velocity = Vector3.zero;
     }
 
     void BackOriginPos()

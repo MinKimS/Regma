@@ -19,7 +19,7 @@ public class Water : MonoBehaviour
         //물 빠지기
         if(isDrainageHoleOpen)
         {
-            transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, waterDes), drainSpeed);
+            transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, waterDes), drainSpeed*Time.deltaTime);
         }
 
         if(transform.position.y < gmOverWaterLevel)

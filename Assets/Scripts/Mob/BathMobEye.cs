@@ -13,6 +13,8 @@ public class BathMobEye : MonoBehaviour
     bool isRolling = false;
     bool isFindPlayer = false;
 
+    public HidingObj[] ho;
+
     public bool IsFindPlayer
     { get { return isFindPlayer; } }
 
@@ -23,12 +25,17 @@ public class BathMobEye : MonoBehaviour
         bmc = GetComponentInParent<BathMobController>();
         anim = GetComponent<Animator>();
         playerPos = GameObject.FindWithTag("Player").transform;
+
+        for (int i = 0; ho.Length > i; i++)
+        {
+            ho[i].eye = this;
+        }
     }
 
     private void Update()
     {
         //´« ±¼¸®´Â µ¿¾È ÇÃ·¹ÀÌ¾î ÃßÀû
-        if(!isRolling)
+        if(isRolling && !bmc.IsMobStuck)
         {
             FindingPlayer();
         }
@@ -37,6 +44,7 @@ public class BathMobEye : MonoBehaviour
     public void StopRolling()
     {
         anim.SetBool("isRolling", false);
+        isRolling = false;
     }
 
     public IEnumerator RollEye()
@@ -48,7 +56,7 @@ public class BathMobEye : MonoBehaviour
         anim.SetBool("isRolling", true);
 
         //ÁÂ¿ì·Î ´« µ¹¸²
-        while (!bmc.IsMobInWater)
+        while ((!bmc.IsMobInWater || bmc.IsMobSeeFishingRod) && !bmc.IsMobStuck)
         {
             isFindPlayer = false;
             anim.SetBool(ISLOOKMIDDLE, false);
@@ -78,9 +86,9 @@ public class BathMobEye : MonoBehaviour
     {
         Vector2 playerDir = transform.position - playerPos.position;
         float checkSide = Vector2.Dot(playerDir, transform.right);
-        
+
         //¿À¸¥ÂÊ
-        if(checkSide < 0)
+        if ((!bmc.IsMobSeeFishingRod && checkSide < 0) || (bmc.IsMobSeeFishingRod && checkSide > 0))
         {
             if (lookDirNum == 2)
             {
@@ -88,7 +96,7 @@ public class BathMobEye : MonoBehaviour
             }
         }
         //¿ÞÂÊ
-        else if(checkSide > 0)
+        else if((!bmc.IsMobSeeFishingRod && checkSide > 0) || (bmc.IsMobSeeFishingRod && checkSide < 0))
         {
             if (lookDirNum == 0)
             {

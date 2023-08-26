@@ -6,10 +6,17 @@ public class FishingRod : MonoBehaviour
 {
     public float fRodSpeed = 0.1f;
     public Water water;
+    bool isCaught = false;
+
+    public bool IsCaught
+    {
+        set { isCaught = value; }
+    }
+
     private void Update()
     {
         float v = Input.GetAxisRaw("Vertical");
-        if(v != 0)
+        if(!isCaught && v != 0)
         {
             transform.Translate(Vector2.up*v*fRodSpeed);
         }
@@ -17,7 +24,7 @@ public class FishingRod : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("DrainageHole"))
+        if(!isCaught && collision.CompareTag("DrainageHole"))
         {
             print("waterdown");
             water.IsDrainageHoleOpen = true;
