@@ -45,7 +45,7 @@ public class Chmoving : MonoBehaviour
 
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End) //&& !pHanging.IsHanging && isOkPlayerMove)
+        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.phone.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End) //&& !pHanging.IsHanging && isOkPlayerMove)
         {
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {

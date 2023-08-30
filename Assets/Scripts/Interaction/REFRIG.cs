@@ -34,7 +34,7 @@ public class REFRIG : MonoBehaviour
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[1]);
                 isOpened = true;
-                iod.isOkInteracting = false;
+                iod.IsOkInteracting = false;
             }
         }
     }

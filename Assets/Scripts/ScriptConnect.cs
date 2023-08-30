@@ -21,18 +21,18 @@ public class ScriptConnect : MonoBehaviour
 
     public void ShowTalk()
     {
-        SmartphoneManager.instance.ShowPhone();
+        SmartphoneManager.instance.phone.ShowPhone();
     }
 
     public void AddInOutTalk(string name)
     {
-        SmartphoneManager.instance.AddInOutTalk(true, name);
+        SmartphoneManager.instance.phone.AddInOutTalk(true, name);
     }
 
     public void ReduceReadNum()
     {
-        SmartphoneManager.instance.lastPlayerTalk.readNum--;
-        SmartphoneManager.instance.lastPlayerTalk.readNumText.text = SmartphoneManager.instance.lastPlayerTalk.readNum.ToString();
+        SmartphoneManager.instance.phone.lastPlayerTalk.readNum--;
+        SmartphoneManager.instance.phone.lastPlayerTalk.readNumText.text = SmartphoneManager.instance.phone.lastPlayerTalk.readNum.ToString();
     }
 
     public void StartNextTimeline(int num)

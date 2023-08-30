@@ -8,15 +8,21 @@ public class InteractionObjData : MonoBehaviour
     public GameEvent[] cancelEvent;
     int gmEventIdx = 0;
     int cancelEventIdx = 0;
+    //test SerializeField
+    [SerializeField]
+    bool isOkInteracting = false;
+    [SerializeField]
+    bool isRunInteraction = false;
 
-    //수정예정
-    public bool isOkInteracting = false;
-    bool isInteracting = false;
-
-    public bool IsInteracting
+    public bool IsOkInteracting
     { 
-        get { return isInteracting; }
-        set { isInteracting = value; }
+        get { return isOkInteracting; }
+        set { isOkInteracting = value; }
+    }
+    public bool IsRunInteraction
+    { 
+        get { return isRunInteraction; }
+        set { isRunInteraction = value; }
     }
 
     public int GmEventIdx

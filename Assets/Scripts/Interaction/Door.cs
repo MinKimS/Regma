@@ -38,16 +38,17 @@ public class Door : MonoBehaviour
     {
         doorDetailImg.enabled = false;
     }
+    
     public void StartCurDoorEvent()
     {
         TimelineManager.instance.SetTimelineStart("DoorEvent 0");
         doorDetailImg.enabled = false;
         EventManager.instance.ActiveEvent(2);
         diaryEvent.SetActive(true);
-        interactionObjData.IsInteracting = false;
-        interactionObjData.isOkInteracting = false;
+        interactionObjData.IsOkInteracting = false;
     }
 
+    //노크해서 두들겨지는 문 애니메이션 실행
     public void SetAnimKnock(bool value)
     {
         anim.SetBool("isKnock", value);
@@ -58,6 +59,7 @@ public class Door : MonoBehaviour
         if(checkWorkDo > 2)
         {
             print("move next stage");
+            LoadingManager.LoadScene("Kitchen");
         }
     }
 }

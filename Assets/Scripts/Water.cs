@@ -7,10 +7,16 @@ public class Water : MonoBehaviour
     public float waterDes;
     public float drainSpeed = 0.5f;
     bool isDrainageHoleOpen = false;
+    bool isGameOverWaterLevel = false;
 
     public bool IsDrainageHoleOpen
     {
+        get { return  isDrainageHoleOpen; }
         set { isDrainageHoleOpen = value; }
+    }
+    public bool IsGameOverWaterLevel
+    {
+        get { return isGameOverWaterLevel; }
     }
     public float gmOverWaterLevel;
 
@@ -25,6 +31,8 @@ public class Water : MonoBehaviour
         if(transform.position.y < gmOverWaterLevel)
         {
             print("over");
+            isGameOverWaterLevel = true;
+
         }
     }
 }

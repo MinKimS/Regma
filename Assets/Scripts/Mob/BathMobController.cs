@@ -7,6 +7,7 @@ public class BathMobController : MonoBehaviour
     BathMobHand hand;
     BathMobEye eye;
     BathMobMovement movement;
+    public Water water;
 
     bool isMobInWater = true;
     bool isMobTryCatch = false;
@@ -81,6 +82,20 @@ public class BathMobController : MonoBehaviour
                 hand.IsMoveHand = true;
                 StartCoroutine(hand.GoCatchFishingRod());
             }
+        }
+
+        //배수구에 끼이기
+        if(!isMobStuck && water.IsDrainageHoleOpen)
+        {
+            isMobStuck = true;
+            transform.rotation = Quaternion.identity;
+            transform.position = fRod.position;
+            hand.gameObject.SetActive(false);
+        }
+
+        if(water.IsGameOverWaterLevel)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, -20f), 0.01f);
         }
     }
 

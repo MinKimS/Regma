@@ -8,6 +8,9 @@ public class PlayerHanging : MonoBehaviour
     Transform hangedTr;
     bool isHaging = false;
     HangedObj ho;
+
+    [HideInInspector] public Transform hangingPos;
+
     public bool IsHanging
     { get { return isHaging; } }
 
@@ -20,7 +23,7 @@ public class PlayerHanging : MonoBehaviour
     {
         if(isHaging)
         {
-            transform.position = hangedTr.position + new Vector3(0f, -(ho.GetLightSizeY()*0.5f));
+            transform.position = hangingPos.position;
 
             //매달리고 있던걸 놓음
             if (Input.GetKeyDown(KeyCode.Space))
@@ -40,8 +43,7 @@ public class PlayerHanging : MonoBehaviour
 
         hangedTr = tr;
         ho = hangedTr.GetComponent<HangedObj>();
-        transform.SetParent(hangedTr);
-        transform.position = hangedTr.position + new Vector3(0f, -ho.GetLightSizeY());
+        transform.position = hangingPos.position;
     }
 
     public void EndHanging()
@@ -50,7 +52,6 @@ public class PlayerHanging : MonoBehaviour
         rb.gravityScale = 1f;
         rb.velocity = Vector2.zero;
 
-        transform.SetParent(null);
         transform.rotation = Quaternion.identity;
 
         ho.EndSwing();

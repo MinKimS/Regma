@@ -19,7 +19,7 @@ public class Fade : MonoBehaviour
 
     public void SetBlack()
     {
-        blackImg.color = new Color(0,0,0, 1);
+        blackImg.color = new Color(0, 0, 0, 1);
     }
 
     IEnumerator FadeOut(float time)

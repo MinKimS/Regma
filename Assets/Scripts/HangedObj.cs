@@ -17,16 +17,20 @@ public class HangedObj : MonoBehaviour
 
     SpriteRenderer sp;
 
+    Transform playerHangPos;
+    float pDir = 1f;
+
     public bool IsSwing
     {
         set { isSwing = value; }
     }
 
-    private void Start()
+    private void Awake()
     {
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         joint = GetComponent<HingeJoint2D>();
+        playerHangPos = GetComponentsInChildren<Transform>()[1];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +40,8 @@ public class HangedObj : MonoBehaviour
             PlayerHanging pHanging = collision.GetComponent<PlayerHanging>();
             if (!isSwing && isOkHanging)
             {
+                rb.angularDrag = 1f;
+                pHanging.hangingPos = playerHangPos;
                 isSwing = true;
                 isOkHanging = false;
                 joint.useMotor = false;
@@ -48,8 +54,8 @@ public class HangedObj : MonoBehaviour
     {
         if (isSwing)
         {
-            float h = Input.GetAxis("Horizontal");
-            rb.AddTorque(h * swingForce);
+            pDir = Input.GetAxis("Horizontal");
+            rb.AddTorque(pDir * swingForce);
         }
 
         if (isStopping)
@@ -61,19 +67,13 @@ public class HangedObj : MonoBehaviour
     IEnumerator ResetRotation()
     {
         yield return new WaitForSeconds(5f);
-        transform.rotation = Quaternion.identity;
-        joint.useMotor = true;
         isStopping = false;
         isOkHanging = true;
     }
 
-    public float GetLightSizeY()
-    {
-        return sp.bounds.size.y;
-    }
-
     public void EndSwing()
     {
+        rb.angularDrag = 50f;
         isSwing = false;
         rb.velocity = Vector2.zero;
         isStopping = true;

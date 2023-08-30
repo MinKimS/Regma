@@ -32,13 +32,13 @@ public class PickUp : MonoBehaviour
                 print("No Item Data.");
             }
             //비어있는 슬롯에만 저장
-            for(int i =0; i< SmartphoneManager.instance.filesInven.slotList.Count; i++ )
+            for(int i =0; i< SmartphoneManager.instance.inven.filesInven.slotList.Count; i++ )
             {
-                if(!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
+                if(!SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull)
                 {
                     SetItem(i, item);
-                    SmartphoneManager.instance.filesInven.slotDataList[i].isFull = true;
-                    SmartphoneManager.instance.maxFilesSlot++;
+                    SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull = true;
+                    SmartphoneManager.instance.inven.MaxFilesSlot++;
                     break;
                 }
             }
@@ -63,12 +63,12 @@ public class PickUp : MonoBehaviour
     {
         if(item != null)
         {
-            ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+            ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
             itemData.itemName = item.itemName;
             itemData.itemImg = item.itemImg;
             itemData.itemID = item.itemID;
-            SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
-            SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+            SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
+            SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }
     }
 }

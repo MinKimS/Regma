@@ -9,7 +9,7 @@ public class Pot : MonoBehaviour
     public Transform potAxisTr;
     public BoxCollider2D potColl;
     public BoxCollider2D blacketColl;
-    private bool isPushing = false;
+    bool isPushing = false;
     bool isPushAtLeft = false;
     public Animator potAnim;
     public GameObject[] bloods;
@@ -25,14 +25,15 @@ public class Pot : MonoBehaviour
     public Door door;
     public Inventory inven;
 
-    private void Start() {
+    private void Start()
+    {
         potTr = GetComponent<Transform>();
         interactionData = GetComponent<InteractionObjData>();
 
         playerAnim = player.GetComponent<Animator>();
         playerPos = player.GetComponent<Transform>();
 
-        interactionData.isOkInteracting = true;
+        interactionData.IsOkInteracting = true;
     }
 
     private void OnCollisionStay2D(Collision2D other) {
@@ -96,9 +97,8 @@ public class Pot : MonoBehaviour
     }
 
     private void Update() {
-        if(isPushing && (isPushAtLeft&&Input.GetKeyDown(KeyCode.LeftArrow)) || (!isPushAtLeft&&Input.GetKeyDown(KeyCode.RightArrow)))
+        if(isPushing && ((isPushAtLeft&&Input.GetKeyDown(KeyCode.LeftArrow)) || (!isPushAtLeft&&Input.GetKeyDown(KeyCode.RightArrow))))
         {
-            interactionData.IsInteracting = false;
             CancelPush(playerPos);
         }    
     }
@@ -112,6 +112,7 @@ public class Pot : MonoBehaviour
     //화분 밀기
     public void PushPot(Transform chPos)
     {
+        interactionData.IsRunInteraction = true;
         isPushing = true;
         //화분 오른쪽에 플레이어가 있는 경우
         if(transform.position.x < chPos.position.x)
@@ -132,6 +133,7 @@ public class Pot : MonoBehaviour
     //화분 밀기 취소
     public void CancelPush(Transform chPos)
     {
+        interactionData.IsRunInteraction = false;
         playerAnim.SetBool("isPush",false);
         isPushing = false;
         potColl.isTrigger = true;

@@ -15,11 +15,14 @@ public class Television : MonoBehaviour
     bool isOnTv = false;
     public Door door;
 
+    private void Awake()
+    {
+        tvAnim = GetComponentInParent<Animator>();
+    }
+
     private void Start()
     {
-        tvAnim = GetComponent<Animator>();
-        //audioSource = GetComponent<AudioSource>();
-        interactionData.isOkInteracting = true;
+        interactionData.IsOkInteracting = true;
     }
 
     private void Update()
@@ -69,6 +72,7 @@ public class Television : MonoBehaviour
     // 책 읽은 후 TV 켜기
     public void TVOnAfterReadingDairy()
     {
+        interactionData.IsRunInteraction = true;
         tvAnim.SetBool("Tv", true);
         isOnTv = true;
         PlayTvSound();
@@ -77,8 +81,8 @@ public class Television : MonoBehaviour
     // TV 끄기
     public void TVOff()
     {
+        interactionData.IsRunInteraction = false;
         tvAnim.SetBool("Tv", false);
-        interactionData.IsInteracting = false;
         isOnTv = false;
     }
 

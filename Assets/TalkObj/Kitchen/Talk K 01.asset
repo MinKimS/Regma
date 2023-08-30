@@ -18,10 +18,8 @@ MonoBehaviour:
   TalkContexts:
   - user: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
     talkText: "\uACF5\uC9C0"
-    TalkSendDelay: 0
-  - user: {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
-    talkText: "\uB3C4\uC6D0\uB300\uC0AC"
     TalkSendDelay: 1
-  answerTalk: []
-  nextTalk: {fileID: 0}
+  answerTalk:
+  - {fileID: 11400000, guid: d602063c827d8a24b8ab2f0d0dd119b2, type: 2}
+  nextTalk: {fileID: 11400000, guid: 0b96176d948c41849ba3d62272451db4, type: 2}
   isInTimeline: 0

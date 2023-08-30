@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject interactionObj;
     InteractionObjData obj;
 
-    private void Start() {
+    private void Awake() {
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update() {
@@ -24,34 +24,32 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //오브젝트와 상호작용
-        if(!SmartphoneManager.instance.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
+        if(!SmartphoneManager.instance.phone.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             //do interaction
-            if(obj != null && obj.isOkInteracting)
+            if(obj != null && obj.IsOkInteracting)
             {
-                //상호작용 중엔 x
-                if(!obj.IsInteracting)
+                //상호작용
+                if (!obj.IsRunInteraction)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         if (obj.gmEvent.Length > 0)
                         {
                             obj.gmEvent[obj.GmEventIdx].Raise();
-                            obj.IsInteracting = true;
                         }
                     }
                 }
-            }
-            //cancel interaction
-            else
-            {
-                if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+                //진행중인 상호작용 취소
+                else
                 {
-                    if(obj.cancelEvent.Length > 0)
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
                     {
-                        obj.cancelEvent[obj.CancelEventIdx].Raise();
-                        obj.IsInteracting = false;
+                        if (obj.cancelEvent.Length > 0)
+                        {
+                            obj.cancelEvent[obj.CancelEventIdx].Raise();
+                        }
                     }
                 }
             }
@@ -59,8 +57,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        Debug.DrawRay(rb.position, seeDir * 1f, Color.yellow);
-        RaycastHit2D rh = Physics2D.Raycast(rb.position, seeDir, 1f, LayerMask.GetMask("Obj"));
+        Debug.DrawRay(rb.position, seeDir * 1.5f, Color.yellow);
+        RaycastHit2D rh = Physics2D.Raycast(rb.position, seeDir, 1.5f, LayerMask.GetMask("Obj"));
 
         if(rh.collider != null)
         {
@@ -74,11 +72,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private void SetItem(int i, ItemData item)
     {
-        ItemData itemData = SmartphoneManager.instance.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+        ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
         itemData.itemName = item.itemName;
         itemData.itemImg = item.itemImg;
         itemData.itemID = item.itemID;
-        SmartphoneManager.instance.filesInven.slotDataList[i].item = itemData;
-        SmartphoneManager.instance.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+        SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
+        SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
     }
 }

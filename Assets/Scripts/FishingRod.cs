@@ -26,8 +26,11 @@ public class FishingRod : MonoBehaviour
     {
         if(!isCaught && collision.CompareTag("DrainageHole"))
         {
+            GameObject dHole = collision.gameObject;
             print("waterdown");
             water.IsDrainageHoleOpen = true;
+
+            dHole.SetActive(false);
         }
     }
 }

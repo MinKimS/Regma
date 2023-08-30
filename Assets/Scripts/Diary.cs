@@ -65,7 +65,7 @@ public class Diary : MonoBehaviour
     }
 
     private void Update() {
-        if(SmartphoneManager.instance.filesInven.IsInvenItemActive&&!isFliping)
+        if(SmartphoneManager.instance.inven.filesInven.IsInvenItemActive&&!isFliping)
         {
             if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
             {

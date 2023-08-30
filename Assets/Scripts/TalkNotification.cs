@@ -25,7 +25,7 @@ public class TalkNotification : MonoBehaviour
     public void SetShowTalkIconState()
     {
         //보지 않은 톡이 온경우
-        if(!isTalkIconShow && (SmartphoneManager.instance.IsOpenInven || !SmartphoneManager.instance.IsOpenPhone))
+        if(!isTalkIconShow && (SmartphoneManager.instance.inven.IsOpenInven || !SmartphoneManager.instance.phone.IsOpenPhone))
         {
             talkIcon.enabled = true;
             StartCoroutine(MoveTalkPos(showPos));
@@ -36,7 +36,7 @@ public class TalkNotification : MonoBehaviour
     //톡 알림 표시 상태 설정
     public void SetHideTalkIconState()
     {
-        if(isTalkIconShow && SmartphoneManager.instance.IsOpenPhone&&!SmartphoneManager.instance.IsOpenInven)
+        if(isTalkIconShow && SmartphoneManager.instance.phone.IsOpenPhone&&!SmartphoneManager.instance.inven.IsOpenInven)
         {
             talkIcon.enabled = false;
             curTr.anchoredPosition = hidePos;

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleController : MonoBehaviour
 {
+    //start btn
     int btnSelectIdx = 1;
-    public BtnData[] btnLists;
+    public Image[] btnLists;
+
     private void Start() {
         SelectBtn();
     }
@@ -14,7 +17,7 @@ public class TitleController : MonoBehaviour
         //위의 버튼으로 이동
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(btnSelectIdx < btnLists.Length)
+            if(btnSelectIdx < btnLists.Length-1)
             {
                 btnSelectIdx++;
                 SelectBtn();
@@ -32,11 +35,11 @@ public class TitleController : MonoBehaviour
         //선택된 버튼 클릭
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            if(btnLists[btnSelectIdx].btnID==0)
+            if(btnSelectIdx == 1)
             {
                 LoadingManager.LoadScene("Intro");
             }
-            if(btnLists[btnSelectIdx].btnID==1)
+            else
             {
                 Application.Quit();
                 print("quit");
@@ -46,12 +49,12 @@ public class TitleController : MonoBehaviour
 
     void SelectBtn()
     {
-        btnLists[btnSelectIdx].btnImg.color = Color.gray;
+        btnLists[btnSelectIdx].color = Color.gray;
         for(int i = 0; i < btnLists.Length; i++)
         {
             if(i == btnSelectIdx)
             {continue;}
-            btnLists[i].btnImg.color = Color.white;
+            btnLists[i].color = Color.white;
         }
     }
 }

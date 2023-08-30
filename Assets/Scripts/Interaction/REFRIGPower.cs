@@ -42,12 +42,12 @@ public class REFRIGPower : MonoBehaviour
 
     private void Update()
     {
-        if (isOkPressKey && iod.IsInteracting)
+        if (isOkPressKey && iod.IsOkInteracting)
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
             {
                 CancelManipulation();
-                iod.IsInteracting = false;
+                iod.IsOkInteracting = false;
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -67,7 +67,7 @@ public class REFRIGPower : MonoBehaviour
                 if (lightState[0] == 1 && lightState[3] == 1 && lightState[5] == 1)
                 {
                     isBroken = true;
-                    iod.IsInteracting = true;
+                    iod.IsOkInteracting = true;
 
                     print("success");
                 }

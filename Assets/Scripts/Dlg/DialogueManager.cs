@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
     private void Start() {
         speakerImg = speakersObj.GetComponent<Image>();
         speakerRectTr = speakersObj.GetComponent<RectTransform>();
-        curDlg = dialogueList[1];
+        //curDlg = dialogueList[1];
         dlgPos = DlgRT.anchoredPosition;
         SceneManager.sceneLoaded += SceneChangeEvent;
         playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
@@ -150,7 +150,7 @@ public class DialogueManager : MonoBehaviour
     //대화창 보이기
     private void DialogueShow()
     {
-        if(!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
             playerAnim.SetBool("walk", false);
             playerAnim.SetBool("jump", false);
@@ -301,8 +301,9 @@ public class DialogueManager : MonoBehaviour
     //처음 대화 시작
     public void PlayDlg()
     {
-        if(SmartphoneManager.instance != null)
-            SmartphoneManager.instance.isOKSendTalk=false;
+        if (SmartphoneManager.instance != null)
+            SmartphoneManager.instance.phone.IsOKSendTalk=false;
+
         DialogueShow();
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
@@ -322,7 +323,7 @@ public class DialogueManager : MonoBehaviour
         isSingleDlg = true;
         singleDlg = dlg;
         if(SmartphoneManager.instance != null)
-            SmartphoneManager.instance.isOKSendTalk=false;
+            SmartphoneManager.instance.phone.IsOKSendTalk =false;
         DialogueShow(dlg);
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
@@ -388,7 +389,7 @@ public class DialogueManager : MonoBehaviour
     public void OutPutDialogue(Dialogue dlg)
     {
         if(SmartphoneManager.instance != null)
-            SmartphoneManager.instance.isOKSendTalk=false;
+            SmartphoneManager.instance.phone.IsOKSendTalk=false;
         DialogueShow();
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x

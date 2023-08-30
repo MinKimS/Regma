@@ -329,6 +329,7 @@ MonoBehaviour:
   cancelEvent:
   - {fileID: 11400000, guid: ca1b48fa45ff9d24194eea0b9e4a8325, type: 2}
   isOkInteracting: 0
+  isRunInteraction: 0
   objDlg: []
 --- !u!114 &10438851
 MonoBehaviour:
@@ -627,100 +628,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37478350}
   m_CullTransparentMesh: 1
---- !u!1 &38113030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 38113032}
-  - component: {fileID: 38113031}
-  - component: {fileID: 38113033}
-  m_Layer: 0
-  m_Name: SmartphoneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &38113031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38113030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d8705fc18c114d4fb8de7a9fb18be9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notification: {fileID: 1928879066}
-  curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
-  curSendTalk: {fileID: 0}
-  phoneCanvas: {fileID: 1406776366}
-  phonePanel: {fileID: 1139636120}
-  phoneInven: {fileID: 87917001}
-  filesInvenObj: {fileID: 2087698667}
-  picsInvenObj: {fileID: 2038835379}
-  talkParent: {fileID: 269601823}
-  isOKSendTalk: 0
-  invenOption:
-  - {fileID: 2067249808}
-  - {fileID: 2029279739}
-  talkScR: {fileID: 779740873}
-  talkScBar: {fileID: 2039600925}
-  playerTalk: {fileID: 7513178074867529648, guid: 09d18e98e61210e41b678661e3fcaeb0, type: 3}
-  anotherTalk: {fileID: 6739030045931762117, guid: a250da1962faa3d42b83220605d3f7a8, type: 3}
-  inOutTalk: {fileID: 6324094725945509324, guid: 7323f40b706f5fe4783951aa3edceca4, type: 3}
-  announcementTalk: {fileID: 154980672679515535, guid: f5185a3cc3be7ca4cab32d94247990fa, type: 3}
-  videoTalk: {fileID: 2455639997350430374, guid: 9e6cdc8cd0f4e2746bfea72c5b951407, type: 3}
-  sendTalk: {fileID: 1313855441797531865, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
-  lastTalk: {fileID: 0}
-  lastPlayerTalk: {fileID: 0}
-  talkInputArea: {fileID: 1887511898}
-  sendTalkList:
-  - {fileID: 877303640}
-  - {fileID: 142653504}
-  - {fileID: 435393508}
-  sendTalkIdx: 0
-  receiveTalkIdx: 0
-  inputArea: {fileID: 0}
-  picsInven: {fileID: 0}
-  filesInven: {fileID: 0}
-  talkScrollSpeed: 0.01
-  maxPicSlot: 0
-  maxFilesSlot: 0
-  talkIdx: 0
---- !u!4 &38113032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38113030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &38113033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38113030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d61ca1774735fb43a349dc847497953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &48927486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,13 +1202,14 @@ GameObject:
   - component: {fileID: 87917002}
   - component: {fileID: 87917004}
   - component: {fileID: 87917003}
+  - component: {fileID: 87917005}
   m_Layer: 5
   m_Name: InvenArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &87917002
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1364,6 +1272,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87917001}
   m_CullTransparentMesh: 1
+--- !u!114 &87917005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87917001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d088f5c41efe34e821b953be21515f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  picsInven: {fileID: 1381637133}
+  filesInven: {fileID: 353598353}
+  picsArea: {fileID: 2038835379}
+  fileArea: {fileID: 2087698667}
+  selectedOption: 1
+  invenOption:
+  - {fileID: 2067249808}
+  - {fileID: 2029279739}
 --- !u!1 &94761442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,8 +1509,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: ShowPhone
           m_Mode: 1
           m_Arguments:
@@ -1595,8 +1523,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113033}
-          m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: StartTalk
           m_Mode: 1
           m_Arguments:
@@ -1726,7 +1654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103846415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 69, y: -1.58, z: -1}
+  m_LocalPosition: {x: 69, y: -2.15, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2837,7 +2765,7 @@ Transform:
   - {fileID: 1909703731}
   - {fileID: 103846416}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258019838
 GameObject:
@@ -3212,7 +3140,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338089657
 GameObject:
@@ -4309,7 +4237,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &435393508 stripped
 MonoBehaviour:
@@ -5169,6 +5097,7 @@ GameObject:
   - component: {fileID: 526410390}
   - component: {fileID: 526410389}
   - component: {fileID: 526410391}
+  - component: {fileID: 526410392}
   m_Layer: 7
   m_Name: TVInteraction
   m_TagString: Untagged
@@ -5209,6 +5138,7 @@ MonoBehaviour:
   cancelEvent:
   - {fileID: 11400000, guid: 468a9b54dcb679b47953667351e7f6e0, type: 2}
   isOkInteracting: 0
+  isRunInteraction: 0
   objDlg: []
 --- !u!61 &526410390
 BoxCollider2D:
@@ -5253,7 +5183,7 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1050715334}
+        - m_Target: {fileID: 526410392}
           m_TargetAssemblyTypeName: Television, Assembly-CSharp
           m_MethodName: TVOnBeforeReadingDiary
           m_Mode: 1
@@ -5269,7 +5199,7 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1050715334}
+        - m_Target: {fileID: 526410392}
           m_TargetAssemblyTypeName: Television, Assembly-CSharp
           m_MethodName: TVOnAfterReadingDairy
           m_Mode: 1
@@ -5285,7 +5215,7 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1050715334}
+        - m_Target: {fileID: 526410392}
           m_TargetAssemblyTypeName: Television, Assembly-CSharp
           m_MethodName: TVOff
           m_Mode: 1
@@ -5297,6 +5227,28 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &526410392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526410387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0257e104076e54785771e5cde4ce99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 493689997}
+  dlg:
+  - {fileID: 11400000, guid: 84e126e91ee821846afaa866b52bf4c1, type: 2}
+  - {fileID: 11400000, guid: 0697412d71554cb47b9d058ba37ef083, type: 2}
+  channelSprite:
+  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
+  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
+  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
+  interactionData: {fileID: 526410389}
+  door: {fileID: 1047426056}
 --- !u!1 &527227842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,7 +6689,7 @@ RectTransform:
   m_Children:
   - {fileID: 109017383}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8384,10 +8336,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmEvent:
   - {fileID: 11400000, guid: 15c7f844feffd03418a060cb29fe8a02, type: 2}
-  - {fileID: 11400000, guid: 35ac6ccf9f8c55f45b0205e48c42ef82, type: 2}
   cancelEvent:
   - {fileID: 11400000, guid: 93ebd279e9fca0b4faa374c53e5d7bae, type: 2}
   isOkInteracting: 0
+  isRunInteraction: 0
   objDlg: []
 --- !u!61 &1047426058
 BoxCollider2D:
@@ -8493,22 +8445,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - gmEvent: {fileID: 11400000, guid: 35ac6ccf9f8c55f45b0205e48c42ef82, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1047426056}
-          m_TargetAssemblyTypeName: Door, Assembly-CSharp
-          m_MethodName: StartCurDoorEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - gmEvent: {fileID: 11400000, guid: 93ebd279e9fca0b4faa374c53e5d7bae, type: 2}
     response:
       m_PersistentCalls:
@@ -8539,7 +8475,6 @@ GameObject:
   - component: {fileID: 1050715330}
   - component: {fileID: 1050715331}
   - component: {fileID: 1050715332}
-  - component: {fileID: 1050715334}
   m_Layer: 6
   m_Name: tv off
   m_TagString: Untagged
@@ -8695,28 +8630,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &1050715334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050715326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee0257e104076e54785771e5cde4ce99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 493689997}
-  dlg:
-  - {fileID: 11400000, guid: 84e126e91ee821846afaa866b52bf4c1, type: 2}
-  - {fileID: 11400000, guid: 0697412d71554cb47b9d058ba37ef083, type: 2}
-  channelSprite:
-  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
-  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
-  - {fileID: 21300000, guid: 5a8c08751d96b534f81da593b9bbe145, type: 3}
-  interactionData: {fileID: 526410389}
-  door: {fileID: 1047426056}
 --- !u!1 &1063159082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9065,107 +8978,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -5}
   m_UseGraphicAlpha: 1
---- !u!1 &1094474711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1094474715}
-  - component: {fileID: 1094474714}
-  - component: {fileID: 1094474713}
-  - component: {fileID: 1094474712}
-  m_Layer: 5
-  m_Name: PlayCanvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1094474712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094474711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1094474713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094474711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1094474714
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094474711}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 1
-  m_TargetDisplay: 0
---- !u!224 &1094474715
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094474711}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1928879063}
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1099614351
 GameObject:
   m_ObjectHideFlags: 0
@@ -9409,6 +9221,7 @@ GameObject:
   - component: {fileID: 1139636121}
   - component: {fileID: 1139636123}
   - component: {fileID: 1139636122}
+  - component: {fileID: 1139636124}
   m_Layer: 5
   m_Name: PhonePanel
   m_TagString: Untagged
@@ -9476,6 +9289,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139636120}
   m_CullTransparentMesh: 1
+--- !u!114 &1139636124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139636120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193a3c94f71178b47a21bde1c78fc52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkScView: {fileID: 779740873}
+  talkScBar: {fileID: 2039600925}
+  talkParent: {fileID: 269601823}
+  talkInputArea: {fileID: 1887511898}
+  inven: {fileID: 87917005}
+  notification: {fileID: 1928879066}
+  playerTalk: {fileID: 7513178074867529648, guid: 09d18e98e61210e41b678661e3fcaeb0, type: 3}
+  anotherTalk: {fileID: 6739030045931762117, guid: a250da1962faa3d42b83220605d3f7a8, type: 3}
+  inOutTalk: {fileID: 6324094725945509324, guid: 7323f40b706f5fe4783951aa3edceca4, type: 3}
+  announcementTalk: {fileID: 154980672679515535, guid: f5185a3cc3be7ca4cab32d94247990fa, type: 3}
+  videoTalk: {fileID: 2455639997350430374, guid: 9e6cdc8cd0f4e2746bfea72c5b951407, type: 3}
+  sendTalk: {fileID: 1313855441797531865, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
+  lastPlayerTalk: {fileID: 0}
+  curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
+  curSendTalk: {fileID: 0}
+  phoneShowSpeed: 0.1
+  talkIdx: 0
+  sendTalkList:
+  - {fileID: 877303640}
+  - {fileID: 142653504}
+  - {fileID: 435393508}
 --- !u!1 &1143656817
 GameObject:
   m_ObjectHideFlags: 0
@@ -10058,7 +9904,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167849070
 GameObject:
@@ -10134,7 +9980,7 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 38113033}
+      - m_Target: {fileID: 1406776369}
         m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
         m_MethodName: StartTalk
         m_Mode: 1
@@ -10659,7 +10505,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1233669944
 GameObject:
@@ -11080,6 +10926,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: baa66c85ab23fc74093c8ce808f2a30b, type: 2}
   cancelEvent: []
   isOkInteracting: 0
+  isRunInteraction: 0
   objDlg:
   - {fileID: 11400000, guid: f571350e29d0f1c45aaadc50d5ed2a37, type: 2}
 --- !u!114 &1293313977
@@ -11925,8 +11772,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: AddSendTalk
           m_Mode: 1
           m_Arguments:
@@ -11965,8 +11812,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: ShowPhone
           m_Mode: 1
           m_Arguments:
@@ -11979,8 +11826,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
@@ -12085,6 +11932,8 @@ GameObject:
   - component: {fileID: 1406776366}
   - component: {fileID: 1406776368}
   - component: {fileID: 1406776367}
+  - component: {fileID: 1406776370}
+  - component: {fileID: 1406776369}
   m_Layer: 5
   m_Name: PhoneCanvas
   m_TagString: Untagged
@@ -12105,6 +11954,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1139636121}
+  - {fileID: 1928879063}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12174,6 +12024,34 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &1406776369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406776364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d61ca1774735fb43a349dc847497953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406776370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406776364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8705fc18c114d4fb8de7a9fb18be9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notification: {fileID: 0}
+  phone: {fileID: 0}
+  inven: {fileID: 0}
+  talkScrollSpeed: 0.01
 --- !u!1 &1414965818
 GameObject:
   m_ObjectHideFlags: 0
@@ -12852,7 +12730,7 @@ RectTransform:
   - {fileID: 1189657953}
   - {fileID: 1696934993}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13034,8 +12912,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: AddSendTalk
           m_Mode: 1
           m_Arguments:
@@ -13074,8 +12952,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113033}
-          m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: StartTalk
           m_Mode: 1
           m_Arguments:
@@ -13100,8 +12978,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: ShowPhone
           m_Mode: 1
           m_Arguments:
@@ -13128,8 +13006,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
@@ -13319,7 +13197,7 @@ Transform:
   - {fileID: 446573804}
   - {fileID: 2025886913}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1572679834
 MonoBehaviour:
@@ -14705,8 +14583,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: ShowPhone
           m_Mode: 1
           m_Arguments:
@@ -14719,8 +14597,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: AddSendTalk
           m_Mode: 1
           m_Arguments:
@@ -14745,8 +14623,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
@@ -14762,6 +14640,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1162400078}
           m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
           m_MethodName: SetTimelineEnd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
+          m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14820,8 +14710,6 @@ PlayableDirector:
     value: {fileID: 1303163757}
   - key: {fileID: 3948809208088549391, guid: 53852c2876b36af469c1dcfa76a27660, type: 2}
     value: {fileID: 1620223287}
-  - key: {fileID: -3502981503192935575, guid: 53852c2876b36af469c1dcfa76a27660, type: 2}
-    value: {fileID: 1303163753}
   m_ExposedReferences:
     m_References:
     - a4acd945fb8df6742ace4b7a4a616885: {fileID: 0}
@@ -15252,7 +15140,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.2782036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -15263,7 +15151,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3.5564072}
   m_EdgeRadius: 0
 --- !u!114 &1792207244
 MonoBehaviour:
@@ -15714,8 +15602,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
@@ -15754,13 +15642,13 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
-          m_MethodName: AddVideoTalk
-          m_Mode: 2
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
+          m_MethodName: AddSendTalk
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
-            m_ObjectArgumentAssemblyTypeName: Speaker, Assembly-CSharp
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -15768,8 +15656,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: HidePhone
           m_Mode: 1
           m_Arguments:
@@ -15818,8 +15706,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 38113031}
-          m_TargetAssemblyTypeName: SmartphoneManager, Assembly-CSharp
+        - m_Target: {fileID: 1139636124}
+          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
           m_MethodName: ShowPhone
           m_Mode: 1
           m_Arguments:
@@ -16111,7 +15999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1887511900
@@ -16467,7 +16355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909703730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28, y: -1.58, z: -1}
+  m_LocalPosition: {x: -28, y: -2.15, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16539,13 +16427,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928879062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1094474715}
-  m_RootOrder: 0
+  m_Father: {fileID: 1406776365}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -16632,7 +16520,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1945959549
 GameObject:
@@ -17908,6 +17796,7 @@ MonoBehaviour:
   gmEvent: []
   cancelEvent: []
   isOkInteracting: 0
+  isRunInteraction: 0
   objDlg:
   - {fileID: 11400000, guid: cab90b560a7e9d242875d3414a30ef74, type: 2}
 --- !u!1 &2067249805
@@ -18311,7 +18200,7 @@ Transform:
   - {fileID: 1074740032}
   - {fileID: 1143656819}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2112303271
 MonoBehaviour:
