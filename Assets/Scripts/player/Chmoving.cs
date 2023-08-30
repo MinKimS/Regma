@@ -126,6 +126,17 @@ public class Chmoving : MonoBehaviour
             rb.velocity = new Vector2(0f, rb.velocity.y);
             StopWalkSound();
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            animator.SetBool("isSit", true); // 컨트롤 키 입력 시 isSit 애니메이션 트리거 활성화
+        }
+        else
+        {
+            animator.SetBool("isSit", false);
+        }
+
+
     }
 
     private void LateUpdate()
