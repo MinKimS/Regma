@@ -28,7 +28,7 @@ public class Cereal : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && !isFall)
+        if(collision.gameObject.CompareTag("Player") && isFall)
         {
             pAnim.SetBool("isPush", false);
         }
