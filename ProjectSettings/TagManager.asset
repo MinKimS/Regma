@@ -15,6 +15,7 @@ TagManager:
   - Toy
   - DrainageHole
   - FishingRod
+  - Mirror
   layers:
   - Default
   - TransparentFX

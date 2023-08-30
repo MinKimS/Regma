@@ -11,6 +11,12 @@ public class Refrigerator : MonoBehaviour
     private bool isCollisionActive = false;
     private bool hasOpened = false; // E 키로 이미 캔버스를 열었는지 확인하는 변수
 
+    void Start()
+    {
+        refricanvas.SetActive(false);
+        RefriImage.enabled = false;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
