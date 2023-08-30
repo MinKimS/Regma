@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065049473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -3462,12 +3462,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865740702}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 024efb79b83ad2b44b53416c8420d310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringLight: {fileID: 1065049473}
+  flickeringLight: {fileID: 2077401903}
   minTime: 1
   maxTime: 2
 --- !u!1 &1950075145
@@ -3557,7 +3557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2077401904
 Transform:
   m_ObjectHideFlags: 0
