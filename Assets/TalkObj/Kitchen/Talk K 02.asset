@@ -23,6 +23,6 @@ MonoBehaviour:
     talkText: "\uD1A1\uD1A1\uD1A1"
     TalkSendDelay: 1
   answerTalk:
-  - {fileID: 11400000, guid: 1e7753deb11390a47a8be48ada82426a, type: 2}
+  - {fileID: 11400000, guid: d602063c827d8a24b8ab2f0d0dd119b2, type: 2}
   nextTalk: {fileID: 0}
   isInTimeline: 0

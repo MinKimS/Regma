@@ -35,16 +35,16 @@ public class MoveAlongThePath : MonoBehaviour
 
     private void Awake()
     {
-        Time.fixedDeltaTime = 0.01f;
+        pathFinder = GetComponent<PathFinder>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        pathFinder = GetComponent<PathFinder>();
+        Time.fixedDeltaTime = 0.01f;
         targetPos = pathFinder.targetPos;
         pos = pathFinder.pos;
-        rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(TraceTarget());
+        gameObject.SetActive(false);
     }
 
     IEnumerator TraceTarget()
@@ -55,7 +55,6 @@ public class MoveAlongThePath : MonoBehaviour
         {
             //타겟 확인
             //소리 인식범위 안에서 소리가 나면 소리가 나는 위치를 targetPos로 설정 
-
             Stack<Node> path = pathFinder.PathFinding(targetPos.position);
             if (path.Count > 0)
             {
@@ -70,11 +69,25 @@ public class MoveAlongThePath : MonoBehaviour
         }
     }
 
+    void TraceToTarget()
+    {
+        //타겟 확인
+        Stack<Node> path = pathFinder.PathFinding(targetPos.position);
+        if (path.Count > 0)
+        {
+            node = path.Pop();
+            if (path.Count > 0)
+            {
+                nextNode = path.Peek();
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
+        //move
         if (isTrace && node != null)
         {
-            //move
             transform.position = Vector2.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.fixedDeltaTime);
         }
     }
@@ -84,6 +97,8 @@ public class MoveAlongThePath : MonoBehaviour
         //jump
         if(isTrace)
         {
+            TraceToTarget();
+
             disToNode = (node.transform.position - pos.position).magnitude;
 
             if ((nextNode.transform.position.y > node.transform.position.y) && (disToNode < 1f))
@@ -98,15 +113,22 @@ public class MoveAlongThePath : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        collision.transform.CompareTag("Player");
+        if (collision.transform.CompareTag("Player"))
+        {
+            PlayerHide pHide = collision.GetComponentInParent<PlayerHide>();
+            if(!pHide.isHide)
+            {
+                print("catch!");
+            }
+        }
     }
 
     void Jump()
     {
         print("jump");
-        rb.AddForce(Vector2.up * jumpForce);
+        rb.AddForce(Vector2.up * jumpForce * 2);
         lastJumpTime = Time.time;
         if(!isJumped) { isJumped = true; }        
     }

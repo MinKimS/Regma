@@ -50,13 +50,13 @@ public class BathMobController : MonoBehaviour
 
     private void Start()
     {
-        //Appearance();
+        Appearance();
 
         //test
-        isMobSeeFishingRod = true;
-        SetMobSeeFishingRod();
+        //isMobSeeFishingRod = true;
+        //SetMobSeeFishingRod();
 
-        StartCoroutine(eye.RollEye());
+        //StartCoroutine(eye.RollEye());
     }
 
     private void Update()
@@ -64,13 +64,20 @@ public class BathMobController : MonoBehaviour
         if(!isMobSeeFishingRod)
         {
             float h = Input.GetAxisRaw("Horizontal");
-            if (!isMobTryCatch && h != 0 && (eye.IsFindPlayer || isMobInWater) && !hand.IsMoveHand)
+            if (!isMobTryCatch && h != 0 && (eye.IsFindPlayer || isMobInWater && !eye.isPlayerHide) && !hand.IsMoveHand)
             {
                 isMobTryCatch = true;
                 print("gacha");
                 hand.IsMoveHand = true;
                 StartCoroutine(hand.GoCatchToy());
             }
+            //if(!isMobTryCatch && h != 0 )
+            //{
+            //    isMobTryCatch = true;
+            //    print("gachaPlayer");
+            //    hand.IsMoveHand = true;
+            //    StartCoroutine(hand.GoCatchPlayer());
+            //}
         }
         else
         {
@@ -97,6 +104,15 @@ public class BathMobController : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, -20f), 0.01f);
         }
+    }
+
+    public void StartFishing()
+    {
+        fRod.gameObject.SetActive(true);
+        isMobSeeFishingRod = true;
+        SetMobSeeFishingRod();
+
+        StartCoroutine(eye.RollEye());
     }
 
     void SetMobSeeFishingRod()

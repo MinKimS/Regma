@@ -11,6 +11,13 @@ public class MobTrace : MonoBehaviour
     public float traceStopRange = 10f;
     float disToTarget;
     Transform traceTarget;
+    public enum MoveWay{
+        None,
+        RangeTrace,
+        Trace,
+        Follow
+    }
+    public MoveWay way = MoveWay.None;
 
     private void Start()
     {
@@ -22,18 +29,26 @@ public class MobTrace : MonoBehaviour
     private void Update()
     {
         //trace player
-        disToTarget = (transform.position - traceTarget.position).magnitude;
+        if (way == MoveWay.RangeTrace)
+        {
+            disToTarget = (transform.position - traceTarget.position).magnitude;
 
-        if(disToTarget < traceRange)
-        {
-            matp.IsTrace = true;
-        }
-        else
-        {
-            if(matp.IsTrace && disToTarget > traceStopRange)
+            if (disToTarget < traceRange)
             {
-                matp.IsTrace = false;
+                matp.IsTrace = true;
+            }
+            else
+            {
+                if (matp.IsTrace && disToTarget > traceStopRange)
+                {
+                    matp.IsTrace = false;
+                }
             }
         }
+        ////follow path and go destination
+        //if(way == MoveWay.Follow)
+        //{
+        //    matp.isFollow = true;
+        //}
     }
 }

@@ -22,17 +22,17 @@ public class Water : MonoBehaviour
 
     void Update()
     {
-        //물 빠지기
-        if(isDrainageHoleOpen)
-        {
-            transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, waterDes), drainSpeed*Time.deltaTime);
-        }
+        ////물 빠지기
+        //if(isDrainageHoleOpen)
+        //{
+        //    transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, waterDes), drainSpeed*Time.deltaTime);
+        //}
 
-        if(transform.position.y < gmOverWaterLevel)
-        {
-            print("over");
-            isGameOverWaterLevel = true;
+        //if(transform.position.y < gmOverWaterLevel)
+        //{
+        //    print("over");
+        //    isGameOverWaterLevel = true;
 
-        }
+        //}
     }
 }

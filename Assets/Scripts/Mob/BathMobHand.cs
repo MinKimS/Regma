@@ -9,7 +9,8 @@ public class BathMobHand : MonoBehaviour
 
     Vector2 targetPos;
     float targetPosY;
-    GameObject toy;
+    GameObject player;
+    public Transform playerPos;
 
     //손 초기 위치
     public Transform handOriginPos;
@@ -34,27 +35,19 @@ public class BathMobHand : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //장난감을 잡은 경우
-        if(collision.CompareTag("Toy") && !bmc.IsMobInWater)
+        if(collision.CompareTag("Player") && !bmc.IsMobInWater)
         {
             bc.enabled = false;
 
-            toy = collision.gameObject;
-            toy.transform.SetParent(transform);
+            player = collision.gameObject;
+            player.transform.SetParent(transform);
 
             //물 효과 영향 안받게
-            toy.GetComponent<BoxCollider2D>().enabled = false;
-            toy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            toy.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            player.GetComponent<BoxCollider2D>().enabled = false;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            player.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
-            //물고기 튀어오르는거 멈추기
-            FishToy fToy = toy.GetComponent<FishToy>();
-
-            if (fToy != null)
-            {
-                fToy.StopAllCoroutines();
-            }
-
-            targetPosY = transform.position.y-7f;
+            targetPosY = transform.position.y-1f;
             targetPos = new Vector2(transform.position.x, targetPosY);
             //장난감 끌어내리기
             StartCoroutine(MoveHandDown());
@@ -90,6 +83,18 @@ public class BathMobHand : MonoBehaviour
         TargetToyIdx++;
     }
 
+    public IEnumerator GoCatchPlayer()
+    {
+        while (Vector2.Distance(transform.position, playerPos.position) > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, ToyList[TargetToyIdx].position, 0.1f);
+            yield return null;
+        }
+
+        bc.enabled = true;
+        isMoveHand = false;
+    }
+
     //낚시대를 향해 손 이동
     public IEnumerator GoCatchFishingRod()
     {
@@ -114,8 +119,8 @@ public class BathMobHand : MonoBehaviour
             yield return null;
         }
 
-        toy.transform.SetParent(null);
-        toy.SetActive(false);
+        player.transform.SetParent(null);
+        player.SetActive(false);
 
         yield return new WaitForSeconds(1f);
         BackOriginPos();

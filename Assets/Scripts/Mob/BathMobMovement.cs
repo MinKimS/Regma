@@ -17,13 +17,13 @@ public class BathMobMovement : MonoBehaviour
 
 
     //물 안밖으로 나갈때의 이동 값
-    public float moveOutOfWaterValue = 8f;
+    public float moveOutOfWaterValue = 2f;
 
 
     bool isMoving = false;
 
     //낚시대를 보는 위치
-    public Vector2 seeFishingRodPos;
+    public Transform seeFishingRodPos;
 
     private void Awake()
     {
@@ -97,20 +97,20 @@ public class BathMobMovement : MonoBehaviour
     //낚시대를 보는 위치로 이동
     public IEnumerator SeeingFishingRod()
     {
-        transform.position = seeFishingRodPos;
+        transform.position = seeFishingRodPos.position;
 
         //약간의 움직임
         while (!bmc.IsMobStuck && !bmc.IsMobTryCatch)
         {
-            while (Vector2.Distance(transform.position, seeFishingRodPos + Vector2.up) > 0.1f)
+            while (Vector2.Distance(transform.position, seeFishingRodPos.position + Vector3.up) > 0.1f)
             {
-                transform.position = Vector2.Lerp(transform.position, seeFishingRodPos + Vector2.up, 0.005f);
+                transform.position = Vector2.Lerp(transform.position, seeFishingRodPos.position + Vector3.up, 0.005f);
                 yield return null;
             }
 
-            while (Vector2.Distance(transform.position, seeFishingRodPos + Vector2.down) > 0.1f)
+            while (Vector2.Distance(transform.position, seeFishingRodPos.position + Vector3.down) > 0.1f)
             {
-                transform.position = Vector2.Lerp(transform.position, seeFishingRodPos + Vector2.down, 0.005f);
+                transform.position = Vector2.Lerp(transform.position, seeFishingRodPos.position + Vector3.down, 0.005f);
                 yield return null;
             }
         }

@@ -7,27 +7,38 @@ public class REFRIG : MonoBehaviour
 {
     InteractionObjData iod;
     public REFRIGPower rPower;
+    public GameObject mobAppearEvent;
 
     bool isOpened = false;
+    bool isActivateEvent = false;
 
     private void Awake()
     {
         iod = GetComponent<InteractionObjData>();
-        if(rPower == null)
+        if (rPower == null)
         {
             rPower = FindObjectOfType<REFRIGPower>();
         }
     }
 
     //냉장고 문 열기
-    public void OpenREFRIG()
+    public void OpenREFRIG(GameObject objEvent)
     {
+        if(iod == null)
+        {
+            iod = GetComponent<InteractionObjData>();
+        }
         if(!isOpened)
         {
             //어댑터 고장내기 전
             if (!rPower.IsBroken)
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[0]);
+                if(!isActivateEvent)
+                {
+                    isActivateEvent = true;
+                    objEvent.SetActive(true);
+                }
             }
             //어댑터 고장낸 후
             else

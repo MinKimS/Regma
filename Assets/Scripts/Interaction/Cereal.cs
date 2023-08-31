@@ -7,13 +7,19 @@ public class Cereal : MonoBehaviour
     Animator pAnim;
     Vector3 originPos;
     Transform anchor;
+    Rigidbody2D rb;
 
     public float fallPoint = 3f;
     bool isFall = false;
 
-    private void Start()
+    private void Awake()
     {
         anchor = GetComponentInParent<Transform>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
         originPos = transform.position;
     }
 
@@ -28,7 +34,7 @@ public class Cereal : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && isFall)
+        if(collision.gameObject.CompareTag("Player"))
         {
             pAnim.SetBool("isPush", false);
         }
@@ -42,6 +48,8 @@ public class Cereal : MonoBehaviour
             if (dis > fallPoint)
             {
                 anchor.rotation = Quaternion.Euler(0, 0, -90);
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.velocity = Vector3.zero;
                 isFall = true;
             }
         }

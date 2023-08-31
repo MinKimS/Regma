@@ -15,6 +15,7 @@ public class REFRIGPower : MonoBehaviour
     public GameEvent PlayerMoveFalse;
 
     InteractionObjData iod;
+    public GameObject mobAppearEvent;
 
     public bool IsBroken
     { get { return isBroken; } }
@@ -70,6 +71,7 @@ public class REFRIGPower : MonoBehaviour
                     iod.IsOkInteracting = true;
 
                     print("success");
+                    mobAppearEvent.SetActive(true);
                 }
 
                 Invoke("CancelManipulation", 1f);

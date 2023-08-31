@@ -56,8 +56,8 @@ public class Phone : MonoBehaviour
     float phoneShowSpeed = 0.1f;
 
     int TalkMemberNum = 5;
-    int sendTalkIdx = 0;
-    int receiveTalkIdx = 0;
+    //int sendTalkIdx = 0;
+    //int receiveTalkIdx = 0;
     int showedCount = 0;
     //선택된 아이템
     int selectedOption = 1;

@@ -5,13 +5,22 @@ using UnityEngine;
 public class HidingObj : MonoBehaviour
 {
     public BathMobEye eye;
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //플레이어가 숨어있는 동안 찾을 수 없음
+        if (collision.CompareTag("Player"))
+        {
+            eye.isPlayerHide = true;
+            print("hiding!!");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
         if(collision.CompareTag("Player"))
         {
-            eye.StopRolling();
-            print("hiding!!");
+            eye.isPlayerHide = false;
+            print("no hide");
         }
     }
 }

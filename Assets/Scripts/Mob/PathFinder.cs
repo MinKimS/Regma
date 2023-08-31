@@ -51,6 +51,7 @@ public class PathFinder : MonoBehaviour
         return closestNode;
     }
 
+
     public Stack<Node> PathFinding(Vector2 destination)
     {
         //initialization
@@ -58,6 +59,7 @@ public class PathFinder : MonoBehaviour
 
         Node curNode = FindClosestNode(pos.position);
         Node desNode = FindClosestNode(destination);
+        
 
         if (curNode == null || desNode == null || curNode == desNode)
         { return path; }

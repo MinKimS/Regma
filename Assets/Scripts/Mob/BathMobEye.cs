@@ -12,6 +12,8 @@ public class BathMobEye : MonoBehaviour
     byte lookDirNum = 1; // 0 :left 1:middle 2:right
     bool isRolling = false;
     bool isFindPlayer = false;
+    [HideInInspector]
+    public bool isPlayerHide = false;
 
     public HidingObj[] ho;
 
@@ -84,30 +86,33 @@ public class BathMobEye : MonoBehaviour
 
     void FindingPlayer()
     {
-        Vector2 playerDir = transform.position - playerPos.position;
-        float checkSide = Vector2.Dot(playerDir, transform.right);
+        if (!isPlayerHide)
+        {
+            Vector2 playerDir = transform.position - playerPos.position;
+            float checkSide = Vector2.Dot(playerDir, transform.right);
 
-        //坷弗率
-        if ((!bmc.IsMobSeeFishingRod && checkSide < 0) || (bmc.IsMobSeeFishingRod && checkSide > 0))
-        {
-            if (lookDirNum == 2)
+            //坷弗率
+            if ((!bmc.IsMobSeeFishingRod && checkSide < 0) || (bmc.IsMobSeeFishingRod && checkSide > 0))
             {
-                isFindPlayer = true;
+                if (lookDirNum == 2)
+                {
+                    isFindPlayer = true;
+                }
             }
-        }
-        //哭率
-        else if((!bmc.IsMobSeeFishingRod && checkSide > 0) || (bmc.IsMobSeeFishingRod && checkSide < 0))
-        {
-            if (lookDirNum == 0)
+            //哭率
+            else if ((!bmc.IsMobSeeFishingRod && checkSide > 0) || (bmc.IsMobSeeFishingRod && checkSide < 0))
             {
-                isFindPlayer = true;
+                if (lookDirNum == 0)
+                {
+                    isFindPlayer = true;
+                }
             }
-        }
-        else
-        {
-            if(lookDirNum == 1)
+            else
             {
-                isFindPlayer = true;
+                if (lookDirNum == 1)
+                {
+                    isFindPlayer = true;
+                }
             }
         }
     }
