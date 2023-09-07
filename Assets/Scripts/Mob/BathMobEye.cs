@@ -92,7 +92,7 @@ public class BathMobEye : MonoBehaviour
             float checkSide = Vector2.Dot(playerDir, transform.right);
 
             //¿À¸¥ÂÊ
-            if ((!bmc.IsMobSeeFishingRod && checkSide < 0) || (bmc.IsMobSeeFishingRod && checkSide > 0))
+            if (checkSide < 0)
             {
                 if (lookDirNum == 2)
                 {
@@ -100,7 +100,7 @@ public class BathMobEye : MonoBehaviour
                 }
             }
             //¿ÞÂÊ
-            else if ((!bmc.IsMobSeeFishingRod && checkSide > 0) || (bmc.IsMobSeeFishingRod && checkSide < 0))
+            else if (checkSide > 0)
             {
                 if (lookDirNum == 0)
                 {

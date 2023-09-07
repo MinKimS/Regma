@@ -51,4 +51,9 @@ public class InteractionObjData : MonoBehaviour
     {
         DialogueManager.instance.PlayDlg(objDlg[num]);
     }
+
+    public void GetItme()
+    {
+        gameObject.SetActive(false);
+    }
 }

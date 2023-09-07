@@ -34,7 +34,7 @@ public class BathMobHand : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //장난감을 잡은 경우
+        //플레이어를 잡은 경우
         if(collision.CompareTag("Player") && !bmc.IsMobInWater)
         {
             bc.enabled = false;
@@ -43,14 +43,16 @@ public class BathMobHand : MonoBehaviour
             player.transform.SetParent(transform);
 
             //물 효과 영향 안받게
-            player.GetComponent<BoxCollider2D>().enabled = false;
+            player.GetComponent<CapsuleCollider2D>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
-            targetPosY = transform.position.y-1f;
+            targetPosY = transform.position.y-10f;
             targetPos = new Vector2(transform.position.x, targetPosY);
-            //장난감 끌어내리기
+            //플레이어 끌어내리기
+            bmc.StopMoving();
             StartCoroutine(MoveHandDown());
+            bmc.isCatchPlayer = true;
         }
 
         //낚시대를 잡은 경우
@@ -87,7 +89,7 @@ public class BathMobHand : MonoBehaviour
     {
         while (Vector2.Distance(transform.position, playerPos.position) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, ToyList[TargetToyIdx].position, 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.1f);
             yield return null;
         }
 
@@ -113,6 +115,7 @@ public class BathMobHand : MonoBehaviour
     //장난감 잡아서 물로 끌고가기
     IEnumerator MoveHandDown()
     {
+        print("pull down");
         while (transform.position.y >= targetPosY + 0.01f)
         {
             transform.position = Vector2.Lerp(transform.position, targetPos, 0.05f);
