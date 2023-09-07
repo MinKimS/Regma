@@ -37,15 +37,15 @@ public class Refrigerator : MonoBehaviour
 
     void Update()
     {
-        //if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
-        //{
-        //    ShowImage();
-        //    hasOpened = true; // 캔버스를 열었음을 표시
-        //}
-        //else if (hasOpened && Input.GetKeyDown(KeyCode.E))
-        //{
-        //    ExitImage(); // 이미 캔버스를 열었고 E를 누르면 캔버스와 게임 오브젝트를 비활성화
-        //}
+        if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
+        {
+            ShowImage();
+            hasOpened = true; // 캔버스를 열었음을 표시
+        }
+        else if (hasOpened && Input.GetKeyDown(KeyCode.E))
+        {
+            ExitImage(); // 이미 캔버스를 열었고 E를 누르면 캔버스와 게임 오브젝트를 비활성화
+        }
     }
 
     public void ShowImage()

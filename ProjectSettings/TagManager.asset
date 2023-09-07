@@ -16,6 +16,7 @@ TagManager:
   - DrainageHole
   - FishingRod
   - Mirror
+  - L
   layers:
   - Default
   - TransparentFX
