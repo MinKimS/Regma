@@ -9,13 +9,20 @@ public class BathMobController : MonoBehaviour
     BathMobMovement movement;
     public Water water;
 
+    bool isMobAppear = false;
     bool isMobInWater = true;
     bool isMobTryCatch = false;
     bool isMobSeeFishingRod = false;
     bool isMobStuck = false;
+    [HideInInspector]
+    public bool isCatchPlayer = false;
+    bool isPlayerBeDrawn = false;
 
     Transform playerPos;
     public Transform fRod;
+    public Transform drawnPos;
+
+    IEnumerator inOutCoroutine;
 
     public Transform PlayerPos
     { get { return playerPos; } }
@@ -50,7 +57,8 @@ public class BathMobController : MonoBehaviour
 
     private void Start()
     {
-        Appearance();
+        inOutCoroutine = InOutWater();
+        //Appearance();
 
         //test
         //isMobSeeFishingRod = true;
@@ -61,15 +69,20 @@ public class BathMobController : MonoBehaviour
 
     private void Update()
     {
-        if(!isMobSeeFishingRod)
+        if (!isMobSeeFishingRod)
         {
             float h = Input.GetAxisRaw("Horizontal");
-            if (!isMobTryCatch && h != 0 && (eye.IsFindPlayer || isMobInWater && !eye.isPlayerHide) && !hand.IsMoveHand)
+            if (isMobAppear && !isMobTryCatch && (h != 0 || Input.GetKeyDown(KeyCode.Space)) && (eye.IsFindPlayer || isMobInWater && !eye.isPlayerHide) && !hand.IsMoveHand)
             {
                 isMobTryCatch = true;
                 print("gacha");
                 hand.IsMoveHand = true;
-                StartCoroutine(hand.GoCatchToy());
+                StartCoroutine(hand.GoCatchPlayer());
+            }
+            if (isCatchPlayer)
+            {
+                isCatchPlayer = false;
+                movement.MoveDownDeepIntoWater();
             }
             //if(!isMobTryCatch && h != 0 )
             //{
@@ -82,7 +95,7 @@ public class BathMobController : MonoBehaviour
         else
         {
             float v = Input.GetAxisRaw("Vertical");
-            if(!isMobTryCatch && eye.IsFindPlayer && v != 0 && !hand.IsMoveHand)
+            if (!isMobTryCatch && eye.IsFindPlayer && v != 0 && !hand.IsMoveHand)
             {
                 isMobTryCatch = true;
                 print("Fgacha");
@@ -92,39 +105,65 @@ public class BathMobController : MonoBehaviour
         }
 
         //배수구에 끼이기
-        if(!isMobStuck && water.IsDrainageHoleOpen)
+        if (!isMobStuck && water.IsDrainageHoleOpen)
         {
+            print("stuck");
             isMobStuck = true;
+            eye.StopRolling();
             transform.rotation = Quaternion.identity;
             transform.position = fRod.position;
             hand.gameObject.SetActive(false);
+            fRod.gameObject.SetActive(false);
         }
 
-        if(water.IsGameOverWaterLevel)
+        if (water.IsGameOverWaterLevel)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, -20f), 0.01f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, transform.position.y - 20f), 0.01f);
+            if (!isPlayerBeDrawn)
+            {
+                PlayerBeDrawn();
+            }
+            playerPos.position = Vector2.MoveTowards(playerPos.position, new Vector2(transform.position.x, transform.position.y - 20f), 0.01f);
         }
     }
 
+    void PlayerBeDrawn()
+    {
+        isPlayerBeDrawn = true;
+        playerPos.position = drawnPos.position;
+        playerPos.GetComponent<Rigidbody2D>().isKinematic = true;
+        playerPos.GetComponent<CapsuleCollider2D>().isTrigger = true;
+    }
+
+    //낚시대 사용
     public void StartFishing()
     {
         fRod.gameObject.SetActive(true);
         isMobSeeFishingRod = true;
+        StopMoving();
         SetMobSeeFishingRod();
 
         StartCoroutine(eye.RollEye());
     }
 
+    public void StopMoving()
+    {
+        StopCoroutine(movement.MoveNextPos());
+        StopCoroutine(inOutCoroutine);
+        StopCoroutine(movement.GoOutOfTheWater());
+        StopCoroutine(movement.GoIntoTheWater());
+    }
+
+    //낚시대를 보는 위치로 이동
     void SetMobSeeFishingRod()
     {
-        transform.rotation = Quaternion.Euler(180f, 0f, 0f);
         StartCoroutine(movement.SeeingFishingRod());
     }
 
     //모습 등장
-    void Appearance()
+    public void Appearance()
     {
-        StartCoroutine(InOutWater());
+        StartCoroutine(inOutCoroutine);
     }
 
     //물 밖에 나가기
@@ -147,13 +186,28 @@ public class BathMobController : MonoBehaviour
     {
         float waitTime = Random.Range(5f, 8f);
 
+        if(!isMobAppear)
+        {
+            yield return new WaitForSeconds(1f);
+            isMobAppear = true;
+        }
+
         while(!isMobStuck)
         {
             OutWater();
             yield return new WaitForSeconds(waitTime*2);
-
+            print("sfdfsg");
+            if(isMobSeeFishingRod)
+            {
+                StopCoroutine(inOutCoroutine);
+            }
             IntoWater();
+            print("sfdfsg");
             yield return new WaitForSeconds(waitTime);
+            if (isMobSeeFishingRod)
+            {
+                StopCoroutine(inOutCoroutine);
+            }
         }
     }
 }
