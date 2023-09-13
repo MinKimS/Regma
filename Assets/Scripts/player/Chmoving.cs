@@ -198,4 +198,22 @@ public class Chmoving : MonoBehaviour
     //{
     //    isOkPlayerMove = value;
     //}
+
+    //물에서 속도 감소
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("SlowObj"))
+        {
+            moveSpeed = 2f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SlowObj"))
+        {
+            moveSpeed = 5f;
+        }
+    }
 }

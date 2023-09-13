@@ -17,6 +17,7 @@ TagManager:
   - FishingRod
   - Mirror
   - L
+  - HideObj
   layers:
   - Default
   - TransparentFX
