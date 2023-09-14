@@ -24,7 +24,7 @@ public class Chmovingbath : MonoBehaviour
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
     bool isJumping = false;
-    int JumpCount = 5;
+    int JumpCount;
 
     // PlayerHanging pHanging;
 
@@ -40,22 +40,25 @@ public class Chmovingbath : MonoBehaviour
 
     private void Update()
     {
-
-
-
+        
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
-                rb.velocity = Vector2.up * jumpForce;
+                rb.velocity = Vector2.up * jumpForce; // 캐릭터 현재 속도 , 위쪽으로
+            //animator.SetBool("jump", true);
+                print("점프중");
                 PlayJumpSound(); // 점프 사운드 재생
             }
 
-            if (!isGround && Input.GetKeyDown(KeyCode.Space))
+
+        if (!isGround && Input.GetKeyDown(KeyCode.Space)) // 계속 점프를 방지
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
+            //animator.SetBool("jump", true);
+                print("공중점프");
                 PlayJumpSound(); // 점프 사운드 재생
             }
 
@@ -66,9 +69,12 @@ public class Chmovingbath : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Space) && isJumping)
             {
-                JumpCount++;
+                JumpCount++; // 연속으로 몇 번 점프할 수 있는지를 제한하기위해
+                //print("JumpCount :" + JumpCount);
                 isJumping = false;
             }
+
+        //if()
 
             if (JumpCount > 0)
             {
@@ -79,16 +85,26 @@ public class Chmovingbath : MonoBehaviour
                 animator.SetBool("jump", false);
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                isRunning = true;
+                animator.SetBool("isSit", true); // 컨트롤 키 입력 시 isSit 애니메이션 트리거 활성화
             }
             else
             {
-                isRunning = false;
+                animator.SetBool("isSit", false);
             }
 
-            float moveInputX = Input.GetAxisRaw("Horizontal");
+        //print("현재 점프 : " + JumpCount);
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    isRunning = true;
+        //}
+        //else
+        //{
+        //    isRunning = false;
+        //}
+
+        float moveInputX = Input.GetAxisRaw("Horizontal");
 
             if (moveInputX != 0)
             {
@@ -106,9 +122,12 @@ public class Chmovingbath : MonoBehaviour
                     {
                         PlayWalkSound();
                     }
+
+
                     isJumpingWithMovement = false;
                 }
             }
+
             else
             {
                 isMoving = false;
@@ -119,6 +138,7 @@ public class Chmovingbath : MonoBehaviour
 
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
        
+
     }
 
     private void LateUpdate()

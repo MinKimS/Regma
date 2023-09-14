@@ -12,6 +12,7 @@ public class Chmoving : MonoBehaviour
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
     private float jumpForce = 7f;
+    private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
@@ -38,10 +39,12 @@ public class Chmoving : MonoBehaviour
         //pHanging = GetComponent<PlayerHanging>();
     }
 
+
+
     private void Update()
     {
-
       
+
 
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
@@ -90,7 +93,14 @@ public class Chmoving : MonoBehaviour
                 isRunning = false;
             }
 
+            
+
+
             float moveInputX = Input.GetAxisRaw("Horizontal");
+
+           
+                
+            
 
             if (moveInputX != 0)
             {
@@ -136,8 +146,20 @@ public class Chmoving : MonoBehaviour
             animator.SetBool("isSit", false);
         }
 
+        if (animator.GetBool("isPush"))
+        {
+            //currentMoveSpeed = PushSpeed * Input.GetAxisRaw("Horizontal"); // isPush 애니메이션이 작동 중일 때 PushSpeed를 사용
+            StopWalkSound();
+        }
+        //else
+        //{
+        //    currentMoveSpeed = moveSpeed * Input.GetAxisRaw("Horizontal"); // 일반적인 움직임 속도
+        //}
 
+        print("일반 속도" + currentMoveSpeed);
     }
+
+    
 
     private void LateUpdate()
     {
@@ -159,6 +181,8 @@ public class Chmoving : MonoBehaviour
         }
     }
 
+
+
     //void OnTriggerEnter2D(Collider2D collision) 8.16
     //{
     //    if (collision.CompareTag("Book"))
@@ -170,6 +194,8 @@ public class Chmoving : MonoBehaviour
     //        }
     //    }
     //}
+
+   
 
     void PlayJumpSound()
     {
@@ -216,4 +242,6 @@ public class Chmoving : MonoBehaviour
             moveSpeed = 5f;
         }
     }
+
+    
 }

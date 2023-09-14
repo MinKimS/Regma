@@ -16,7 +16,7 @@ public class AnimationStateChecker : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         // 현재 애니메이션 상태의 이름 확인
-        string currentStateName = stateInfo.IsName("Base Layer.jump") ? "jump" : "NotYourAnimationName";
+        string currentStateName = stateInfo.IsName("Base Layer.Idle") ? "Idle" : "NotYourAnimationName";
 
         // 현재 애니메이션 상태의 정규화된 시간(0~1) 확인
         //float normalizedTime = stateInfo.normalizedTime;

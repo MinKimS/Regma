@@ -7700,8 +7700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flickeringLight: {fileID: 2077401903}
-  minTime: 1
-  maxTime: 2
+  minTime: 0.5
+  maxTime: 1
 --- !u!1 &1884634113
 GameObject:
   m_ObjectHideFlags: 0

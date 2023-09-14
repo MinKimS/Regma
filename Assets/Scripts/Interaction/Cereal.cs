@@ -9,8 +9,11 @@ public class Cereal : MonoBehaviour
     Transform anchor;
     Rigidbody2D rb;
 
+
     public float fallPoint = 3f;
     bool isFall = false;
+
+   
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class Cereal : MonoBehaviour
         {
             pAnim = collision.gameObject.GetComponent<Animator>();
             pAnim.SetBool("isPush", true);
+
+
         }
     }
 
