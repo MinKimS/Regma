@@ -9,10 +9,10 @@ public class MoveAlongThePath : MonoBehaviour
     PathFinder pathFinder;
     Transform targetPos;
     public float traceSpeed = 3f;
-    public Node node = null;
-    public Node nextNode = null;
+    Node node = null;
+    Node nextNode = null;
 
-    public Transform pos;
+    Transform pos;
 
     //for jump
     Rigidbody2D rb;
@@ -100,13 +100,15 @@ public class MoveAlongThePath : MonoBehaviour
             TraceToTarget();
 
             //disToNode = (node.transform.position - pos.position).magnitude;
-            if (node.transform.position.y > pos.transform.position.y)
-            {
-                if (Time.time - lastJumpTime >= jumpCoolTime)
-                {
-                    Jump();
-                }
-            }
+
+            //Á¡ÇÁ ±â´É ÀÏ´Ü ²¨µÒ
+            //if (node.transform.position.y > pos.transform.position.y)
+            //{
+            //    if (Time.time - lastJumpTime >= jumpCoolTime)
+            //    {
+            //        Jump();
+            //    }
+            //}
         }
     }
 
