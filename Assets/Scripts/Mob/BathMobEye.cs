@@ -97,6 +97,7 @@ public class BathMobEye : MonoBehaviour
                 if (lookDirNum == 2)
                 {
                     isFindPlayer = true;
+                    print("R");
                 }
             }
             //¿ÞÂÊ
@@ -105,6 +106,7 @@ public class BathMobEye : MonoBehaviour
                 if (lookDirNum == 0)
                 {
                     isFindPlayer = true;
+                    print("L");
                 }
             }
             else
@@ -112,6 +114,7 @@ public class BathMobEye : MonoBehaviour
                 if (lookDirNum == 1)
                 {
                     isFindPlayer = true;
+                    print("M");
                 }
             }
         }

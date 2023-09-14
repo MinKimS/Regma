@@ -58,13 +58,6 @@ public class BathMobController : MonoBehaviour
     private void Start()
     {
         inOutCoroutine = InOutWater();
-        //Appearance();
-
-        //test
-        //isMobSeeFishingRod = true;
-        //SetMobSeeFishingRod();
-
-        //StartCoroutine(eye.RollEye());
     }
 
     private void Update()
@@ -72,7 +65,8 @@ public class BathMobController : MonoBehaviour
         if (!isMobSeeFishingRod)
         {
             float h = Input.GetAxisRaw("Horizontal");
-            if (isMobAppear && !isMobTryCatch && (h != 0 || Input.GetKeyDown(KeyCode.Space)) && (eye.IsFindPlayer || isMobInWater && !eye.isPlayerHide) && !hand.IsMoveHand)
+
+            if (isMobAppear && !eye.isPlayerHide && !isMobTryCatch && (h != 0 || Input.GetKeyDown(KeyCode.Space)) && (eye.IsFindPlayer && !eye.isPlayerHide) && !hand.IsMoveHand)
             {
                 isMobTryCatch = true;
                 print("gacha");
@@ -108,6 +102,11 @@ public class BathMobController : MonoBehaviour
         if (!isMobStuck && water.IsDrainageHoleOpen)
         {
             print("stuck");
+
+            //플레이어로 카메라 이동
+            CameraController camC = Camera.main.GetComponent<CameraController>();
+            camC.target = playerPos;
+
             isMobStuck = true;
             eye.StopRolling();
             transform.rotation = Quaternion.identity;
@@ -142,6 +141,10 @@ public class BathMobController : MonoBehaviour
         isMobSeeFishingRod = true;
         StopMoving();
         SetMobSeeFishingRod();
+
+        //낚시대 로어로 카메라 이동
+        CameraController camC = Camera.main.GetComponent<CameraController>();
+        camC.target = fRod;
 
         StartCoroutine(eye.RollEye());
     }
@@ -196,13 +199,11 @@ public class BathMobController : MonoBehaviour
         {
             OutWater();
             yield return new WaitForSeconds(waitTime*2);
-            print("sfdfsg");
             if(isMobSeeFishingRod)
             {
                 StopCoroutine(inOutCoroutine);
             }
             IntoWater();
-            print("sfdfsg");
             yield return new WaitForSeconds(waitTime);
             if (isMobSeeFishingRod)
             {

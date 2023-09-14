@@ -7,8 +7,10 @@ public class BathMobHand : MonoBehaviour
     BathMobController bmc;
     BoxCollider2D bc;
 
-    Vector2 targetPos;
-    float targetPosY;
+    //Vector2 targetPos;
+    //float targetPosY;
+    public Transform dragPos;
+    Vector2 dragPosY;
     GameObject player;
     public Transform playerPos;
 
@@ -47,8 +49,9 @@ public class BathMobHand : MonoBehaviour
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
-            targetPosY = transform.position.y-10f;
-            targetPos = new Vector2(transform.position.x, targetPosY);
+            //targetPosY = transform.position.y-10f;
+            //targetPos = new Vector2(transform.position.x, targetPosY);
+            dragPosY = new Vector2(transform.position.x, dragPos.position.y);
             //플레이어 끌어내리기
             bmc.StopMoving();
             StartCoroutine(MoveHandDown());
@@ -63,8 +66,8 @@ public class BathMobHand : MonoBehaviour
             GameObject fRod = collision.gameObject;
             fRod.transform.SetParent(transform);
 
-            targetPosY = transform.position.y -8f;
-            targetPos = new Vector2(transform.position.x, targetPosY);
+            //targetPosY = transform.position.y -8f;
+            dragPosY = new Vector2(transform.position.x, dragPos.position.y);
             StartCoroutine(DropPlayer());
         }
     }
@@ -89,7 +92,7 @@ public class BathMobHand : MonoBehaviour
     {
         while (Vector2.Distance(transform.position, playerPos.position) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 1f);
             yield return null;
         }
 
@@ -112,20 +115,19 @@ public class BathMobHand : MonoBehaviour
         isMoveHand = false;
     }
 
-    //장난감 잡아서 물로 끌고가기
+    //물로 끌고가기
     IEnumerator MoveHandDown()
     {
-        print("pull down");
-        while (transform.position.y >= targetPosY + 0.01f)
+        while (transform.position.y >= dragPos.position.y + 0.01f)
         {
-            transform.position = Vector2.Lerp(transform.position, targetPos, 0.05f);
+            transform.position = Vector2.Lerp(transform.position, dragPosY, 0.1f);
             yield return null;
         }
 
         player.transform.SetParent(null);
         player.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         BackOriginPos();
     }
 
@@ -133,9 +135,9 @@ public class BathMobHand : MonoBehaviour
     IEnumerator DropPlayer()
     {
         //아래로 빠르게 쭉 내림
-        while (transform.position.y >= targetPosY + 0.01f)
+        while (transform.position.y >= dragPos.position.y + 0.01f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, 0.05f);
+            transform.position = Vector2.MoveTowards(transform.position, dragPosY, 0.05f);
             yield return null;
         }
 
@@ -154,11 +156,12 @@ public class BathMobHand : MonoBehaviour
         print("back");
     }
 
+    //원래 손 위치로 이동
     IEnumerator BackHandOrigin()
     {
         while(Vector2.Distance(transform.position, handOriginPos.position) > 0.1f)
         {
-            transform.position = Vector2.Lerp(transform.position, handOriginPos.position, 0.01f);
+            transform.position = Vector2.Lerp(transform.position, handOriginPos.position, 0.1f);
             yield return null;
         }
         bmc.IsMobTryCatch = false;

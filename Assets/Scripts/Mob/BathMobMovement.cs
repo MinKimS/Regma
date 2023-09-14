@@ -56,6 +56,8 @@ public class BathMobMovement : MonoBehaviour
         while (transform.position.x <= curMovePos.x - offset)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(curMovePos.x, transform.position.y), mobMoveSpeed * Time.deltaTime);
+
+            //낚시대를 얻은 경우 움직임 정지
             if(bmc.IsMobSeeFishingRod)
             {
                 StopCoroutine(MoveNextPos());

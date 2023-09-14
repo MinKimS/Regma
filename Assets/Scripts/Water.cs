@@ -6,6 +6,12 @@ public class Water : MonoBehaviour
 {
     public float waterDes;
     public float drainSpeed = 0.5f;
+
+    public Transform targetPos;
+    public float drownPosY;
+
+    //익사여부
+    bool isDrwon = false;
     bool isDrainageHoleOpen = false;
     bool isGameOverWaterLevel = false;
 
@@ -34,23 +40,17 @@ public class Water : MonoBehaviour
             isGameOverWaterLevel = true;
 
         }
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
+        //물에 빠지면 게임오버
+        if(!isDrwon && !isDrainageHoleOpen && targetPos.position.y < drownPosY)
         {
-            LoadingManager.LoadScene("Bath");
-            print("coll");
+            isDrwon = true;
+            Rigidbody2D targetRb = targetPos.GetComponent<Rigidbody2D>();
+            targetRb.velocity = Vector2.down;
+            targetRb.gravityScale = 0f;
+            print("over");
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            LoadingManager.LoadScene("Bath");
-            print("triger");
-        }
-    }
+
 }
