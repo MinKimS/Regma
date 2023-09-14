@@ -21,10 +21,10 @@ public class Chmovingbath : MonoBehaviour
 
     bool isGround;
     [SerializeField] Transform pos;
-    float checkRadius = 0.35f;
+    float checkRadius = 0.10f;
     [SerializeField] LayerMask islayer;
     bool isJumping = false;
-    int JumpCount;
+    int JumpCount = 5;
 
     // PlayerHanging pHanging;
 
@@ -41,7 +41,7 @@ public class Chmovingbath : MonoBehaviour
     private void Update()
     {
         
-        isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
+        isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);//
 
             if (isGround && Input.GetKeyDown(KeyCode.Space))
             {
@@ -64,14 +64,14 @@ public class Chmovingbath : MonoBehaviour
 
             if (isGround)
             {
-                JumpCount = 0;
+                JumpCount = 0;//
             }
 
             if (Input.GetKeyUp(KeyCode.Space) && isJumping)
             {
-                JumpCount++; // 연속으로 몇 번 점프할 수 있는지를 제한하기위해
+                JumpCount++;
                 //print("JumpCount :" + JumpCount);
-                isJumping = false;
+                //isJumping = false;
             }
 
         //if()
@@ -83,6 +83,7 @@ public class Chmovingbath : MonoBehaviour
             else
             {
                 animator.SetBool("jump", false);
+            
             }
 
             if (Input.GetKeyDown(KeyCode.LeftControl))
