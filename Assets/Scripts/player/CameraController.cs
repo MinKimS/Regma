@@ -21,4 +21,12 @@ public class CameraController : MonoBehaviour
 
         cmManager.LimitArea(transform);//카메라 영역 제한
     }
+
+    //private void Sizecontrol()
+    //{
+
+
+    //}
+
+
 }
