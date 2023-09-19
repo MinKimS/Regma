@@ -17,7 +17,7 @@ public class RefriAnim : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
-            print("ddd");
+            //print("ddd");
             isCollisionActive = true;
         }
     }
@@ -45,6 +45,8 @@ public class RefriAnim : MonoBehaviour
         {
             RefriAnimation.SetBool("Open", true);
             hasOpened = true; // 캔버스를 열었음을 표시
+
+            
         }
 
 

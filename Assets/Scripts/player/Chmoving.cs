@@ -11,7 +11,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
-    private float jumpForce = 7f;
+    private float jumpForce = 5f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
@@ -27,7 +27,7 @@ public class Chmoving : MonoBehaviour
     bool isJumping = false;
     int JumpCount = 5;
 
-   // PlayerHanging pHanging;
+    // PlayerHanging pHanging;
 
     //bool isOkPlayerMove = true;
 
@@ -43,7 +43,7 @@ public class Chmoving : MonoBehaviour
 
     private void Update()
     {
-      
+
 
 
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
@@ -93,14 +93,14 @@ public class Chmoving : MonoBehaviour
                 isRunning = false;
             }
 
-            
+
 
 
             float moveInputX = Input.GetAxisRaw("Horizontal");
 
-           
-                
-            
+
+
+
 
             if (moveInputX != 0)
             {
@@ -159,7 +159,7 @@ public class Chmoving : MonoBehaviour
         print("일반 속도" + currentMoveSpeed);
     }
 
-    
+
 
     private void LateUpdate()
     {
@@ -195,7 +195,7 @@ public class Chmoving : MonoBehaviour
     //    }
     //}
 
-   
+
 
     void PlayJumpSound()
     {
@@ -229,7 +229,7 @@ public class Chmoving : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("SlowObj"))
+        if (collision.CompareTag("SlowObj"))
         {
             moveSpeed = 2f;
         }
@@ -243,5 +243,5 @@ public class Chmoving : MonoBehaviour
         }
     }
 
-    
+
 }
