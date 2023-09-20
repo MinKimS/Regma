@@ -10,6 +10,7 @@ public class TimelineManager : MonoBehaviour
     public PlayableDirector[] pd;
     private int curPD = 0;
     Animator playerAnim;
+    public Animator cutSceneAppearence;
 
     public enum TlState
     {
@@ -79,6 +80,7 @@ public class TimelineManager : MonoBehaviour
 
     public void SetTimelineStart(string timelineName)
     {
+        cutSceneAppearence.SetBool("isRunCutScene", true);
         if(!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
             playerAnim.SetBool("walk", false);
@@ -101,6 +103,7 @@ public class TimelineManager : MonoBehaviour
 
     public void SetTimelineStart(int playTimelineIdx)
     {
+        cutSceneAppearence.SetBool("isRunCutScene", true);
         curPD = playTimelineIdx;
         pd[curPD].Play();
         tlstate = TlState.Play;
@@ -126,6 +129,7 @@ public class TimelineManager : MonoBehaviour
     }
     public void SetTimelineEnd()
     {
+        cutSceneAppearence.SetBool("isRunCutScene", false);
         pd[curPD].Stop();
         tlstate = TlState.End;
         print(tlstate);
