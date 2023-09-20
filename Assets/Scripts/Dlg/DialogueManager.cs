@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
     //모든 씬에 나올 첫번째 대화들
     public List<Dialogue> dialogueList;
+    int dlgListIdx = 0;
     //현재 출력될 대화
     public Dialogue curDlg;
     public Dialogue singleDlg;
@@ -95,6 +96,16 @@ public class DialogueManager : MonoBehaviour
         dlgPos = DlgRT.anchoredPosition;
         SceneManager.sceneLoaded += SceneChangeEvent;
         playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene")
+        {
+            dlgListIdx++;
+            curDlg = dialogueList[dlgListIdx];
+        }
     }
 
     //씬 변경 시 수행될 이벤트들
@@ -150,10 +161,10 @@ public class DialogueManager : MonoBehaviour
     //대화창 보이기
     private void DialogueShow()
     {
-        if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if (!PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
-            playerAnim.SetBool("walk", false);
-            playerAnim.SetBool("jump", false);
+            PlayerInfoData.instance.playerAnim.SetBool("walk", false);
+            PlayerInfoData.instance.playerAnim.SetBool("jump", false);
         }
 
         if(curDlg.sentences[setenceIdx].speakerIdx == -1)
@@ -196,7 +207,7 @@ public class DialogueManager : MonoBehaviour
 
         if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
         else
         {
@@ -341,7 +352,7 @@ public class DialogueManager : MonoBehaviour
     {
         if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
         
         SetChrImg();
@@ -369,7 +380,7 @@ public class DialogueManager : MonoBehaviour
 
         if(dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
 
         SetChrImg();
@@ -410,7 +421,7 @@ public class DialogueManager : MonoBehaviour
         //대화 진행
         if(dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
 
         SetChrImg();

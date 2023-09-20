@@ -36,17 +36,17 @@ public class TalkController : MonoBehaviour
         {
             delayTime = curTalk.TalkContexts[talkIdx-1].TalkSendDelay;
             yield return new WaitForSeconds(1.0f);
-            TimelineManager.instance.SetTimelineStart(curTalk.timelineName);
+            TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
         }
         if(curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalk || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
         {
-            if(curTalk.isInTimeline) {TimelineManager.instance.SetTimelinePause();}
+            if(curTalk.isInTimeline) {TimelineManager.instance.timelineController.SetTimelinePause();}
             yield return new WaitForSeconds(1.0f);
             SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
         }
         if(curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
         
         if(curTalk.answerTalk.Length > 1)

@@ -100,4 +100,15 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
+    //재생중인 모든 효과음 정지
+    public void StopSFXAll()
+    {
+        for(int i = 0; i<SFX.Length; i++)
+        {
+            SFX[i].Stop();
+            SFX[i].clip = null;
+            SFX[i].loop = false;
+        }
+    }
+
 }

@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Phone : MonoBehaviour
 {
+    //모든 씬에 나올 첫번째 톡들
+    public List<Talk> talkList;
+    int talkListIdx = 0;
+
     //톡 스크롤 영역
     public ScrollRect talkScView;
     public Scrollbar talkScBar;
@@ -96,13 +101,26 @@ public class Phone : MonoBehaviour
         phoneFrame = GetComponentsInChildren<RectTransform>()[1].gameObject;
     }
 
+    private void Start()
+    {
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene")
+        {
+            talkListIdx++;
+            curTalk = talkList[talkListIdx];
+        }
+    }
     //폰 보이기
     public void ShowPhone()
     {
-        if (!DialogueManager.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if (!PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
-            DialogueManager.instance.playerAnim.SetBool("walk", false);
-            DialogueManager.instance.playerAnim.SetBool("jump", false);
+            PlayerInfoData.instance.playerAnim.SetBool("walk", false);
+            PlayerInfoData.instance.playerAnim.SetBool("jump", false);
         }
 
         //가장 최근의 톡부터 보이도록 설정
@@ -206,6 +224,7 @@ public class Phone : MonoBehaviour
         StartCoroutine(FitLayout(talkParentRT));
     }
 
+    //플레이어가 보낼 톡 선택지 추가하기
     public void AddSendTalk()
     {
         isPlayerFirstTalk = true;
@@ -278,7 +297,7 @@ public class Phone : MonoBehaviour
 
         if (curSendTalk.nextSendTalk == null && curTalk.isInTimeline)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
     }
 
@@ -336,7 +355,6 @@ public class Phone : MonoBehaviour
         {
             curTalk = curTalk.nextTalk;
         }
-        print("1133545");
     }
 
     IEnumerator ShowPhoneWithMotion()
@@ -391,17 +409,17 @@ public class Phone : MonoBehaviour
         {
             delayTime = curTalk.TalkContexts[talkIdx - 1].TalkSendDelay;
             yield return new WaitForSeconds(1.0f);
-            TimelineManager.instance.SetTimelineStart(curTalk.timelineName);
+            TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
         }
         if (curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalk || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
         {
-            if (curTalk.isInTimeline) { TimelineManager.instance.SetTimelinePause(); }
+            if (curTalk.isInTimeline) { TimelineManager.instance.timelineController.SetTimelinePause(); }
             yield return new WaitForSeconds(1.0f);
             SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
         }
         if (curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
         {
-            TimelineManager.instance.SetTimelineResume();
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
 
         if (curTalk.answerTalk.Length > 1)

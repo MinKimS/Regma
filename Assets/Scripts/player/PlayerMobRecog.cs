@@ -13,7 +13,7 @@ public class PlayerMobRecog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Mob"))
+        if (collision.gameObject.CompareTag("Mob") || collision.gameObject.CompareTag("RandMob"))
         {
             if (hide != null)
             {

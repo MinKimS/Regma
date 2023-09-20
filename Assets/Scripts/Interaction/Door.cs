@@ -25,7 +25,7 @@ public class Door : MonoBehaviour
     public void SetDoorOpen() {
         isOpen = false;
         print("open door");
-        TimelineManager.instance.SetTimelineStart("LT F");
+        TimelineManager.instance.timelineController.SetTimelineStart("LT F");
         interactionObjData.IsOkInteracting = true;
         interactionObjData.GmEventIdx++;
     }
@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
     
     public void StartCurDoorEvent()
     {
-        TimelineManager.instance.SetTimelineStart("DoorEvent 0");
+        TimelineManager.instance.timelineController.SetTimelineStart("DoorEvent 0");
         doorDetailImg.enabled = false;
         EventManager.instance.ActiveEvent(0);
         diaryEvent.SetActive(true);

@@ -294,11 +294,11 @@ public class SmartphoneManager : MonoBehaviour
                     //더 이상 보낼 플레이어가 보낼 톡이 없는 경우 수행
                     if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
                     {
-                        TimelineManager.instance.SetTimelineResume();
+                        TimelineManager.instance.timelineController.SetTimelineResume();
                     }
                     if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline)
                     {
-                        TimelineManager.instance.SetTimelineStart(phone.curTalk.timelineName);
+                        TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
                     }
                     if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
                     {

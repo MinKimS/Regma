@@ -17,10 +17,16 @@ MonoBehaviour:
   runEvent: {fileID: 0}
   TalkContexts:
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
-    talkText: "\uAE4C\uD1A1\uAE4C"
+    talkText: "\uB2D8\uB4E4! \uB2D8\uB4E4! \uC0B4\uC544\uC788\uC74C?!"
     TalkSendDelay: 0
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
-    talkText: "\uD1A1\uD1A1\uD1A1"
+    talkText: "\uC800 \uC9C0\uAE08 \uD654\uC7A5\uC2E4\uC784!"
+    TalkSendDelay: 1
+  - user: {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
+    talkText: "\uC800\uB3C4 \uC0B4\uC544\uC788\uC5B4\uC694!"
+    TalkSendDelay: 1
+  - user: {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
+    talkText: "\uC800\uB294 \uC548\uBC29\uC778 \uAC83 \uAC19\uC544\uC694"
     TalkSendDelay: 1
   answerTalk:
   - {fileID: 11400000, guid: d602063c827d8a24b8ab2f0d0dd119b2, type: 2}

@@ -53,9 +53,11 @@ public class Television : MonoBehaviour
                 print(channelIndex);
 
             }
+            ChgColor();
 
             if (channelIndex >= 2)
             {
+                AudioManager.instance.StopSFX("Game Sound_TV");
                 isOnTv = false;
                 DialogueManager.instance.PlayDlg(dlg[1]);
                 door.checkWorkDo++;
@@ -97,7 +99,7 @@ public class Television : MonoBehaviour
         interactionData.IsRunInteraction = true;
         tvAnim.SetBool("Tv", true);
         isOnTv = true;
-        PlayTvSound();
+        AudioManager.instance.SFXPlayLoop("Game Sound_TV");
     }
 
     // TV 끄기
@@ -106,11 +108,5 @@ public class Television : MonoBehaviour
         interactionData.IsRunInteraction = false;
         tvAnim.SetBool("Tv", false);
         isOnTv = false;
-    }
-
-    void PlayTvSound()
-    {
-        // 오디오 소스의 클립을 TvSound로 설정
-        audioSource.Play();  // 오디오 소스 재생
     }
 }

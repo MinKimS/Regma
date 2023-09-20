@@ -69,7 +69,7 @@ public class Pot : MonoBehaviour
                     bloods[i].GetComponent<SpriteRenderer>().enabled = true;
                     bloods[i].SetActive(false);
                 }
-                TimelineManager.instance.SetTimelineStart("PotT");
+                TimelineManager.instance.timelineController.SetTimelineStart("PotT");
             }
             if(potTr.localPosition.x < -xDestination)
             {
@@ -91,7 +91,7 @@ public class Pot : MonoBehaviour
                     bloods[i].GetComponent<SpriteRenderer>().enabled = true;
                     bloods[i].SetActive(false);
                 }
-                TimelineManager.instance.SetTimelineStart("PotT");
+                TimelineManager.instance.timelineController.SetTimelineStart("PotT");
             }
         }   
     }

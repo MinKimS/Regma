@@ -1484,9 +1484,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1496,8 +1496,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -1510,9 +1510,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: ShowPhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1524,9 +1524,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: StartTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: StartTalkInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2244,7 +2244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208052356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.15, y: 3.2, z: 0}
+  m_LocalPosition: {x: -0.26, y: 3.2, z: 0}
   m_LocalScale: {x: 1.9669495, y: 7.071367, z: 1.3653}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3557,6 +3557,11 @@ GameObject:
   m_Component:
   - component: {fileID: 375188650}
   - component: {fileID: 375188649}
+  - component: {fileID: 375188651}
+  - component: {fileID: 375188652}
+  - component: {fileID: 375188653}
+  - component: {fileID: 375188654}
+  - component: {fileID: 375188655}
   m_Layer: 0
   m_Name: Timeline
   m_TagString: Untagged
@@ -3599,6 +3604,182 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375188651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0950e8b7a42f2994e97396ed8c16d456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutSceneAppearence: {fileID: 1905529425}
+  pd:
+  - {fileID: 1711232010}
+  - {fileID: 99579868}
+  - {fileID: 1396190332}
+  - {fileID: 839405567}
+  - {fileID: 1551148416}
+  - {fileID: 1144042888}
+  - {fileID: 1874944280}
+  - {fileID: 923269171}
+  curPD: 0
+--- !u!114 &375188652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 14bb8f15b229b0a45b23d69feb58e71c, type: 2}
+    - {fileID: 11400000, guid: fcd85bca4ae490f4ba8d2b26982a0745, type: 2}
+    - {fileID: 11400000, guid: 7bdea47cfb4c86f47bab4306cbe66481, type: 2}
+    - {fileID: 11400000, guid: 567481a032261fa42983aaaf25363313, type: 2}
+    - {fileID: 11400000, guid: c7c3dd7a44759484da42992ad02f89d8, type: 2}
+    - {fileID: 11400000, guid: 327ad8f33f4f92b4394fd9857f257bde, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: SetTimelinePause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188648}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: SetTimelinePause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: SetTimelinePause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: TimelineScriptConnect, Assembly-CSharp
+          m_MethodName: LoadingInTimeline
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SampleScene
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &375188653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b513444fd972e49bb09f26848ddccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &375188654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da3b3d754ff822429842e2295f96e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &375188655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d61ca1774735fb43a349dc847497953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &390762188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4165,8 +4346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueList:
-  - {fileID: 11400000, guid: 07aede15bf4949f48b17b2b3d1fbf3de, type: 2}
   - {fileID: 11400000, guid: 7b6287814dc6ba04697f4724d2fb8a1c, type: 2}
+  - {fileID: 11400000, guid: 29021ef06b5b1a6478f09a83a55a48d2, type: 2}
   curDlg: {fileID: 11400000, guid: 7b6287814dc6ba04697f4724d2fb8a1c, type: 2}
   singleDlg: {fileID: 0}
   isSingleDlg: 0
@@ -5697,7 +5878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629142551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.8, y: -13.01, z: 0.7933}
+  m_LocalPosition: {x: 14.8, y: -12.76, z: 0.7933}
   m_LocalScale: {x: 0.43528742, y: 0.43528742, z: 0.43528742}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6038,6 +6219,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
+  JumpCount: 0
 --- !u!50 &667326310
 Rigidbody2D:
   serializedVersion: 4
@@ -6336,8 +6518,8 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1162400078}
-        m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+      - m_Target: {fileID: 375188651}
+        m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
         m_MethodName: SetTimelineStart
         m_Mode: 5
         m_Arguments:
@@ -6758,9 +6940,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6770,8 +6952,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -6784,8 +6966,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -7430,8 +7612,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -8313,7 +8495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050715326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.283024, y: -1.0477645, z: -0.5681942}
+  m_LocalPosition: {x: 8.283024, y: -0.43, z: -0.5681942}
   m_LocalScale: {x: 2.4622, y: 2.4622, z: 2.4622}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9125,6 +9307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193a3c94f71178b47a21bde1c78fc52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkList:
+  - {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
+  - {fileID: 11400000, guid: c354a96e19b9bec419b8f814edcd3418, type: 2}
   talkScView: {fileID: 779740873}
   talkScBar: {fileID: 2039600925}
   talkParent: {fileID: 269601823}
@@ -9438,9 +9623,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9450,8 +9635,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -9476,8 +9661,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -9577,7 +9762,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1162400079}
   - component: {fileID: 1162400078}
-  - component: {fileID: 1162400077}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -9585,123 +9769,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1162400077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162400076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 14bb8f15b229b0a45b23d69feb58e71c, type: 2}
-    - {fileID: 11400000, guid: fcd85bca4ae490f4ba8d2b26982a0745, type: 2}
-    - {fileID: 11400000, guid: 7bdea47cfb4c86f47bab4306cbe66481, type: 2}
-    - {fileID: 11400000, guid: 567481a032261fa42983aaaf25363313, type: 2}
-    - {fileID: 11400000, guid: c7c3dd7a44759484da42992ad02f89d8, type: 2}
-    - {fileID: 11400000, guid: 327ad8f33f4f92b4394fd9857f257bde, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: SetTimelinePause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: TestTimeline
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: SetTimelinePause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: SetTimelinePause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: TimelineScriptConnect, Assembly-CSharp
-          m_MethodName: LoadingInTimeline
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: SampleScene
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1162400078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9714,8 +9781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33a0621f3e4bfe41ab5c46e216f3c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: []
-  cutSceneAppearence: {fileID: 1905529425}
+  timelineController: {fileID: 375188651}
+  tlstate: 3
 --- !u!4 &1162400079
 Transform:
   m_ObjectHideFlags: 0
@@ -9805,7 +9872,7 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1406776369}
+      - m_Target: {fileID: 375188655}
         m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
         m_MethodName: StartTalk
         m_Mode: 1
@@ -10171,7 +10238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207803632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.6, y: -13.24, z: 0}
+  m_LocalPosition: {x: 14.6, y: -12.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11540,9 +11607,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11552,8 +11619,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -11566,9 +11633,21 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: AddSendTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: AddSendTalkInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11578,8 +11657,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -11606,9 +11685,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: ShowPhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11620,9 +11699,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11648,8 +11727,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -11727,7 +11806,6 @@ GameObject:
   - component: {fileID: 1406776368}
   - component: {fileID: 1406776367}
   - component: {fileID: 1406776370}
-  - component: {fileID: 1406776369}
   m_Layer: 5
   m_Name: PhoneCanvas
   m_TagString: Untagged
@@ -11818,18 +11896,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &1406776369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406776364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d61ca1774735fb43a349dc847497953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1406776370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12289,8 +12355,8 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1162400078}
-        m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+      - m_Target: {fileID: 375188651}
+        m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
         m_MethodName: SetTimelineStart
         m_Mode: 5
         m_Arguments:
@@ -12680,9 +12746,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12692,8 +12758,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -12706,9 +12772,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: AddSendTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: AddSendTalkInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12718,8 +12784,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -12746,9 +12812,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: StartTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: StartTalkInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12758,8 +12824,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -12772,9 +12838,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: ShowPhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12786,8 +12852,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -12800,9 +12866,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13140,6 +13206,52 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1604196670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604196672}
+  - component: {fileID: 1604196671}
+  m_Layer: 0
+  m_Name: PlayerInfoData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1604196671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604196670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d49cb22bf11a414ba4e29c41ef5a4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTr: {fileID: 0}
+  playerAnim: {fileID: 0}
+--- !u!4 &1604196672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604196670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1620223280
 GameObject:
   m_ObjectHideFlags: 0
@@ -13198,6 +13310,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
+  JumpCount: 2
 --- !u!50 &1620223283
 Rigidbody2D:
   serializedVersion: 4
@@ -13275,7 +13388,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c7c6d529b86cd924d81dc33b04e08ca3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -14150,7 +14263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709474736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29, y: -7.6, z: 0.7932848}
+  m_LocalPosition: {x: 29, y: -6.9822354, z: 0.7932848}
   m_LocalScale: {x: 0.68971246, y: 0.68971246, z: 0.68971246}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14198,7 +14311,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 6f310c0737f8dba468c8d3222e05ebf6, type: 3}
   m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   m_FlipX: 0
@@ -14333,8 +14446,8 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -14345,9 +14458,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14373,9 +14486,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: ShowPhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14387,9 +14500,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: AddSendTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: AddSendTalkInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14399,8 +14512,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -14413,9 +14526,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14427,8 +14540,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -14439,9 +14552,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14958,8 +15071,8 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1162400078}
-        m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+      - m_Target: {fileID: 375188651}
+        m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
         m_MethodName: SetTimelineStart
         m_Mode: 5
         m_Arguments:
@@ -15431,9 +15544,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15443,8 +15556,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -15457,9 +15570,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15471,8 +15584,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelineEnd
           m_Mode: 1
           m_Arguments:
@@ -15485,9 +15598,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: AddVideoTalk
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: AddVideoTalkInTimelin
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
@@ -15499,9 +15612,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: HidePhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: HidePhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15523,9 +15636,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 458409030}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: PlayDlg
+        - m_Target: {fileID: 375188654}
+          m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
+          m_MethodName: PlayDlgTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15535,8 +15648,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1162400078}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: SetTimelinePause
           m_Mode: 1
           m_Arguments:
@@ -15549,9 +15662,9 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1139636124}
-          m_TargetAssemblyTypeName: Phone, Assembly-CSharp
-          m_MethodName: ShowPhone
+        - m_Target: {fileID: 375188653}
+          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
+          m_MethodName: ShowPhoneInTimeline
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15738,7 +15851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887198431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6801597, y: -3.0474825, z: 0}
+  m_LocalPosition: {x: 0.270164, y: 6.8, z: 0}
   m_LocalScale: {x: 1.8639413, y: 6.7010427, z: 1.2938}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16602,7 +16715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945959549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6170912, y: -0.61917824, z: 0}
+  m_LocalPosition: {x: 1.2070955, y: -0.61917824, z: 0}
   m_LocalScale: {x: 1.9968295, y: 6.8448906, z: 1.6965}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18390,3 +18503,4 @@ MonoBehaviour:
   sfxList:
   - {fileID: 8300000, guid: 3b35c42a0bb074d48b0f863b9a046c02, type: 3}
   - {fileID: 8300000, guid: f7356c7420cb7994cb2d0c37d4ce233a, type: 3}
+  - {fileID: 8300000, guid: 9363ffd55d281794693d52aae972454d, type: 3}

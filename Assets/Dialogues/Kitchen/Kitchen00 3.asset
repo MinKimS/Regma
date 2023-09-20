@@ -16,6 +16,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uBC18\uC751\uBC18\uC751"
+    dlgTexts: "\uB2E4\uB4E4 \uC0B4\uC544\uC788\uC5C8\uAD6C\uB098"
     eventType: 0
-  nextDlg: {fileID: 0}
+  - speakerIdx: 0
+    dlgTexts: ....
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uBB50 \uC5B4\uB54C.. \uC77C\uB2E8 \uC0B0 \uC0AC\uB78C\uC740 \uC0B4\uC544\uC57C\uC9C0."
+    eventType: 0
+  nextDlg: {fileID: 11400000, guid: ba107e1e3570c334b8b96c9d484b2b53, type: 2}

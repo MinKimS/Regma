@@ -6,6 +6,7 @@ public class DoorController : MonoBehaviour
 {
     public void ExitDoor()
     {
+        AudioManager.instance.StopSFXAll();
         LoadingManager.LoadScene("Bathroom");
     }
 }

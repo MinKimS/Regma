@@ -73,9 +73,8 @@ public class HangedObj : MonoBehaviour
         }
     }
 
-    IEnumerator ResetRotation()
+    void ResetRotation()
     {
-        yield return new WaitForSeconds(5f);
         isStopping = false;
         isOkHanging = true;
     }
@@ -86,6 +85,6 @@ public class HangedObj : MonoBehaviour
         isSwing = false;
         rb.velocity = Vector2.zero;
         isStopping = true;
-        StartCoroutine(ResetRotation());
+        ResetRotation();
     }
 }

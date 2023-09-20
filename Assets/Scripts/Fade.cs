@@ -24,7 +24,7 @@ public class Fade : MonoBehaviour
 
     IEnumerator FadeOut(float time)
     {
-        TimelineManager.instance.SetTimelinePause();
+        TimelineManager.instance.timelineController.SetTimelinePause();
         float fadeValue = 0;
         while(fadeValue < 1.0f)
         {
@@ -32,12 +32,12 @@ public class Fade : MonoBehaviour
             yield return new WaitForSeconds(time);
             blackImg.color = new Color(0,0,0, fadeValue);
         }
-        TimelineManager.instance.SetTimelineResume();
+        TimelineManager.instance.timelineController.SetTimelineResume();
     }
 
     IEnumerator FadeIn(float time)
     {
-        TimelineManager.instance.SetTimelinePause();
+        TimelineManager.instance.timelineController.SetTimelinePause();
         float fadeValue = 1;
         while(fadeValue > 0.0f)
         {
@@ -45,6 +45,6 @@ public class Fade : MonoBehaviour
             yield return new WaitForSeconds(time);
             blackImg.color = new Color(0,0,0, fadeValue);
         }
-        TimelineManager.instance.SetTimelineResume();
+        TimelineManager.instance.timelineController.SetTimelineResume();
     }
 }

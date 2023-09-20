@@ -7,7 +7,7 @@ public class ScriptConnect : MonoBehaviour
     public void ShowDlgWithPause()
     {
         DialogueManager.instance.PlayDlg();
-        TimelineManager.instance.SetTimelinePause();
+        TimelineManager.instance.timelineController.SetTimelinePause();
     }
     public void ShowDlgWithoutPause()
     {
@@ -37,7 +37,7 @@ public class ScriptConnect : MonoBehaviour
 
     public void StartNextTimeline(int num)
     {
-        TimelineManager.instance.SetTimelineStart(num);
+        TimelineManager.instance.timelineController.SetTimelineStart(num);
     }
 
     public void TestPoint(string text)
