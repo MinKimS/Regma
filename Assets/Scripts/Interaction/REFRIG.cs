@@ -31,7 +31,7 @@ public class REFRIG : MonoBehaviour
         if(!isOpened)
         {
             //어댑터 고장내기 전
-            if (!rPower.IsBroken)
+            if (!rPower.isBroken)
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[0]);
                 if(!isActivateEvent)

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class REFRIGPower : MonoBehaviour
 {
-    bool isBroken = false;
+    [HideInInspector]
+    public bool isBroken = false;
     bool isOkPressKey = false;
 
     public SpriteRenderer[] sp;
@@ -21,9 +22,6 @@ public class REFRIGPower : MonoBehaviour
     public Transform REFRIGTr;
     public Transform pTr;
     public CinemachineVirtualCamera vCam;
-
-    public bool IsBroken
-    { get { return isBroken; } }
 
     public void Manipulation()
     {
