@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class REFRIGPower : MonoBehaviour
 
     InteractionObjData iod;
     public GameObject mobAppearEvent;
+
+    public Transform REFRIGTr;
+    public Transform pTr;
+    public CinemachineVirtualCamera vCam;
 
     public bool IsBroken
     { get { return isBroken; } }
@@ -119,5 +124,22 @@ public class REFRIGPower : MonoBehaviour
         LightOff(5);
 
         isOkPressKey = true;
+    }
+
+    //냉장고 열기
+    public void REFRIGOpen()
+    {
+        REFRIGTr.GetComponent<Animator>().SetBool("Open", true);
+        AudioManager.instance.SFXPlay("주방_냉장고 문 열림");
+        isBroken = true;
+        vCam.Follow = REFRIGTr;
+        Camera.main.GetComponent<CameraController>().target = REFRIGTr;
+        Invoke("ResetCameraView", 1f);
+    }
+
+    void ResetCameraView()
+    {
+        vCam.Follow = pTr;
+        Camera.main.GetComponent<CameraController>().target = pTr;
     }
 }
