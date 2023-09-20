@@ -6,17 +6,28 @@ using UnityEngine.Playables;
 public class PTimeLine : MonoBehaviour
 {
     public PlayableDirector playableDirector;
+    public GameObject refri2Object; // Refri2 태그를 가진 단일 오브젝트
 
     private bool isCollisionActive = false;
     private bool isCollisionActive2 = false;
-    private bool hasOpened = false; // E 키로 이미 캔버스를 열었는지 확인하는 변수
+    private bool Interaction1 = false; // E 키로 이미 캔버스를 열었는지 확인하는 변수
+    private bool isTimelinePlayed = false; // 타임라인이 실행 중인지 여부를 확인하는 변수
+
+    void Start()
+    {
+        // Refri2 태그를 가진 오브젝트를 비활성화합니다.
+        if (refri2Object != null)
+        {
+            refri2Object.SetActive(false);
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
             isCollisionActive = true;
-           // print("isCollisionActive" + isCollisionActive);
+            //print("isCollisionActive" + isCollisionActive);
         }
     }
 
@@ -24,50 +35,36 @@ public class PTimeLine : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
-
-            hasOpened = false;
-
+            //hasOpened = false;
+            Interaction1 = false;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-       
-            if (other.CompareTag("Player") && gameObject.CompareTag("Refri2"))
-            {
-                isCollisionActive2 = true;
-                print("isCollisionActive2" + isCollisionActive2);
-            }
-
-        
-        
+        if (other.CompareTag("Player") && gameObject.CompareTag("Refri2"))
+        {
+            isCollisionActive2 = true;
+            print("isCollisionActive2" + isCollisionActive2);
+        }
     }
 
     void Update()
     {
         if (isCollisionActive && Input.GetKeyDown(KeyCode.E))
         {
-            hasOpened = true;
-            print("hasOpened" + hasOpened);
-
-            
+            Interaction1 = true;
+            refri2Object.SetActive(true);
         }
 
-        if (!hasOpened && isCollisionActive2 && Input.GetKeyDown(KeyCode.E))
+        if (!isTimelinePlayed && !Interaction1 && Input.GetKeyDown(KeyCode.E) && isCollisionActive2)
         {
-            //print("dd");
             // 타임라인 실행
-
             playableDirector.gameObject.SetActive(true);
             playableDirector.Play();
 
-            GameObject[] refri2Objects = GameObject.FindGameObjectsWithTag("Refri2");
-            foreach (var refri2Object in refri2Objects)
-            {
-                refri2Object.SetActive(false);
-            }
-
-
+            isTimelinePlayed = true; // 타임라인이 실행 중임을 표시합니다.
+            
         }
     }
 }
