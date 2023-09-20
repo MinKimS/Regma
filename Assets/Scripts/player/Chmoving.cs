@@ -11,7 +11,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
-    private float jumpForce = 5f;
+    private float jumpForce = 8f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
@@ -20,12 +20,15 @@ public class Chmoving : MonoBehaviour
     private bool isMoving = false;
     private bool isJumpingWithMovement = false;
 
+
+    int jumpCnt; // 0이 되면 더 이상 점프 x
+
     bool isGround;
     [SerializeField] Transform pos;
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
     bool isJumping = false;
-    int JumpCount = 5;
+    public int JumpCount;
 
     // PlayerHanging pHanging;
 
@@ -36,6 +39,7 @@ public class Chmoving : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
+        jumpCnt = JumpCount;
         //pHanging = GetComponent<PlayerHanging>();
     }
 
@@ -50,35 +54,49 @@ public class Chmoving : MonoBehaviour
 
         if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.phone.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End) //&& !pHanging.IsHanging && isOkPlayerMove)
         {
-            if (isGround && Input.GetKeyDown(KeyCode.Space))
+            if (isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
             {
                 isJumping = true;
                 rb.velocity = Vector2.up * jumpForce;
+                //jumpCnt--;
+                //JumpCount = jumpCnt;
                 PlayJumpSound(); // 점프 사운드 재생
             }
 
-            if (!isGround && Input.GetKeyDown(KeyCode.Space))
+            if (!isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
             {
                 isJumping = true;
+                //jumpCnt--;
                 rb.velocity = Vector2.up * jumpForce;
                 PlayJumpSound(); // 점프 사운드 재생
             }
 
             if (isGround)
             {
-                JumpCount = 0;
+                //JumpCount = 0;
+                jumpCnt = JumpCount;
+
+
             }
 
             if (Input.GetKeyUp(KeyCode.Space) && isJumping)
             {
-                JumpCount++;
+                //JumpCount++;
+                jumpCnt--;
                 isJumping = false;
             }
 
-            if (JumpCount > 0)
+            if (isJumping)
             {
                 animator.SetBool("jump", true);
             }
+
+            //if (JumpCount > 0)
+            //{
+            //    print("jumpCnt" + jumpCnt);
+            //    print(JumpCount);
+            //    animator.SetBool("jump", true);
+            //}
             else
             {
                 animator.SetBool("jump", false);
@@ -239,12 +257,12 @@ public class Chmoving : MonoBehaviour
     bool isMakingSound = true;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
+        if (collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
         {
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
             isMakingSound = false;
         }
-        if(!isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
+        if (!isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
         {
             AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
             isMakingSound = true;

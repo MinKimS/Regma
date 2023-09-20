@@ -38,7 +38,7 @@ public class PlayerHanging : MonoBehaviour
 
     public void StartPlayerAnimation()
     {
-        if (animator.GetBool("jump"))
+        if (animator.GetBool("jump") || animator.GetBool("walk"));
         {
             animator.SetBool("walk", false);
             animator.SetBool("jump", false);
