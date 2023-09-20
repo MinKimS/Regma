@@ -13,6 +13,9 @@ public class PTimeLine : MonoBehaviour
     private bool Interaction1 = false; // E 키로 이미 캔버스를 열었는지 확인하는 변수
     private bool isTimelinePlayed = false; // 타임라인이 실행 중인지 여부를 확인하는 변수
 
+    //냉장고 아이템 얻기 가능하게
+    public REFRIGPower power;
+
     void Start()
     {
         // Refri2 태그를 가진 오브젝트를 비활성화합니다.
@@ -64,7 +67,8 @@ public class PTimeLine : MonoBehaviour
             playableDirector.Play();
 
             isTimelinePlayed = true; // 타임라인이 실행 중임을 표시합니다.
-            
+
+            power.isBroken = true;
         }
     }
 }

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Television : MonoBehaviour
 {
     Animator tvAnim;
     public AudioSource audioSource;
-    
+    public Light2D tvLight;
 
     public Dialogue[] dlg;
     public Sprite[] channelSprite;
@@ -23,6 +24,7 @@ public class Television : MonoBehaviour
     private void Start()
     {
         interactionData.IsOkInteracting = true;
+        tvLight.intensity = 0f;
     }
 
     private void Update()
@@ -63,6 +65,25 @@ public class Television : MonoBehaviour
         }
     }
 
+    public void ChgColor()
+    {
+        switch(channelIndex)
+        {
+            case 0:
+                tvLight.color = Color.white;
+                break;
+            case 1:
+                tvLight.color = Color.green;
+                break;
+            case 2:
+                tvLight.color = Color.blue;
+                break;
+            default:
+                tvLight.color = Color.red;
+                break;
+        }
+    }
+
     // 책 읽기 전 TV 켜기
     public void TVOnBeforeReadingDiary()
     {
@@ -72,6 +93,7 @@ public class Television : MonoBehaviour
     // 책 읽은 후 TV 켜기
     public void TVOnAfterReadingDairy()
     {
+        tvLight.intensity = 2.5f;
         interactionData.IsRunInteraction = true;
         tvAnim.SetBool("Tv", true);
         isOnTv = true;

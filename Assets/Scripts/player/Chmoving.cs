@@ -250,11 +250,11 @@ public class Chmoving : MonoBehaviour
         if (collision.CompareTag("SlowObj"))
         {
             moveSpeed = 2f;
-            AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
+            AudioManager.instance.SFXPlay("주방_개수대 입장");
         }
     }
 
-    bool isMakingSound = true;
+    bool isMakingSound = false;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
@@ -262,7 +262,7 @@ public class Chmoving : MonoBehaviour
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
             isMakingSound = false;
         }
-        if (!isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
+        if (collision.CompareTag("SlowObj") && !isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
         {
             AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
             isMakingSound = true;
