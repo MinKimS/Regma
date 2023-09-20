@@ -336,6 +336,7 @@ public class Phone : MonoBehaviour
         {
             curTalk = curTalk.nextTalk;
         }
+        print("1133545");
     }
 
     IEnumerator ShowPhoneWithMotion()

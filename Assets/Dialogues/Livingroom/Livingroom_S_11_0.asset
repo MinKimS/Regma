@@ -15,6 +15,12 @@ MonoBehaviour:
   speakers: []
   sentences:
   - speakerIdx: -1
+    dlgTexts: "\uAC11\uC790\uAE30 \uD1A1\uC73C\uB85C \uC601\uC0C1\uC774 \uC654\uB2E4."
+    eventType: 0
+  - speakerIdx: -1
+    dlgTexts: "\uADF8 \uC601\uC0C1\uC5D0\uB294"
+    eventType: 0
+  - speakerIdx: -1
     dlgTexts: "\uC544\uD638\uAC00\_\uD504\uB77C\uC774\uD32C\uC5D0\_\uB2F4\uACA8\uC838\_\uC788\uB2E4."
     eventType: 0
   - speakerIdx: -1

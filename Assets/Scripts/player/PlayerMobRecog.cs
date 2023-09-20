@@ -11,15 +11,16 @@ public class PlayerMobRecog : MonoBehaviour
         hide = GetComponent<PlayerHide>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Mob"))
+        if (collision.gameObject.CompareTag("Mob"))
         {
-            if(hide != null)
+            if (hide != null)
             {
-                if(!hide.isHide)
+                if (!hide.isHide)
                 {
                     print("be found player");
+                    AudioManager.instance.SFXPlay("주방_괴생명체1 도원발견");
                 }
             }
         }

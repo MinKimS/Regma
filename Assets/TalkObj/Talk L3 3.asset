@@ -27,5 +27,5 @@ MonoBehaviour:
     TalkSendDelay: 2
   answerTalk:
   - {fileID: 11400000, guid: c43ce88dc3ebdc24e842b607e3542bcc, type: 2}
-  nextTalk: {fileID: 0}
+  nextTalk: {fileID: 11400000, guid: eed78c760a1e8d2448da71db1d5a2b9a, type: 2}
   isInTimeline: 1

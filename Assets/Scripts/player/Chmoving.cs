@@ -227,11 +227,27 @@ public class Chmoving : MonoBehaviour
 
     //물에서 속도 감소
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("SlowObj"))
         {
             moveSpeed = 2f;
+            AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
+        }
+    }
+
+    bool isMakingSound = true;
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            AudioManager.instance.StopSFX("주방_개수대 안 걷기");
+            isMakingSound = false;
+        }
+        if(!isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
+        {
+            AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
+            isMakingSound = true;
         }
     }
 
@@ -240,6 +256,7 @@ public class Chmoving : MonoBehaviour
         if (collision.CompareTag("SlowObj"))
         {
             moveSpeed = 5f;
+            AudioManager.instance.StopSFX("주방_개수대 안 걷기");
         }
     }
 

@@ -18,6 +18,7 @@ public class LoadingManager : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
+        print(nextScene + "으로 이동");
         SceneManager.LoadScene("LoadingScene");
     }
 

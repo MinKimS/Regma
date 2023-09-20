@@ -23,16 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bath.unity
     guid: 639494aff98850747b8469eec773cd9d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ending.unity
     guid: d5691629579e1124ab8e457c57a68e9e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainRoom.unity
     guid: 4256fdbb782fac5489fc43221335b174
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Title.unity
     guid: 7427a4d9c6302aa4bbd0d82486a7460b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Veranda.unity
     guid: a148218eeb3972a4085d3f5aeb3136e0
   m_configObjects: {}

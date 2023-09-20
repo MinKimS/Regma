@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
         interactionObjData = GetComponent<InteractionObjData>();
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Return) && checkWorkDo > 2 && isOpen)
+        if(DialogueManager.instance._dlgState == DialogueManager.DlgState.End && checkWorkDo > 2 && isOpen)
         {SetDoorOpen();}
     }
 
@@ -26,6 +26,8 @@ public class Door : MonoBehaviour
         isOpen = false;
         print("open door");
         TimelineManager.instance.SetTimelineStart("LT F");
+        interactionObjData.IsOkInteracting = true;
+        interactionObjData.GmEventIdx++;
     }
 
     public void ShowDoorImg()
@@ -43,7 +45,7 @@ public class Door : MonoBehaviour
     {
         TimelineManager.instance.SetTimelineStart("DoorEvent 0");
         doorDetailImg.enabled = false;
-        EventManager.instance.ActiveEvent(2);
+        EventManager.instance.ActiveEvent(0);
         diaryEvent.SetActive(true);
         interactionObjData.IsOkInteracting = false;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class SmartphoneManager : MonoBehaviour
 {
@@ -35,11 +36,6 @@ public class SmartphoneManager : MonoBehaviour
 
     }
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            LoadingManager.LoadScene("Kitchen");
-        }
-
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !inven.filesInven.IsInvenItemActive)
         {
             //폰 열기
@@ -318,6 +314,38 @@ public class SmartphoneManager : MonoBehaviour
                 if(inven.IsOpenFiles) { inven.SetFilesActive(false);}
                 if(inven.IsOpenPictures) { inven.SetPicsActive(false);}
             }
+        }
+    }
+
+    public void SetInvenItem(ItemData item)
+    {
+        if (item == null)
+        {
+            print("No Item Data.");
+        }
+        //비어있는 슬롯에만 저장
+        for (int i = 0; i < inven.filesInven.slotList.Count; i++)
+        {
+            if (!inven.filesInven.slotDataList[i].isFull)
+            {
+                SetItem(i, item);
+                inven.filesInven.slotDataList[i].isFull = true;
+                inven.maxFilesSlot++;
+                break;
+            }
+        }
+    }
+
+    private void SetItem(int i, ItemData item)
+    {
+        if (item != null)
+        {
+            ItemData itemData = inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+            itemData.itemName = item.itemName;
+            itemData.itemImg = item.itemImg;
+            itemData.itemID = item.itemID;
+            inven.filesInven.slotDataList[i].item = itemData;
+            inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }
     }
 }

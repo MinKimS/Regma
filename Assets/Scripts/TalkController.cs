@@ -8,6 +8,7 @@ public class TalkController : MonoBehaviour
     //톡 시작
     public void StartTalk()
     {
+
         StartCoroutine(OutputOtherUserTalk());
     }
 

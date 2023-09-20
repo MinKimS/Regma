@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class MoveAlongThePath : MonoBehaviour
@@ -35,8 +34,8 @@ public class MoveAlongThePath : MonoBehaviour
 
     private void Awake()
     {
-        pathFinder = GetComponent<PathFinder>();
-        rb = GetComponent<Rigidbody2D>();
+        pathFinder = GetComponentInChildren<PathFinder>();
+        rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     private void Start()
@@ -99,6 +98,7 @@ public class MoveAlongThePath : MonoBehaviour
             //bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
             TraceToTarget();
 
+            
             //disToNode = (node.transform.position - pos.position).magnitude;
 
             //¡°«¡ ±‚¥… ¿œ¥‹ ≤®µ“

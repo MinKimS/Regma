@@ -244,6 +244,7 @@ public class ChmovingKitchen : MonoBehaviour
         if (collision.CompareTag("SlowObj"))
         {
             moveSpeed = 2f;
+            AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
         }
     }
 
@@ -252,6 +253,7 @@ public class ChmovingKitchen : MonoBehaviour
         if (collision.CompareTag("SlowObj"))
         {
             moveSpeed = 5f;
+            AudioManager.instance.StopSFX("주방_개수대 안 걷기");
         }
     }
 

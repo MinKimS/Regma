@@ -20,16 +20,10 @@ public class PathFinder : MonoBehaviour
 
     private void Update()
     {
-        foreach (Node node in nodes)
-        {
-            node.IsWay(false);
-        }
-
         Stack<Node> path = PathFinding(targetPos.position);
         while (path.Count > 0)
         {
             Node node = path.Pop();
-            node.IsWay(true);
         }
     }
 

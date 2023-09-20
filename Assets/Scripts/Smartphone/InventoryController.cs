@@ -34,7 +34,8 @@ public class InventoryController : MonoBehaviour
     //얻은 사진 아이템 수
     int maxPicSlot = 0;
     //얻은 파일 아이템 수
-    int maxFilesSlot = 0;
+    [HideInInspector]
+    public int maxFilesSlot = 0;
     //인벤의 첫번째 라인의 첫번째 슬롯 번호
     int firstLineFirstNum = 1;
     //인벤의 마지막 라인의 첫번째 슬롯 번호

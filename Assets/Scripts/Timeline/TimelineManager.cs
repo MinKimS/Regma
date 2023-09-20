@@ -28,11 +28,6 @@ public class TimelineManager : MonoBehaviour
             tlstate = value;
         }
     }
-    public int CurPD{
-        get{
-            return curPD;
-        }
-    }
 
     private void Awake() {
         if(instance == null)
@@ -43,18 +38,36 @@ public class TimelineManager : MonoBehaviour
         else Destroy(gameObject);
     }
     private void Start() {
-        SetPlayableDirector();
         SceneManager.sceneLoaded += LoadSceneEvent;
 
         playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
 
+        SetPlayableDirector();
         SetTimelineStart(0);
+    }
+
+    //For test
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            LoadingManager.LoadScene("SampleScene");
+        }
+        if(Input.GetKeyDown(KeyCode.F3))
+        {
+            LoadingManager.LoadScene("Kitchen");
+        }
+        if(Input.GetKeyDown(KeyCode.F4))
+        {
+            LoadingManager.LoadScene("Bathroom");
+        }
     }
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
         if(scene.name != "LoadingScene")
         {
+            SetPlayableDirector();
             SetTimelineStart(0);
         }
     }
@@ -115,5 +128,6 @@ public class TimelineManager : MonoBehaviour
     {
         pd[curPD].Stop();
         tlstate = TlState.End;
+        print(tlstate);
     }
 }

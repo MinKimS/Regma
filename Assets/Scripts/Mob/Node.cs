@@ -28,28 +28,7 @@ public class Node : MonoBehaviour
 
     //------추후 지움------
 #if UNITY_EDITOR
-    private LineRenderer line;
-    public void IsWay(bool status)
-    {
-        if (line == null)
-            line = gameObject.AddComponent<LineRenderer>();
-        line.enabled = false;
 
-        if (status)
-        {
-            line.enabled = true;
-            line.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-            line.startColor = Color.yellow;
-            line.endColor = Color.yellow;
-            line.startWidth = 0.1f;
-            line.endWidth = 0.1f;
-            line.positionCount = 2;
-            line.useWorldSpace = true;
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, parent.transform.position);
-
-        }
-    }
 
     private void OnDrawGizmos()
     {

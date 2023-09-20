@@ -41,9 +41,6 @@ public class Inventory : MonoBehaviour
         if(pot.GmEventIdx<1)
         {
             pot.GmEventIdx++;
-
-            potEvent[0].SetActive(true);
-            potEvent[1].SetActive(true);
         }
         if(tv.GmEventIdx < 1) {tv.GmEventIdx++;}
         diary.gameObject.SetActive(false);

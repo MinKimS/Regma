@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c530335f4f62ad4aafa0c03d1fcc11e, type: 3}
   m_Name: Dowon
   m_EditorClassIdentifier: 
+  speakerID: 0
   speakerName: "\uB3C4\uC6D0"
-  speakerSprite: {fileID: 21300000, guid: b3bfd68cca41a4d4ba587790ecb5d7c5, type: 3}
+  speakerSprite: {fileID: 21300000, guid: d17547e21f5347647a108165c2048d3e, type: 3}
+  talkName: 
+  talkProfileSp: {fileID: 0}

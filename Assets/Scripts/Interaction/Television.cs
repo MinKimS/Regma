@@ -52,7 +52,7 @@ public class Television : MonoBehaviour
 
             }
 
-            if (channelIndex == 2)
+            if (channelIndex >= 2)
             {
                 isOnTv = false;
                 DialogueManager.instance.PlayDlg(dlg[1]);

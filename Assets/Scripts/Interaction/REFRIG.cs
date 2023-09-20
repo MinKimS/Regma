@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class REFRIG : MonoBehaviour
 {
     InteractionObjData iod;
     public REFRIGPower rPower;
     public GameObject mobAppearEvent;
+    public ItemData squid;
 
     bool isOpened = false;
     bool isActivateEvent = false;
@@ -44,6 +44,7 @@ public class REFRIG : MonoBehaviour
             else
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[1]);
+                SmartphoneManager.instance.SetInvenItem(squid);
                 isOpened = true;
                 iod.IsOkInteracting = false;
             }

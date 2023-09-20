@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
   m_Name: Talk K 02
   m_EditorClassIdentifier: 
-  afterEndTalk: 0
+  afterEndTalk: 2
   timelineName: 
   runEvent: {fileID: 0}
   TalkContexts:
@@ -24,5 +24,5 @@ MonoBehaviour:
     TalkSendDelay: 1
   answerTalk:
   - {fileID: 11400000, guid: d602063c827d8a24b8ab2f0d0dd119b2, type: 2}
-  nextTalk: {fileID: 0}
+  nextTalk: {fileID: 11400000, guid: e16ae724c8e84b34c82e65a67f5a835b, type: 2}
   isInTimeline: 0
