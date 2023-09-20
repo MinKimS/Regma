@@ -1231,7 +1231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3.6942, y: -3.595459}
+  m_AnchoredPosition: {x: 3.6942, y: -3.595398}
   m_SizeDelta: {x: 452.3883, y: -197.3608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87917003
@@ -6038,6 +6038,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
+  JumpCount: 0
 --- !u!50 &667326310
 Rigidbody2D:
   serializedVersion: 4
@@ -13198,6 +13199,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
+  JumpCount: 5
 --- !u!50 &1620223283
 Rigidbody2D:
   serializedVersion: 4
