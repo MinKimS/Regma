@@ -20,15 +20,12 @@ public class DisMonster : MonoBehaviour
         // 모든 몬스터 오브젝트를 검사하여 가장 가까운 몬스터를 찾습니다.
         foreach (GameObject monsterObject in monsterObjects)
         {
-            if (monsterObject.activeSelf) // 몬스터 오브젝트가 활성화된 경우에만 처리합니다.
-            {
-                float distanceToMonster = Vector2.Distance(transform.position, monsterObject.transform.position);
+            float distanceToMonster = Vector2.Distance(transform.position, monsterObject.transform.position);
 
-                // 현재 몬스터와의 거리가 가장 가까운 몬스터와의 거리보다 가깝다면
-                if (distanceToMonster < closestDistance)
-                {
-                    closestDistance = distanceToMonster; // 가장 가까운 몬스터로 설정합니다.
-                }
+            // 활성화된 몬스터 오브젝트만 고려합니다.
+            if (monsterObject.activeSelf && distanceToMonster < closestDistance)
+            {
+                closestDistance = distanceToMonster; // 가장 가까운 활성화된 몬스터로 설정합니다.
             }
         }
 

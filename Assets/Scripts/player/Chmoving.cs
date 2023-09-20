@@ -174,7 +174,7 @@ public class Chmoving : MonoBehaviour
         //    currentMoveSpeed = moveSpeed * Input.GetAxisRaw("Horizontal"); // 일반적인 움직임 속도
         //}
 
-        print("일반 속도" + currentMoveSpeed);
+        //print("일반 속도" + currentMoveSpeed);
     }
 
 

@@ -20,7 +20,6 @@ TagManager:
   - HideObj
   - Refri2
   - HideSereal
-  - RandMob
   layers:
   - Default
   - TransparentFX

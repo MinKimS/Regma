@@ -25,21 +25,31 @@ public class PTimeLine : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
-        {
-            isCollisionActive = true;
-            //print("isCollisionActive" + isCollisionActive);
-        }
-    }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
+    //    {
+    //        Interaction1 = false;
+    //    }
+    //}
 
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
-            //hasOpened = false;
             Interaction1 = false;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interaction1 = true;
+                refri2Object.SetActive(true);
+            }
         }
     }
 
@@ -54,21 +64,18 @@ public class PTimeLine : MonoBehaviour
 
     void Update()
     {
-        if (isCollisionActive && Input.GetKeyDown(KeyCode.E))
+        if (!isTimelinePlayed) // 타임라인이 실행 중이 아닌 경우에만 작동
         {
-            Interaction1 = true;
-            refri2Object.SetActive(true);
-        }
+            if (!Interaction1 && Input.GetKeyDown(KeyCode.E) && isCollisionActive2)
+            {
+                // 타임라인 실행
+                playableDirector.gameObject.SetActive(true);
+                playableDirector.Play();
 
-        if (!isTimelinePlayed && !Interaction1 && Input.GetKeyDown(KeyCode.E) && isCollisionActive2)
-        {
-            // 타임라인 실행
-            playableDirector.gameObject.SetActive(true);
-            playableDirector.Play();
+                isTimelinePlayed = true; // 타임라인이 실행 중임을 표시합니다.
 
-            isTimelinePlayed = true; // 타임라인이 실행 중임을 표시합니다.
-
-            power.isBroken = true;
+                power.isBroken = true;
+            }
         }
     }
 }
