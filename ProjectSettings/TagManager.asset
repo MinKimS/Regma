@@ -18,6 +18,7 @@ TagManager:
   - Mirror
   - L
   - HideObj
+  - Refri2
   layers:
   - Default
   - TransparentFX
