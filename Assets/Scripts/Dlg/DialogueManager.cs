@@ -53,9 +53,6 @@ public class DialogueManager : MonoBehaviour
     private Color imgToDark = new Color32(100,100,100,255);
     private Color imgToBright = new Color32(255,255,255,255);
 
-    [HideInInspector]
-    //플레이어 애니메이션
-    public Animator playerAnim;
 
     //대화창 기본 위치
     private Vector2 dlgPos;
@@ -95,7 +92,6 @@ public class DialogueManager : MonoBehaviour
         //curDlg = dialogueList[1];
         dlgPos = DlgRT.anchoredPosition;
         SceneManager.sceneLoaded += SceneChangeEvent;
-        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
 
         SceneManager.sceneLoaded += LoadSceneEvent;
     }
@@ -176,10 +172,10 @@ public class DialogueManager : MonoBehaviour
     }
     private void DialogueShow(Dialogue dlg)
     {
-        if(!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if(!PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
-            playerAnim.SetBool("walk", false);
-            playerAnim.SetBool("jump", false);
+            PlayerInfoData.instance.playerAnim.SetBool("walk", false);
+            PlayerInfoData.instance.playerAnim.SetBool("jump", false);
         }
         if(dlg.sentences[setenceIdx].speakerIdx == -1)
         {

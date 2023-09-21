@@ -108,5 +108,6 @@ public class Television : MonoBehaviour
         interactionData.IsRunInteraction = false;
         tvAnim.SetBool("Tv", false);
         isOnTv = false;
+        AudioManager.instance.StopSFX("Game Sound_TV");
     }
 }

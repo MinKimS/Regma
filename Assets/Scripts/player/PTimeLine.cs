@@ -47,8 +47,10 @@ public class PTimeLine : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                print("Ãæµ¹");
                 Interaction1 = true;
                 refri2Object.SetActive(true);
+                power.isBroken = true;
             }
         }
     }
