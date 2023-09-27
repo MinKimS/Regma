@@ -11,7 +11,7 @@ public class MoveAlongThePath : MonoBehaviour
     Node node = null;
     Node nextNode = null;
 
-    Transform pos;
+    SpriteRenderer sp;
 
     //for jump
     Rigidbody2D rb;
@@ -24,7 +24,7 @@ public class MoveAlongThePath : MonoBehaviour
     //bool isJumped = false;
     //public float disToNode;
 
-    bool isTrace = false;
+    public bool isTrace = false;
 
     public bool IsTrace
     {
@@ -36,13 +36,13 @@ public class MoveAlongThePath : MonoBehaviour
     {
         pathFinder = GetComponentInChildren<PathFinder>();
         rb = GetComponentInChildren<Rigidbody2D>();
+        sp = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         Time.fixedDeltaTime = 0.01f;
         targetPos = pathFinder.targetPos;
-        pos = pathFinder.pos;
         gameObject.SetActive(false);
     }
 
@@ -86,6 +86,16 @@ public class MoveAlongThePath : MonoBehaviour
         if (isTrace && node != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.fixedDeltaTime);
+
+            //바라보는 방향
+            if(node.transform.position.x > transform.position.x)
+            {
+                sp.flipX = true;
+            }
+            else
+            {
+                sp.flipX = false;
+            }
         }
     }
 

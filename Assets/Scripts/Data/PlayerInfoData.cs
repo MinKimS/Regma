@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInfoData : MonoBehaviour
 {
+    //자주 쓰는 플레이어 관련 정보 가져오는 스크립트
     public Transform playerTr;
     public Animator playerAnim;
 

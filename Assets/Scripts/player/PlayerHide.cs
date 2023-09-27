@@ -7,6 +7,8 @@ public class PlayerHide : MonoBehaviour
 {
     [HideInInspector]
     public bool isHide = false;
+    [HideInInspector]
+    public bool isTryHiding = false;
     CapsuleCollider2D col;
     Rigidbody2D rb;
 
@@ -16,24 +18,25 @@ public class PlayerHide : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("HideObj"))
-        {
-            isHide = true;
-            col.isTrigger = true;
-            rb.gravityScale = 0;
-            rb.velocity = Vector3.zero;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.CompareTag("HideObj"))
+    //    {
+    //        isHide = true;
+    //        col.isTrigger = true;
+    //        rb.gravityScale = 0;
+    //        rb.velocity = Vector3.zero;
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(isHide)
-        {
-            isHide = false;
-            col.isTrigger = false;
-            rb.gravityScale = 1;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+
+    //    if(isHide)
+    //    {
+    //        isHide = false;
+    //        col.isTrigger = false;
+    //        rb.gravityScale = 1;
+    //    }
+    //}
 }

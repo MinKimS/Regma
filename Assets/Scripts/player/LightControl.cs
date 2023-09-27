@@ -6,6 +6,14 @@ public class LightControl : MonoBehaviour
 {
     private UnityEngine.Rendering.Universal.Light2D lightComponent;
 
+    [HideInInspector]
+    public bool isLightOn = true;
+
+    private void Start()
+    {
+        isLightOn = true;
+    }
+
     //private void Start()
     //{
     //    lightComponent = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
@@ -30,11 +38,15 @@ public class LightControl : MonoBehaviour
             if (LightObj.activeSelf)
             {
                 LightObj.SetActive(false);
+
+                isLightOn = false;
             }
 
             else
             {
                 LightObj.SetActive(true);
+
+                isLightOn = true;
             }
         }
     } // Start is called before the first frame update
