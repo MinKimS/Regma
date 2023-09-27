@@ -4713,7 +4713,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
-  JumpCount: 5
+  JumpCount: 1
 --- !u!50 &652935788
 Rigidbody2D:
   serializedVersion: 4
