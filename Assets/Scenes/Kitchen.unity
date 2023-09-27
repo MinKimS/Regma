@@ -3015,6 +3015,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isTrace: 0
 --- !u!1 &361061172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,6 +4660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58fbdee06e4e7a4897039096c95fd87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLightOn: 1
   LightObj: {fileID: 367344950}
 --- !u!95 &652935785
 Animator:
@@ -5019,6 +5021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHide: 0
+  isTryHiding: 0
 --- !u!114 &652935799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6425,6 +6428,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isTrace: 0
 --- !u!4 &745766023
 Transform:
   m_ObjectHideFlags: 0
@@ -10409,6 +10413,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isTrace: 0
 --- !u!4 &1285225460
 Transform:
   m_ObjectHideFlags: 0
@@ -11057,7 +11062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1381923261
@@ -12573,7 +12578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1492263438
 Transform:
   m_ObjectHideFlags: 0
@@ -15256,7 +15261,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d54ec3ec550d5164a8e3cb6bc2f4c3c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d02e5d808df67974099ba289dd188561, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15275,7 +15280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803614427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -108.5, y: 16.28, z: 0}
+  m_LocalPosition: {x: -108.5, y: 18.29, z: 0}
   m_LocalScale: {x: 5.074627, y: 5.074627, z: 5.074627}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15331,7 +15336,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 0.56}
+    oldSize: {x: 1.39, y: 0.91}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -16326,6 +16331,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isTrace: 0
 --- !u!1 &1926565296
 GameObject:
   m_ObjectHideFlags: 0

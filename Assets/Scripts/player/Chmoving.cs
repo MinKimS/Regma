@@ -11,7 +11,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 20f;
-    private float jumpForce = 8f;
+    private float jumpForce = 9f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
