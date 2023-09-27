@@ -1,79 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Diary : MonoBehaviour
 {
     //넘겨질 페이지
-    public RectTransform[] flipPages;
-    //실제 페이지
-    public GameObject[] pages;
-    int flipPageIdx = 0;
+    public RectTransform flipPage;
+    //int flipPageIdx = 0;
     bool isFliping = false;
     public GameObject itemDiary;
 
-    private void FlipPage(bool isLeft)
+    public Sprite[] book;
+    public Image img;
+
+    public Inventory inven;
+
+    public float flipSpeed = 0.5f;
+
+    private void FlipPage()
     {
-        StartCoroutine(FlipPaper(isLeft));
+        StartCoroutine(FlipPaper());
     }
 
-    IEnumerator FlipPaper(bool isLeft)
+    IEnumerator FlipPaper()
     {
-        if(isLeft)
+        img.sprite = book[1];
+        
+        flipPage.gameObject.SetActive(true);
+        while(flipPage.rotation.y < 150f)
         {
-            isFliping = true;
-            while(flipPages[flipPageIdx].rotation.y < 1f)
+            flipPage.Rotate(Vector2.up * flipSpeed);
+            if(flipPage.rotation.y > 0.9f)
             {
-                flipPages[flipPageIdx].Rotate(Vector2.up*10);
-                if(flipPages[flipPageIdx].rotation.y > 0.7f)
-                {
-                    pages[flipPageIdx].transform.GetChild(0).gameObject.SetActive(false);
-                    pages[flipPageIdx].transform.GetChild(1).gameObject.SetActive(false);
-
-                    if(flipPageIdx==1)
-                    {
-                        flipPages[flipPageIdx].transform.SetAsLastSibling();
-                    }
-                }
-                yield return new WaitForSeconds(0.05f);
+                break;
             }
-            flipPageIdx++;
+            yield return null;
+        }
+
+        inven.HideDiary();
+
+        //if(isLeft)
+        //{
+        //    isFliping = true;
+        //    while(flipPages.rotation.y < 1f)
+        //    {
+        //        flipPages.Rotate(Vector2.up * 10);
+        //        if(flipPages.rotation.y > 0.7f)
+        //        {
+        //            flipPage.gameObjects.transform.GetChild(0).gameObject.SetActive(false);
+        //        }
+        //        yield return new WaitForSeconds(0.05f);
+        //    }
+        //    //while(flipPages[flipPageIdx].rotation.y < 1f)
+        //    //{
+        //    //    flipPages[flipPageIdx].Rotate(Vector2.up*10);
+        //    //    if(flipPages[flipPageIdx].rotation.y > 0.7f)
+        //    //    {
+        //    //        flipPage.gameObjects[flipPageIdx].transform.GetChild(0).gameObject.SetActive(false);
+        //    //        flipPage.gameObjects[flipPageIdx].transform.GetChild(1).gameObject.SetActive(false);
+
+        //    //        if(flipPageIdx==1)
+        //    //        {
+        //    //            flipPages[flipPageIdx].transform.SetAsLastSibling();
+        //    //        }
+        //    //    }
+        //    //    yield return new WaitForSeconds(0.05f);
+        //    //}
+        //    //flipPageIdx++;
             
-            isFliping = false;
-        }
-        else
-        {
-            isFliping = true;
-            flipPageIdx--;
-            while(flipPages[flipPageIdx].rotation.y > 0f)
-            {
-                flipPages[flipPageIdx].Rotate(Vector2.down*10);
-                if(flipPages[flipPageIdx].rotation.y < 0.7f)
-                {
-                    pages[flipPageIdx].transform.GetChild(0).gameObject.SetActive(true);
-                    pages[flipPageIdx].transform.GetChild(1).gameObject.SetActive(true);
+        //    isFliping = false;
+        //}
+        //else
+        //{
+        //    isFliping = true;
+        //    flipPageIdx--;
+        //    while(flipPages[flipPageIdx].rotation.y > 0f)
+        //    {
+        //        flipPages[flipPageIdx].Rotate(Vector2.down*10);
+        //        if(flipPages[flipPageIdx].rotation.y < 0.7f)
+        //        {
+        //            flipPage.gameObjects[flipPageIdx].transform.GetChild(0).gameObject.SetActive(true);
+        //            flipPage.gameObjects[flipPageIdx].transform.GetChild(1).gameObject.SetActive(true);
 
-                    if(flipPageIdx==0)
-                    {
-                        flipPages[flipPageIdx].transform.SetAsLastSibling();
-                    }
-                }
-                yield return new WaitForSeconds(0.05f);
-            }
-            isFliping = false;
-        }
+        //            if(flipPageIdx==0)
+        //            {
+        //                flipPages[flipPageIdx].transform.SetAsLastSibling();
+        //            }
+        //        }
+        //        yield return new WaitForSeconds(0.05f);
+        //    }
+        //    isFliping = false;
+        //}
     }
 
     private void Update() {
         if(SmartphoneManager.instance.inven.filesInven.IsInvenItemActive&&!isFliping)
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
+            //if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
+            //{
+            //    FlipPage(true);
+            //}
+            //if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPageIdx>0&&flipPages[flipPageIdx-1].rotation.y>=1)
+            //{
+            //    FlipPage(false);
+            //}
+
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                FlipPage(true);
-            }
-            if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPageIdx>0&&flipPages[flipPageIdx-1].rotation.y>=1)
-            {
-                FlipPage(false);
+                FlipPage();
             }
         }
     }
@@ -81,5 +116,18 @@ public class Diary : MonoBehaviour
     public void FallDiary()
     {
         itemDiary.SetActive(true);
+    }
+
+    public void ShowDiary()
+    {
+        flipPage.gameObject.SetActive(false);
+        flipPage.rotation = Quaternion.identity;
+        img.sprite = book[0];
+        gameObject.SetActive(true);
+    }
+
+    public void HideDiary()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -7519,8 +7519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df41ecc738dba74cbebdb875d1ad190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 44.1, y: -0}
-  mapSize: {x: 63.49, y: 11.1}
+  center: {x: -1.5, y: -0}
+  mapSize: {x: 18.3, y: 11.1}
 --- !u!114 &1705755498
 MonoBehaviour:
   m_ObjectHideFlags: 0
