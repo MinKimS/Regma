@@ -1526,13 +1526,14 @@ GameObject:
   - component: {fileID: 167220464}
   - component: {fileID: 167220466}
   - component: {fileID: 167220467}
+  - component: {fileID: 167220468}
   m_Layer: 6
   m_Name: RefriCollision
   m_TagString: Refri2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &167220464
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,12 +1556,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167220463}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c28cdf12c4af354599ccc9762563acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 1535648895}
+  Refrianim: {fileID: 0}
   refri2Object: {fileID: 167220463}
   power: {fileID: 1803614432}
 --- !u!61 &167220467
@@ -1589,6 +1590,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.464376, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &167220468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167220463}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0fdd473aec10f4193244e27315becf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionWithAObject:
+    m_PersistentCalls:
+      m_Calls: []
+  playableDirector: {fileID: 1535648895}
 --- !u!1 &189422252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &276953417
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2466,7 +2483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &281092590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4729,7 +4746,7 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
-  JumpCount: 1
+  JumpCount: 4
 --- !u!50 &652935788
 Rigidbody2D:
   serializedVersion: 4
@@ -5017,7 +5034,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652935781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b6ed743dff685b4896ac2ddae3cf34e, type: 3}
   m_Name: 
@@ -8083,7 +8100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &981202037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8847,7 +8864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1066649895
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10100,7 +10117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1227676220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12663,6 +12680,7 @@ GameObject:
   - component: {fileID: 1492263440}
   - component: {fileID: 1492263441}
   - component: {fileID: 1492263442}
+  - component: {fileID: 1492263444}
   m_Layer: 6
   m_Name: "\uB0C9\uC7A5\uACE0\uC2A4\uC704\uCE58"
   m_TagString: RefriObject
@@ -12677,14 +12695,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492263436}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.003621194, y: -0, z: -0, w: 0.99999344}
   m_LocalPosition: {x: -108.507454, y: 16.268658, z: 0}
   m_LocalScale: {x: 5.074627, y: 5.074627, z: 5.074627}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 990354601}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.415, y: 0, z: 0}
 --- !u!61 &1492263439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12698,18 +12716,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.20710817}
+  m_Offset: {x: 0, y: -0.24876198}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 0.56}
-    newSize: {x: 1.5, y: 0.56}
+    oldSize: {x: 1.39, y: 0.91}
+    newSize: {x: 1.39, y: 0.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.14578372}
+  m_Size: {x: 1.5, y: 0.007960498}
   m_EdgeRadius: 0
 --- !u!114 &1492263440
 MonoBehaviour:
@@ -12745,14 +12763,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492263436}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c28cdf12c4af354599ccc9762563acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 1535648895}
+  Refrianim: {fileID: 1492263444}
   refri2Object: {fileID: 167220463}
   power: {fileID: 1803614432}
+--- !u!95 &1492263444
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492263436}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f01d21ffaec402469c4559fcd2873c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1501713813
 GameObject:
   m_ObjectHideFlags: 0
@@ -15241,9 +15280,12 @@ GameObject:
   - component: {fileID: 1803614429}
   - component: {fileID: 1803614428}
   - component: {fileID: 1803614432}
+  - component: {fileID: 1803614435}
+  - component: {fileID: 1803614436}
+  - component: {fileID: 1803614437}
   m_Layer: 7
   m_Name: REFRIGPower
-  m_TagString: Untagged
+  m_TagString: RefriObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15265,13 +15307,13 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1803614432}
-          m_TargetAssemblyTypeName: REFRIGPower, Assembly-CSharp
-          m_MethodName: REFRIGOpen
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgumentAssemblyTypeName: 
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -15281,9 +15323,9 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1803614432}
+        - m_Target: {fileID: 1803614427}
           m_TargetAssemblyTypeName: REFRIGPower, Assembly-CSharp
-          m_MethodName: CancelManipulation
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15436,6 +15478,58 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 0.56}
   m_EdgeRadius: 0
+--- !u!114 &1803614435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803614427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c28cdf12c4af354599ccc9762563acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Refrianim: {fileID: 1803614436}
+  refri2Object: {fileID: 167220463}
+  power: {fileID: 1803614432}
+--- !u!95 &1803614436
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803614427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34c37b622abba6f418f112aaaeb7d1a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1803614437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803614427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0fdd473aec10f4193244e27315becf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionWithAObject:
+    m_PersistentCalls:
+      m_Calls: []
+  playableDirector: {fileID: 1535648895}
 --- !u!1 &1810211696
 GameObject:
   m_ObjectHideFlags: 0
@@ -16797,7 +16891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1971105750
 SpriteRenderer:
   m_ObjectHideFlags: 0

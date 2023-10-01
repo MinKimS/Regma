@@ -33,27 +33,39 @@ public class CameraShakeTrigger : MonoBehaviour
             canvasBook.SetActive(true);
             StopAllCoroutines();
             StartCoroutine(Reset());
+
+            //collidingObject = null;
+            //isActive = false;
+            //collidingObject.CompareTag("shake").SetActive(isActive);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("shake"))
         {
             collidingObject = collision; // 충돌한 오브젝트 정보 저장
             StartCoroutine(ShakeCoroutine());
+
+            //isActive = false;
+            //collision.gameObject.SetActive(isActive);
+
         }
+
+        //collidingObject = null; // 충돌한 오브젝트 정보 초기화
+        //isActive = false;
+        //collidingObject.CompareTag("shake").SetActive(isActive);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("shake"))
-        {
-            collidingObject = null; // 충돌한 오브젝트 정보 초기화
-            isActive = false;
-            collision.gameObject.SetActive(isActive);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("shake"))
+    //    {
+    //        collidingObject = null; // 충돌한 오브젝트 정보 초기화
+    //        isActive = false;
+    //        collision.gameObject.SetActive(isActive);
+    //    }
+    //}
 
     IEnumerator ShakeCoroutine()
     {
@@ -86,5 +98,12 @@ public class CameraShakeTrigger : MonoBehaviour
 
         // 정확한 리셋을 위해 강제로 초기 회전값으로 설정
         camObj.transform.rotation = m_originRot;
+
+        if (collidingObject != null && collidingObject.CompareTag("shake"))
+        {
+            collidingObject.gameObject.SetActive(false);
+            collidingObject = null;
+            isActive = false;
+        }
     }
 }

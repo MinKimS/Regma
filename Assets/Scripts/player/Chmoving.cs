@@ -10,7 +10,7 @@ public class Chmoving : MonoBehaviour
     public AudioSource walkAudioSource; // 걷는 소리 소스
 
     private float moveSpeed = 5f;
-    private float runSpeed = 20f;
+    private float runSpeed = 10f;
     private float jumpForce = 9f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
@@ -117,14 +117,12 @@ public class Chmoving : MonoBehaviour
             float moveInputX = Input.GetAxisRaw("Horizontal");
 
 
-
-
-
             if (moveInputX != 0)
             {
                 isMoving = true;
                 currentMoveSpeed = moveSpeed * moveInputX;
                 animator.SetBool("walk", true);
+
                 if (isJumping)
                 {
                     StopWalkSound();
@@ -138,6 +136,26 @@ public class Chmoving : MonoBehaviour
                     }
                     isJumpingWithMovement = false;
                 }
+
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    isRunning = true;
+                    currentMoveSpeed = runSpeed * moveInputX;
+                    animator.SetBool("walk", true);
+                    print("달리는 중");
+                }
+
+                else
+                {
+                    isRunning = false;
+                    currentMoveSpeed = moveSpeed * moveInputX;
+                    print("달리기 멈춤");
+
+                }
+
+
+
+
             }
             else
             {
@@ -252,7 +270,9 @@ public class Chmoving : MonoBehaviour
             print("df");
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
+            animator.SetBool("Wet", true);
         }
+        
     }
 
     bool isMakingSound = false;
@@ -263,13 +283,21 @@ public class Chmoving : MonoBehaviour
             print("22222");
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
             isMakingSound = false;
+            //animator.SetBool("Wet", false);
+
         }
         if (collision.CompareTag("SlowObj") && !isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
         {
             print("3333");
             AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
             isMakingSound = true;
+            animator.SetBool("Wet", true);
+            
         }
+
+        
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -278,7 +306,10 @@ public class Chmoving : MonoBehaviour
         {
             moveSpeed = 5f;
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
+            animator.SetBool("Wet", false);
         }
+
+     
     }
 
 
