@@ -53,9 +53,11 @@ public class DialogueManager : MonoBehaviour
     private Color imgToDark = new Color32(100,100,100,255);
     private Color imgToBright = new Color32(255,255,255,255);
 
-
     //대화창 기본 위치
     private Vector2 dlgPos;
+
+    //대사 출력 시 태그 여부
+    bool isTag = false;
 
     public int SetenceIdx
     {
@@ -146,8 +148,22 @@ public class DialogueManager : MonoBehaviour
         //대화 출력하는 부분
         while(dlgWordIdx != text.Length)
         {
+
+            if (text[dlgWordIdx] == '<')
+            {
+                isTag = true;
+            }
+            else if(text[dlgWordIdx] == '>')
+            {
+                isTag = false;
+            }
+
             dlgText.text += text[dlgWordIdx++];
-            yield return new WaitForSeconds(typingSpeed);
+
+            if (!isTag)
+            {
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
         dlgState = DlgState.DONE;
         
@@ -346,51 +362,59 @@ public class DialogueManager : MonoBehaviour
     //다음 대화 진행
     public void PlaySentence()
     {
-        if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        if(dlgState != DlgState.TYPING)
         {
-            TimelineManager.instance.timelineController.SetTimelineResume();
-        }
-        
-        SetChrImg();
+            if (curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+            {
+                TimelineManager.instance.timelineController.SetTimelineResume();
+            }
 
-        //사람인경우
-        if(curDlg.sentences[setenceIdx].speakerIdx!=-1){
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerName));
+            SetChrImg();
+
+            //사람인경우
+            if (curDlg.sentences[setenceIdx].speakerIdx != -1)
+            {
+                StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerName));
+            }
+            //사람 아닌경우
+            else
+            {
+                StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, ""));
+            }
+            setenceIdx++;
         }
-        //사람 아닌경우
-        else
-        {
-            StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, ""));
-        }
-        setenceIdx++;
     }
 
     //다음 대화 진행
     public void PlaySentence(Dialogue dlg)
     {
-        DlgRT.anchoredPosition = dlgPos;
-        if(dlg.sentences[setenceIdx].speakerIdx == -1)
+        if (dlgState != DlgState.TYPING)
         {
-            DlgRT.anchoredPosition -= (Vector2.right*300);
-        }
+            DlgRT.anchoredPosition = dlgPos;
+            if (dlg.sentences[setenceIdx].speakerIdx == -1)
+            {
+                DlgRT.anchoredPosition -= (Vector2.right * 300);
+            }
 
-        if(dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
-        {
-            TimelineManager.instance.timelineController.SetTimelineResume();
-        }
+            if (dlg.sentences[setenceIdx].eventType == Dialogue.EventType.Timeline && TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+            {
+                TimelineManager.instance.timelineController.SetTimelineResume();
+            }
 
-        SetChrImg();
+            SetChrImg();
 
-        //사람인경우
-        if(dlg.sentences[setenceIdx].speakerIdx!=-1){
-            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+            //사람인경우
+            if (dlg.sentences[setenceIdx].speakerIdx != -1)
+            {
+                StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+            }
+            //사람 아닌경우
+            else
+            {
+                StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
+            }
+            setenceIdx++;
         }
-        //사람 아닌경우
-        else
-        {
-            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
-        }
-        setenceIdx++;
     }
 
     public void OutPutDialogue(Dialogue dlg)

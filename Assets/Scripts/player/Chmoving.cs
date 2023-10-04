@@ -23,7 +23,8 @@ public class Chmoving : MonoBehaviour
 
     int jumpCnt; // 0이 되면 더 이상 점프 x
 
-    bool isGround;
+    [HideInInspector]
+    public bool isGround;
     [SerializeField] Transform pos;
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;

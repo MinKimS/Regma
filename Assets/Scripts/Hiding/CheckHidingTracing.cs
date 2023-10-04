@@ -7,7 +7,7 @@ public class CheckHidingTracing : MonoBehaviour
     //Έχ
     public Transform[] mob;
     [HideInInspector]
-    public Transform blockObj;
+    public bool isMobDisappear = false;
 
     int activeMobIdx = 0;
 
@@ -31,7 +31,7 @@ public class CheckHidingTracing : MonoBehaviour
 
         if(isFindTracingMob && !mob[activeMobIdx].gameObject.activeSelf)
         {
-            blockObj.gameObject.SetActive(true);
+            isMobDisappear = true;
             isFindTracingMob = false;
         }
     }

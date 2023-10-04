@@ -18,6 +18,9 @@ public class Diary : MonoBehaviour
 
     public float flipSpeed = 0.5f;
 
+    public Dialogue dlg;
+    bool isAfterDlg = false;
+
     private void FlipPage()
     {
         StartCoroutine(FlipPaper());
@@ -94,24 +97,24 @@ public class Diary : MonoBehaviour
         //}
     }
 
-    private void Update() {
-        if(SmartphoneManager.instance.inven.filesInven.IsInvenItemActive&&!isFliping)
-        {
-            //if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
-            //{
-            //    FlipPage(true);
-            //}
-            //if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPageIdx>0&&flipPages[flipPageIdx-1].rotation.y>=1)
-            //{
-            //    FlipPage(false);
-            //}
+    //private void Update() {
+    //    if(SmartphoneManager.instance.inven.filesInven.IsInvenItemActive&&!isFliping)
+    //    {
+    //        //if(Input.GetKeyDown(KeyCode.LeftArrow)&&flipPageIdx<2&&flipPages[flipPageIdx].rotation.y<=0)
+    //        //{
+    //        //    FlipPage(true);
+    //        //}
+    //        //if(Input.GetKeyDown(KeyCode.RightArrow)&&flipPageIdx>0&&flipPages[flipPageIdx-1].rotation.y>=1)
+    //        //{
+    //        //    FlipPage(false);
+    //        //}
 
-            if(Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                FlipPage();
-            }
-        }
-    }
+    //        if(Input.GetKeyDown(KeyCode.LeftArrow))
+    //        {
+    //            FlipPage();
+    //        }
+    //    }
+    //}
 
     public void FallDiary()
     {
@@ -129,5 +132,11 @@ public class Diary : MonoBehaviour
     public void HideDiary()
     {
         gameObject.SetActive(false);
+
+        if(!isAfterDlg)
+        {
+            DialogueManager.instance.PlayDlg(dlg);
+            isAfterDlg = true;
+        }
     }
 }

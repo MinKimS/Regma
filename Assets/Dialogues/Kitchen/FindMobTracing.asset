@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uB3C4\uB9DD\uCE58\uC790!"
+    dlgTexts: "\uC228\uC5B4\uC57C\uD574!!"
     eventType: 0
   nextDlg: {fileID: 0}

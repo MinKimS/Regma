@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class SmartphoneManager : MonoBehaviour
 
     //톡 스크롤되는 속도
     public float talkScrollSpeed = 0.05f;
+
+    [NonSerialized]
+    public int itemIdx = 0;
+    public List<GameEvent> gmEventList = new List<GameEvent>(16);
 
     private void Awake() {
         if(instance == null)
@@ -54,6 +59,7 @@ public class SmartphoneManager : MonoBehaviour
             //인벤 열기
             if((Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&inven.IsOpenInven)))
             {
+                print("iiiiii");
                 if(!inven.IsOpenInven)
                 {
                     if(!phone.IsOpenPhone)
@@ -242,7 +248,7 @@ public class SmartphoneManager : MonoBehaviour
             }
             //화살표키---------------------
 
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
             {
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)
                 {
@@ -259,15 +265,19 @@ public class SmartphoneManager : MonoBehaviour
                 }
                 else if(inven.IsOpenFiles && inven.MaxFilesSlot!=0)
                 {
-                    //일기장
-                    if(inven.filesInven.slotDataList[inven.SelectedOption - 1].item.itemID == 0)
-                    {
-                        inven.filesInven.ShowDiary();
-                    }
+                    gmEventList[inven.SelectedOption - 1].Raise();
+                    print(inven.SelectedOption - 1);
+                    ////일기장
+                    //if(inven.filesInven.slotDataList[inven.SelectedOption - 1].item.itemID == 0)
+                    //{
+                    //    inven.filesInven.ShowDiary();
+                    //}
                 }
                 else if(inven.IsOpenPictures && inven.MaxPicSlot!=0)
                 {
                     print(inven.picsInven.slotDataList[inven.SelectedOption - 1].item.itemName);
+                    gmEventList[inven.SelectedOption - 1].Raise();
+                    print(inven.SelectedOption - 1);
                 }
                 //톡 선택
                 if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.IsOKSendTalk)
@@ -343,7 +353,10 @@ public class SmartphoneManager : MonoBehaviour
             ItemData itemData = inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
             itemData.itemName = item.itemName;
             itemData.itemImg = item.itemImg;
-            itemData.itemID = item.itemID;
+            itemData.itemID = itemIdx;
+            itemData.itemEvent = item.itemEvent;
+            gmEventList.Add(item.itemEvent);
+            itemIdx++;
             inven.filesInven.slotDataList[i].item = itemData;
             inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }

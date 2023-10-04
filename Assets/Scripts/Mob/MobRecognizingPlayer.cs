@@ -6,11 +6,16 @@ public class MobRecognizingPlayer : MonoBehaviour
 {
     float disToPlayer = float.MaxValue;
 
+    [SerializeField] float stopTraceTime;
+
     public PlayerHide pHide;
 
     MoveAlongThePath matp;
 
     bool isExiting = false;
+
+    [SerializeField]
+    GameEvent eventWhenMobDisappear;
 
     private void Awake()
     {
@@ -51,7 +56,8 @@ public class MobRecognizingPlayer : MonoBehaviour
                 print("stop tracing");
 
                 matp.IsTrace = false;
-                isExiting = true;
+
+                StartCoroutine(WaitBeforeLeaving());
             }
             else
             {
@@ -73,6 +79,30 @@ public class MobRecognizingPlayer : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+
+            if(eventWhenMobDisappear != null)
+            {
+                eventWhenMobDisappear.Raise();
+            }
         }
+    }
+
+    //플레이어 근처에서 잠시 대기
+    IEnumerator WaitBeforeLeaving()
+    {
+        float checkTime = 0;
+        float startTime = Time.time;
+
+        while(checkTime < stopTraceTime)
+        {
+            checkTime = Time.time - startTime;
+            if (!pHide.isHide)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        isExiting = true;
     }
 }

@@ -47,19 +47,21 @@ public class RecognizingHidingPlayer : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        //플레이어가 완전히 숨어졌는지 설정
-        if (isInHideArea && !lightControl.isLightOn)
+        if(collision.CompareTag("HidingPoint"))
         {
-            playerHide.isTryHiding = true;
-            print("hide");
-        }
-        else
-        {
-            playerHide.isTryHiding = false;
-            playerHide.isHide = false;
-            print("not hide");
+            //플레이어가 완전히 숨어졌는지 설정
+            if (isInHideArea && !lightControl.isLightOn)
+            {
+                playerHide.isTryHiding = true;
+            }
+            else
+            {
+                playerHide.isTryHiding = false;
+                playerHide.isHide = false;
+                print("not hide");
+            }
         }
     }
 }

@@ -8,4 +8,9 @@ public class DialogueTimeline : MonoBehaviour
     {
         DialogueManager.instance.PlayDlg();
     }
+
+    public void PlayDlgSingleTimeline( Dialogue dlg)
+    {
+        DialogueManager.instance.PlayDlg(dlg);
+    }
 }

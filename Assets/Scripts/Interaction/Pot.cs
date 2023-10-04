@@ -150,12 +150,19 @@ public class Pot : MonoBehaviour
         potColl.enabled = false;
         blacketColl.enabled = true;
         PotDlg(1);
-        door.checkWorkDo++;
-        door.isOpen = true;
     }
 
     public void SetCameraPot()
     {
         Camera.main.GetComponent<CameraController>().target = transform;
+    }
+
+    public void GetBlanket(ItemData item)
+    {
+        SmartphoneManager.instance.SetInvenItem(item);
+        DialogueManager.instance.PlayDlg(dlg[2]);
+        door.checkWorkDo++;
+        door.isOpen = true;
+        blacketColl.gameObject.SetActive(false);
     }
 }

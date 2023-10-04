@@ -9,11 +9,12 @@ public class CheckPlayerHiding : MonoBehaviour
     //더 이상 숨지 못하게 하는 이벤트
     public Transform block;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if(collision.CompareTag("Player"))
+        if(checker.isMobDisappear)
         {
-            checker.blockObj = block;
+            checker.isMobDisappear = false;
+            block.gameObject.SetActive(true);
         }
     }
 }

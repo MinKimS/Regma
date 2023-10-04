@@ -9,12 +9,15 @@ public class Television : MonoBehaviour
     public AudioSource audioSource;
     public Light2D tvLight;
 
-    public Dialogue[] dlg;
     public Sprite[] channelSprite;
     int channelIndex = 0;
     public InteractionObjData interactionData;
     bool isOnTv = false;
     public Door door;
+
+    bool isInteraction = false;
+
+    public Transform jumpscareEvent;
 
     private void Awake()
     {
@@ -31,83 +34,95 @@ public class Television : MonoBehaviour
     {
         if (isOnTv)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                channelIndex++;
-                if (channelIndex >= channelSprite.Length)
-                {
-                    channelIndex = 0;
-                    //PlayTvSound();
-                }
-                print(channelIndex);
+            //if (Input.GetKeyDown(KeyCode.UpArrow))
+            //{
+            //    channelIndex++;
+            //    if (channelIndex >= channelSprite.Length)
+            //    {
+            //        channelIndex = 0;
+            //        //PlayTvSound();
+            //    }
+            //    print(channelIndex);
 
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                channelIndex--;
-                if (channelIndex < 0)
-                {
-                    channelIndex = channelSprite.Length - 1;
+            //}
+            //else if (Input.GetKeyDown(KeyCode.DownArrow))
+            //{
+            //    channelIndex--;
+            //    if (channelIndex < 0)
+            //    {
+            //        channelIndex = channelSprite.Length - 1;
                     
-                }
-                print(channelIndex);
+            //    }
+            //    print(channelIndex);
 
-            }
-            ChgColor();
+            //}
+            //ChgColor();
 
-            if (channelIndex >= 2)
-            {
-                AudioManager.instance.StopSFX("Game Sound_TV");
-                isOnTv = false;
-                DialogueManager.instance.PlayDlg(dlg[1]);
-                door.checkWorkDo++;
-                door.isOpen = true;
-                interactionData.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            }
+            //if (channelIndex >= 2)
+            //{
+            //    AudioManager.instance.StopSFX("Game Sound_TV");
+            //    isOnTv = false;
+            //    DialogueManager.instance.PlayDlg(dlg[1]);
+            //    door.checkWorkDo++;
+            //    door.isOpen = true;
+            //    interactionData.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            //}
         }
     }
 
-    public void ChgColor()
-    {
-        switch(channelIndex)
-        {
-            case 0:
-                tvLight.color = Color.white;
-                break;
-            case 1:
-                tvLight.color = Color.green;
-                break;
-            case 2:
-                tvLight.color = Color.blue;
-                break;
-            default:
-                tvLight.color = Color.red;
-                break;
-        }
-    }
+    //public void ChgColor()
+    //{
+    //    switch(channelIndex)
+    //    {
+    //        case 0:
+    //            tvLight.color = Color.white;
+    //            break;
+    //        case 1:
+    //            tvLight.color = Color.green;
+    //            break;
+    //        case 2:
+    //            tvLight.color = Color.blue;
+    //            break;
+    //        default:
+    //            tvLight.color = Color.red;
+    //            break;
+    //    }
+    //}
 
     // 책 읽기 전 TV 켜기
     public void TVOnBeforeReadingDiary()
     {
-        DialogueManager.instance.PlayDlg(dlg[0]);
+        if(!isInteraction)
+        {
+            DialogueManager.instance.PlayDlg(interactionData.objDlg[0]);
+            tvLight.intensity = 2.5f;
+            tvAnim.SetBool("Tv", true);
+            isOnTv = true;
+            jumpscareEvent.gameObject.SetActive(true);
+            AudioManager.instance.SFXPlay("Game Sound_TV");
+            isInteraction = true;
+        }
+        else
+        {
+            DialogueManager.instance.PlayDlg(interactionData.objDlg[1]);
+        }
     }
 
     // 책 읽은 후 TV 켜기
     public void TVOnAfterReadingDairy()
     {
-        tvLight.intensity = 2.5f;
-        interactionData.IsRunInteraction = true;
-        tvAnim.SetBool("Tv", true);
-        isOnTv = true;
-        AudioManager.instance.SFXPlayLoop("Game Sound_TV");
+        tvLight.color = Color.red;
+        AudioManager.instance.SFXPlay("Game Sound_TV");
+        jumpscareEvent.gameObject.SetActive(false);
     }
 
-    // TV 끄기
-    public void TVOff()
-    {
-        interactionData.IsRunInteraction = false;
-        tvAnim.SetBool("Tv", false);
-        isOnTv = false;
-        AudioManager.instance.StopSFX("Game Sound_TV");
-    }
+    //// TV 끄기
+    //public void TVOff()
+    //{
+    //    tvLight.intensity = 0f;
+    //    interactionData.IsRunInteraction = false;
+    //    tvAnim.SetBool("Tv", false);
+    //    isOnTv = false;
+    //    AudioManager.instance.StopSFX("Game Sound_TV");
+    //}
 }

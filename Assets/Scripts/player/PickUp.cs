@@ -8,7 +8,6 @@ public class PickUp : MonoBehaviour
     public GameObject ItemHp;
     public Image HpScreen;
 
-    bool isActive = false;
 
     void Start()
     {
@@ -66,7 +65,8 @@ public class PickUp : MonoBehaviour
             ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
             itemData.itemName = item.itemName;
             itemData.itemImg = item.itemImg;
-            itemData.itemID = item.itemID;
+            itemData.itemID = SmartphoneManager.instance.itemIdx;
+            SmartphoneManager.instance.gmEventList.Add(item.itemEvent);
             SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
             SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }

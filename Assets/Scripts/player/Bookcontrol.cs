@@ -16,6 +16,8 @@ public class Bookcontrol : MonoBehaviour
     private bool isAnimationPlaying = false;
     private bool isActive = true; // 충돌 이후에는 비활성화하기 위한 변수
 
+    public Door door;
+
     void Start()
     {
         //// isActive 변수에 따라 gameObject의 활성화/비활성화를 설정합니다. 8.16
@@ -72,6 +74,14 @@ public class Bookcontrol : MonoBehaviour
         isAnimationPlaying = false;
         clickCount = 0;
         isActive = false; // 애니메이션이 종료되면 isActive 변수를 false로 설정하여 비활성화합니다.
+
+        //---
+
+        door.checkWorkDo++;
+        door.isOpen = true;
+
+        //---
+
         gameObject.SetActive(isActive); // 비활성화 상태로 설정합니다.
     }
 

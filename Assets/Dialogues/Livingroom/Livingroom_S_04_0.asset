@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Livingroom_S_04_0
   m_EditorClassIdentifier: 
-  dlgID: 5
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uAC70\uC2E4\uC778\uAC00\u2026?\n\uADFC\uB370\_\uC65C\_\uC774\uB807\uAC8C\_\uB2E4\_\uD06C\uC9C0?"
+    dlgTexts: "\uBB50, \uBB50\uC57C\u2026 \uC65C\_\uC774\uB807\uAC8C\_\uB2E4\_\uD06C\uC9C0?"
     eventType: 0
   nextDlg: {fileID: 11400000, guid: 4ef090137b3a3e04da6adb8f7e9158e0, type: 2}
