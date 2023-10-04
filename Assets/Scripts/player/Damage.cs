@@ -15,14 +15,14 @@ public class Damage : MonoBehaviour
         HpScreen.color = Color.clear;
     }
 
-    //void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Player") && collision.CompareTag("Item"))
-    //    {
-    //        isActive = true;
-    //        ShowHpScreen();
-    //    }
-    //}
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && collision.CompareTag("Item"))
+        {
+            isActive = true;
+            ShowHpScreen();
+        }
+    }
 
     public void ShowHpScreen()
     {

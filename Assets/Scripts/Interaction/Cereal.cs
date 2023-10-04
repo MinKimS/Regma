@@ -33,8 +33,9 @@ public class Cereal : MonoBehaviour
             pAnim = collision.gameObject.GetComponent<Animator>();
             pAnim.SetBool("isPush", true);
 
-            if(collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("HideSereal"))
+            if (collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("HideSereal"))
             {
+
                 pAnim.SetBool("isPush", false);
             }
 
@@ -49,6 +50,10 @@ public class Cereal : MonoBehaviour
         {
             pAnim.SetBool("isPush", false);
         }
+
+        
+
+
     }
 
     private void Update()

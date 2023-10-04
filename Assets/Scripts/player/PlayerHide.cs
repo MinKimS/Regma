@@ -17,4 +17,6 @@ public class PlayerHide : MonoBehaviour
         col = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
+
+
 }
