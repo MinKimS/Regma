@@ -19,6 +19,7 @@ public class Chmoving : MonoBehaviour
     private Rigidbody2D rb;
     private bool isMoving = false;
     private bool isJumpingWithMovement = false;
+    private bool inWater = false;
 
 
     int jumpCnt; // 0이 되면 더 이상 점프 x
@@ -149,10 +150,14 @@ public class Chmoving : MonoBehaviour
                 {
                     isRunning = false;
                     currentMoveSpeed = moveSpeed * moveInputX;
-                    print("달리기 멈춤");
+                   
 
                 }
 
+                //if (inWater)
+                //{
+                //    animator.SetBool("Wet", true);
+                //}
 
 
 
@@ -163,6 +168,12 @@ public class Chmoving : MonoBehaviour
                 currentMoveSpeed = 0f;
                 animator.SetBool("walk", false);
                 StopWalkSound();
+
+                //if (inWater)
+                //{
+                //    animator.SetBool("WetIdle", true);
+                //}
+
             }
 
             rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
@@ -270,7 +281,8 @@ public class Chmoving : MonoBehaviour
             print("df");
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
-            animator.SetBool("Wet", true);
+            inWater = true;
+            
         }
         
     }
@@ -278,24 +290,38 @@ public class Chmoving : MonoBehaviour
     bool isMakingSound = false;
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         if (collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
         {
+            inWater = true;
             print("22222");
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
             isMakingSound = false;
-            //animator.SetBool("Wet", false);
+
+                // 개수대 안에서 멈추는 경우에 애니메이션 해제
+                
+                //animator.SetBool("Wet", false);
+                //animator.SetBool("WetIdle", true);
+          
+
 
         }
         if (collision.CompareTag("SlowObj") && !isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
         {
+            inWater = true;
             print("3333");
             AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
             isMakingSound = true;
-            animator.SetBool("Wet", true);
+           
+                //print("!isMovingInWater");
+                // 개수대 안에서 처음 움직이는 경우에만 애니메이션을 설정
+                
+                //animator.SetBool("Wet", true);
             
-        }
 
-        
+         
+
+        }
 
 
     }
@@ -306,7 +332,7 @@ public class Chmoving : MonoBehaviour
         {
             moveSpeed = 5f;
             AudioManager.instance.StopSFX("주방_개수대 안 걷기");
-            animator.SetBool("Wet", false);
+            //animator.SetBool("Wet", false);
         }
 
      
