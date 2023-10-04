@@ -68,7 +68,7 @@ public class MobAppear : MonoBehaviour
         vCam.Follow = mob[2].transform;
         AudioManager.instance.SFXPlay("주방_괴생명체 등장");
         AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        DialogueManager.instance.PlayDlg(dlg[0]);
+        DialogueManager.instance.PlayDlg(dlg[1]);
         while (!Input.GetKeyDown(KeyCode.Return))
         {
             yield return null;

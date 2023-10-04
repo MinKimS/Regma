@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
-  m_Name: SayRun
+  m_Name: SayHide
   m_EditorClassIdentifier: 
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "<color=#e53d30>\uB3C4\uB9DD\uCE58\uC790!</color=#e53d30>"
+    dlgTexts: "\uC228\uC5B4\uC57C\uD574!!!"
     eventType: 0
   nextDlg: {fileID: 0}
