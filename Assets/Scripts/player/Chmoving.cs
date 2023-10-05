@@ -317,7 +317,7 @@ public class Chmoving : MonoBehaviour
                 //print("!isMovingInWater");
                 // 개수대 안에서 처음 움직이는 경우에만 애니메이션을 설정
                 
-                //animator.SetBool("Wet", true);
+                animator.SetBool("Wet", true);
             
 
          
