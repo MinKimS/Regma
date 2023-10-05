@@ -54,5 +54,9 @@ public class TimelineManager : MonoBehaviour
         {
             LoadingManager.LoadScene("Bathroom");
         }
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            LoadingManager.LoadScene("Bath");
+        }
     }
 }

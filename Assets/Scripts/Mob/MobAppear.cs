@@ -11,6 +11,8 @@ public class MobAppear : MonoBehaviour
     Transform playerPos;
     public CinemachineVirtualCamera vCam;
 
+    public bool isMobAppear = false;
+
     private void Awake()
     {
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -18,6 +20,7 @@ public class MobAppear : MonoBehaviour
 
     public void OnTable()
     {
+        isMobAppear = true;
         StartCoroutine(AppearOnTalbeInKitchen());
     }
 
@@ -38,6 +41,7 @@ public class MobAppear : MonoBehaviour
 
     public void OnCabinet()
     {
+        isMobAppear = true;
         StartCoroutine(AppearOnCabinetInKitchen());
     }
 
@@ -58,6 +62,7 @@ public class MobAppear : MonoBehaviour
 
     public void LastInKitchen()
     {
+        isMobAppear = true;
         StartCoroutine(AppearLastInKitchen());
     }
 

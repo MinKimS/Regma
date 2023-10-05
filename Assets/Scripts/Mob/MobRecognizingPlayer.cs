@@ -17,6 +17,8 @@ public class MobRecognizingPlayer : MonoBehaviour
     [SerializeField]
     GameEvent eventWhenMobDisappear;
 
+    public MobAppear appear;
+
     private void Awake()
     {
         matp = GetComponent<MoveAlongThePath>();
@@ -80,7 +82,9 @@ public class MobRecognizingPlayer : MonoBehaviour
                 gameObject.SetActive(false);
             }
 
-            if(eventWhenMobDisappear != null)
+            appear.isMobAppear = false;
+
+            if (eventWhenMobDisappear != null)
             {
                 eventWhenMobDisappear.Raise();
             }
