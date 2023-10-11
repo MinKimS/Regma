@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &21638925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 55}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &102001398
 MonoBehaviour:
@@ -500,6 +500,9 @@ GameObject:
   - component: {fileID: 113335798}
   - component: {fileID: 113335800}
   - component: {fileID: 113335799}
+  - component: {fileID: 113335801}
+  - component: {fileID: 113335802}
+  - component: {fileID: 113335803}
   m_Layer: 5
   m_Name: MirrorImage
   m_TagString: Untagged
@@ -517,7 +520,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1446684971}
   m_RootOrder: 0
@@ -565,6 +568,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113335797}
   m_CullTransparentMesh: 1
+--- !u!95 &113335801
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113335797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d2a385d0a239fd41b8241a2305ce158, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &113335802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113335797}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8926fc72a6f27c843abccc3784a26753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vibrationDistance: 0.3
+  vibrationSpeed: 3
+  vibrationDuration: 2
+  MirrorAnimator: {fileID: 811651712}
+  mirrorAnimation: {fileID: 0}
+  MirrorImage: {fileID: 113335799}
+  Mirrorcanvas: {fileID: 1446684967}
+  shakingTarget: {fileID: 811651709}
+--- !u!114 &113335803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113335797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb156378f89a794bbdc227242c4811d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MirrorAnimator: {fileID: 113335801}
 --- !u!1 &132727562
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &132727563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3645,7 +3702,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -31.7941, y: -58}
-  m_SizeDelta: {x: -145.5883, y: 0}
+  m_SizeDelta: {x: -145.5883, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &797436388
 MonoBehaviour:
@@ -3735,6 +3792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 811651711}
   - component: {fileID: 811651710}
+  - component: {fileID: 811651712}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Mirror
@@ -3809,6 +3867,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &811651712
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811651709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d2a385d0a239fd41b8241a2305ce158, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &812693065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4823,8 @@ MonoBehaviour:
   vibrationDistance: 0.3
   vibrationSpeed: 3
   vibrationDuration: 2
+  MirrorAnimator: {fileID: 811651712}
+  mirrorAnimation: {fileID: 7400000, guid: 869648d752b33224081fdebb5c7e6054, type: 2}
   MirrorImage: {fileID: 113335799}
   Mirrorcanvas: {fileID: 1446684967}
   shakingTarget: {fileID: 811651709}
@@ -5552,7 +5633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1122580776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7052,6 +7133,9 @@ GameObject:
   - component: {fileID: 1446684970}
   - component: {fileID: 1446684969}
   - component: {fileID: 1446684968}
+  - component: {fileID: 1446684972}
+  - component: {fileID: 1446684973}
+  - component: {fileID: 1446684974}
   m_Layer: 5
   m_Name: ' MirrorCanvas'
   m_TagString: Untagged
@@ -7141,6 +7225,60 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1446684972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446684967}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8926fc72a6f27c843abccc3784a26753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vibrationDistance: 0.3
+  vibrationSpeed: 3
+  vibrationDuration: 2
+  MirrorAnimator: {fileID: 811651712}
+  mirrorAnimation: {fileID: 0}
+  MirrorImage: {fileID: 113335799}
+  Mirrorcanvas: {fileID: 1446684967}
+  shakingTarget: {fileID: 811651709}
+--- !u!95 &1446684973
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446684967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d2a385d0a239fd41b8241a2305ce158, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1446684974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446684967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb156378f89a794bbdc227242c4811d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MirrorAnimator: {fileID: 811651712}
 --- !u!1 &1466646050
 GameObject:
   m_ObjectHideFlags: 0
@@ -7548,7 +7686,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8404,6 +8542,8 @@ MonoBehaviour:
   vibrationDistance: 0.5
   vibrationSpeed: 2
   vibrationDuration: 3
+  MirrorAnimator: {fileID: 0}
+  mirrorAnimation: {fileID: 0}
   MirrorImage: {fileID: 0}
   Mirrorcanvas: {fileID: 0}
   shakingTarget: {fileID: 0}
@@ -8653,10 +8793,10 @@ RectTransform:
   m_Father: {fileID: 797436387}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 290.1534, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 290.1534, y: 10}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1833423828
 MonoBehaviour:
@@ -8770,7 +8910,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10436,9 +10576,9 @@ RectTransform:
   m_Father: {fileID: 1833423827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052737602

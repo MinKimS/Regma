@@ -13,6 +13,9 @@ public class MirrorControl : MonoBehaviour
     private Vector3 shakingOriginalPosition;
     private GameObject shakingObject;
 
+    public Animator MirrorAnimator;
+    public AnimationClip mirrorAnimation;
+
     int count = 0;
     public Image MirrorImage;
     public GameObject Mirrorcanvas;
@@ -32,14 +35,24 @@ public class MirrorControl : MonoBehaviour
 
     private void Update()
     {
+
+
         if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
         {
             ShowImage();
             hasOpened = true;
+            MirrorAnimator.SetBool("Broken", true);
+            PlayMirrorAnimation();
         }
         else if (hasOpened && Input.GetKeyDown(KeyCode.E))
         {
             ExitImage();
+            //MirrorAnimator.SetBool("Broken", false);
+             //StopMirrorAnimation();
+        }
+
+        if(hasOpened){
+            MirrorAnimator.SetBool("Broken", true);
         }
     }
 
@@ -47,10 +60,11 @@ public class MirrorControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Mirror"))
         {
-            if (count == 0) // 1�� �浹 �Ŀ��� ���� ����
+            if (count == 0) // 1�� �浹 �Ŀ��� ���� ����
             {
                 StartVibration();
             }
+
             isCollisionActive = true;
             count++;
         }
@@ -99,10 +113,14 @@ public class MirrorControl : MonoBehaviour
 
     public void ShowImage()
     {
+        MirrorAnimator.SetBool("Broken", true);
+
         Mirrorcanvas.SetActive(true);
         MirrorImage.enabled = true;
         gameObject.SetActive(true);
         StopVibration();
+        PlayMirrorAnimation();
+        
     }
 
     public void ExitImage()
@@ -110,5 +128,24 @@ public class MirrorControl : MonoBehaviour
         Mirrorcanvas.SetActive(false);
         MirrorImage.enabled = false;
         StopVibration();
+        //StopMirrorAnimation();
     }
+
+    // 이미지 애니메이션을 재생하는 메서드
+    private void PlayMirrorAnimation()
+    {
+        if (MirrorAnimator != null && mirrorAnimation != null)
+        {
+            MirrorAnimator.Play(mirrorAnimation.name);
+        }
+    }
+
+    // 이미지 애니메이션을 정지하는 메서드
+    // private void StopMirrorAnimation()
+    // {
+    //     if (MirrorAnimator != null)
+    //     {
+    //         MirrorAnimator.Rebind(); // 애니메이션을 초기 상태로 되돌립니다.
+    //     }
+    // }
 }

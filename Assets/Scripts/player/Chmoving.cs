@@ -283,8 +283,16 @@ public class Chmoving : MonoBehaviour
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
             inWater = true;
-            
+
+            animator.SetBool("Wet", true);
+        
+
         }
+                    //animator.SetBool("Wet", false);
+            
+            
+        
+        
         
     }
 
@@ -301,7 +309,7 @@ public class Chmoving : MonoBehaviour
 
                 // 개수대 안에서 멈추는 경우에 애니메이션 해제
                 
-                //animator.SetBool("Wet", false);
+                //animator.SetBool("Wet", true);
                 //animator.SetBool("WetIdle", true);
           
 
@@ -317,7 +325,7 @@ public class Chmoving : MonoBehaviour
                 //print("!isMovingInWater");
                 // 개수대 안에서 처음 움직이는 경우에만 애니메이션을 설정
                 
-                animator.SetBool("Wet", true);
+                //animator.SetBool("Wet", true);
             
 
          
