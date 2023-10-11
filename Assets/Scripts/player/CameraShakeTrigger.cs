@@ -8,10 +8,10 @@ public class CameraShakeTrigger : MonoBehaviour
     public GameObject canvasBook;
 
     [SerializeField] float m_force = 0f;
-    [SerializeField] Vector3 m_offset = Vector3.zero; // ¹æÇâ
+    [SerializeField] Vector3 m_offset = Vector3.zero; // ï¿½ï¿½ï¿½ï¿½
     [SerializeField] GameObject shake;
 
-    Quaternion m_originRot; // ÃÊ±â°ª
+    Quaternion m_originRot; // ï¿½Ê±â°ª
 
     GameObject camObj;
     Collider2D collidingObject;
@@ -34,8 +34,8 @@ public class CameraShakeTrigger : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(Reset());
 
-            //collidingObject = null;
-            //isActive = false;
+            collidingObject = null;
+            isActive = false;
             //collidingObject.CompareTag("shake").SetActive(isActive);
         }
     }
@@ -44,15 +44,15 @@ public class CameraShakeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("shake"))
         {
-            collidingObject = collision; // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® Á¤º¸ ÀúÀå
+            collidingObject = collision; // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             StartCoroutine(ShakeCoroutine());
 
-            //isActive = false;
-            //collision.gameObject.SetActive(isActive);
+            isActive = false;
+            collision.gameObject.SetActive(isActive);
 
         }
 
-        //collidingObject = null; // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® Á¤º¸ ÃÊ±âÈ­
+        //collidingObject = null; // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         //isActive = false;
         //collidingObject.CompareTag("shake").SetActive(isActive);
     }
@@ -61,7 +61,7 @@ public class CameraShakeTrigger : MonoBehaviour
     //{
     //    if (collision.CompareTag("shake"))
     //    {
-    //        collidingObject = null; // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® Á¤º¸ ÃÊ±âÈ­
+    //        collidingObject = null; // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     //        isActive = false;
     //        collision.gameObject.SetActive(isActive);
     //    }
@@ -96,7 +96,7 @@ public class CameraShakeTrigger : MonoBehaviour
             yield return null;
         }
 
-        // Á¤È®ÇÑ ¸®¼ÂÀ» À§ÇØ °­Á¦·Î ÃÊ±â È¸Àü°ªÀ¸·Î ¼³Á¤
+        // ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         camObj.transform.rotation = m_originRot;
 
         if (collidingObject != null && collidingObject.CompareTag("shake"))

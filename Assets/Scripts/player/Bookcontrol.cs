@@ -14,25 +14,25 @@ public class Bookcontrol : MonoBehaviour
     private int clickCount = 0;
 
     private bool isAnimationPlaying = false;
-    private bool isActive = true; // Ãæµ¹ ÀÌÈÄ¿¡´Â ºñÈ°¼ºÈ­ÇÏ±â À§ÇÑ º¯¼ö
+    private bool isActive = true; // ï¿½æµ¹ ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public Door door;
 
     void Start()
     {
-        //// isActive º¯¼ö¿¡ µû¶ó gameObjectÀÇ È°¼ºÈ­/ºñÈ°¼ºÈ­¸¦ ¼³Á¤ÇÕ´Ï´Ù. 8.16
-        //gameObject.SetActive(isActive); // Ãæµ¹ ÀÌÀü¿¡´Â isActive º¯¼ö¿¡ µû¶ó È°¼ºÈ­ »óÅÂ¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+        //// isActive ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ gameObjectï¿½ï¿½ È°ï¿½ï¿½È­/ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. 8.16
+        //gameObject.SetActive(isActive); // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ isActive ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 
-        //// activeBook°¡ È°¼ºÈ­µÇ¾î ÀÖ´Â °æ¿ì¿¡¸¸ gameObject¸¦ È°¼ºÈ­ÇÕ´Ï´Ù.
+        //// activeBookï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ gameObjectï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½.
         //if (book.activeSelf)
         //{
         //    gameObject.SetActive(isActive);
         //}
 
-        // AudioSource ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿É´Ï´Ù.
+        // AudioSource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         audioSource = GetComponent<AudioSource>();
 
-        // ¿Àµð¿À ¼Ò½º°¡ ¾ø´Â °æ¿ì¿¡´Â ÄÄÆ÷³ÍÆ®¸¦ Ãß°¡ÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -45,7 +45,7 @@ public class Bookcontrol : MonoBehaviour
         {
             if (clickCount == 0)
             {
-                TearingSound(); // ¼Ò¸® Àç»ý
+                TearingSound(); // ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½
             }
 
             clickCount++;
@@ -68,12 +68,12 @@ public class Bookcontrol : MonoBehaviour
         isAnimationPlaying = true;
         yield return new WaitForSeconds(bookAnimator.GetCurrentAnimatorStateInfo(0).length);
 
-        yield return new WaitForSeconds(1f); // 2ÃÊ ´ë±â
+        yield return new WaitForSeconds(1f); // 2ï¿½ï¿½ ï¿½ï¿½ï¿½
 
         bookImage.enabled = false;
         isAnimationPlaying = false;
         clickCount = 0;
-        isActive = false; // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Á¾·áµÇ¸é isActive º¯¼ö¸¦ false·Î ¼³Á¤ÇÏ¿© ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
+        isActive = false; // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ isActive ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½.
 
         //---
 
@@ -82,7 +82,7 @@ public class Bookcontrol : MonoBehaviour
 
         //---
 
-        gameObject.SetActive(isActive); // ºñÈ°¼ºÈ­ »óÅÂ·Î ¼³Á¤ÇÕ´Ï´Ù.
+        gameObject.SetActive(isActive); // ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     }
 
     //void OnCollisionEnter2D(Collision2D collision) // 8.16
@@ -97,7 +97,7 @@ public class Bookcontrol : MonoBehaviour
     //{
     //    book.SetActive(true);
     //    bookImage.enabled = true;
-    //    gameObject.SetActive(true); // Äµ¹ö½º È°¼ºÈ­
+    //    gameObject.SetActive(true); // Äµï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
     //}
 
     void TearingSound()

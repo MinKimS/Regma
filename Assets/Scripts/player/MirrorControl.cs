@@ -47,8 +47,8 @@ public class MirrorControl : MonoBehaviour
         else if (hasOpened && Input.GetKeyDown(KeyCode.E))
         {
             ExitImage();
-            //MirrorAnimator.SetBool("Broken", false);
-             //StopMirrorAnimation();
+            MirrorAnimator.SetBool("Broken", false);
+            //StopMirrorAnimation();
         }
 
         if(hasOpened){
@@ -140,7 +140,7 @@ public class MirrorControl : MonoBehaviour
         }
     }
 
-    // 이미지 애니메이션을 정지하는 메서드
+    //이미지 애니메이션을 정지하는 메서드
     // private void StopMirrorAnimation()
     // {
     //     if (MirrorAnimator != null)
