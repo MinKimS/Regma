@@ -76,7 +76,7 @@ public class MobRecognizingPlayer : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().flipX = true;
             transform.position = Vector2.MoveTowards(transform.position, transform.position + Vector3.right, matp.traceSpeed*Time.deltaTime);
 
-            if(disToPlayer > noRecogDis+0.1f)
+            if(disToPlayer > noRecogDis + 0.1f)
             {
                 gameObject.SetActive(false);
             }

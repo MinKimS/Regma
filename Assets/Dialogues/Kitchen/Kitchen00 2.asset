@@ -18,4 +18,8 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uC800\uAC74... \uBB50\uC57C?"
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: 8945344d8c208a9499445572c2b7acf6, type: 2}
+  - speakerIdx: 0
+    dlgTexts: "\uB3C4\uB9DD\uCCD0\uC57C \uD574!"
+    eventType: 0
+  nextDlg: {fileID: 0}
+  gmEvent: {fileID: 0}

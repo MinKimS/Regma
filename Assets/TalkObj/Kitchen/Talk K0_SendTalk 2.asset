@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a68b0c52e90a64fae0646f926d27fe, type: 3}
   m_Name: Talk K0_SendTalk 2
   m_EditorClassIdentifier: 
-  talkText: "\uAE30\uB2E4\uB824\uC694 \uC5B4\uB5BB\uAC8C\uB4E0 \uB450\uC0AC\uB78C
-    \uCC3E\uC73C\uB7EC \uAC08\uAC8C\uC694"
-  nextSendTalk: {fileID: 0}
+  talkText: "\uAE30\uB2E4\uB824\uC694"
+  nextSendTalk: {fileID: 11400000, guid: 6d75625722049d5489e40c8f3af33c98, type: 2}

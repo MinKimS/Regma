@@ -17,7 +17,8 @@ public class PTimeLine : MonoBehaviour
     private bool isCollisionActive = false;
    
     private bool Interaction1 = false; // E 키로 이미 캔버스를 열었는지 확인하는 변수
-    
+
+    public GameObject mobAppear;
 
     //냉장고 아이템 얻기 가능하게
     public REFRIGPower power;
@@ -46,6 +47,7 @@ public class PTimeLine : MonoBehaviour
                 Interaction1 = true;
                 refri2Object.SetActive(true);
                 power.isBroken = true;
+                mobAppear.SetActive(true);
 
 
             }

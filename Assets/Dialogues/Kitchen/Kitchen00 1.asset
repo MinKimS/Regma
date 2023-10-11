@@ -29,4 +29,4 @@ MonoBehaviour:
     dlgTexts: "\uC5EC\uAE30\uC5D0\uC11C\uB3C4 \uBB54\uAC00\uB97C \uD574\uC57C\uD558\uB294
       \uAC83 \uAC19\uC544.\n\uC6C0\uC9C1\uC5EC\uBCF4\uC790."
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: 21c02307fc66b3740b308d914eceb740, type: 2}
+  nextDlg: {fileID: 11400000, guid: 8945344d8c208a9499445572c2b7acf6, type: 2}

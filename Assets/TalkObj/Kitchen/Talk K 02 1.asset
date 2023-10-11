@@ -22,10 +22,10 @@ MonoBehaviour:
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
     talkText: "\uB098 \uC695\uC870\uC5D0\uC694 \uC774\uC0C1\uD55C \uAC83\uB4E4\uC774
       \uBB3C\uC704\uB85C \uB9C9\uB6F0\uACE0"
-    TalkSendDelay: 0
+    TalkSendDelay: 1
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
     talkText: "\uB3C4\uC640\uC918\uC694 \uC81C\uBC1C"
-    TalkSendDelay: 0
+    TalkSendDelay: 1
   answerTalk:
   - {fileID: 11400000, guid: 8c023e5e25061704f9b6513af087dea9, type: 2}
   nextTalk: {fileID: 11400000, guid: e16ae724c8e84b34c82e65a67f5a835b, type: 2}

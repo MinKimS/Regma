@@ -8,11 +8,14 @@ public class MobDisappear : MonoBehaviour
     public MoveAlongThePath[] matp;
     public Dialogue[] dlg;
 
+    public BoxCollider2D beAcitvedCol;
+
     public void DisappearOnTalbeInKitchen()
     {
         mob[0].SetActive(false);
         AudioManager.instance.StopSFX("주방_괴생명체1 도원 추격");
         TimelineManager.instance.timelineController.SetTimelineStart("TalkAfterHideOnTable");
+        beAcitvedCol.enabled = true;
     }
     public void DisappearOnCabinetInKitchen()
     {

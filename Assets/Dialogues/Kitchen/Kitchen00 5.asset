@@ -16,11 +16,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uB3C4\uB300\uCCB4 \uC774 \uC9D1\uC5D0\uC11C \uBB34\uC2A8 \uC77C\uC774
-      \uBC8C\uC5B4\uC9C0\uACE0 \uC788\uB294 \uAC70\uC57C!"
+    dlgTexts: "<size=130%>\uB3C4\uB300\uCCB4 \uC774 \uC9D1\uC5D0\uC11C \uBB34\uC2A8
+      \uC77C\uC774 \uBC8C\uC5B4\uC9C0\uACE0 \uC788\uB294 \uAC70\uC57C!</size=130%>"
     eventType: 0
   - speakerIdx: 0
     dlgTexts: "\uB108\uBB34 \uBB34\uC11C\uC6CC...\uC5BC\uB978 \uB098\uAC00\uACE0
       \uC2F6\uC5B4."
     eventType: 0
   nextDlg: {fileID: 11400000, guid: fd1e9b3ce718a7b40b6b2a50d4ea19f7, type: 2}
+  gmEvent: {fileID: 0}
+  beShownObj: {fileID: 0}
+  isBeShown: 0

@@ -16,7 +16,10 @@ public class InventoryItemUsage : MonoBehaviour
     private void Start()
     {
         pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
-        diary.gameObject.SetActive(false);
+        if(diary != null)
+        {
+            diary.gameObject.SetActive(false);
+        }
 
         SceneManager.sceneLoaded += LoadSceneEvent;
     }
@@ -47,7 +50,10 @@ public class InventoryItemUsage : MonoBehaviour
     void Diary()
     {
         print("Diary");
-        diary.ShowDiary();
+        if(diary != null)
+        {
+            diary.ShowDiary();
+        }
     }
 
     void Squid()

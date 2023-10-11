@@ -29,14 +29,11 @@ public class MobAppear : MonoBehaviour
     {
         mob[0].SetActive(true);
         Camera.main.GetComponent<CameraController>().target = mob[0].transform;
-        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
-        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
         vCam.Follow = mob[0].transform;
         DialogueManager.instance.PlayDlg(dlg[0]);
-        while(!Input.GetKeyDown(KeyCode.Return))
-        {
-            yield return null;
-        }
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
+        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         ActivateTrace(0);
     }
 
@@ -53,7 +50,7 @@ public class MobAppear : MonoBehaviour
         vCam.Follow = mob[1].transform;
         AudioManager.instance.SFXPlay("주방_괴생명체 등장");
         AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        DialogueManager.instance.PlayDlg(dlg[0]);
+        DialogueManager.instance.PlayDlg(dlg[1]);
         while (!Input.GetKeyDown(KeyCode.Return))
         {
             yield return null;
@@ -75,7 +72,7 @@ public class MobAppear : MonoBehaviour
         vCam.Follow = mob[2].transform;
         AudioManager.instance.SFXPlay("주방_괴생명체 등장");
         AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        DialogueManager.instance.PlayDlg(dlg[1]);
+        DialogueManager.instance.PlayDlg(dlg[2]);
         while (!Input.GetKeyDown(KeyCode.Return))
         {
             yield return null;

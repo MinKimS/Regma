@@ -6,10 +6,9 @@ public class REFRIG : MonoBehaviour
 {
     InteractionObjData iod;
     public REFRIGPower rPower;
-    public GameObject mobAppearEvent;
     public ItemData squid;
-    public GameEvent mobAppear;
-    public BoxCollider2D afterOpenEventCol;
+    public Transform mobAppear;
+    public Transform talkStarting;
 
     bool isOpened = false;
     bool isActivateEvent = false;
@@ -24,7 +23,7 @@ public class REFRIG : MonoBehaviour
     }
 
     //냉장고 문 열기
-    public void OpenREFRIG(GameObject objEvent)
+    public void OpenREFRIG()
     {
         if(iod == null)
         {
@@ -39,7 +38,7 @@ public class REFRIG : MonoBehaviour
                 if(!isActivateEvent)
                 {
                     isActivateEvent = true;
-                    objEvent.SetActive(true);
+                    StartCoroutine(ReadyToMobAppear());
                 }
             }
             //어댑터 고장낸 후
@@ -49,18 +48,31 @@ public class REFRIG : MonoBehaviour
                 SmartphoneManager.instance.SetInvenItem(squid);
                 isOpened = true;
                 iod.IsOkInteracting = false;
-                afterOpenEventCol.enabled = true;
-                afterOpenEventCol.transform.position = PlayerInfoData.instance.playerTr.position;
+                StartCoroutine(GetSquid());
             }
         }
     }
 
     public void DlgStart()
     {
-        if (isOpened && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
+        if (isOpened)
         {
-            print("test");
-            SmartphoneManager.instance.phone.StartTalk();
         }
+        print("test");
+        SmartphoneManager.instance.phone.StartTalk();
+    }
+
+    IEnumerator ReadyToMobAppear()
+    {
+        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        mobAppear.gameObject.SetActive(true);
+    }
+    IEnumerator GetSquid()
+    {
+        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        TimelineManager.instance.timelineController.SetTimelineStart("GetSquid");
+        yield return new WaitWhile(() => TimelineManager.instance._Tlstate != TimelineManager.TlState.End);
+        talkStarting.gameObject.SetActive(true);
+        talkStarting.position = PlayerInfoData.instance.playerTr.position;
     }
 }

@@ -11,6 +11,8 @@ public class Dialogue : ScriptableObject
     {
         None,//아무일 없음
         Timeline,
+        RunGameEventAfterDlg,
+        ShowObject,
     }
     //이번 대화에 등장할 캐릭터 리스트
     public List<Speaker> speakers;
@@ -18,6 +20,8 @@ public class Dialogue : ScriptableObject
     public List<Sentence> sentences;
     //다음 새로운 대화
     public Dialogue nextDlg;
+    //이벤트
+    public GameEvent gmEvent;
 
     //현재 화면에 출력될 대화
     [System.Serializable]

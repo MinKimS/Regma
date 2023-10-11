@@ -225,6 +225,11 @@ public class DialogueManager : MonoBehaviour
         {
             TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
         }
+
+        if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.RunGameEventAfterDlg)
+        {
+            curDlg.gmEvent.Raise();
+        }
     }
     //대화창 숨기기
     public void DialogueHide(Dialogue dlg)

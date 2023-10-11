@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
+  m_Name: B 2
+  m_EditorClassIdentifier: 
+  speakers:
+  - {fileID: 11400000, guid: 9cc09187ab1c4b340a498bc1d942a539, type: 2}
+  sentences:
+  - speakerIdx: 0
+    dlgTexts: "<color=#ff3131><size=130%>\uC2DC\uB044\uB7EC\uC6CC! \uC774 \uB354\uB7FD\uACE0
+      \uBB34\uC2DD\uD55C \uB144...\n\uB2C8 \uC560\uBE44\uB791 \uB611\uAC19\uC544.</size=130%></color=#ff3131>"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "<color=#ff3131><size=130%>\uC77C\uB85C \uC640</size=130%></color=#ff3131>"
+    eventType: 0
+  nextDlg: {fileID: 11400000, guid: 31dfcaeb1d6927540a6517a70af72262, type: 2}
+  gmEvent: {fileID: 0}

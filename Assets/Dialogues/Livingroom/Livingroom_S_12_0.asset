@@ -16,6 +16,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uAE85!!!!"
+    dlgTexts: "\uC774\uB7EC\uACE0 \uC788\uC744 \uC2DC\uAC04\uC774 \uC5C6\uC5B4.\n\uB098\uBA38\uC9C0
+      \uC0AC\uB78C\uB4E4\uC744 \uC5BC\uB978 \uCC3E\uC544\uC57C \uD574"
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: 5ccd69abc29ee7c438de08a9eb3d19b7, type: 2}
+  - speakerIdx: 0
+    dlgTexts: "\uADF8\uB9AC\uACE0 \uC774 \uACF3\uC744 \uD0C8\uCD9C\uD558\uB294 \uAC70\uC57C."
+    eventType: 0
+  nextDlg: {fileID: 0}
+  gmEvent: {fileID: 0}
