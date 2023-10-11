@@ -7,6 +7,7 @@ public class MobRecognizingPlayer : MonoBehaviour
     float disToPlayer = float.MaxValue;
 
     [SerializeField] float stopTraceTime;
+    public float noRecogDis;
 
     public PlayerHide pHide;
 
@@ -28,14 +29,12 @@ public class MobRecognizingPlayer : MonoBehaviour
     {
         disToPlayer = Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position);
 
-        float mapWidth = Camera.main.orthographicSize * Camera.main.aspect;
-
         //몬스터가 보고있는 상태에서 플레이어가 숨으면 계속 인식
         //몬스터가 보고있지 않은 상태에서 플레이어가 숨으면 인식 불가
         if(pHide != null && pHide.isTryHiding)
         {
             //화면 안에 있을 때 숨으면 계속 인식
-            if (disToPlayer < mapWidth)
+            if (disToPlayer < noRecogDis)
             {
                 if(!pHide.isHide)
                 {
@@ -50,7 +49,7 @@ public class MobRecognizingPlayer : MonoBehaviour
             }
         }
 
-        if(disToPlayer < mapWidth*0.5f)
+        if(disToPlayer < noRecogDis*0.5f)
         {
             //숨어서 
             if (pHide.isHide)
@@ -77,7 +76,7 @@ public class MobRecognizingPlayer : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().flipX = true;
             transform.position = Vector2.MoveTowards(transform.position, transform.position + Vector3.right, matp.traceSpeed*Time.deltaTime);
 
-            if(disToPlayer > mapWidth+0.1f)
+            if(disToPlayer > noRecogDis+0.1f)
             {
                 gameObject.SetActive(false);
             }

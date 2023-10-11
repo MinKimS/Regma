@@ -15,7 +15,7 @@ MonoBehaviour:
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
-  - speakerIdx: -1
+  - speakerIdx: 0
     dlgTexts: "\uB2F4\uC694\uB97C \uC5BB\uC5C8\uB2E4."
     eventType: 0
   - speakerIdx: 0

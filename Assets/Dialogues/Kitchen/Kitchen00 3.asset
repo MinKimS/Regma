@@ -16,12 +16,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uB2E4\uB4E4 \uC0B4\uC544\uC788\uC5C8\uAD6C\uB098"
+    dlgTexts: .....
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: ....
+    dlgTexts: "\uD1A1\uC774 \uB04A\uACBC\uC5B4..."
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: "\uBB50 \uC5B4\uB54C.. \uC77C\uB2E8 \uC0B0 \uC0AC\uB78C\uC740 \uC0B4\uC544\uC57C\uC9C0."
+    dlgTexts: "\uADF8\uB798\uB3C4 \uB2E4\uB4E4 \uC544\uC9C1 \uBB34\uC0AC\uD55C \uAC83
+      \uAC19\uC544.\n\uC5B4\uC11C \uC6C0\uC9C1\uC774\uC790."
     eventType: 0
   nextDlg: {fileID: 11400000, guid: ba107e1e3570c334b8b96c9d484b2b53, type: 2}

@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b13d16ba1c2e920448dae1c18d2df019, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -59,12 +59,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _SineAmp: 0.006
-    - _SineLength: 0.01
-    - _SineSpeed: 0.01
+    - _SineAmp: 0.1
+    - _SineLength: 0.2
+    - _SineSpeed: 0.1
     - _YValue: 1
     m_Colors:
-    - _Color: {r: 0.40251565, g: 0.63391393, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _WaterColor: {r: 0.65723264, g: 1, b: 0.89031446, a: 1}

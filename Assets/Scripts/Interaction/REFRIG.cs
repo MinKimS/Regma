@@ -8,6 +8,8 @@ public class REFRIG : MonoBehaviour
     public REFRIGPower rPower;
     public GameObject mobAppearEvent;
     public ItemData squid;
+    public GameEvent mobAppear;
+    public BoxCollider2D afterOpenEventCol;
 
     bool isOpened = false;
     bool isActivateEvent = false;
@@ -47,23 +49,18 @@ public class REFRIG : MonoBehaviour
                 SmartphoneManager.instance.SetInvenItem(squid);
                 isOpened = true;
                 iod.IsOkInteracting = false;
+                afterOpenEventCol.enabled = true;
+                afterOpenEventCol.transform.position = PlayerInfoData.instance.playerTr.position;
             }
         }
     }
 
-    //¿ÀÂ¡¾î È¹µæ
-    void GetSquid()
+    public void DlgStart()
     {
-        ////ºñ¾îÀÖ´Â ½½·Ô¿¡¸¸ ÀúÀå
-        //for (int i = 0; i < SmartphoneManager.instance.filesInven.slotList.Count; i++)
-        //{
-        //    if (!SmartphoneManager.instance.filesInven.slotDataList[i].isFull)
-        //    {
-        //        SetItem(i, item);
-        //        SmartphoneManager.instance.filesInven.slotDataList[i].isFull = true;
-        //        SmartphoneManager.instance.maxFilesSlot++;
-        //        break;
-        //    }
-        //}
+        if (isOpened && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
+        {
+            print("test");
+            SmartphoneManager.instance.phone.StartTalk();
+        }
     }
 }

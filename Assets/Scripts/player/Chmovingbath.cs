@@ -18,8 +18,8 @@ public class Chmovingbath : MonoBehaviour
     private Rigidbody2D rb;
     private bool isMoving = false;
     private bool isJumpingWithMovement = false;
-
-    bool isGround;
+    [HideInInspector]
+    public bool isGround;
     [SerializeField] Transform pos;
     float checkRadius = 0.10f;
     [SerializeField] LayerMask islayer;

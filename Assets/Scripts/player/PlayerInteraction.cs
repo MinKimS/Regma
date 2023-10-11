@@ -70,13 +70,13 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void SetItem(int i, ItemData item)
-    {
-        ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
-        itemData.itemName = item.itemName;
-        itemData.itemImg = item.itemImg;
-        itemData.itemID = item.itemID;
-        SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
-        SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
-    }
+    //private void SetItem(int i, ItemData item)
+    //{
+    //    ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+    //    itemData.itemName = item.itemName;
+    //    itemData.itemImg = item.itemImg;
+    //    itemData.itemID = item.itemID;
+    //    SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
+    //    SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+    //}
 }

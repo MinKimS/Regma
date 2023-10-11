@@ -39,7 +39,6 @@ public class PTimeLine : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 print("Ãæµ¹");

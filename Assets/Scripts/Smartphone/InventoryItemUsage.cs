@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class InventoryItemUsage : MonoBehaviour
+{
+    [SerializeField]
+    PlayerFallingController pfc;
+    Diary diary;
+
+    private void Awake()
+    {
+        diary = GetComponentInChildren<Diary>();
+    }
+    private void Start()
+    {
+        pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
+        diary.gameObject.SetActive(false);
+
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene")
+        {
+            SetInitialization();
+        }
+    }
+
+    void SetInitialization()
+    {
+        pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
+    }
+
+    public void UseItem(ItemData item)
+    {
+        switch(item.itemID)
+        {
+            case 0 : Diary(); break;
+            case 1 : Blanket(); break;
+            case 2 : Squid(); break;
+            case 3 : BrokenPieceOfGlass(); break;
+        }
+    }
+
+    void Diary()
+    {
+        print("Diary");
+        diary.ShowDiary();
+    }
+
+    void Squid()
+    {
+        print("Squid");
+    }
+
+    void BrokenPieceOfGlass()
+    {
+        print("BrokenPieceOfGalss");
+    }
+
+    void Blanket()
+    {
+        print("플레이어 점프 낙하 데미지 없음 모드로 변경");
+        pfc.isNoFallingDamage = true;
+    }
+}

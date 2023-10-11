@@ -15,7 +15,7 @@ public class BathMobEye : MonoBehaviour
     [HideInInspector]
     public bool isPlayerHide = false;
 
-    public HidingObj[] ho;
+    //public HidingObj[] ho;
 
     public bool IsFindPlayer
     { get { return isFindPlayer; } }
@@ -28,20 +28,20 @@ public class BathMobEye : MonoBehaviour
         anim = GetComponent<Animator>();
         playerPos = GameObject.FindWithTag("Player").transform;
 
-        for (int i = 0; ho.Length > i; i++)
-        {
-            ho[i].eye = this;
-        }
+        //for (int i = 0; ho.Length > i; i++)
+        //{
+        //    ho[i].eye = this;
+        //}
     }
 
-    private void Update()
-    {
-        //´« ±¼¸®´Â µ¿¾È ÇÃ·¹ÀÌ¾î ÃßÀû
-        if(isRolling && !bmc.IsMobStuck)
-        {
-            FindingPlayer();
-        }
-    }
+    //private void Update()
+    //{
+    //    //´« ±¼¸®´Â µ¿¾È ÇÃ·¹ÀÌ¾î ÃßÀû
+    //    if(isRolling && !bmc.IsMobStuck)
+    //    {
+    //        FindingPlayer();
+    //    }
+    //}
 
     public void StopRolling()
     {
@@ -49,40 +49,40 @@ public class BathMobEye : MonoBehaviour
         isRolling = false;
     }
 
-    public IEnumerator RollEye()
-    {
-        var wait = new WaitForSeconds(2f);
-        var sWait = new WaitForSeconds(1f);
-        yield return new WaitForSeconds(3f);
-        isRolling = true;
-        anim.SetBool("isRolling", true);
+    //public IEnumerator RollEye()
+    //{
+    //    var wait = new WaitForSeconds(2f);
+    //    var sWait = new WaitForSeconds(1f);
+    //    yield return new WaitForSeconds(3f);
+    //    isRolling = true;
+    //    anim.SetBool("isRolling", true);
 
-        //ÁÂ¿ì·Î ´« µ¹¸²
-        while ((!bmc.IsMobInWater || bmc.IsMobSeeFishingRod) && !bmc.IsMobStuck)
-        {
-            isFindPlayer = false;
-            anim.SetBool(ISLOOKMIDDLE, false);
-            anim.SetBool(ISLOOKRIGHT, true);
-            lookDirNum = 2;
-            yield return wait;
+    //    //ÁÂ¿ì·Î ´« µ¹¸²
+    //    while ((!bmc.IsMobInWater || bmc.IsMobSeeFishingRod) && !bmc.IsMobStuck)
+    //    {
+    //        isFindPlayer = false;
+    //        anim.SetBool(ISLOOKMIDDLE, false);
+    //        anim.SetBool(ISLOOKRIGHT, true);
+    //        lookDirNum = 2;
+    //        yield return wait;
 
-            isFindPlayer = false;
-            anim.SetBool(ISLOOKMIDDLE, true);
-            lookDirNum = 1;
-            yield return sWait;
+    //        isFindPlayer = false;
+    //        anim.SetBool(ISLOOKMIDDLE, true);
+    //        lookDirNum = 1;
+    //        yield return sWait;
 
-            isFindPlayer = false;
-            anim.SetBool(ISLOOKMIDDLE, false);
-            anim.SetBool(ISLOOKRIGHT, false);
-            lookDirNum = 0;
-            yield return wait;
+    //        isFindPlayer = false;
+    //        anim.SetBool(ISLOOKMIDDLE, false);
+    //        anim.SetBool(ISLOOKRIGHT, false);
+    //        lookDirNum = 0;
+    //        yield return wait;
 
-            isFindPlayer = false;
-            anim.SetBool(ISLOOKMIDDLE, true);
-            lookDirNum = 1;
-            yield return sWait;
-        }
-    }
+    //        isFindPlayer = false;
+    //        anim.SetBool(ISLOOKMIDDLE, true);
+    //        lookDirNum = 1;
+    //        yield return sWait;
+    //    }
+    //}
 
     void FindingPlayer()
     {

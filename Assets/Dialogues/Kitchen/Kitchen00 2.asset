@@ -16,22 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uBB50\uC57C \uBB50\uC57C \uBB50\uC57C!!"
+    dlgTexts: "\uC800\uAC74... \uBB50\uC57C?"
     eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uBC29\uAE08 \uBB50\uB0D0\uACE0?!\n\uC720\uB839? \uADC0\uC2E0? \uAD34\uBB3C?"
-    eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uC124\uB9C8 \uB098\uC5D0\uAC8C \uBA54\uC2DC\uC9C0\uB97C \uBCF4\uB0B4\uB294
-      \uB188?"
-    eventType: 0
-  - speakerIdx: 0
-    dlgTexts: ....
-    eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uC5B4\uC11C\uBE68\uB9AC \uC774\uACF3\uC744 \uB098\uAC00\uC57C\uACA0\uC5B4"
-    eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uC5C7"
-    eventType: 0
-  nextDlg: {fileID: 11400000, guid: fd1e9b3ce718a7b40b6b2a50d4ea19f7, type: 2}
+  nextDlg: {fileID: 11400000, guid: 8945344d8c208a9499445572c2b7acf6, type: 2}

@@ -6,7 +6,7 @@ public class Cereal : MonoBehaviour
 {
     Animator pAnim;
     Vector3 originPos;
-    Transform anchor;
+    public Transform anchor;
     Rigidbody2D rb;
 
 
@@ -17,8 +17,7 @@ public class Cereal : MonoBehaviour
 
     private void Awake()
     {
-        anchor = GetComponentInParent<Transform>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Start()

@@ -7,6 +7,9 @@ public class RecognizingHidingPlayer : MonoBehaviour
     public LightControl lightControl;
     bool isInHideArea = false;
     public PlayerHide playerHide;
+    
+    //부엌에서 쓰이는지 욕실에서 쓰이는지 체크
+    public bool isInBath = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,7 +37,6 @@ public class RecognizingHidingPlayer : MonoBehaviour
             isInHideArea = false;
             collision.gameObject.GetComponentInParent<PlayerHide>().isTryHiding = false;
             collision.gameObject.GetComponentInParent<PlayerHide>().isHide = false;
-            print("not hide");
             SpriteRenderer sp = collision.gameObject.GetComponentInParent<SpriteRenderer>();
             if (sp != null)
             {
@@ -51,16 +53,29 @@ public class RecognizingHidingPlayer : MonoBehaviour
     {
         if(collision.CompareTag("HidingPoint"))
         {
-            //플레이어가 완전히 숨어졌는지 설정
-            if (isInHideArea && !lightControl.isLightOn)
+            if(!isInBath)
             {
-                playerHide.isTryHiding = true;
+                //플레이어가 완전히 숨어졌는지 설정
+                if (isInHideArea && !lightControl.isLightOn)
+                {
+                    playerHide.isTryHiding = true;
+                }
+                else
+                {
+                    playerHide.isTryHiding = false;
+                    playerHide.isHide = false;
+                }
             }
             else
             {
-                playerHide.isTryHiding = false;
-                playerHide.isHide = false;
-                print("not hide");
+                if(isInHideArea)
+                {
+                    playerHide.isHide = true;
+                }
+                else
+                {
+                    playerHide.isHide = false;
+                }
             }
         }
     }

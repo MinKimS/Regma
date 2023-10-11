@@ -12,6 +12,7 @@ public class MobAppear : MonoBehaviour
     public CinemachineVirtualCamera vCam;
 
     public bool isMobAppear = false;
+    [HideInInspector] public bool isLastMob = false;
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class MobAppear : MonoBehaviour
 
     public void LastInKitchen()
     {
+        isLastMob = true;
         isMobAppear = true;
         StartCoroutine(AppearLastInKitchen());
     }

@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: Refrigerator
   m_EditorClassIdentifier: 
-  speakers: []
+  speakers:
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
-  - speakerIdx: -1
+  - speakerIdx: 0
     dlgTexts: "\uB77D\uC774 \uAC78\uB824 \uC788\uC5B4\uC11C \uD798\uC73C\uB860 \uC5F4
-      \uC218 \uC5C6\uC5B4.\n\uB2E4\uB978 \uBC29\uBC95\uC744 \uCC3E\uC544\uBCF4\uC790."
+      \uC218 \uC5C6\uC5B4."
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uC81C\uB300\uB85C \uB41C \uC74C\uC2DD\uB3C4 \uC5C6\uC744 \uAC78.\n\uC774\uB7F0
+      \uACF3\uC5D0..."
     eventType: 0
   nextDlg: {fileID: 0}

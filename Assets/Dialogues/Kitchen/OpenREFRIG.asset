@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: OpenREFRIG
   m_EditorClassIdentifier: 
-  speakers: []
+  speakers:
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
-  - speakerIdx: -1
-    dlgTexts: "\uC624\uC9D5\uC5B4\uB97C \uD68D\uB4DD\uD588\uB2E4."
+  - speakerIdx: 0
+    dlgTexts: "\uC73D....\uC774\uAC8C \uB2E4 \uBB50\uC57C....\uC6B0\uC6B1."
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uC800\uAC83\uB9CC...\uBA40\uCA61\uD574\uBCF4\uC774\uB294\uB370?\n\uC77C\uB2E8
+      \uCC59\uAE30\uC790."
     eventType: 0
   nextDlg: {fileID: 0}

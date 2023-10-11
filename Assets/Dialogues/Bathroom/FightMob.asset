@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
   m_Name: FightMob
   m_EditorClassIdentifier: 
-  speakers: []
+  speakers:
+  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
-  - speakerIdx: -1
+  - speakerIdx: 0
     dlgTexts: "\uD0C0\uC774\uBC0D\uC744 \uB9DE\uCDB0\uC57C \uD574!"
     eventType: 0
   nextDlg: {fileID: 0}

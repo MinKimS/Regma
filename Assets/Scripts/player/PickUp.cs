@@ -26,22 +26,24 @@ public class PickUp : MonoBehaviour
             }
             //인벤에 아이템 저장
             ItemData item = GetComponent<ItemData>();
-            if(item == null)
-            {
-                print("No Item Data.");
-            }
-            //비어있는 슬롯에만 저장
-            for(int i =0; i< SmartphoneManager.instance.inven.filesInven.slotList.Count; i++ )
-            {
-                if(!SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull)
-                {
-                    SetItem(i, item);
-                    SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull = true;
-                    SmartphoneManager.instance.inven.MaxFilesSlot++;
-                    break;
-                }
-            }
-            
+            //if(item == null)
+            //{
+            //    print("No Item Data.");
+            //}
+            ////비어있는 슬롯에만 저장
+            //for(int i =0; i< SmartphoneManager.instance.inven.filesInven.slotList.Count; i++ )
+            //{
+            //    if(!SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull)
+            //    {
+            //        SmartphoneManager.instance.SetItem(i, item);
+            //        SmartphoneManager.instance.inven.filesInven.slotDataList[i].isFull = true;
+            //        SmartphoneManager.instance.inven.MaxFilesSlot++;
+            //        break;
+            //    }
+            //}
+
+            SmartphoneManager.instance.SetInvenItem(item);
+
             Destroy(this.gameObject);
             //Damage HpControl = collision.GetComponent<Damage>();
             //if (HpControl != null)
@@ -58,17 +60,17 @@ public class PickUp : MonoBehaviour
         HpScreen.color = new Color(1f, 1f, 1f, 1f);
     }
 
-    private void SetItem(int i, ItemData item)
-    {
-        if(item != null)
-        {
-            ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
-            itemData.itemName = item.itemName;
-            itemData.itemImg = item.itemImg;
-            itemData.itemID = SmartphoneManager.instance.itemIdx;
-            SmartphoneManager.instance.gmEventList.Add(item.itemEvent);
-            SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
-            SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
-        }
-    }
+    //private void SetItem(int i, ItemData item)
+    //{
+    //    if(item != null)
+    //    {
+    //        ItemData itemData = SmartphoneManager.instance.inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
+    //        itemData.itemName = item.itemName;
+    //        itemData.itemImg = item.itemImg;
+    //        itemData.itemID = SmartphoneManager.instance.itemIdx;
+    //        SmartphoneManager.instance.gmEventList.Add(item.itemEvent);
+    //        SmartphoneManager.instance.inven.filesInven.slotDataList[i].item = itemData;
+    //        SmartphoneManager.instance.inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+    //    }
+    //}
 }

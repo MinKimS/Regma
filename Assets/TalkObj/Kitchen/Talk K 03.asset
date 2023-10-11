@@ -17,12 +17,9 @@ MonoBehaviour:
   runEvent: {fileID: 0}
   TalkContexts:
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
-    talkText: "\uAE4C\uD1A1\uAE4C"
+    talkText: "\uB098\uAC08 \uACF3\uC744 \uCC3E\uC558\uC5B4\uC694 \uBB38\uC774 \uBCF4\uC5EC\uC694"
     TalkSendDelay: 0
-  - user: {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
-    talkText: "\uD1A1\uD1A1\uD1A1"
-    TalkSendDelay: 1
   answerTalk:
-  - {fileID: 11400000, guid: d602063c827d8a24b8ab2f0d0dd119b2, type: 2}
-  nextTalk: {fileID: 0}
+  - {fileID: 11400000, guid: 1e7753deb11390a47a8be48ada82426a, type: 2}
+  nextTalk: {fileID: 11400000, guid: 9b281815f7d955e499eb0f0da5ce618d, type: 2}
   isInTimeline: 0

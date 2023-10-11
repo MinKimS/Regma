@@ -9,6 +9,8 @@ public class SmartphoneManager : MonoBehaviour
 {
     public static SmartphoneManager instance;
 
+    InventoryItemUsage itemUsage;
+
     [HideInInspector] public TalkNotification notification;
 
     [HideInInspector] public Phone phone;
@@ -18,8 +20,8 @@ public class SmartphoneManager : MonoBehaviour
     //톡 스크롤되는 속도
     public float talkScrollSpeed = 0.05f;
 
-    [NonSerialized]
-    public int itemIdx = 0;
+    //[NonSerialized]
+    //public int itemIdx = 0;
     public List<GameEvent> gmEventList = new List<GameEvent>(16);
 
     private void Awake() {
@@ -30,6 +32,7 @@ public class SmartphoneManager : MonoBehaviour
         }
         else Destroy(gameObject);
 
+        itemUsage = GetComponent<InventoryItemUsage>();
         phone = GetComponentInChildren<Phone>();
         inven = phone.GetComponentInChildren<InventoryController>();
         notification = GetComponentInChildren<TalkNotification>();
@@ -59,7 +62,6 @@ public class SmartphoneManager : MonoBehaviour
             //인벤 열기
             if((Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&inven.IsOpenInven)))
             {
-                print("iiiiii");
                 if(!inven.IsOpenInven)
                 {
                     if(!phone.IsOpenPhone)
@@ -265,8 +267,9 @@ public class SmartphoneManager : MonoBehaviour
                 }
                 else if(inven.IsOpenFiles && inven.MaxFilesSlot!=0)
                 {
-                    gmEventList[inven.SelectedOption - 1].Raise();
-                    print(inven.SelectedOption - 1);
+                    //gmEventList[inven.SelectedOption - 1].Raise();
+                    //print(inven.SelectedOption - 1);
+                    itemUsage.UseItem(inven.filesInven.slotDataList[inven.SelectedOption - 1].item);
                     ////일기장
                     //if(inven.filesInven.slotDataList[inven.SelectedOption - 1].item.itemID == 0)
                     //{
@@ -346,17 +349,17 @@ public class SmartphoneManager : MonoBehaviour
         }
     }
 
-    private void SetItem(int i, ItemData item)
+    public void SetItem(int i, ItemData item)
     {
         if (item != null)
         {
             ItemData itemData = inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
             itemData.itemName = item.itemName;
             itemData.itemImg = item.itemImg;
-            itemData.itemID = itemIdx;
+            itemData.itemID = item.itemID;
             itemData.itemEvent = item.itemEvent;
             gmEventList.Add(item.itemEvent);
-            itemIdx++;
+            //itemIdx++;
             inven.filesInven.slotDataList[i].item = itemData;
             inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }

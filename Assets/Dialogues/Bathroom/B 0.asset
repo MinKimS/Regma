@@ -17,7 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "<color=#ff3131>\uC57C!!! \uBB50\uD558\uB294 \uAC70\uC57C!</color=#ff3131>"
+    dlgTexts: "<color=#ff3131><size=130%>\uC57C!!!</size=130%> \uBB50\uD558\uB294
+      \uAC70\uC57C!</color=#ff3131>"
     eventType: 0
   - speakerIdx: 0
     dlgTexts: "<color=#ff3131>\uBA4D\uCCAD\uD55C \uB144... \uB354\uB7EC\uC6CC.</color=#ff3131>"
@@ -26,7 +27,7 @@ MonoBehaviour:
     dlgTexts: "<color=#ff3131>\uBCC0\uAE30\uBB3C \uBB4D\uD78C \uC190\uC73C\uB85C!</color=#ff3131>"
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: "<color=#ff3131>\uB610 \uC5EC\uAE30\uC800\uAE30!</color=#ff3131>"
+    dlgTexts: "<color=#ff3131>\uB610 <size=130%>\uC5EC\uAE30\uC800\uAE30!</size=130%></color=#ff3131>"
     eventType: 0
   - speakerIdx: 0
     dlgTexts: "<color=#ff3131>\uB9CC\uC9C8\uB824\uACE0!</color=#ff3131>"
@@ -35,7 +36,7 @@ MonoBehaviour:
     dlgTexts: "<color=#ff3131>\uADF8\uB7EC\uC9C0!</color=#ff3131>"
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: "<color=#ff3131>\uC5BC\uB978 \uC548 \uC53B\uC5B4?!</color=#ff3131>"
+    dlgTexts: "<color=#ff3131><size=130%>\uC5BC\uB978 \uC548 \uC53B\uC5B4?!</size=130%></color=#ff3131>"
     eventType: 0
   - speakerIdx: 1
     dlgTexts: "\uBC29\uAE08...\uBB50\uC9C0... \uADF8\uAC74?"

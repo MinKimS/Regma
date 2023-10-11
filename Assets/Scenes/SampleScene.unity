@@ -1140,7 +1140,6 @@ GameObject:
   - component: {fileID: 87917004}
   - component: {fileID: 87917003}
   - component: {fileID: 87917005}
-  - component: {fileID: 87917006}
   m_Layer: 5
   m_Name: InvenArea
   m_TagString: Untagged
@@ -1231,35 +1230,6 @@ MonoBehaviour:
   invenOption:
   - {fileID: 2067249808}
   - {fileID: 2029279739}
---- !u!114 &87917006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87917001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50000113267876749a665a0ba8ed4006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gmEventResponses:
-  - gmEvent: {fileID: 11400000, guid: c181b78915e110645af1cc8a773ddca2, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 353598353}
-          m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-          m_MethodName: ShowDiary
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &99579865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,8 +1530,8 @@ RectTransform:
   m_Children:
   - {fileID: 1535268416}
   - {fileID: 2059644239}
-  m_Father: {fileID: 711534593}
-  m_RootOrder: 0
+  m_Father: {fileID: 1406776365}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5859,7 +5829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc2dc9b1178735448ec48c2f169b179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 1
   itemName: "\uB2F4\uC694"
   itemImg: {fileID: 21300000, guid: 52b67b9c8554b284c9780072394641df, type: 3}
   itemEvent: {fileID: 11400000, guid: 6657b30c943aba74381dbd9769ab0667, type: 2}
@@ -6512,8 +6482,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 109017383}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11658,6 +11627,7 @@ GameObject:
   - component: {fileID: 1406776368}
   - component: {fileID: 1406776367}
   - component: {fileID: 1406776370}
+  - component: {fileID: 1406776371}
   m_Layer: 5
   m_Name: PhoneCanvas
   m_TagString: Untagged
@@ -11680,6 +11650,7 @@ RectTransform:
   - {fileID: 1139636121}
   - {fileID: 1928879063}
   - {fileID: 1880711469}
+  - {fileID: 109017383}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11766,6 +11737,19 @@ MonoBehaviour:
   inven: {fileID: 0}
   talkScrollSpeed: 0.01
   gmEventList: []
+--- !u!114 &1406776371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406776364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be72e5650d4af324aa41793ac199d30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfc: {fileID: 0}
 --- !u!1 &1446555009
 GameObject:
   m_ObjectHideFlags: 0

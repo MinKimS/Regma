@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
+  m_Name: Talk K 04
+  m_EditorClassIdentifier: 
+  afterEndTalk: 2
+  timelineName: 
+  runEvent: {fileID: 0}
+  TalkContexts:
+  - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+    talkText: "\uBB3C\uACE0\uAE30\uB97C \uAC74\uB108\uAC00\uC57C\uD558\uB2C8 \uB9DE\uC744\uAC70\uC5D0\uC694"
+    TalkSendDelay: 0
+  answerTalk:
+  - {fileID: 11400000, guid: 7eda0b30c0daa1d46bac354c00657eb2, type: 2}
+  nextTalk: {fileID: 11400000, guid: 1107a3be52dda034c9510dbe03f6e6b7, type: 2}
+  isInTimeline: 0
