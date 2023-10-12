@@ -11,7 +11,7 @@ public class Chmoving : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
-    private float jumpForce = 9f;
+    public float jumpForce = 9f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
@@ -155,10 +155,10 @@ public class Chmoving : MonoBehaviour
 
                 }
 
-                //if (inWater)
-                //{
-                //    animator.SetBool("Wet", true);
-                //}
+                if (inWater)
+                {
+                   animator.SetBool("Wet", true);
+                }
 
 
 
@@ -287,6 +287,12 @@ public class Chmoving : MonoBehaviour
             animator.SetBool("Wet", true);
         
 
+        }
+
+        else
+        {
+            animator.SetBool("Wet", false);
+            animator.SetBool("walk", true);
         }
                     //animator.SetBool("Wet", false);
             
