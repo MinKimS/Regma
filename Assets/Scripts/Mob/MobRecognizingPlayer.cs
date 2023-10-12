@@ -7,7 +7,7 @@ public class MobRecognizingPlayer : MonoBehaviour
     float disToPlayer = float.MaxValue;
 
     [SerializeField] float stopTraceTime;
-    public float noRecogDis;
+    public float noRecogDis = 10f;
 
     public PlayerHide pHide;
 
@@ -27,6 +27,8 @@ public class MobRecognizingPlayer : MonoBehaviour
 
     private void Update()
     {
+        //noRecogDis = Camera.main.orthographicSize * Camera.main.aspect;
+
         disToPlayer = Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position);
 
         //몬스터가 보고있는 상태에서 플레이어가 숨으면 계속 인식
@@ -83,6 +85,8 @@ public class MobRecognizingPlayer : MonoBehaviour
 
             appear.isMobAppear = false;
 
+            //얘가 비활성화 시키고 있음
+            //그래서 일단 꺼둠
             if (eventWhenMobDisappear != null)
             {
                 eventWhenMobDisappear.Raise();

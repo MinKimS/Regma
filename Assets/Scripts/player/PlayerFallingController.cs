@@ -14,10 +14,28 @@ public class PlayerFallingController : MonoBehaviour
     public Chmovingbath movingBath;
     public Chmoving moving;
 
+    LayerMask layer;
+
+    RaycastHit2D hit;
+
+    float distance = 1f;
+    public Vector3 origin;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position + origin, Vector2.down * distance, Color.blue);
+        hit = Physics2D.Raycast(transform.position + origin, Vector2.down, distance, layer.value);
+
+        if (hit.collider != null)
+        {
+            print("dlkjfsdfjsldjflsjlksjdfldsfjsdf");
+        }
     }
 
     private void Update()
