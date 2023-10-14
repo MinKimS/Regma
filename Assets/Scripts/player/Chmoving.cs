@@ -5,13 +5,12 @@ using UnityEngine;
 public class Chmoving : MonoBehaviour
 {
     public Animator animator;
-
-    public AudioClip jumpSound; // 점프 사운드
-    public AudioSource walkAudioSource; // 걷는 소리 소스
+    public AudioClip jumpSound;
+    public AudioSource walkAudioSource;
 
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
-    public float jumpForce = 9f;
+    public float jumpForce = 12f;
     private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
@@ -21,8 +20,7 @@ public class Chmoving : MonoBehaviour
     private bool isJumpingWithMovement = false;
     private bool inWater = false;
 
-
-    int jumpCnt; // 0이 되면 더 이상 점프 x
+    int jumpCnt;
 
     [HideInInspector]
     public bool isGround;
@@ -32,228 +30,160 @@ public class Chmoving : MonoBehaviour
     bool isJumping = false;
     public int JumpCount;
 
-    // PlayerHanging pHanging;
-
-    //bool isOkPlayerMove = true;
-
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
         jumpCnt = JumpCount;
-        //pHanging = GetComponent<PlayerHanging>();
     }
-
-
 
     private void Update()
     {
-
-
-
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
 
-        if (DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !SmartphoneManager.instance.phone.IsOpenPhone && TimelineManager.instance._Tlstate == TimelineManager.TlState.End) //&& !pHanging.IsHanging && isOkPlayerMove)
+        // 플레이어가 움직일 수 있는 조건
+        bool canMove = DialogueManager.instance._dlgState == DialogueManager.DlgState.End &&
+                       !SmartphoneManager.instance.phone.IsOpenPhone &&
+                       TimelineManager.instance._Tlstate == TimelineManager.TlState.End;
+
+        if (canMove)
         {
-            if (isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
-            {
-                isJumping = true;
-                rb.velocity = Vector2.up * jumpForce;
-                //jumpCnt--;
-                //JumpCount = jumpCnt;
-                PlayJumpSound(); // 점프 사운드 재생
-            }
+            // 점프 관련 입력 처리
+            HandleJumpInput();
 
-            if (!isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
-            {
-                isJumping = true;
-                //jumpCnt--;
-                rb.velocity = Vector2.up * jumpForce;
-                PlayJumpSound(); // 점프 사운드 재생
-            }
+            // 달리기 입력 처리
+            HandleRunInput();
 
-            if (isGround)
-            {
-                //JumpCount = 0;
-                jumpCnt = JumpCount;
+            // 이동 관련 입력 처리
+            HandleMovementInput();
 
-
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-            {
-                //JumpCount++;
-                jumpCnt--;
-                isJumping = false;
-            }
-
-            if (isJumping)
-            {
-                animator.SetBool("jump", true);
-            }
-
-            //if (JumpCount > 0)
-            //{
-            //    print("jumpCnt" + jumpCnt);
-            //    print(JumpCount);
-            //    animator.SetBool("jump", true);
-            //}
-            else
-            {
-                animator.SetBool("jump", false);
-            }
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                isRunning = true;
-            }
-            else
-            {
-                isRunning = false;
-            }
-
-
-
-
-            float moveInputX = Input.GetAxisRaw("Horizontal");
-
-
-            if (moveInputX != 0)
-            {
-                isMoving = true;
-                currentMoveSpeed = moveSpeed * moveInputX;
-                animator.SetBool("walk", true);
-
-                if (isJumping)
-                {
-                    StopWalkSound();
-                    isJumpingWithMovement = true;
-                }
-                else
-                {
-                    if (!isJumpingWithMovement && isGround) // 추가된 조건
-                    {
-                        PlayWalkSound();
-                    }
-                    isJumpingWithMovement = false;
-                }
-
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    isRunning = true;
-                    currentMoveSpeed = runSpeed * moveInputX;
-                    animator.SetBool("walk", true);
-                    print("달리는 중");
-                }
-
-                else
-                {
-                    isRunning = false;
-                    currentMoveSpeed = moveSpeed * moveInputX;
-                   
-
-                }
-
-                if (inWater)
-                {
-                   animator.SetBool("Wet", true);
-                }
-
-
-
-            }
-            else
-            {
-                isMoving = false;
-                currentMoveSpeed = 0f;
-                animator.SetBool("walk", false);
-                StopWalkSound();
-
-                //if (inWater)
-                //{
-                //    animator.SetBool("WetIdle", true);
-                //}
-
-            }
-
-            rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+            // 애니메이션 업데이트
+            UpdateAnimation();
         }
         else
         {
+            // 플레이어가 움직일 수 없을 때 정지
             rb.velocity = new Vector2(0f, rb.velocity.y);
             StopWalkSound();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+    private void HandleJumpInput()
+    {
+        if (isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
         {
-            animator.SetBool("isSit", true); // 컨트롤 키 입력 시 isSit 애니메이션 트리거 활성화
+            isJumping = true;
+            rb.velocity = Vector2.up * jumpForce;
+            PlayJumpSound();
+            jumpCnt--;
+        }
+        else if (!isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
+        {
+            isJumping = true;
+            rb.velocity = Vector2.up * jumpForce;
+            PlayJumpSound();
+            jumpCnt--;
+            
+        }
+        if (isGround)
+        {
+            jumpCnt = JumpCount;
+            //isJumping = true;
+            
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+        {
+            jumpCnt++;
+            isJumping = false;
+            //isJumpingWithMovement = true;
+        }
+
+        //  if (Input.GetKey(KeyCode.Space) && moveInputX != 0)
+        //  {
+
+        //  }
+    }
+
+    private void HandleRunInput()
+    {
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+    }
+
+    private void HandleMovementInput()
+    {
+        float moveInputX = Input.GetAxisRaw("Horizontal");
+
+        if (moveInputX != 0)
+        {
+            isMoving = true;
+            currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
+
+            if (isJumping)
+            {
+                StopWalkSound();
+                //isJumpingWithMovement = true;
+                //animator.SetBool("jump", true);
+                //print("걷는중");
+                rb.gravityScale = 5.0f;
+            }
+            else if (!isJumpingWithMovement && isGround)
+            {
+                PlayWalkSound();
+            }
+
+            else if(!isGround)
+            {
+                animator.SetBool("walk", false);
+                print("걷는중");
+            }
         }
         else
         {
-            animator.SetBool("isSit", false);
-        }
-
-        if (animator.GetBool("isPush"))
-        {
-            //currentMoveSpeed = PushSpeed * Input.GetAxisRaw("Horizontal"); // isPush 애니메이션이 작동 중일 때 PushSpeed를 사용
+            isMoving = false;
+            currentMoveSpeed = 0f;
             StopWalkSound();
         }
-        //else
-        //{
-        //    currentMoveSpeed = moveSpeed * Input.GetAxisRaw("Horizontal"); // 일반적인 움직임 속도
-        //}
-
-        //print("일반 속도" + currentMoveSpeed);
+        rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
     }
 
-
-
-    private void LateUpdate()
+    private void UpdateAnimation()
     {
         if (isMoving)
         {
             transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
         }
-    }
 
-    private float GetSpeed()
-    {
-        if (isRunning)
+        animator.SetBool("walk", isMoving);
+        animator.SetBool("jump", isJumping);
+        //animator.SetBool("walk", isJumpingWithMovement);
+        animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
+        animator.SetBool("isPush", animator.GetBool("isPush"));
+
+        if (inWater && currentMoveSpeed == 0)
         {
-            return moveSpeed * runSpeed;
+            animator.SetBool("WetIdle", true);
+        }
+        else if (inWater)
+        {
+            animator.SetBool("Wet", true);
+            animator.SetBool("WetIdle", false);
         }
         else
         {
-            return moveSpeed;
+            animator.SetBool("Wet", false);
+            animator.SetBool("WetIdle", false);
         }
     }
 
-
-
-    //void OnTriggerEnter2D(Collider2D collision) 8.16
-    //{
-    //    if (collision.CompareTag("Book"))
-    //    {
-    //        Bookcontrol bookControl = collision.GetComponent<Bookcontrol>();
-    //        if (bookControl != null)
-    //        {
-    //            bookControl.ShowImage();
-    //        }
-    //    }
-    //}
-
-
-
-    void PlayJumpSound()
+    private void PlayJumpSound()
     {
         if (jumpSound != null && !isJumpingWithMovement)
         {
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position); // 점프 사운드 재생
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
     }
 
-    void PlayWalkSound()
+    private void PlayWalkSound()
     {
         if (walkAudioSource != null && walkAudioSource.clip != null && !walkAudioSource.isPlaying && !isJumpingWithMovement)
         {
@@ -261,97 +191,27 @@ public class Chmoving : MonoBehaviour
         }
     }
 
-    void StopWalkSound()
+    private void StopWalkSound()
     {
         if (walkAudioSource != null && walkAudioSource.clip != null && walkAudioSource.isPlaying && !isJumpingWithMovement)
         {
             walkAudioSource.Stop();
         }
     }
-    //public void SetIsOkPlayerMove(bool value)
-    //{
-    //    isOkPlayerMove = value;
-    //}
-
-    //물에서 속도 감소
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("SlowObj"))
         {
-            print("df");
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
             inWater = true;
-
             animator.SetBool("Wet", true);
-        
-
         }
-
         else
         {
             animator.SetBool("Wet", false);
             animator.SetBool("walk", true);
         }
-                    //animator.SetBool("Wet", false);
-            
-            
-        
-        
-        
     }
-
-    bool isMakingSound = false;
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
-        if (collision.CompareTag("SlowObj") && Input.GetAxisRaw("Horizontal") == 0)
-        {
-            inWater = true;
-            print("22222");
-            AudioManager.instance.StopSFX("주방_개수대 안 걷기");
-            isMakingSound = false;
-
-                // 개수대 안에서 멈추는 경우에 애니메이션 해제
-                
-                //animator.SetBool("Wet", true);
-                //animator.SetBool("WetIdle", true);
-          
-
-
-        }
-        if (collision.CompareTag("SlowObj") && !isMakingSound && Input.GetAxisRaw("Horizontal") != 0)
-        {
-            inWater = true;
-            print("3333");
-            AudioManager.instance.SFXPlayLoop("주방_개수대 안 걷기");
-            isMakingSound = true;
-           
-                //print("!isMovingInWater");
-                // 개수대 안에서 처음 움직이는 경우에만 애니메이션을 설정
-                
-                //animator.SetBool("Wet", true);
-            
-
-         
-
-        }
-
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("SlowObj"))
-        {
-            moveSpeed = 5f;
-            AudioManager.instance.StopSFX("주방_개수대 안 걷기");
-            //animator.SetBool("Wet", false);
-        }
-
-     
-    }
-
-
 }

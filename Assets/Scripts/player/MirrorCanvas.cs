@@ -23,7 +23,7 @@ public class MirrorCanvas : MonoBehaviour
     {
         if (MirrorAnimator != null)
         {
-            MirrorAnimator.SetTrigger("PlayAnimation"); // "PlayAnimation" 트리거를 설정하여 애니메이션을 시작합니다.
+           MirrorAnimator.SetBool("Broken", true);
         }
     }
 
