@@ -29,4 +29,4 @@ MonoBehaviour:
   answerTalk:
   - {fileID: 11400000, guid: 8c023e5e25061704f9b6513af087dea9, type: 2}
   nextTalk: {fileID: 11400000, guid: e16ae724c8e84b34c82e65a67f5a835b, type: 2}
-  isInTimeline: 0
+  isInTimeline: 1

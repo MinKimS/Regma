@@ -47,7 +47,7 @@ public class SmartphoneManager : MonoBehaviour
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !inven.filesInven.IsInvenItemActive)
         {
             //폰 열기
-            if((Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!inven.IsOpenInven &&phone.IsOpenPhone)))
+            if((Input.GetKeyDown(KeyCode.P)&&!inven.IsOpenInven &&!phone.IsOpenPhone))
             {
                 if(!phone.IsOpenPhone)
                 {
@@ -60,25 +60,22 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
             //인벤 열기
-            if((Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&inven.IsOpenInven)))
+            if((Input.GetKeyDown(KeyCode.I)&&!inven.IsOpenInven))
             {
-                if(!inven.IsOpenInven)
+                if (!phone.IsOpenPhone)
                 {
-                    if(!phone.IsOpenPhone)
-                    {
-                        phone.ShowPhone();
-                        inven.ShowInven();
-                    }
-                    else
-                    {
-                        inven.ShowInven();
-                    }
+                    phone.ShowPhone();
+                    inven.ShowInven();
                 }
                 else
                 {
-                    inven.HideInven();
-                    phone.HidePhone();
+                    inven.ShowInven();
                 }
+            }
+            else
+            {
+                inven.HideInven();
+                phone.HidePhone();
             }
         }
 

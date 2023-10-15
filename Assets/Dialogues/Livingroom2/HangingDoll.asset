@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
-  m_Name: Kitchen00 5
+  m_Name: HangingDoll
   m_EditorClassIdentifier: 
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+  - {fileID: 11400000, guid: df6a0b26f3c57da4190843e877cec830, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "<size=130%>\uB3C4\uB300\uCCB4 \uC774 \uC9D1\uC5D0\uC11C \uBB34\uC2A8
-      \uC77C\uC774 \uBC8C\uC5B4\uC9C0\uACE0 \uC788\uB294 \uAC70\uC57C!</size=130%>"
+    dlgTexts: "\uAE84\uC544\uC544\uC545!"
     eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uB108\uBB34 \uBB34\uC11C\uC6CC...\uC5BC\uB978 \uB098\uAC00\uACE0
-      \uC2F6\uC5B4."
+  - speakerIdx: 1
+    dlgTexts: "\uC880...\uB3C4\uC640\uC918...\uC904\uC744 \uC798\uB77C\uC918."
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: fd1e9b3ce718a7b40b6b2a50d4ea19f7, type: 2}
+  nextDlg: {fileID: 0}
   gmEvent: {fileID: 0}

@@ -80,17 +80,14 @@ public class MobRecognizingPlayer : MonoBehaviour
 
             if(disToPlayer > noRecogDis + 0.1f)
             {
+                if (eventWhenMobDisappear != null)
+                {
+                    eventWhenMobDisappear.Raise();
+                }
                 gameObject.SetActive(false);
             }
 
             appear.isMobAppear = false;
-
-            //얘가 비활성화 시키고 있음
-            //그래서 일단 꺼둠
-            if (eventWhenMobDisappear != null)
-            {
-                eventWhenMobDisappear.Raise();
-            }
         }
     }
 

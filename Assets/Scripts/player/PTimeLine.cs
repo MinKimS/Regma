@@ -47,7 +47,10 @@ public class PTimeLine : MonoBehaviour
                 Interaction1 = true;
                 refri2Object.SetActive(true);
                 power.isBroken = true;
-                mobAppear.SetActive(true);
+                if(mobAppear != null)
+                {
+                    mobAppear.SetActive(true);
+                }
 
 
             }

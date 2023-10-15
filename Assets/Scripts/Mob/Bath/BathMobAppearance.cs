@@ -7,7 +7,7 @@ public class BathMobAppearance : MonoBehaviour
     public BathMobController bmc;
     public Dialogue dlg;
     public bool isOnTrigger = false;
-    bool isInputReturn = false;
+    //bool isInputReturn = false;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,9 +16,7 @@ public class BathMobAppearance : MonoBehaviour
         {
             if(!isOnTrigger)
             {
-                bmc.movement.SetMobPosInitialPos();
-                bmc.Appearance();
-                DialogueManager.instance.PlayDlg(dlg);
+                StartCoroutine(AppearMob());
             }
             else
             {
@@ -28,13 +26,26 @@ public class BathMobAppearance : MonoBehaviour
         }
     }
 
-    private void Update()
+    IEnumerator AppearMob()
     {
-        if(!isOnTrigger && !isInputReturn && Input.GetKeyDown(KeyCode.Return))
-        {
-            isInputReturn = true;
-            bmc.hand.MoveHandToToy(8);
-            Destroy(gameObject);
-        }
+        bmc.movement.SetMobPosInitialPos();
+        bmc.Appearance();
+        DialogueManager.instance.PlayDlg(dlg);
+
+        yield return new WaitWhile(() =>DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+
+        //isInputReturn = true;
+        bmc.hand.MoveHandToToy(8);
+        Destroy(gameObject);
     }
+
+    //private void Update()
+    //{
+    //    if(!isOnTrigger && !isInputReturn && Input.GetKeyDown(KeyCode.Return))
+    //    {
+    //        isInputReturn = true;
+    //        bmc.hand.MoveHandToToy(8);
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
