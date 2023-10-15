@@ -25,7 +25,7 @@ MonoBehaviour:
   - speakerIdx: 1
     dlgTexts: "\uBC30\uACE0\uD30C... \uB108\uBB34 \uBC30\uACE0\uD30C."
     eventType: 0
-  - speakerIdx: 1
+  - speakerIdx: 0
     dlgTexts: "\uC7A0\uAE50, \uB098\uD55C\uD14C \uC74C\uC2DD\uC774 \uC788\uC5B4."
     eventType: 0
   nextDlg: {fileID: 0}

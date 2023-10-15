@@ -82,9 +82,4 @@ public class TimelineController : MonoBehaviour
         pd[curPD].Stop();
         TimelineManager.instance.tlstate = TimelineManager.TlState.End;
     }
-
-    private void Update()
-    {
-        print(pd[curPD].state + " tlstate : " +TimelineManager.instance.tlstate);
-    }
 }
