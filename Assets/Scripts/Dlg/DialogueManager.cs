@@ -73,6 +73,10 @@ public class DialogueManager : MonoBehaviour
         {
             return dlgState;
         }
+        set
+        {
+            dlgState = value;
+        }
     }
 
     private void Awake() {
@@ -139,7 +143,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if(singleDlg.sentences[setenceIdx].speakerIdx!=1)
+            if(singleDlg.sentences[setenceIdx].speakerIdx!=-1)
             { speaker.text = curSpeakerName; }
             else
             { speaker.text = ""; }
@@ -217,19 +221,24 @@ public class DialogueManager : MonoBehaviour
 
         SetNextDlg();
 
-        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        if (TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
             TimelineManager.instance.timelineController.SetTimelineResume();
         }
         else
         {
-            TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
+            if(TimelineManager.instance._Tlstate != TimelineManager.TlState.End)
+            {
+                TimelineManager.instance._Tlstate = TimelineManager.TlState.Resume;
+            }
         }
 
         if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.RunGameEventAfterDlg)
         {
             curDlg.gmEvent.Raise();
         }
+
+        isSingleDlg = false;
     }
     //대화창 숨기기
     public void DialogueHide(Dialogue dlg)

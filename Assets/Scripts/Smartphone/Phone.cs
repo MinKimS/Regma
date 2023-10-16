@@ -253,11 +253,13 @@ public class Phone : MonoBehaviour
                 sendTalk.gameObject.SetActive(true);
                 sendTalk.talkText.text = sendTalk.text = SendTalkContexts[i].talkText;
                 sendTalkList[i].talkText.enabled = true;
+                sendTalkList[i].talkText.color = Color.gray;
             }
         }
         showedCount = SendTalkContexts.Length;
 
-        sendTalkList[0].talkColor = Color.white;
+        //sendTalkList[0].talkColor = Color.white;
+        sendTalkList[0].talkText.color = Color.black;
         selectedOption = 1;
 
         StartCoroutine(FitLayout(talkInputAreaRT));
@@ -278,7 +280,7 @@ public class Phone : MonoBehaviour
         }
         showedCount = 1;
 
-        sendTalkList[0].talkColor = Color.white;
+        sendTalkList[0].talkText.color = Color.black;
         selectedOption = 1;
         isOKSendTalk = true;
 
@@ -303,12 +305,15 @@ public class Phone : MonoBehaviour
 
     public void SelectTalk(int value)
     {
-        //선택 해제 표시
-        sendTalkList[selectedOption - 1].talkColor = Color.white;
         selectedOption += value;
 
+        for(int i = 0; i < showedCount;i++)
+        {
+            //선택 해제 표시
+            sendTalkList[i].talkText.color = Color.gray;
+        }
         //선택되어 있는 상태 표시
-        sendTalkList[selectedOption - 1].talkColor = Color.gray;
+        sendTalkList[selectedOption - 1].talkText.color = Color.black;
     }
 
     public void AddVideoTalk(Speaker user)
@@ -351,9 +356,16 @@ public class Phone : MonoBehaviour
     {
         talkIdx = 0;
         isPlayerFirstTalk = true;
-        if (curTalk.nextTalk != null)
+        if (curTalk.nextTalk != null && curTalk.nextTalk.Length > 0)
         {
-            curTalk = curTalk.nextTalk;
+            if(curTalk.answerTalk.Length<2)
+            {
+                curTalk = curTalk.nextTalk[0];
+            }
+            else
+            {
+                curTalk = curTalk.nextTalk[selectedOption - 1];
+            }
         }
     }
 
@@ -405,24 +417,37 @@ public class Phone : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         //모든 상대방의 대화가 나오고 난 뒤 수행되는 것
-        if (curTalk.afterEndTalk == Talk.AfterEndTalk.StartTimeline)
+        if(curTalk.afterEndTalk != Talk.AfterEndTalk.None)
         {
-            delayTime = curTalk.TalkContexts[talkIdx - 1].TalkSendDelay;
-            yield return new WaitForSeconds(1.0f);
-            TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
-        }
-        if (curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalk || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
-        {
-            if (curTalk.isInTimeline) { TimelineManager.instance.timelineController.SetTimelinePause(); }
-            yield return new WaitForSeconds(1.0f);
-            SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
-        }
-        if (curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
-        {
-            TimelineManager.instance.timelineController.SetTimelineResume();
+            if (curTalk.afterEndTalk == Talk.AfterEndTalk.StartTimeline)
+            {
+                delayTime = curTalk.TalkContexts[talkIdx - 1].TalkSendDelay;
+                yield return new WaitForSeconds(1.0f);
+                TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
+            }
+            else if (curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
+            {
+                TimelineManager.instance.timelineController.SetTimelineResume();
+            }
+            else if(curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+            {
+                curTalk.runEvent.Raise();
+            }
+            else
+            {
+                if (curTalk.isInTimeline) { TimelineManager.instance.timelineController.SetTimelinePause(); }
+                yield return new WaitForSeconds(1.0f);
+                SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
+            }
         }
 
-        if (curTalk.answerTalk.Length > 1)
-            SmartphoneManager.instance.phone.SetNextTalk();
+
+        if(curTalk.afterEndTalk != Talk.AfterEndTalk.SendTalkAndRunNextTalk)
+        {
+            if(curTalk.nextTalk!= null)
+            {
+                SetNextTalk();
+            }
+        }
     }
 }

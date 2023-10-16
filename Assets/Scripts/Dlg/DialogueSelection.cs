@@ -9,6 +9,8 @@ public class DialogueSelection : MonoBehaviour
     public Image[] btnLists;
     public Dialogue dlg;
 
+    public Frame frame;
+
     private void Start()
     {
         SelectBtn();
@@ -39,13 +41,17 @@ public class DialogueSelection : MonoBehaviour
             if(selectIdx == 0)
             {
                 print("11111");
-                DialogueManager.instance.PlayDlg(dlg);
+                frame.isOnlyChild = true;
             }
             else if(selectIdx == 1)
             {
                 print("222222");
-                DialogueManager.instance.PlayDlg(dlg);
+                frame.isOnlyChild = false;
             }
+            DialogueManager.instance._dlgState = DialogueManager.DlgState.End;
+            DialogueManager.instance.PlayDlg(dlg);
+            frame.isOkErase = true;
+            gameObject.SetActive(false);
         }
     }
 

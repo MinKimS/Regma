@@ -119,5 +119,5 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: " \u2026 \uC54C\uC558\uC5B4. \uB098\uD55C\uD14C \uC5C5\uD600.\r"
     eventType: 0
-  nextDlg: {fileID: 0}
+  nextDlg: {fileID: 11400000, guid: 303c0c08014a40643add817e687f7ba1, type: 2}
   gmEvent: {fileID: 0}

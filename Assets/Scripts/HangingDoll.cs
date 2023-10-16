@@ -10,6 +10,7 @@ public class HangingDoll : MonoBehaviour
     public Dialogue dlg;
     bool isOkUseSquid = false;
     InteractionObjData interactionObjData;
+    public Transform talkEventActivation;
 
     private void Awake()
     {
@@ -19,15 +20,17 @@ public class HangingDoll : MonoBehaviour
 
     public void SaveDoll()
     {
-        if (CheckDistanceToPlayer())
+        if (!isOkUseSquid)
         {
-            SmartphoneManager.instance.DeleteSelectItem();
-            interactionObjData.IsOkInteracting = true;
-            StartCoroutine(FallDoll());
-        }
-        else
-        {
-            DialogueManager.instance.PlayDlg(dlg);
+            if (CheckDistanceToPlayer())
+            {
+                interactionObjData.IsOkInteracting = true;
+                StartCoroutine(FallDoll());
+            }
+            else
+            {
+                DialogueManager.instance.PlayDlg(dlg);
+            }
         }
     }
 
@@ -45,6 +48,7 @@ public class HangingDoll : MonoBehaviour
             else
             {
                 DialogueManager.instance.PlayDlg(dlg);
+                TimelineManager.instance.timelineController.SetTimelineEnd();
             }
         }
     }
@@ -80,5 +84,6 @@ public class HangingDoll : MonoBehaviour
     {
         print("carrydoll");
         gameObject.SetActive(false);
+        talkEventActivation.gameObject.SetActive(true);
     }
 }

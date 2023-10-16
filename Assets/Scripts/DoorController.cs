@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public void ExitDoor()
+    public void ExitDoor(string sceneName)
     {
         AudioManager.instance.StopSFXAll();
-        LoadingManager.LoadScene("Bathroom");
+        LoadingManager.LoadScene(sceneName);
     }
 }

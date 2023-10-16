@@ -120,7 +120,7 @@ public class SmartphoneManager : MonoBehaviour
             
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven && inven.selectedOption > 1)
+                if(phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
                 {
                     phone.SelectTalk(-1);
                 }
@@ -165,7 +165,7 @@ public class SmartphoneManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven&&inven.SelectedOption < phone.ShowedCount)
+                if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.SelectedOption < phone.ShowedCount)
                 {
                     phone.SelectTalk(1);
                 }
@@ -291,7 +291,6 @@ public class SmartphoneManager : MonoBehaviour
                 //톡 선택
                 if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.IsOKSendTalk)
                 {
-                    // isSendTalkReady = false;
                     phone.IsOKSendTalk = false;
 
                     if(phone.IsPlayerFirstTalk)
@@ -319,12 +318,20 @@ public class SmartphoneManager : MonoBehaviour
                     {
                         TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
                     }
-                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
+                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent || phone.curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
                     {
                         phone.curTalk.runEvent.Raise();
                     }
 
-                    phone.SetNextTalk();
+                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunNextTalk)
+                    {
+                        phone.SetNextTalk();
+                        phone.StartTalk();
+                    }
+                    else
+                    {
+                        phone.SetNextTalk();
+                    }
                 }
             }
             if(Input.GetKeyDown(KeyCode.Delete))

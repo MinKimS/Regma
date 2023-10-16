@@ -28,5 +28,5 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uC7A0\uAE50, \uB098\uD55C\uD14C \uC74C\uC2DD\uC774 \uC788\uC5B4."
     eventType: 0
-  nextDlg: {fileID: 0}
+  nextDlg: {fileID: 11400000, guid: ab76f50c7d3dfe34c8a447441ec02c00, type: 2}
   gmEvent: {fileID: 0}
