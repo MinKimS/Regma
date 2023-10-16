@@ -87,13 +87,13 @@ public class Chmoving : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             PlayJumpSound();
             //jumpCnt--;
-            
+
         }
         if (isGround)
         {
             jumpCnt = JumpCount;
             //isJumping = true;
-            
+
         }
         if (Input.GetKeyUp(KeyCode.Space) && isJumping)
         {
@@ -102,7 +102,7 @@ public class Chmoving : MonoBehaviour
             //isJumpingWithMovement = true;
         }
 
-     
+
     }
 
     private void HandleRunInput()
@@ -132,7 +132,7 @@ public class Chmoving : MonoBehaviour
                 PlayWalkSound();
             }
 
-            else if(!isGround)
+            else if (!isGround)
             {
                 animator.SetBool("walk", false);
                 print("걷는중");
@@ -143,20 +143,20 @@ public class Chmoving : MonoBehaviour
             //     //MovinginWater = true;
             //     animator.SetBool("Wet", true);
             //     animator.SetBool("walk", false);
-                
+
             //     //print("물안에있음");
             // }
-        
-        // else if (inWater && currentMoveSpeed == 0)
-        // {
-        //     animator.SetBool("WetIdle", true);
-        // }
-        
-        // else
-        // {
-        //     animator.SetBool("Wet", false);
-        //     //animator.SetBool("WetIdle", false);
-        // }
+
+            // else if (inWater && currentMoveSpeed == 0)
+            // {
+            //     animator.SetBool("WetIdle", true);
+            // }
+
+            // else
+            // {
+            //     animator.SetBool("Wet", false);
+            //     //animator.SetBool("WetIdle", false);
+            // }
 
         }
 
@@ -180,10 +180,14 @@ public class Chmoving : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
         }
 
-        animator.SetBool("walk", isMoving);
+        if (inWater)
+            animator.SetBool("Wet", true);
+        else
+            animator.SetBool("walk", isMoving);
+
         //animator.SetBool("wet", inWater);
         animator.SetBool("jump", isJumping);
-        
+
         // 발 젖는 애니메이션
         //animator.SetBool("Wet", MovinginWater);
 
@@ -191,9 +195,6 @@ public class Chmoving : MonoBehaviour
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
         animator.SetBool("isPush", animator.GetBool("isPush"));
         //animator.SetBool("isPush", animator.GetBool("isPush"));
-
-
-        
     }
 
     private void PlayJumpSound()
@@ -232,27 +233,33 @@ public class Chmoving : MonoBehaviour
 
             if (moveInputX != 0 && isMoving)
             {
-            MovinginWater = true;
-            animator.SetBool("Wet", true);
-            print("물 속에 있음");
+                MovinginWater = true;
+                animator.SetBool("Wet", true);
+                animator.SetBool("walk", false);
+                print("물 속에 있음");
             }
             else
             {
                 MovinginWater = false;
             }
-
-            
-            
         }
+        //else
+        //{
+        //    inWater = false;
+        //    MovinginWater = false;
+        //    animator.SetBool("Wet", false);
+        //    animator.SetBool("walk", true);
+        //}
+    }
 
-        else
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SlowObj"))
         {
             inWater = false;
             MovinginWater = false;
-            // animator.SetBool("Wet", false);
-            // animator.SetBool("walk", true);
+            animator.SetBool("Wet", false);
+            animator.SetBool("walk", true);
         }
     }
-
-
 }

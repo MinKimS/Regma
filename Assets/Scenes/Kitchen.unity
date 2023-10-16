@@ -5598,13 +5598,13 @@ MonoBehaviour:
   animator: {fileID: 652935785}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 652935792}
-  jumpForce: 9
+  jumpForce: 16
   isGround: 0
   pos: {fileID: 1152564981}
   islayer:
     serializedVersion: 2
     m_Bits: 64
-  JumpCount: 2
+  JumpCount: 1
 --- !u!50 &652935788
 Rigidbody2D:
   serializedVersion: 4
@@ -12802,9 +12802,9 @@ RectTransform:
   m_Father: {fileID: 1846025374}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1381923261
