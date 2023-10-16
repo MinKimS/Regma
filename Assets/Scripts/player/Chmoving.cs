@@ -185,7 +185,7 @@ public class Chmoving : MonoBehaviour
         animator.SetBool("jump", isJumping);
         
         // 발 젖는 애니메이션
-        animator.SetBool("Wet", MovinginWater);
+        //animator.SetBool("Wet", MovinginWater);
 
 
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
@@ -233,6 +233,7 @@ public class Chmoving : MonoBehaviour
             if (moveInputX != 0 && isMoving)
             {
             MovinginWater = true;
+            animator.SetBool("Wet", true);
             print("물 속에 있음");
             }
             else
@@ -241,7 +242,7 @@ public class Chmoving : MonoBehaviour
             }
 
             
-            //animator.SetBool("Wet", true);
+            
         }
 
         else
