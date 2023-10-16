@@ -102,10 +102,7 @@ public class Chmoving : MonoBehaviour
             //isJumpingWithMovement = true;
         }
 
-        //  if (Input.GetKey(KeyCode.Space) && moveInputX != 0)
-        //  {
-
-        //  }
+     
     }
 
     private void HandleRunInput()
@@ -186,7 +183,11 @@ public class Chmoving : MonoBehaviour
         animator.SetBool("walk", isMoving);
         //animator.SetBool("wet", inWater);
         animator.SetBool("jump", isJumping);
+        
+        // 발 젖는 애니메이션
         animator.SetBool("Wet", MovinginWater);
+
+
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
         animator.SetBool("isPush", animator.GetBool("isPush"));
         //animator.SetBool("isPush", animator.GetBool("isPush"));
@@ -218,6 +219,8 @@ public class Chmoving : MonoBehaviour
             walkAudioSource.Stop();
         }
     }
+
+    //발 젖는 애니메이션
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
