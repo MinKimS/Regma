@@ -2701,8 +2701,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292559878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.976976, y: -3.61, z: -0.5681942}
-  m_LocalScale: {x: 0.37, y: 0.37, z: 0.37}
+  m_LocalPosition: {x: -5.02, y: -3.91, z: -0.5681942}
+  m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1380906482}
@@ -8183,9 +8183,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050715326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.283024, y: -0.43, z: -0.5681942}
-  m_LocalScale: {x: 2.4622, y: 2.4622, z: 2.4622}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 7.44, y: -1.41, z: -0.5681942}
+  m_LocalScale: {x: 2.05, y: 2.05, z: 2.05}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 526410388}
   - {fileID: 1951793927}
@@ -13144,7 +13144,7 @@ MonoBehaviour:
   animator: {fileID: 667326314}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 1620223291}
-  jumpForce: 10
+  jumpForce: 16
   isGround: 0
   pos: {fileID: 1677597372}
   islayer:
@@ -17906,7 +17906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081221118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.682, y: -1.071, z: 0}
+  m_LocalPosition: {x: -1.682, y: -2.68, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
