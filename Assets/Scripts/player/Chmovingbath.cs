@@ -111,6 +111,7 @@ public class Chmovingbath : MonoBehaviour
             {
                 StopWalkSound();
                 isJumpingWithMovement = true;
+                rb.gravityScale = 5.0f;
 
                 if (isJumpingWithMovement)
                 {
