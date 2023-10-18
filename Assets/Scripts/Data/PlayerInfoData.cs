@@ -26,15 +26,25 @@ public class PlayerInfoData : MonoBehaviour
 
     void Start()
     {
-        SceneManager.sceneLoaded += LoadSceneEvent;
         SetPlayerInfo();
     }
-    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "LoadingScene")
         {
             SetPlayerInfo();
         }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void SetPlayerInfo()

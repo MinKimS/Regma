@@ -101,19 +101,19 @@ public class Phone : MonoBehaviour
         phoneFrame = GetComponentsInChildren<RectTransform>()[1].gameObject;
     }
 
-    private void Start()
-    {
-        SceneManager.sceneLoaded += LoadSceneEvent;
-    }
+    //private void Start()
+    //{
+    //    SceneManager.sceneLoaded += LoadSceneEvent;
+    //}
 
-    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name != "LoadingScene")
-        {
-            talkListIdx++;
-            curTalk = talkList[talkListIdx];
-        }
-    }
+    //private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    //{
+    //    if (scene.name != "LoadingScene")
+    //    {
+    //        talkListIdx++;
+    //        curTalk = talkList[talkListIdx];
+    //    }
+    //}
     //폰 보이기
     public void ShowPhone()
     {

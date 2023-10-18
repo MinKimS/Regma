@@ -20,5 +20,6 @@ MonoBehaviour:
     talkText: "\uBC30\uACE0\uD30C..."
     TalkSendDelay: 0
   answerTalk: []
-  nextTalk: {fileID: 11400000, guid: 0b96176d948c41849ba3d62272451db4, type: 2}
+  nextTalk:
+  - {fileID: 11400000, guid: 0b96176d948c41849ba3d62272451db4, type: 2}
   isInTimeline: 1

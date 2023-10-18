@@ -36,5 +36,6 @@ MonoBehaviour:
     TalkSendDelay: 1
   answerTalk:
   - {fileID: 11400000, guid: 3768f8f11e35cfb49b526473ab0dc640, type: 2}
-  nextTalk: {fileID: 11400000, guid: 221f65fbeeaf04d4b8a3ed531a42e99a, type: 2}
+  nextTalk:
+  - {fileID: 11400000, guid: 221f65fbeeaf04d4b8a3ed531a42e99a, type: 2}
   isInTimeline: 0
