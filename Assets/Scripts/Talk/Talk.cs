@@ -9,9 +9,11 @@ public class Talk : ScriptableObject {
         None,
         StartTimeline,
         SendTalk,
+        SendTalkAndRunNextTalk,
         SendTalkAndStartTimeline,
         SendTalkAndRunEvent,
         ContinueTimeline,
+        RunEvent
     }
     //톡이 끝나고 수행되는 것
     public AfterEndTalk afterEndTalk = AfterEndTalk.None;
@@ -26,7 +28,7 @@ public class Talk : ScriptableObject {
 
     public List<TalkContext> TalkContexts;
     public SendTalk[] answerTalk;
-    public Talk nextTalk;
+    public Talk[] nextTalk;
     public bool isInTimeline = false;
 
     [System.Serializable]

@@ -20,7 +20,6 @@ public class BathMobData : MonoBehaviour
     bool isMobStuck = false;
     [HideInInspector]
     public bool isCatchPlayer = false;
-    bool isPlayerBeDrawn = false;
 
     public bool IsMobInWater
     {

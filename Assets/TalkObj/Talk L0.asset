@@ -18,5 +18,6 @@ MonoBehaviour:
   TalkContexts: []
   answerTalk:
   - {fileID: 11400000, guid: 4c41f0ef131fdfd4f855f2f2e372f25b, type: 2}
-  nextTalk: {fileID: 11400000, guid: 2fde6f7711b951546a85982cfc56bfc8, type: 2}
+  nextTalk:
+  - {fileID: 11400000, guid: 2fde6f7711b951546a85982cfc56bfc8, type: 2}
   isInTimeline: 1

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.VolumeComponent;
 
 public class SmartphoneManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class SmartphoneManager : MonoBehaviour
     //[NonSerialized]
     //public int itemIdx = 0;
     public List<GameEvent> gmEventList = new List<GameEvent>(16);
+
+    public Sprite invenslotSirte;
 
     private void Awake() {
         if(instance == null)
@@ -47,7 +50,7 @@ public class SmartphoneManager : MonoBehaviour
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !inven.filesInven.IsInvenItemActive)
         {
             //폰 열기
-            if((Input.GetKeyDown(KeyCode.P)||(Input.GetKeyDown(KeyCode.Escape)&&!inven.IsOpenInven &&phone.IsOpenPhone)))
+            if((Input.GetKeyDown(KeyCode.P) || (Input.GetKeyDown(KeyCode.Escape) && !inven.IsOpenInven && phone.IsOpenPhone)))
             {
                 if(!phone.IsOpenPhone)
                 {
@@ -60,11 +63,11 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
             //인벤 열기
-            if((Input.GetKeyDown(KeyCode.I)||(Input.GetKeyDown(KeyCode.Escape)&&inven.IsOpenInven)))
+            if ((Input.GetKeyDown(KeyCode.I) || (Input.GetKeyDown(KeyCode.Escape) && inven.IsOpenInven)))
             {
-                if(!inven.IsOpenInven)
+                if (!inven.IsOpenInven)
                 {
-                    if(!phone.IsOpenPhone)
+                    if (!phone.IsOpenPhone)
                     {
                         phone.ShowPhone();
                         inven.ShowInven();
@@ -117,7 +120,7 @@ public class SmartphoneManager : MonoBehaviour
             
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven && inven.selectedOption > 1)
+                if(phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
                 {
                     phone.SelectTalk(-1);
                 }
@@ -162,7 +165,7 @@ public class SmartphoneManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven&&inven.SelectedOption < phone.ShowedCount)
+                if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.SelectedOption < phone.ShowedCount)
                 {
                     phone.SelectTalk(1);
                 }
@@ -270,6 +273,9 @@ public class SmartphoneManager : MonoBehaviour
                     //gmEventList[inven.SelectedOption - 1].Raise();
                     //print(inven.SelectedOption - 1);
                     itemUsage.UseItem(inven.filesInven.slotDataList[inven.SelectedOption - 1].item);
+
+                    if (inven.IsOpenInven) { inven.HideInven(); }
+                    phone.HidePhone();
                     ////일기장
                     //if(inven.filesInven.slotDataList[inven.SelectedOption - 1].item.itemID == 0)
                     //{
@@ -285,7 +291,6 @@ public class SmartphoneManager : MonoBehaviour
                 //톡 선택
                 if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.IsOKSendTalk)
                 {
-                    // isSendTalkReady = false;
                     phone.IsOKSendTalk = false;
 
                     if(phone.IsPlayerFirstTalk)
@@ -313,12 +318,20 @@ public class SmartphoneManager : MonoBehaviour
                     {
                         TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
                     }
-                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
+                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent || phone.curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
                     {
                         phone.curTalk.runEvent.Raise();
                     }
 
-                    phone.SetNextTalk();
+                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunNextTalk)
+                    {
+                        phone.SetNextTalk();
+                        phone.StartTalk();
+                    }
+                    else
+                    {
+                        phone.SetNextTalk();
+                    }
                 }
             }
             if(Input.GetKeyDown(KeyCode.Delete))
@@ -353,15 +366,46 @@ public class SmartphoneManager : MonoBehaviour
     {
         if (item != null)
         {
-            ItemData itemData = inven.filesInven.slotDataList[i].gameObject.AddComponent<ItemData>();
-            itemData.itemName = item.itemName;
-            itemData.itemImg = item.itemImg;
-            itemData.itemID = item.itemID;
-            itemData.itemEvent = item.itemEvent;
+            ItemData itemData = inven.filesInven.slotDataList[i].gameObject.GetComponent<ItemData>();
+            SetInvenItemData(i, item, itemData);
             gmEventList.Add(item.itemEvent);
-            //itemIdx++;
             inven.filesInven.slotDataList[i].item = itemData;
             inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
         }
+    }
+
+    //인벤토리서 선택한 아이템 삭제
+    public void DeleteSelectItem()
+    {
+        ItemData itemData;
+        for (int i = inven.SelectedOption-1; i < inven.maxFilesSlot-1; i++)
+        {
+            itemData = inven.filesInven.slotDataList[i].gameObject.GetComponent<ItemData>();
+            SetInvenItemData(i, inven.filesInven.slotDataList[i + 1].item, itemData);
+            inven.filesInven.slotDataList[i].slotItemImg.sprite = itemData.itemImg;
+        }
+
+        itemData = inven.filesInven.slotDataList[inven.maxFilesSlot - 1].gameObject.GetComponent<ItemData>();
+        SetInvenItemDataNull(inven.maxFilesSlot - 1, itemData);
+        inven.filesInven.slotDataList[inven.maxFilesSlot - 1].slotItemImg.sprite = invenslotSirte;
+        inven.filesInven.slotDataList[inven.maxFilesSlot - 1].isFull = false;
+        inven.filesInven.slotDataList.RemoveAt(inven.maxFilesSlot);
+        inven.maxFilesSlot--;
+    }
+
+    void SetInvenItemData(int i, ItemData item, ItemData itemData)
+    {
+        itemData.itemName = item.itemName;
+        itemData.itemImg = item.itemImg;
+        itemData.itemID = item.itemID;
+        itemData.itemEvent = item.itemEvent;
+        inven.filesInven.slotDataList[i].slotItemImg.sprite = item.itemImg;
+    }
+    void SetInvenItemDataNull(int i, ItemData itemData)
+    {
+        itemData.itemName = "";
+        itemData.itemImg = null;
+        itemData.itemID = -1;
+        itemData.itemEvent = null;
     }
 }

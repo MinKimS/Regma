@@ -38,18 +38,18 @@ public class TalkController : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
         }
-        if(curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalk || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent)
-        {
-            if(curTalk.isInTimeline) {TimelineManager.instance.timelineController.SetTimelinePause();}
-            yield return new WaitForSeconds(1.0f);
-            SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
-        }
-        if(curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
+        else if(curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
         {
             TimelineManager.instance.timelineController.SetTimelineResume();
         }
-        
-        if(curTalk.answerTalk.Length > 1)
+        else
+        {
+            if (curTalk.isInTimeline) { TimelineManager.instance.timelineController.SetTimelinePause(); }
+            yield return new WaitForSeconds(1.0f);
+            SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
+        }
+
+        if (curTalk.answerTalk.Length > 1)
             SmartphoneManager.instance.phone.SetNextTalk();
     }
 

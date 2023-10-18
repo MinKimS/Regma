@@ -8,6 +8,11 @@ public class GameEvent : ScriptableObject {
     //실행시킬 이벤트가 저장된 곳
     private UnityEvent listeners = new UnityEvent();
 
+    public bool GetListeners()
+    {
+        return listeners != null ? true : false;
+    }
+
     public void Raise() 
     {
         listeners.Invoke();

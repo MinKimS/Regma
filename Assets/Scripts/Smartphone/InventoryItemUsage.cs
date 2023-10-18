@@ -8,6 +8,8 @@ public class InventoryItemUsage : MonoBehaviour
     [SerializeField]
     PlayerFallingController pfc;
     Diary diary;
+    public GameEvent glassEvent;
+    public GameEvent squidEvent;
 
     private void Awake()
     {
@@ -59,11 +61,20 @@ public class InventoryItemUsage : MonoBehaviour
     void Squid()
     {
         print("Squid");
+        if(squidEvent.GetListeners())
+        {
+            squidEvent.Raise();
+        }
     }
 
     void BrokenPieceOfGlass()
     {
         print("BrokenPieceOfGalss");
+        if(glassEvent.GetListeners())
+        {
+            glassEvent.Raise();
+        }
+
     }
 
     void Blanket()

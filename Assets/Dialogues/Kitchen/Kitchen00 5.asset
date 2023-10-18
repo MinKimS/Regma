@@ -25,5 +25,3 @@ MonoBehaviour:
     eventType: 0
   nextDlg: {fileID: 11400000, guid: fd1e9b3ce718a7b40b6b2a50d4ea19f7, type: 2}
   gmEvent: {fileID: 0}
-  beShownObj: {fileID: 0}
-  isBeShown: 0
