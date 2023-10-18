@@ -6638,6 +6638,8 @@ MonoBehaviour:
   animator: {fileID: 1254502953}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 1254502949}
+  jumpForce: 9
+  JumpCount: 1
   isGround: 0
   pos: {fileID: 1466646051}
   islayer:
@@ -6680,7 +6682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNoFallingDamage: 0
   movingBath: {fileID: 1254502960}
-  moving: {fileID: 0}
+  moving: {fileID: 1254502955}
   origin: {x: 0, y: -0.5, z: 0}
 --- !u!1 &1356395765
 GameObject:
