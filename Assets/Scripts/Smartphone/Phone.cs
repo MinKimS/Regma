@@ -110,6 +110,16 @@ public class Phone : MonoBehaviour
     {
         if (scene.name != "LoadingScene" && scene.name != "Bathroom" && scene.name != "Bath")
         {
+            //TODO : 같은 씬을 불러 왔을 때 설정
+            //-----------------------------------------------------------
+            //if(scene.name != SceneManager.GetActiveScene().name)
+            //{
+            //    talkListIdx++;
+            //}
+            //else
+            //{
+            //    talkListIdx = 0;
+            //}
             talkListIdx++;
             curTalk = talkList[talkListIdx];
         }

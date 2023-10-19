@@ -109,6 +109,16 @@ public class DialogueManager : MonoBehaviour
         {
             curDlg = dialogueList[dlgListIdx];
             dlgListIdx++;
+            //TODO : 같은 씬을 불러 왔을 때 설정
+            //-----------------------------------------------------------
+            //if (LoadingManager.nextScene != SceneManager.GetActiveScene().name)
+            //{
+            //    dlgListIdx++;
+            //}
+            //else
+            //{
+            //    dlgListIdx = 0;
+            //}
         }
     }
     private void OnDisable()
