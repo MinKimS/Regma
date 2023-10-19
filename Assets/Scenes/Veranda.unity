@@ -16795,7 +16795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f05dc186a55fb4f82c9ef50ab323a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPos: {fileID: 0}
+  targetPos: {fileID: 157110323}
   pos: {fileID: 553451139}
 --- !u!50 &1682071328
 Rigidbody2D:
