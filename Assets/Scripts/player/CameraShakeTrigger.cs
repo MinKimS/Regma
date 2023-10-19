@@ -8,10 +8,10 @@ public class CameraShakeTrigger : MonoBehaviour
     public GameObject canvasBook;
 
     [SerializeField] float m_force = 0f;
-    [SerializeField] Vector3 m_offset = Vector3.zero; // ����
+    [SerializeField] Vector3 m_offset = Vector3.zero; 
     [SerializeField] GameObject shake;
 
-    Quaternion m_originRot; // �ʱⰪ
+    Quaternion m_originRot; 
 
     GameObject camObj;
     Collider2D collidingObject;
@@ -44,7 +44,8 @@ public class CameraShakeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("shake"))
         {
-            collidingObject = collision; // �浹�� ������Ʈ ���� ����
+            print("충돌");
+            collidingObject = collision; 
             StartCoroutine(ShakeCoroutine());
 
             isActive = false;
@@ -52,7 +53,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
         }
 
-        //collidingObject = null; // �浹�� ������Ʈ ���� �ʱ�ȭ
+        //collidingObject = null; 
         //isActive = false;
         //collidingObject.CompareTag("shake").SetActive(isActive);
     }
@@ -61,7 +62,7 @@ public class CameraShakeTrigger : MonoBehaviour
     //{
     //    if (collision.CompareTag("shake"))
     //    {
-    //        collidingObject = null; // �浹�� ������Ʈ ���� �ʱ�ȭ
+    //        collidingObject = null; 
     //        isActive = false;
     //        collision.gameObject.SetActive(isActive);
     //    }
@@ -97,7 +98,7 @@ public class CameraShakeTrigger : MonoBehaviour
             yield return null;
         }
 
-        // ��Ȯ�� ������ ���� ������ �ʱ� ȸ�������� ����
+        
         camObj.transform.rotation = m_originRot;
 
         if (collidingObject != null && collidingObject.CompareTag("shake"))

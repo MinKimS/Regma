@@ -39,6 +39,7 @@ public class Chmoving : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         jumpCnt = JumpCount;
+        rb.gravityScale = 5.0f;
     }
 
     private void Update()
@@ -135,6 +136,7 @@ public class Chmoving : MonoBehaviour
             else if (!isGround)
             {
                 animator.SetBool("walk", false);
+                rb.gravityScale = 5.0f;
                 print("걷는중");
             }
 
@@ -181,7 +183,10 @@ public class Chmoving : MonoBehaviour
         }
 
         if (inWater)
-            animator.SetBool("Wet", true);
+            //animator.SetBool("Wet", true);
+            //print(inWater);
+            print(MovinginWater);
+
         else
             animator.SetBool("walk", isMoving);
 
@@ -236,11 +241,12 @@ public class Chmoving : MonoBehaviour
                 MovinginWater = true;
                 animator.SetBool("Wet", true);
                 animator.SetBool("walk", false);
-                print("물 속에 있음");
+                //print("물 속에 있음");
             }
-            else
+            else if(isMoving == false)
             {
-                MovinginWater = false;
+                //MovinginWater = false;
+                print("else if문 false");
             }
         }
         //else
