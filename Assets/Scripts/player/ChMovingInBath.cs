@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chmovingbath : MonoBehaviour
+public class ChMovingInBath : MonoBehaviour
 {
     public Animator animator;
 
@@ -37,6 +37,7 @@ public class Chmovingbath : MonoBehaviour
     {
         animator = GetComponent<Animator>(); // 'Animator' 컴포넌트 초기화
         rb = GetComponent<Rigidbody2D>();
+        //rb.gravityScale = 5.0f;
     }
 
     private void Update()
@@ -111,7 +112,7 @@ public class Chmovingbath : MonoBehaviour
             {
                 StopWalkSound();
                 isJumpingWithMovement = true;
-                //rb.gravityScale = 5.0f;
+                rb.gravityScale = 3.0f;
 
                 if (isJumpingWithMovement)
                 {

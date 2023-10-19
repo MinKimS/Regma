@@ -4167,7 +4167,7 @@ GameObject:
   - component: {fileID: 561195410}
   - component: {fileID: 561195409}
   - component: {fileID: 561195408}
-  - component: {fileID: 561195423}
+  - component: {fileID: 561195424}
   m_Layer: 3
   m_Name: ch 1
   m_TagString: Player
@@ -4386,7 +4386,7 @@ Rigidbody2D:
   m_Mass: 0.4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.8
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4478,7 +4478,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &561195423
+--- !u!114 &561195424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4487,13 +4487,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 561195406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8451f8be2119ad640b3f6cf777f50c50, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1f47b05ec79ab40adb3aaf6ad43ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 561195416}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 561195414}
-  jumpForce: 8
+  jumpForce: 16
   JumpCount: 1
   isGround: 0
   pos: {fileID: 419879761}
@@ -10329,7 +10329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1563276615
