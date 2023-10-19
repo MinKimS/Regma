@@ -5588,7 +5588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0d7197848131a4ba1d8212ec6da3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceSpeed: 5
+  traceSpeed: 7
   jumpForce: 600
   jumpCoolTime: 3
   fromPosToGroundDist: 0.1
@@ -17696,8 +17696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d49cb22bf11a414ba4e29c41ef5a4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTr: {fileID: 0}
-  playerAnim: {fileID: 0}
+  playerTr: {fileID: 157110323}
+  playerAnim: {fileID: 157110318}
 --- !u!4 &1772923927
 Transform:
   m_ObjectHideFlags: 0

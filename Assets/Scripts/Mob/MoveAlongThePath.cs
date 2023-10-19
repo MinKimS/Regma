@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoveAlongThePath : MonoBehaviour
 {
@@ -43,7 +44,10 @@ public class MoveAlongThePath : MonoBehaviour
     {
         Time.fixedDeltaTime = 0.01f;
         targetPos = pathFinder.targetPos;
-        gameObject.SetActive(false);
+        if(SceneManager.GetActiveScene().name != "Veranda")
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     IEnumerator TraceTarget()

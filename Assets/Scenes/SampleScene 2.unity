@@ -5533,7 +5533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693845765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.05, y: 9.99, z: 21.84873}
+  m_LocalPosition: {x: 56.94, y: 9.36, z: 21.84873}
   m_LocalScale: {x: 0.3992, y: 0.3992, z: 0.3992}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6741,7 +6741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &972735354
@@ -7070,7 +7070,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b624fdb01142c9d4cafda1a7a14aceb5, type: 2}
   cancelEvent:
   - {fileID: 11400000, guid: 93ebd279e9fca0b4faa374c53e5d7bae, type: 2}
-  isOkInteracting: 0
+  isOkInteracting: 1
   isRunInteraction: 0
   objDlg: []
 --- !u!61 &1047426058
@@ -15372,7 +15372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 3
   itemName: glass
-  itemImg: {fileID: 21300000, guid: c7aa62ae78ffca0498c89e5f45f94c0e, type: 3}
+  itemImg: {fileID: 21300000, guid: 5b95910995d79a94aa61615bcdff4489, type: 3}
   itemEvent: {fileID: 0}
 --- !u!114 &2077952090
 MonoBehaviour:
@@ -15405,14 +15405,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.18, y: 8.72}
+    oldSize: {x: 0.59, y: 0.59}
     newSize: {x: 12.05, y: 8.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.83, y: 3.57}
+  m_Size: {x: 0.59, y: 0.59}
   m_EdgeRadius: 0
 --- !u!212 &2077952092
 SpriteRenderer:
@@ -15455,7 +15455,7 @@ SpriteRenderer:
   m_SortingLayerID: 534864275
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b3bfd68cca41a4d4ba587790ecb5d7c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b95910995d79a94aa61615bcdff4489, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15474,8 +15474,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077952088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.22, y: 9.6, z: 21.84873}
-  m_LocalScale: {x: 0.3992, y: 0.3992, z: 0.3992}
+  m_LocalPosition: {x: 56.03, y: 8.96, z: 21.84873}
+  m_LocalScale: {x: 1.0116526, y: 1.0116526, z: 1.0116526}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
