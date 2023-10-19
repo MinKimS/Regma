@@ -24,31 +24,25 @@ public class PlayerInfoData : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        SetPlayerInfo();
-    }
-
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += LoadSceneEvent;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "LoadingScene")
-        {
-            SetPlayerInfo();
-        }
+        StartCoroutine(SetPlayerInfo());
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
-    void SetPlayerInfo()
+    IEnumerator SetPlayerInfo()
     {
+        Scene sc = SceneManager.GetActiveScene();
+        yield return new WaitWhile(() => sc.name == "LoadingScene");
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
         playerAnim = playerTr.GetComponent<Animator>();
     }

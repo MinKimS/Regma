@@ -5,23 +5,18 @@ using UnityEngine;
 public class FallingController : MonoBehaviour
 {
     float randomX = 0f;
-    float startX = -3f;
-    float endX = 3f;
+    public float startX = 3f;
+    public float endX = 3f;
+    public int spawnObjectIndex = 0;
     public float fallingInterval = 1f;
+    
     public PoolingManager poolingManager;
+
+    public Sprite[] sp;
 
     private void Start()
     {
-        //StartCoroutine(SetFallingPosition());
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            poolingManager.SpawnObject(0);
-            print("pool");
-        }
+        StartCoroutine(SetFallingPosition());
     }
 
     IEnumerator SetFallingPosition()
@@ -30,9 +25,10 @@ public class FallingController : MonoBehaviour
 
         while(true)
         {
-            randomX = Random.Range(startX, endX);
-
-            print("set falling object position : " + randomX);
+            randomX = Random.Range(transform.position.x - startX, transform.position.x + endX);
+            GameObject obj = poolingManager.SpawnObject(spawnObjectIndex);
+            obj.transform.position = new Vector2(randomX, transform.position.y);
+            obj.GetComponent<SpriteRenderer>().sprite = sp[Random.Range(0, sp.Length)];
 
             yield return wait;
 

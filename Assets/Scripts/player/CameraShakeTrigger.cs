@@ -76,6 +76,7 @@ public class CameraShakeTrigger : MonoBehaviour
             float t_rotY = Random.Range(-m_offset.y, m_offset.y);
             float t_rotZ = Random.Range(-m_offset.z, m_offset.z);
             Vector3 t_randomRot = t_originEuler + new Vector3(t_rotX, t_rotY, t_rotZ);
+            //Vector3 t_randomRot = new Vector3(t_rotX, t_rotY, t_rotZ);
             Quaternion t_rot = Quaternion.Euler(t_randomRot);
 
             while (Quaternion.Angle(camObj.transform.rotation, t_rot) > 0.1f)

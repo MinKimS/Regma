@@ -1549,7 +1549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &109017383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3421,7 +3421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &375188649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4272,6 +4272,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29021ef06b5b1a6478f09a83a55a48d2, type: 2}
   - {fileID: 11400000, guid: ad88b6e28b464d347b40829f45063a80, type: 2}
   - {fileID: 11400000, guid: 1ad3cd33c9279814781a045eb4320566, type: 2}
+  - {fileID: 11400000, guid: 2804ee908d7288d4f97cd84a4f61a38f, type: 2}
+  - {fileID: 11400000, guid: 70bebc65059911c47b22d5757de33984, type: 2}
   curDlg: {fileID: 11400000, guid: 7b6287814dc6ba04697f4724d2fb8a1c, type: 2}
   singleDlg: {fileID: 0}
   isSingleDlg: 0
@@ -8643,7 +8645,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.14068812}
+  m_Offset: {x: 0, y: -0.28968608}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8654,7 +8656,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5033333, y: 1.6347097}
+  m_Size: {x: 1.5033333, y: 1.9327052}
   m_EdgeRadius: 0
 --- !u!114 &1059332148
 MonoBehaviour:
@@ -8669,6 +8671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dlg: {fileID: 11400000, guid: 22154aa514af3fd42a2aafc3e9aded6d, type: 2}
+  sp: []
+  isOnlyChild: 0
+  isOkErase: 0
 --- !u!1 &1063159082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9394,6 +9399,8 @@ MonoBehaviour:
   talkList:
   - {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   - {fileID: 11400000, guid: c354a96e19b9bec419b8f814edcd3418, type: 2}
+  - {fileID: 11400000, guid: 718fcf4dec43e5a43b5fd86ba44a0d66, type: 2}
+  - {fileID: 11400000, guid: 843b64aa377b9f34fb6ba98320c77eb0, type: 2}
   talkScView: {fileID: 779740873}
   talkScBar: {fileID: 2039600925}
   talkParent: {fileID: 269601823}
@@ -10414,7 +10421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1211226101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11976,7 +11983,7 @@ MonoBehaviour:
   inven: {fileID: 0}
   talkScrollSpeed: 0.01
   gmEventList: []
-  invenslotSirte: {fileID: 0}
+  invenslotSirte: {fileID: 21300000, guid: e5fbc92424796574b889a380ec998d88, type: 3}
 --- !u!114 &1406776371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11989,9 +11996,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be72e5650d4af324aa41793ac199d30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfc: {fileID: 0}
-  glassEvent: {fileID: 0}
-  squidEvent: {fileID: 0}
+  pfc: {fileID: 1620223292}
+  diary: {fileID: 0}
+  glassEvent: {fileID: 11400000, guid: 78556825412ceec4884bc5f65aea2194, type: 2}
+  squidEvent: {fileID: 11400000, guid: c263e64822b1fae4d913f44ca2579da0, type: 2}
+  cantUseDlg: {fileID: 11400000, guid: 7e8868a8b533da64191837aadd1a55c7, type: 2}
 --- !u!1 &1446555009
 GameObject:
   m_ObjectHideFlags: 0
@@ -12515,7 +12524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1507048849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13113,7 +13122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1572679833
 Transform:
   m_ObjectHideFlags: 0
@@ -13410,7 +13419,7 @@ Rigidbody2D:
   m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &1620223284
@@ -13489,7 +13498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620223280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.7, y: 0.14, z: 0}
+  m_LocalPosition: {x: 1, y: 12.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13654,22 +13663,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620223280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 875577bdbc32d6e42bd4664741ae918e, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c8c4ecbc867094fb769c7a8da3f88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  noGrabXOffset: 0.8
-  noGrabYOffset: 1.13
-  noGrabXSize: 0.5
-  noGrabYSize: 0.3
-  grabXOffset: 0.8
-  grabYOffset: 0.5
-  grabXSize: 0.5
-  grabYSize: 0.3
+  isNoFallingDamage: 0
+  movingBath: {fileID: 0}
+  moving: {fileID: 1620223282}
+  origin: {x: 0, y: 0, z: 0}
 --- !u!1 &1649050781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13892,7 +13894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1677565846
 MonoBehaviour:
   m_ObjectHideFlags: 0

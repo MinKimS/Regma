@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene 2.unity
     guid: 6a4ccb9823ce4dd46a2ebd15e5c0b35e
+  - enabled: 1
+    path: Assets/Scenes/Veranda.unity
+    guid: a148218eeb3972a4085d3f5aeb3136e0
   - enabled: 0
     path: Assets/Scenes/Ending.unity
     guid: d5691629579e1124ab8e457c57a68e9e
@@ -35,7 +38,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Title.unity
     guid: 7427a4d9c6302aa4bbd0d82486a7460b
-  - enabled: 0
-    path: Assets/Scenes/Veranda.unity
-    guid: a148218eeb3972a4085d3f5aeb3136e0
   m_configObjects: {}

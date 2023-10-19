@@ -14,13 +14,13 @@ public class SmartPhoneTimeline : MonoBehaviour
     }
 
     public void AddSendTalkInTimeline()
+
     {
         SmartphoneManager.instance.phone.AddSendTalk();
     }
     public void StartTalkInTimeline()
     {
         SmartphoneManager.instance.phone.StartTalk();
-        print("starttalk");
     }
     public void AddVideoTalkInTimelin(Speaker speaker)
     {

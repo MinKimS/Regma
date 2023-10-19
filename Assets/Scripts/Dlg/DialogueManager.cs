@@ -97,26 +97,23 @@ public class DialogueManager : MonoBehaviour
         speakerRectTr = speakersObj.GetComponent<RectTransform>();
         //curDlg = dialogueList[1];
         dlgPos = DlgRT.anchoredPosition;
-        SceneManager.sceneLoaded += SceneChangeEvent;
-
+    }
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
         SceneManager.sceneLoaded += LoadSceneEvent;
     }
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "LoadingScene")
         {
-            dlgListIdx++;
             curDlg = dialogueList[dlgListIdx];
+            dlgListIdx++;
         }
     }
-
-    //씬 변경 시 수행될 이벤트들
-    void SceneChangeEvent(Scene scene, LoadSceneMode mode)
+    private void OnDisable()
     {
-        if(scene.name != "LoadingScene")
-        {
-            curDlg = dialogueList[1];
-        }
+        SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
     //===========
@@ -359,8 +356,8 @@ public class DialogueManager : MonoBehaviour
         setenceIdx = 0;
         isSingleDlg = true;
         singleDlg = dlg;
-        if(SmartphoneManager.instance != null)
-            SmartphoneManager.instance.phone.IsOKSendTalk =false;
+        //if(SmartphoneManager.instance != null)
+        //    SmartphoneManager.instance.phone.IsOKSendTalk =false;
         DialogueShow(dlg);
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x

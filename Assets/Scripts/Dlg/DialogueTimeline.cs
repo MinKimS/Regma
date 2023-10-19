@@ -13,6 +13,6 @@ public class DialogueTimeline : MonoBehaviour
     public void PlayDlgSingleTimeline( Dialogue dlg)
     {
         DialogueManager.instance.PlayDlg(dlg);
-        TimelineManager.instance.timelineController.SetTimelinePause();
+        //TimelineManager.instance.timelineController.SetTimelinePause();
     }
 }

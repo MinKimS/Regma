@@ -16,8 +16,6 @@ public class PoolingManager : MonoBehaviour
         {
             pools[i] = new List<GameObject>();
         }
-
-        print(pools.Length);
     }
 
     public GameObject SpawnObject(int index)

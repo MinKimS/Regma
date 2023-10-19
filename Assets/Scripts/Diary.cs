@@ -19,6 +19,14 @@ public class Diary : MonoBehaviour
     public Dialogue dlg;
     bool isAfterDlg = false;
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            inven.HideDiary();
+        }
+    }
+
     private void FlipPage()
     {
         StartCoroutine(FlipPaper());

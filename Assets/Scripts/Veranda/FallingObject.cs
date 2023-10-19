@@ -6,11 +6,10 @@ using static UnityEngine.UI.Image;
 public class FallingObject : MonoBehaviour
 {
     Vector3 origin;
+
     private void OnEnable()
     {
         origin = transform.position;
-        print(origin);
-        print("set position that start falling");
         transform.localRotation = Quaternion.Euler(0f, 0f, Random.Range(0f,360f));
     }
 
@@ -29,6 +28,5 @@ public class FallingObject : MonoBehaviour
     private void OnDisable()
     {
         transform.position = origin;
-        print(origin);
     }
 }

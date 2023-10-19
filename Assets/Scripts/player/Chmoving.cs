@@ -256,6 +256,7 @@ public class Chmoving : MonoBehaviour
     {
         if (collision.CompareTag("SlowObj"))
         {
+            moveSpeed = 5f;
             inWater = false;
             MovinginWater = false;
             animator.SetBool("Wet", false);

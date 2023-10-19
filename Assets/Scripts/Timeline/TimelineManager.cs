@@ -58,5 +58,15 @@ public class TimelineManager : MonoBehaviour
         {
             LoadingManager.LoadScene("Bath");
         }
+        if(Input.GetKeyDown(KeyCode.F6))
+        {
+            LoadingManager.LoadScene("SampleScene 2");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        print("TimelineManager : " + TimelineManager.instance._Tlstate);
+        print("DialogueManager : " + DialogueManager.instance._dlgState);
     }
 }

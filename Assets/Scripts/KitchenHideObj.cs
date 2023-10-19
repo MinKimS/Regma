@@ -17,6 +17,7 @@ public class KitchenHideObj : MonoBehaviour
         if(appear.isLastMob && collision.CompareTag("Player"))
         {
             col.enabled = false;
+            gameObject.SetActive(false);
             print("you can't hide here");
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,8 @@ public class MirrorControl : MonoBehaviour
 
     [SerializeField] GameObject shakingTarget;
 
+    public GameObject glassItem;
+
     private void Start()
     {
         originalPosition = transform.position;
@@ -42,6 +45,12 @@ public class MirrorControl : MonoBehaviour
             ShowImage();
             hasOpened = true;
             MirrorAnimator.SetBool("Broken", true);
+
+            if(glassItem != null)
+            {
+                glassItem.SetActive(true);
+            }
+
             PlayMirrorAnimation();
         }
         else if (hasOpened && Input.GetKeyDown(KeyCode.E))

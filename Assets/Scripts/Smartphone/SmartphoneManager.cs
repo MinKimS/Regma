@@ -288,6 +288,10 @@ public class SmartphoneManager : MonoBehaviour
                     gmEventList[inven.SelectedOption - 1].Raise();
                     print(inven.SelectedOption - 1);
                 }
+                if(phone.curTalk.answerTalk == null)
+                {
+                    phone.IsOKSendTalk = false;
+                }
                 //톡 선택
                 if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.IsOKSendTalk)
                 {

@@ -20,7 +20,7 @@ public class BathMobController : MonoBehaviour
     //빠르게 지나가는 순간
     public int toyIdxToRunWild = 4;
 
-    PlayerHide playerHide;
+    public PlayerHide playerHide;
 
     [HideInInspector] public bool isTracingStart = false;
     [HideInInspector] public bool isTryCatchPlayer = false;
@@ -35,7 +35,6 @@ public class BathMobController : MonoBehaviour
 
     private void Start()
     {
-        playerHide = PlayerInfoData.instance.playerTr.GetComponent<PlayerHide>();
         movement.HideMob();
     }
 

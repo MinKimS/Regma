@@ -7,34 +7,45 @@ public class InventoryItemUsage : MonoBehaviour
 {
     [SerializeField]
     PlayerFallingController pfc;
+    [SerializeField]
     Diary diary;
     public GameEvent glassEvent;
     public GameEvent squidEvent;
-
+    public Dialogue cantUseDlg;
     private void Awake()
     {
         diary = GetComponentInChildren<Diary>();
     }
     private void Start()
     {
+        diary.gameObject.SetActive(false);
         pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
         if(diary != null)
         {
             diary.gameObject.SetActive(false);
         }
 
+    }
+    private void OnEnable()
+    {
         SceneManager.sceneLoaded += LoadSceneEvent;
     }
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "LoadingScene")
         {
-            SetInitialization();
+            StartCoroutine(SetInitialization());
         }
     }
-
-    void SetInitialization()
+    private void OnDisable()
     {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
+
+    IEnumerator SetInitialization()
+    {
+        Scene sc = SceneManager.GetActiveScene();
+        yield return new WaitWhile(() => sc.name == "LoadingScene");
         pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
     }
 
@@ -61,18 +72,26 @@ public class InventoryItemUsage : MonoBehaviour
     void Squid()
     {
         print("Squid");
-        if(squidEvent.GetListeners())
+        if(squidEvent != null && squidEvent.GetListeners())
         {
             squidEvent.Raise();
+        }
+        else
+        {
+            DialogueManager.instance.PlayDlg(cantUseDlg);
         }
     }
 
     void BrokenPieceOfGlass()
     {
         print("BrokenPieceOfGalss");
-        if(glassEvent.GetListeners())
+        if(glassEvent != null && glassEvent.GetListeners())
         {
             glassEvent.Raise();
+        }
+        else
+        {
+            DialogueManager.instance.PlayDlg(cantUseDlg);
         }
 
     }

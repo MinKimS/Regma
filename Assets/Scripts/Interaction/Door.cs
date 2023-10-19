@@ -64,4 +64,9 @@ public class Door : MonoBehaviour
             LoadingManager.LoadScene("Kitchen");
         }
     }
+
+    public void MoveDoor(string sceneName)
+    {
+        LoadingManager.LoadScene(sceneName);
+    }
 }
