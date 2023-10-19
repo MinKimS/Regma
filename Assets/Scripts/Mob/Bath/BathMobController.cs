@@ -56,6 +56,7 @@ public class BathMobController : MonoBehaviour
             //폭주해서 플레이어 잡으러 가기
             if (data.state == BathMobData.State.RuningWild && movement.isStartAttack)
             {
+                print("runwild");
                 if (isTryCatchPlayer)
                 {
                     hand.MoveHandToPlayer(8);

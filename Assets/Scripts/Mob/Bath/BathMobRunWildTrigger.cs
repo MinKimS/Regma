@@ -10,6 +10,7 @@ public class BathMobRunWildTrigger : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            bmc.movement.isStartAttack = true;
             bmc.StartRunWild();
             Destroy(gameObject);
         }

@@ -99,10 +99,8 @@ public class BathMobMovement : MonoBehaviour
     }
     public IEnumerator SetOutOfTheWater()
     {
-        print("------------------");
         while (transform.position.y <= moveOutWaterPos.position.y - 0.01f)
         {
-            print("t");
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, moveOutWaterPos.position.y), 17f * Time.deltaTime);
             yield return null;
         }
