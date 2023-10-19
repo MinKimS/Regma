@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
     }
     public void HideDiary()
     {
-        if(pot.GmEventIdx<1)
+        if(pot != null & pot.GmEventIdx<1)
         {
             pot.GmEventIdx++;
         }
