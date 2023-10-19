@@ -32,8 +32,8 @@ public class BathMobAppearance : MonoBehaviour
         bmc.Appearance();
         DialogueManager.instance.PlayDlg(dlg);
 
-        yield return new WaitWhile(() =>DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
-
+        yield return new WaitWhile(() =>DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        
         //isInputReturn = true;
         bmc.hand.MoveHandToToy(8);
         Destroy(gameObject);
