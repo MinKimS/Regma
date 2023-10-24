@@ -24,7 +24,8 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //오브젝트와 상호작용
-        if(!SmartphoneManager.instance.phone.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!=null)
+        if(!SmartphoneManager.instance.phone.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!= null 
+            && !TutorialController.instance.IsTutorialShowing)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             //do interaction

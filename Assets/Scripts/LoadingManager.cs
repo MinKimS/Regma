@@ -16,8 +16,8 @@ public class LoadingManager : MonoBehaviour
     void Start()
     {
         float imgWidth = progressImg.rectTransform.rect.width;
-        leftX = -840f;
-        rightX = 840f;
+        leftX = -643.9296f;
+        rightX = 643.9296f;
 
         StartCoroutine(LoadScene());
     }

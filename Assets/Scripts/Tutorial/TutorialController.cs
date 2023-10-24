@@ -32,20 +32,28 @@ public class TutorialController : MonoBehaviour
         TutorialArea = GetComponentInChildren<Transform>();
     }
 
+    private void Start()
+    {
+        CloseTutorialScreen();
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(IsTutorialShowing && Input.GetKeyDown(KeyCode.E))
         {
             print("close tutorial screen");
             CloseTutorialScreen();
         }
     }
 
-    public void OpenTutorialScreen()
+    public void OpenTutorialScreen(string str)
     {
-        TutorialArea.gameObject.SetActive(true);
-        isTutorialShowing=true;
-        SetTutorialText("hjklsdf");
+        if (!IsTutorialShowing)
+        {
+            TutorialArea.gameObject.SetActive(true);
+            isTutorialShowing = true;
+            SetTutorialText(str);
+        }
     }
 
     void SetTutorialText(string str)

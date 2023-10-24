@@ -47,7 +47,9 @@ public class SmartphoneManager : MonoBehaviour
 
     }
     private void Update() {
-        if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !inven.filesInven.IsInvenItemActive)
+        if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End 
+            && !inven.filesInven.IsInvenItemActive
+            &&!TutorialController.instance.IsTutorialShowing)
         {
             //폰 열기
             if(Input.GetKeyDown(KeyCode.P))
@@ -248,7 +250,7 @@ public class SmartphoneManager : MonoBehaviour
             }
             //화살표키---------------------
 
-            if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
+            if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing)
             {
                 //파일과 사진 중 선택
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)

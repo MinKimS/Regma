@@ -3568,6 +3568,7 @@ GameObject:
   - component: {fileID: 375188653}
   - component: {fileID: 375188654}
   - component: {fileID: 375188655}
+  - component: {fileID: 375188656}
   m_Layer: 0
   m_Name: Timeline
   m_TagString: Untagged
@@ -3786,6 +3787,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d61ca1774735fb43a349dc847497953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &375188656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375188648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4842fa517253a145bc7cdfa4dbbf5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explain:
+  - "Enter\uD0A4\uB85C \uC0C1\uB300\uBC29\uC5D0\uAC8C \uBA54\uC2DC\uC9C0\uB97C \uBCF4\uB0B4\uC138\uC694."
+  - "P\uD0A4\uB85C \uBA54\uC2E0\uC800\uB97C \uD655\uC778\uD558\uC138\uC694.\r\nI\uD0A4\uB85C
+    \uC544\uC774\uD15C\uACFC \uC815\uBCF4\uB97C \uD655\uC778\uD558\uC138\uC694.\r\nE\uD0A4\uB85C
+    \uC0C1\uD638\uC791\uC6A9 \uD558\uC138\uC694.\r\n\uC218\uC2DC\uB85C \uD3F0\uC744
+    \uD655\uC778\uD558\uC138\uC694."
+  - "\uBC29\uD5A5\uD0A4\uB97C \uC774\uC6A9\uD558\uC5EC \uC774\uB3D9\uD569\uB2C8\uB2E4.\r\nH\uD0A4\uB97C
+    \uC774\uC6A9\uD558\uC5EC \uB79C\uD134\uC744 \uC870\uC791\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - "Shift\uD0A4\uB85C \uB2EC\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\nCtrl\uD0A4\uB85C
+    \uC549\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\nSpace\uD0A4\uB85C \uC810\uD504\uD560
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n\uCE90\uB9AD\uD130\uC640 \uB79C\uD134\uC744
+    \uC870\uC791\uD558\uC5EC \uD53C\uD558\uACE0, \uB3C4\uB9DD\uCE58\uC2ED\uC2DC\uC624."
 --- !u!1 &390762188
 GameObject:
   m_ObjectHideFlags: 0
@@ -6085,6 +6110,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589781755}
   m_CullTransparentMesh: 1
+--- !u!1 &603608967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 603608968}
+  - component: {fileID: 603608970}
+  - component: {fileID: 603608969}
+  m_Layer: 0
+  m_Name: TutorialTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &603608968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603608967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.61, y: -0.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1572679833}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &603608969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603608967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b2120d6ab29384fa5bbe63bdbf2813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveRecogEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 375188656}
+        m_TargetAssemblyTypeName: ShowTutorialScreen, Assembly-CSharp
+        m_MethodName: ShowTutorial
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  descriptionEvent: 
+--- !u!61 &603608970
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603608967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 19.278055}
+  m_EdgeRadius: 0
 --- !u!1 &606496680
 GameObject:
   m_ObjectHideFlags: 0
@@ -13797,6 +13909,7 @@ Transform:
   - {fileID: 1792207242}
   - {fileID: 2025886913}
   - {fileID: 477283770}
+  - {fileID: 603608968}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15073,6 +15186,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 592e0480b708d284c8c820c163763f5c, type: 2}
     - {fileID: 11400000, guid: 7760be29df7bfd54c9c0fc71fd66a7ae, type: 2}
     - {fileID: 11400000, guid: 7f82f65b4debc2343b94938e2ab15945, type: 2}
+    - {fileID: 11400000, guid: b8788483a95a8a948878d28c8c5db283, type: 2}
+    - {fileID: 11400000, guid: b08db9c1490508944a0f69524c66b1a2, type: 2}
+    - {fileID: 11400000, guid: 763d5bbe7d50dc94786f76edc6cb1c49, type: 2}
+    - {fileID: 11400000, guid: 567481a032261fa42983aaaf25363313, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -15182,18 +15299,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 375188653}
-          m_TargetAssemblyTypeName: SmartPhoneTimeline, Assembly-CSharp
-          m_MethodName: HidePhoneInTimeline
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1189657956}
@@ -15205,6 +15310,62 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.005
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188656}
+          m_TargetAssemblyTypeName: ShowTutorialScreen, Assembly-CSharp
+          m_MethodName: ShowTutorial
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188655}
+          m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
+          m_MethodName: StartTalk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188656}
+          m_TargetAssemblyTypeName: ShowTutorialScreen, Assembly-CSharp
+          m_MethodName: ShowTutorial
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188651}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: SetTimelinePause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -17217,7 +17378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941249179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: -5, z: 0}
+  m_LocalPosition: {x: -31.15, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -49,7 +49,8 @@ public class Chmoving : MonoBehaviour
         // 플레이어가 움직일 수 있는 조건
         bool canMove = DialogueManager.instance._dlgState == DialogueManager.DlgState.End &&
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
-                       TimelineManager.instance._Tlstate == TimelineManager.TlState.End;
+                       TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
+                       !TutorialController.instance.IsTutorialShowing;
 
         if (canMove)
         {
