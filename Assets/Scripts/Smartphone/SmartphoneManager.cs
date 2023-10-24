@@ -10,7 +10,7 @@ public class SmartphoneManager : MonoBehaviour
 {
     public static SmartphoneManager instance;
 
-    InventoryItemUsage itemUsage;
+    [HideInInspector] public InventoryItemUsage itemUsage;
 
     [HideInInspector] public TalkNotification notification;
 
@@ -333,6 +333,7 @@ public class SmartphoneManager : MonoBehaviour
                         TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
                     }
 
+                    phone.isTalkNeedToBeSend = false;
                     phone.isOkStartTalk = true;
                 }
             }

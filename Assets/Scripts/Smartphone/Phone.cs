@@ -61,6 +61,10 @@ public class Phone : MonoBehaviour
     [HideInInspector]
     public bool isOkStartTalk = true;
 
+    //중간에 다른 톡을 보내야하는 경우 막는 용도
+    [HideInInspector]
+    public bool isTalkNeedToBeSend = false;
+
     [SerializeField]
     float phoneShowSpeed = 0.1f;
 
@@ -77,6 +81,7 @@ public class Phone : MonoBehaviour
     public bool IsOpenPhone
     {
         get { return isOpenPhone;}
+        set { isOpenPhone = value;}
     }
     public bool IsPlayerFirstTalk
     {
@@ -253,6 +258,8 @@ public class Phone : MonoBehaviour
     public void SetSendTalk(SendTalk[] SendTalkContexts)
     {
         // isSendTalkReady = true;
+
+        isTalkNeedToBeSend = true;
         isOKSendTalk = true;
 
         //대답을 보낼 톡 선택지 설정

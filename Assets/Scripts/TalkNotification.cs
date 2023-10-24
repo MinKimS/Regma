@@ -10,7 +10,7 @@ public class TalkNotification : MonoBehaviour
     private Vector2 showPos;
     private Vector2 hidePos;
     public float moveTime = 0.4f;
-    private bool isTalkIconShow = false;
+    [HideInInspector] public bool isTalkIconShow = false;
 
     private void Start() {
         talkIcon = GetComponent<Image>();

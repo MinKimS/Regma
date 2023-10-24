@@ -10,6 +10,9 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject interactionObj;
     InteractionObjData obj;
 
+    [HideInInspector]
+    public bool isOKInteraction;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -22,10 +25,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             seeDir = Vector2.right;
         }
+        isOKInteraction = (!SmartphoneManager.instance.phone.IsOpenPhone
+            && DialogueManager.instance._dlgState == DialogueManager.DlgState.End
+            && interactionObj != null 
+            && !TutorialController.instance.IsTutorialShowing
+            && !SmartphoneManager.instance.itemUsage.isUsingItem);
 
         //오브젝트와 상호작용
-        if(!SmartphoneManager.instance.phone.IsOpenPhone&&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && interactionObj!= null 
-            && !TutorialController.instance.IsTutorialShowing)
+        if (isOKInteraction)
         {
             obj = interactionObj.GetComponent<InteractionObjData>();
             //do interaction

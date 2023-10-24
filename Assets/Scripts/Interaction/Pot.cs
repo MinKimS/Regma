@@ -96,6 +96,14 @@ public class Pot : MonoBehaviour
         }   
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && isPushing)
+        {
+            CancelPush(playerPos);
+        }
+    }
+
     private void Update() {
         if(isPushing && ((isPushAtLeft&&Input.GetKeyDown(KeyCode.LeftArrow)) || (!isPushAtLeft&&Input.GetKeyDown(KeyCode.RightArrow))))
         {

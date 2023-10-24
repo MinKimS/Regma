@@ -57,6 +57,7 @@ public class Diary : MonoBehaviour
 
     public void ShowDiary()
     {
+        SmartphoneManager.instance.itemUsage.isUsingItem = true;
         flipPage.gameObject.SetActive(false);
         flipPage.rotation = Quaternion.identity;
         img.sprite = book[0];
@@ -71,6 +72,7 @@ public class Diary : MonoBehaviour
         {
             DialogueManager.instance.PlayDlg(dlg);
             isAfterDlg = true;
+            SmartphoneManager.instance.itemUsage.isUsingItem = false;
         }
     }
 }

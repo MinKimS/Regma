@@ -8,7 +8,8 @@ public class SingelDlg : MonoBehaviour
     public bool isCanDisapear = false;
     
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !SmartphoneManager.instance.notification.isTalkIconShow && !SmartphoneManager.instance.phone.IsOpenPhone
+            && !SmartphoneManager.instance.phone.isTalkNeedToBeSend)
         {
             DialogueManager.instance.PlayDlg(dlg);
             if(isCanDisapear) { gameObject.SetActive(false); }

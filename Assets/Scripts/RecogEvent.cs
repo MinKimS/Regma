@@ -7,13 +7,11 @@ using UnityEngine.Events;
 public class RecogEvent : MonoBehaviour
 {
     public UnityEvent ActiveRecogEvent;
-    //이벤트 설명 용(나중엔 제거)
-    [TextArea]
-    public string descriptionEvent;
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !SmartphoneManager.instance.notification.isTalkIconShow && !SmartphoneManager.instance.phone.IsOpenPhone 
+            && !SmartphoneManager.instance.phone.isTalkNeedToBeSend)
         {
             ActiveEvent();
         }

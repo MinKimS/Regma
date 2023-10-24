@@ -12,6 +12,8 @@ public class InventoryItemUsage : MonoBehaviour
     public GameEvent glassEvent;
     public GameEvent squidEvent;
     public Dialogue cantUseDlg;
+
+    [HideInInspector] public bool isUsingItem;
     private void Awake()
     {
         diary = GetComponentInChildren<Diary>();
