@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class TitleController : MonoBehaviour
 {
     //start btn
-    int btnSelectIdx = 1;
+    int btnSelectIdx = 2;
     public Image[] btnLists;
+    public Transform howToScreen;
 
     private void Start() {
         SelectBtn();
@@ -35,15 +36,25 @@ public class TitleController : MonoBehaviour
         //선택된 버튼 클릭
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            if(btnSelectIdx == 1)
+            if(btnSelectIdx == 2)
             {
                 LoadingManager.LoadScene("Intro");
+            }
+            else if(btnSelectIdx == 1)
+            {
+                howToScreen.gameObject.SetActive(true);
             }
             else
             {
                 Application.Quit();
                 print("quit");
             }
+        }
+
+        //조작법 창 숨기기
+        if(Input.GetKeyDown(KeyCode.Escape) && howToScreen.gameObject.activeSelf)
+        {
+            howToScreen.gameObject.SetActive(false);
         }
     }
 

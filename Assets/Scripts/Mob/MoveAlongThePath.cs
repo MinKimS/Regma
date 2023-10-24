@@ -44,10 +44,7 @@ public class MoveAlongThePath : MonoBehaviour
     {
         Time.fixedDeltaTime = 0.01f;
         targetPos = pathFinder.targetPos;
-        if(SceneManager.GetActiveScene().name != "Veranda")
-        {
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 
     IEnumerator TraceTarget()
@@ -130,5 +127,10 @@ public class MoveAlongThePath : MonoBehaviour
     {
         rb.AddForce(Vector2.up * jumpForce * 2);
         lastJumpTime = Time.time;      
+    }
+
+    public void AppearMob()
+    {
+        gameObject.SetActive(true);
     }
 }

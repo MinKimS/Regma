@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
   m_Name: Talk L1
   m_EditorClassIdentifier: 
-  afterEndTalk: 1
+  afterEndTalk: 4
   timelineName: LT 1 (1)
   runEvent: {fileID: 0}
   TalkContexts:

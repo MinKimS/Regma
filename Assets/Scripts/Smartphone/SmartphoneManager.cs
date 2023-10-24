@@ -50,7 +50,7 @@ public class SmartphoneManager : MonoBehaviour
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !inven.filesInven.IsInvenItemActive)
         {
             //폰 열기
-            if((Input.GetKeyDown(KeyCode.P) || (Input.GetKeyDown(KeyCode.Escape) && !inven.IsOpenInven && phone.IsOpenPhone)))
+            if(Input.GetKeyDown(KeyCode.P))
             {
                 if(!phone.IsOpenPhone)
                 {
@@ -63,60 +63,55 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
             //인벤 열기
-            if ((Input.GetKeyDown(KeyCode.I) || (Input.GetKeyDown(KeyCode.Escape) && inven.IsOpenInven)))
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                if (!inven.IsOpenInven)
+                if (!inven.IsOpenInven && phone.IsOpenPhone)
                 {
-                    if (!phone.IsOpenPhone)
-                    {
-                        phone.ShowPhone();
-                        inven.ShowInven();
-                    }
-                    else
-                    {
-                        inven.ShowInven();
-                    }
+                    //if (!phone.IsOpenPhone)
+                    //{
+                    //    phone.ShowPhone();
+                    //    inven.ShowInven();
+                    //}
+                    //else
+                    //{
+                    //    inven.ShowInven();
+                    //}
+                    inven.ShowInven();
                 }
                 else
                 {
                     inven.HideInven();
-                    phone.HidePhone();
                 }
             }
         }
 
-        if(inven.filesInven.IsInvenItemActive && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
-        {
-            inven.filesInven.HideDiary();
-        }
+        //if(inven.filesInven.IsInvenItemActive && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+        //{
+        //    inven.filesInven.HideDiary();
+        //}
 
-        if(!inven.filesInven.IsInvenItemActive)
+        //화살표키==================================
+        //톡 화면 스크롤
+        if (!inven.filesInven.IsInvenItemActive)
         {
-            //화살표키==================================
-            if(Input.GetKey(KeyCode.UpArrow))
+            if(phone.IsOpenPhone && !inven.IsOpenInven && phone.talkScView.verticalNormalizedPosition != 0)
             {
-                //톡 화면 스크롤
-                if(phone.IsOpenPhone && !inven.IsOpenInven)
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    if(phone.talkScView.verticalNormalizedPosition < 1f)
+                    if (phone.talkScView.verticalNormalizedPosition < 1f)
                     {
-                        //talkScR.verticalNormalizedPosition += talkScrollSpeed;
                         phone.talkScBar.value += talkScrollSpeed;
                     }
                 }
-            }
-            if(Input.GetKey(KeyCode.DownArrow))
-            {
-                //톡 화면 스크롤
-                if(phone.IsOpenPhone && !inven.IsOpenInven)
+                if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    if(phone.talkScView.verticalNormalizedPosition > 0f)
+                    if (phone.talkScView.verticalNormalizedPosition > 0f)
                     {
-                        //talkScR.verticalNormalizedPosition -= talkScrollSpeed;
                         phone.talkScBar.value -= talkScrollSpeed;
                     }
                 }
             }
+            
             
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -255,6 +250,7 @@ public class SmartphoneManager : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
             {
+                //파일과 사진 중 선택
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)
                 {
                     if(inven.SelectedInvenOption == 0)
@@ -268,26 +264,22 @@ public class SmartphoneManager : MonoBehaviour
                         inven.SetFilesActive(false);
                     }
                 }
+                //파일에서 아이템 사용
                 else if(inven.IsOpenFiles && inven.MaxFilesSlot!=0)
                 {
-                    //gmEventList[inven.SelectedOption - 1].Raise();
-                    //print(inven.SelectedOption - 1);
                     itemUsage.UseItem(inven.filesInven.slotDataList[inven.SelectedOption - 1].item);
 
                     if (inven.IsOpenInven) { inven.HideInven(); }
                     phone.HidePhone();
-                    ////일기장
-                    //if(inven.filesInven.slotDataList[inven.SelectedOption - 1].item.itemID == 0)
-                    //{
-                    //    inven.filesInven.ShowDiary();
-                    //}
                 }
+                //사진에서 아이템 사용
                 else if(inven.IsOpenPictures && inven.MaxPicSlot!=0)
                 {
                     print(inven.picsInven.slotDataList[inven.SelectedOption - 1].item.itemName);
                     gmEventList[inven.SelectedOption - 1].Raise();
                     print(inven.SelectedOption - 1);
                 }
+
                 if(phone.curTalk.answerTalk == null)
                 {
                     phone.IsOKSendTalk = false;
@@ -314,36 +306,40 @@ public class SmartphoneManager : MonoBehaviour
                     }
 
                     //더 이상 보낼 플레이어가 보낼 톡이 없는 경우 수행
-                    if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
-                    {
-                        TimelineManager.instance.timelineController.SetTimelineResume();
-                    }
-                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline)
-                    {
-                        TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
-                    }
-                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent || phone.curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+                    if (phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent
+                        && phone.curTalk.runEvent != null)
                     {
                         phone.curTalk.runEvent.Raise();
+                        phone.SetNextTalk();
                     }
-
-                    if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunNextTalk)
+                    else if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunNextTalk)
                     {
                         phone.SetNextTalk();
+
+                        phone.isOkStartTalk = true;
                         phone.StartTalk();
                     }
-                    else
+
+                    if (phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndResumeTimeline)
                     {
                         phone.SetNextTalk();
+                        TimelineManager.instance.timelineController.SetTimelineResume();
                     }
+                    else if(phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline)
+                    {
+                        phone.SetNextTalk();
+                        TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
+                    }
+
+                    phone.isOkStartTalk = true;
                 }
             }
-            if(Input.GetKeyDown(KeyCode.Delete))
-            {
-                //서랍창 나가기
-                if(inven.IsOpenFiles) { inven.SetFilesActive(false);}
-                if(inven.IsOpenPictures) { inven.SetPicsActive(false);}
-            }
+            //if(Input.GetKeyDown(KeyCode.Delete))
+            //{
+            //    //서랍창 나가기
+            //    if(inven.IsOpenFiles) { inven.SetFilesActive(false);}
+            //    if(inven.IsOpenPictures) { inven.SetPicsActive(false);}
+            //}
         }
     }
 

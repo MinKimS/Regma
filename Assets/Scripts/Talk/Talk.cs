@@ -11,6 +11,7 @@ public class Talk : ScriptableObject {
         SendTalk,
         SendTalkAndRunNextTalk,
         SendTalkAndStartTimeline,
+        SendTalkAndResumeTimeline,
         SendTalkAndRunEvent,
         ContinueTimeline,
         RunEvent

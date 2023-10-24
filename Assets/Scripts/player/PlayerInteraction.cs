@@ -33,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
                 //상호작용
                 if (!obj.IsRunInteraction)
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (!TutorialController.instance.IsTutorialShowing && Input.GetKeyDown(KeyCode.E))
                     {
                         if (obj.gmEvent.Length > 0)
                         {
@@ -44,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
                 //진행중인 상호작용 취소
                 else
                 {
-                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+                    if (!TutorialController.instance.IsTutorialShowing && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
                     {
                         if (obj.cancelEvent.Length > 0)
                         {

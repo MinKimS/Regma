@@ -57,6 +57,10 @@ public class Phone : MonoBehaviour
     bool isPlayerFirstTalk = true;
     bool isOKSendTalk = false;
 
+    //톡을 보내는 것이 가능여부
+    [HideInInspector]
+    public bool isOkStartTalk = true;
+
     [SerializeField]
     float phoneShowSpeed = 0.1f;
 
@@ -167,8 +171,6 @@ public class Phone : MonoBehaviour
         //이어지는 톡 설정
         talk.tail.SetActive(!isSameUser);
 
-        talk.readNum = TalkMemberNum - 1;
-        talk.readNumText.text = talk.readNum.ToString();
 
         lastTalk = talk;
         lastPlayerTalk = talk;
@@ -183,7 +185,9 @@ public class Phone : MonoBehaviour
     {
         TalkData talk = Instantiate(isAnnouncement ? announcementTalk : anotherTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
+
         talk.talkText.text = text;
+
         if (!isAnnouncement) talk.userName = user.talkName;
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
@@ -197,14 +201,11 @@ public class Phone : MonoBehaviour
             talk.nameText.gameObject.SetActive(!isSameUser);
             talk.nameText.text = talk.userName;
 
-
             if (user.talkProfileSp != null)
             {
                 talk.profileImage.sprite = user.talkProfileSp;
             }
         }
-        talk.readNum = TalkMemberNum - 2;
-        talk.readNumText.text = talk.readNum.ToString();
 
         lastTalk = talk;
 
@@ -307,10 +308,10 @@ public class Phone : MonoBehaviour
         }
         StartCoroutine(FixLayoutGroup());
 
-        if (curSendTalk == null && curTalk.isInTimeline)
-        {
-            TimelineManager.instance.timelineController.SetTimelineResume();
-        }
+        //if (curSendTalk == null && curTalk.isInTimeline)
+        //{
+        //    TimelineManager.instance.timelineController.SetTimelineResume();
+        //}
     }
 
     public void SelectTalk(int value)
@@ -344,8 +345,6 @@ public class Phone : MonoBehaviour
         {
             talk.profileImage.sprite = user.talkProfileSp;
         }
-        talk.readNum = TalkMemberNum - 2;
-        talk.readNumText.text = talk.readNum.ToString();
 
         lastTalk = talk;
 
@@ -406,7 +405,18 @@ public class Phone : MonoBehaviour
     //톡 시작
     public void StartTalk()
     {
-        StartCoroutine(OutputOtherUserTalk());
+        if(isOkStartTalk)
+        {
+            isOkStartTalk = false;
+            StartCoroutine(OutputOtherUserTalk());
+        }
+    }
+    public void StartTalkInTrigger()
+    {
+        if(isOkStartTalk)
+        {
+            StartCoroutine(OutputOtherUserTalk());
+        }
     }
 
     //톡 출력
@@ -422,45 +432,54 @@ public class Phone : MonoBehaviour
             delayTime = curTalk.TalkContexts[talkIdx].TalkSendDelay;
             yield return new WaitForSeconds(delayTime);
             SmartphoneManager.instance.phone.AddTalk(false, curTalk.TalkContexts[talkIdx].user, curTalk.TalkContexts[talkIdx++].talkText);
+            print("add Talk");
         }
 
         yield return new WaitForSeconds(1.0f);
 
         //모든 상대방의 대화가 나오고 난 뒤 수행되는 것
-        if(curTalk.afterEndTalk != Talk.AfterEndTalk.None)
+        if (curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalk
+                || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent
+                || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunNextTalk
+                || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndStartTimeline
+                || curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndResumeTimeline)
         {
-            if (curTalk.afterEndTalk == Talk.AfterEndTalk.StartTimeline)
+            if (curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndResumeTimeline)
             {
-                delayTime = curTalk.TalkContexts[talkIdx - 1].TalkSendDelay;
-                yield return new WaitForSeconds(1.0f);
-                TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
+                TimelineManager.instance.timelineController.SetTimelinePause();
             }
-            else if (curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
-            {
-                TimelineManager.instance.timelineController.SetTimelineResume();
-            }
-            else if(curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
-            {
-                curTalk.runEvent.Raise();
-            }
-            else
-            {
-                if (curTalk.isInTimeline)
-                {
-                    TimelineManager.instance.timelineController.SetTimelinePause();
-                }
-                yield return new WaitForSeconds(1.0f);
-                SmartphoneManager.instance.phone.SetSendTalk(curTalk.answerTalk);
-            }
+
+            SetSendTalk(curTalk.answerTalk);
+        }
+        else if (curTalk.afterEndTalk == Talk.AfterEndTalk.StartTimeline)
+        {
+            TimelineManager.instance.timelineController.SetTimelineStart(curTalk.timelineName);
+        }
+        else if (curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline)
+        {
+            TimelineManager.instance.timelineController.SetTimelineResume();
         }
 
-
-        if(curTalk.afterEndTalk != Talk.AfterEndTalk.SendTalkAndRunNextTalk&& curTalk.afterEndTalk != Talk.AfterEndTalk.StartTimeline&& curTalk.afterEndTalk != Talk.AfterEndTalk.SendTalkAndRunEvent && !curTalk.isInTimeline)
+        if ((curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent
+            || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+            && curTalk.runEvent != null)
         {
-            if(curTalk.nextTalk!= null)
-            {
-                SetNextTalk();
-            }
+            curTalk.runEvent.Raise();
+        }
+
+        //다음 톡으로 설정
+        if(curTalk.afterEndTalk == Talk.AfterEndTalk.None
+            || curTalk.afterEndTalk == Talk.AfterEndTalk.StartTimeline
+            || curTalk.afterEndTalk == Talk.AfterEndTalk.ContinueTimeline
+            || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+        {
+            SetNextTalk();
+        }
+
+        //다른 톡을 시작 가능하게 설정
+        if (curTalk.afterEndTalk == Talk.AfterEndTalk.None || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+        {
+            isOkStartTalk = true;
         }
     }
 }

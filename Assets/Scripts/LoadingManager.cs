@@ -10,8 +10,15 @@ public class LoadingManager : MonoBehaviour
     public static string nextScene;
     //로딩이 진행된 현황을 볼 수 있는 이미지
     public Image progressImg;
+    public Transform progressChrTr;
+
+    float leftX, rightX, newX;
     void Start()
     {
+        float imgWidth = progressImg.rectTransform.rect.width;
+        leftX = -840f;
+        rightX = 840f;
+
         StartCoroutine(LoadScene());
     }
     
@@ -38,18 +45,26 @@ public class LoadingManager : MonoBehaviour
             if(asOp.progress < 0.9f)
             {
                 progressImg.fillAmount = Mathf.Lerp(progressImg.fillAmount, asOp.progress, timer);
-                if(progressImg.fillAmount >= asOp.progress) { timer = 0f; }
+                ChangeImgPosition();
+                if (progressImg.fillAmount >= asOp.progress) { timer = 0f; }
             }
             else
             {
                 progressImg.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
+                ChangeImgPosition();
                 //다음 씬으로 이동
-                if(progressImg.fillAmount == 1.0f)
+                if (progressImg.fillAmount == 1.0f)
                 {
                     asOp.allowSceneActivation=true;
                     yield break;
                 }
             }
         }
+    }
+
+    void ChangeImgPosition()
+    {
+        newX = Mathf.Lerp(leftX, rightX, progressImg.fillAmount);
+        progressChrTr.localPosition = new Vector3(newX, progressChrTr.localPosition.y);
     }
 }

@@ -29,12 +29,6 @@ public class ScriptConnect : MonoBehaviour
         SmartphoneManager.instance.phone.AddInOutTalk(true, name);
     }
 
-    public void ReduceReadNum()
-    {
-        SmartphoneManager.instance.phone.lastPlayerTalk.readNum--;
-        SmartphoneManager.instance.phone.lastPlayerTalk.readNumText.text = SmartphoneManager.instance.phone.lastPlayerTalk.readNum.ToString();
-    }
-
     public void StartNextTimeline(int num)
     {
         TimelineManager.instance.timelineController.SetTimelineStart(num);

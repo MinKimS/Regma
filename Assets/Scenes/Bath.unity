@@ -2973,6 +2973,7 @@ MonoBehaviour:
   lastPlayerTalk: {fileID: 0}
   curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   curSendTalk: {fileID: 0}
+  isOkStartTalk: 1
   phoneShowSpeed: 0.1
   talkIdx: 0
   sendTalkList:
