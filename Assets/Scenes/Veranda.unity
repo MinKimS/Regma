@@ -2212,10 +2212,9 @@ GameObject:
   - component: {fileID: 157110317}
   - component: {fileID: 157110316}
   - component: {fileID: 157110315}
-  - component: {fileID: 157110314}
   - component: {fileID: 157110313}
   - component: {fileID: 157110312}
-  - component: {fileID: 157110311}
+  - component: {fileID: 157110324}
   m_Layer: 3
   m_Name: ch 1
   m_TagString: Player
@@ -2223,28 +2222,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &157110311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157110310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8451f8be2119ad640b3f6cf777f50c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 157110318}
-  jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
-  walkAudioSource: {fileID: 157110316}
-  jumpForce: 16
-  JumpCount: 1
-  isGround: 0
-  pos: {fileID: 454034818}
-  islayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &157110312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,18 +2246,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7170794d0a9f8c4db24e2c95a07cc03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &157110314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157110310}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6ed743dff685b4896ac2ddae3cf34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &157110315
@@ -2441,6 +2406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionObj: {fileID: 0}
+  isOKInteraction: 0
 --- !u!50 &157110320
 Rigidbody2D:
   serializedVersion: 4
@@ -2538,7 +2504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157110310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.94, y: 18.3, z: 0}
+  m_LocalPosition: {x: -14.17, y: -4.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2548,6 +2514,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &157110324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157110310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66de19515c6f9554eb9b297d8ff219db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 157110318}
+  jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
+  walkAudioSource: {fileID: 157110316}
+  jumpForce: 12
+  isGround: 0
+  pos: {fileID: 454034818}
+  islayer:
+    serializedVersion: 2
+    m_Bits: 64
+  JumpCount: 1
 --- !u!1 &159630279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,6 +3100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.4
+  isTalkIconShow: 0
 --- !u!114 &247161582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3429,6 +3418,7 @@ MonoBehaviour:
   curTalk: {fileID: 11400000, guid: c354a96e19b9bec419b8f814edcd3418, type: 2}
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
+  isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.1
   talkIdx: 0
   sendTalkList:
@@ -12844,6 +12834,7 @@ MonoBehaviour:
   curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
+  isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.1
   talkIdx: 0
   sendTalkList:
@@ -13218,7 +13209,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.333
-  m_Color: {r: 0.01886791, g: 0.01646492, b: 0.01646492, a: 1}
+  m_Color: {r: 0.03773582, g: 0.03755782, b: 0.03755782, a: 1}
   m_Intensity: 33.9
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -14950,7 +14941,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  descriptionEvent: 
 --- !u!1 &1482671991
 GameObject:
   m_ObjectHideFlags: 0
@@ -17154,6 +17144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.4
+  isTalkIconShow: 0
 --- !u!114 &1676307727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18417,6 +18408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8705fc18c114d4fb8de7a9fb18be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemUsage: {fileID: 0}
   notification: {fileID: 0}
   phone: {fileID: 0}
   inven: {fileID: 0}
@@ -19084,6 +19076,7 @@ MonoBehaviour:
   glassEvent: {fileID: 11400000, guid: 78556825412ceec4884bc5f65aea2194, type: 2}
   squidEvent: {fileID: 11400000, guid: c263e64822b1fae4d913f44ca2579da0, type: 2}
   cantUseDlg: {fileID: 11400000, guid: 7e8868a8b533da64191837aadd1a55c7, type: 2}
+  isUsingItem: 0
 --- !u!114 &1884117594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19096,6 +19089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8705fc18c114d4fb8de7a9fb18be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemUsage: {fileID: 0}
   notification: {fileID: 0}
   phone: {fileID: 0}
   inven: {fileID: 0}

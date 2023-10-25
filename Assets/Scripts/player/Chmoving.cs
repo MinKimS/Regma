@@ -113,68 +113,59 @@ public class Chmoving : MonoBehaviour
     }
 
     private void HandleMovementInput()
+{
+    moveInputX = Input.GetAxisRaw("Horizontal");
+
+    if (moveInputX != 0)
     {
-        moveInputX = Input.GetAxisRaw("Horizontal");
+        isMoving = true;
+        currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
 
-        if (moveInputX != 0)
+        if (isJumping)
         {
-            isMoving = true;
-            currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
-
-            if (isJumping)
-            {
-                StopWalkSound();
-                //isJumpingWithMovement = true;
-                //animator.SetBool("jump", true);
-                //print("걷는중");
-                rb.gravityScale = 5.0f;
-            }
-            else if (!isJumpingWithMovement && isGround)
-            {
-                PlayWalkSound();
-            }
-
-            else if (!isGround)
-            {
-                animator.SetBool("walk", false);
-                rb.gravityScale = 5.0f;
-                print("걷는중");
-            }
-
-            // if (MovinginWater)
-            // {
-            //     //MovinginWater = true;
-            //     animator.SetBool("Wet", true);
-            //     animator.SetBool("walk", false);
-
-            //     //print("물안에있음");
-            // }
-
-            // else if (inWater && currentMoveSpeed == 0)
-            // {
-            //     animator.SetBool("WetIdle", true);
-            // }
-
-            // else
-            // {
-            //     animator.SetBool("Wet", false);
-            //     //animator.SetBool("WetIdle", false);
-            // }
-
+            StopWalkSound();
+            rb.gravityScale = 5.0f;
+        }
+        else if (!isJumpingWithMovement && isGround)
+        {
+            PlayWalkSound();
+        }
+        else if (!isGround)
+        {
+            animator.SetBool("walk", false);
+            rb.gravityScale = 5.0f;
         }
 
+        if (MovinginWater)
+        {
+            isMoving = false;
+            // SlowObj와 충돌하면 움직임을 제어
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            currentMoveSpeed = moveSpeed * moveInputX;
+            animator.SetBool("Walk", isMoving);
+
+            // "Wet" 애니메이션을 활성화합니다.
+            animator.SetBool("Wet", true);
+        }
         else
         {
-            //MovinginWater = false;
-            //inWater = false;
-            //animator.SetBool("Wet", false);
-            isMoving = false;
-            currentMoveSpeed = 0f;
-            StopWalkSound();
+            // 그 외의 경우는 정상적인 이동 속도 적용
+            currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
         }
-
-        rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
     }
+    else
+    {
+        // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
+        animator.SetBool("Wet", false);
+        isMoving = false;
+        currentMoveSpeed = 0f;
+        StopWalkSound();
+    }
+
+    rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+}
+
+    
 
     private void UpdateAnimation()
     {
@@ -235,20 +226,36 @@ public class Chmoving : MonoBehaviour
         {
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
-            inWater = true;
+            //inWater = true;
+            MovinginWater = true;
 
-            if (moveInputX != 0 && isMoving)
-            {
-                MovinginWater = true;
-                animator.SetBool("Wet", true);
-                animator.SetBool("walk", false);
-                //print("물 속에 있음");
-            }
-            else if(isMoving == false)
-            {
-                //MovinginWater = false;
-                print("else if문 false");
-            }
+            // if (moveInputX != 0 && isMoving)
+            // {
+            //     MovinginWater = true;
+            //     animator.SetBool("Wet", true);
+            //     animator.SetBool("walk", false);
+            //     //print("물 속에 있음");
+            // }
+            // else if(moveInputX == 0)
+            // {
+            //     //MovinginWater = false;
+            //     print("else if문 false");
+            // }
+
+            // if (MovinginWater)
+            // {
+            // // SlowObj와 충돌하면 움직임을 제어
+            // transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            // currentMoveSpeed = moveSpeed * moveInputX;
+            // animator.SetBool("Wet", isMoving);
+            // //isMoving = false;
+
+            // }
+            // else
+            // {
+            // // 그 외의 경우는 정상적인 이동 속도 적용
+            // currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
+            // }
         }
         //else
         //{

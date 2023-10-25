@@ -493,6 +493,7 @@ MonoBehaviour:
   curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
+  isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.1
   talkIdx: 0
   sendTalkList:
@@ -2958,7 +2959,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  descriptionEvent: 
 --- !u!1 &470353146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,6 +3085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.4
+  isTalkIconShow: 0
 --- !u!114 &475318962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10982,7 +10983,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865740702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 024efb79b83ad2b44b53416c8420d310, type: 3}
   m_Name: 
@@ -12048,7 +12049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2077401904
 Transform:
   m_ObjectHideFlags: 0
