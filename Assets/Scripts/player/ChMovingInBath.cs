@@ -37,7 +37,7 @@ public class ChMovingInBath : MonoBehaviour
     {
         animator = GetComponent<Animator>(); // 'Animator' 컴포넌트 초기화
         rb = GetComponent<Rigidbody2D>();
-        //rb.gravityScale = 5.0f;
+        rb.gravityScale = 5.0f;
     }
 
     private void Update()

@@ -159,9 +159,9 @@ RectTransform:
   m_Father: {fileID: 837294315}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 290.1534, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4499568
@@ -16233,9 +16233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c28cdf12c4af354599ccc9762563acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Refrianim: {fileID: 1492263444}
+  Refrianim: {fileID: 1803614436}
   refri2Object: {fileID: 167220463}
-  mobAppear: {fileID: 0}
+  mobAppear: {fileID: 1724219968}
   power: {fileID: 1803614432}
 --- !u!95 &1492263444
 Animator:
@@ -18939,7 +18939,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803614427}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

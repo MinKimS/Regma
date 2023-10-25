@@ -2270,6 +2270,7 @@ MonoBehaviour:
   glassEvent: {fileID: 11400000, guid: 78556825412ceec4884bc5f65aea2194, type: 2}
   squidEvent: {fileID: 11400000, guid: c263e64822b1fae4d913f44ca2579da0, type: 2}
   cantUseDlg: {fileID: 11400000, guid: 7e8868a8b533da64191837aadd1a55c7, type: 2}
+  isUsingItem: 0
 --- !u!114 &303302987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,6 +2283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8705fc18c114d4fb8de7a9fb18be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemUsage: {fileID: 0}
   notification: {fileID: 0}
   phone: {fileID: 0}
   inven: {fileID: 0}
@@ -2974,6 +2976,7 @@ MonoBehaviour:
   curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
+  isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.1
   talkIdx: 0
   sendTalkList:
@@ -4622,6 +4625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionObj: {fileID: 0}
+  isOKInteraction: 0
 --- !u!50 &561195419
 Rigidbody2D:
   serializedVersion: 4
@@ -4744,7 +4748,7 @@ MonoBehaviour:
   animator: {fileID: 561195416}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 561195414}
-  jumpForce: 16
+  jumpForce: 13
   JumpCount: 1
   isGround: 0
   pos: {fileID: 419879761}
@@ -8116,6 +8120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.4
+  isTalkIconShow: 0
 --- !u!114 &1075913322
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,21 +12,21 @@ public class PTimeLine : MonoBehaviour
     public Animator Refrianim;
 
     
-    public GameObject refri2Object; // Refri2 еб╠в╦╕ ╟║аЬ ╢эюо ©ю╨Йа╖ф╝
+    public GameObject refri2Object; // Refri2 О©╫б╠в╦О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝
 
     private bool isCollisionActive = false;
    
-    private bool Interaction1 = false; // E е╟╥н юл╧л д╣╧Ж╫╨╦╕ ©╜╬З╢баЖ х╝юнго╢б ╨╞╪Ж
+    private bool Interaction1 = false; // E е╟О©╫О©╫ О©╫л╧О©╫ д╣О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ х╝О©╫О©╫О©╫о╢О©╫ О©╫О©╫О©╫О©╫
 
     public GameObject mobAppear;
 
-    //ЁцюЕ╟М ╬фюлеш ╬Р╠Б ╟║╢иго╟т
+    //О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫о╟О©╫
     public REFRIGPower power;
 
     void Start()
     {
         
-        // Refri2 еб╠в╦╕ ╟║аЬ ©ю╨Йа╖ф╝╦╕ ╨Ях╟╪╨х╜гу╢о╢ы.
+        // Refri2 О©╫б╠в╦О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝О©╫О©╫ О©╫О©╫х╟О©╫О©╫х╜О©╫у╢о╢О©╫.
         if (refri2Object != null)
         {
             refri2Object.SetActive(false);
@@ -42,7 +42,7 @@ public class PTimeLine : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                print("цФ╣╧");
+                print("Л╤╘К▐▄");
                 Refrianim.SetBool("OFF", true);
                 Interaction1 = true;
                 refri2Object.SetActive(true);
