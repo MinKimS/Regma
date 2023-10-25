@@ -101,9 +101,9 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         //인벤 스크롤 시 사용되는 수치
-        invenOriginPos = new Vector2(17f, -15f);
-        invenUpValue = new Vector2(0f, -70);
-        invenDownValue = new Vector2(0f, 70f);
+        invenOriginPos = new Vector2(0f, 0f);
+        invenUpValue = new Vector2(0f, -200);
+        invenDownValue = new Vector2(0f, 200f);
     }
 
     //인벤 보이기

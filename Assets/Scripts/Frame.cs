@@ -16,6 +16,10 @@ public class Frame : MonoBehaviour
     GameEventListener gameEventListener;
     [HideInInspector] public bool isOkErase = false;
 
+    public Dialogue needToCloseDlg;
+
+    public BoxCollider2D[] bc;
+
     private void Awake()
     {
         interactionObjData = GetComponent<InteractionObjData>();
@@ -73,16 +77,24 @@ public class Frame : MonoBehaviour
     {
         if (isOkErase)
         {
-            if (isOnlyChild)
+            if (CheckDistanceToPlayer())
             {
-                sr.sprite = sp[0];
+                SmartphoneManager.instance.DeleteSelectItem();
+                if (isOnlyChild)
+                {
+                    sr.sprite = sp[0];
+                }
+                else
+                {
+                    sr.sprite = sp[1];
+                }
+
+                VibrationHouse();
             }
             else
             {
-                sr.sprite = sp[1];
+                DialogueManager.instance.PlayDlg(needToCloseDlg);
             }
-
-            VibrationHouse();
         }
     }
 
@@ -90,10 +102,20 @@ public class Frame : MonoBehaviour
     {
         print("vibration");
         DialogueManager.instance.PlayDlg();
+        bc[0].enabled = true;
+        bc[1].enabled = true;
     }
 
     public void ActiveEvent()
     {
         gameEventListener.enabled = true;
+        interactionObjData.IsOkInteracting = true;
+    }
+
+    //액자 근처에서 아이템 사용하는지 확인
+    public bool CheckDistanceToPlayer()
+    {
+        float dir = Vector2.Distance(PlayerInfoData.instance.playerTr.position, transform.position);
+        return dir < 5.5f ? true : false;
     }
 }

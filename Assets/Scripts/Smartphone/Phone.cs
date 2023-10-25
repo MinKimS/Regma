@@ -131,6 +131,7 @@ public class Phone : MonoBehaviour
             //}
             talkListIdx++;
             curTalk = talkList[talkListIdx];
+            print(talkListIdx);
         }
     }
     //폰 보이기
@@ -259,9 +260,6 @@ public class Phone : MonoBehaviour
     {
         // isSendTalkReady = true;
 
-        isTalkNeedToBeSend = true;
-        isOKSendTalk = true;
-
         //대답을 보낼 톡 선택지 설정
         if (SendTalkContexts != null)
         {
@@ -281,6 +279,9 @@ public class Phone : MonoBehaviour
         selectedOption = 1;
 
         StartCoroutine(FitLayout(talkInputAreaRT));
+
+        isTalkNeedToBeSend = true;
+        isOKSendTalk = true;
     }
 
     //플레이어가 보낼 톡이 1개인 경우
@@ -439,7 +440,6 @@ public class Phone : MonoBehaviour
             delayTime = curTalk.TalkContexts[talkIdx].TalkSendDelay;
             yield return new WaitForSeconds(delayTime);
             SmartphoneManager.instance.phone.AddTalk(false, curTalk.TalkContexts[talkIdx].user, curTalk.TalkContexts[talkIdx++].talkText);
-            print("add Talk");
         }
 
         yield return new WaitForSeconds(1.0f);
@@ -481,11 +481,9 @@ public class Phone : MonoBehaviour
             || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
         {
             SetNextTalk();
-        }
 
-        //다른 톡을 시작 가능하게 설정
-        if (curTalk.afterEndTalk == Talk.AfterEndTalk.None || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
-        {
+            isTalkNeedToBeSend = false;
+            //다른 톡을 시작 가능하게 설정
             isOkStartTalk = true;
         }
     }

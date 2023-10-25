@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
   m_Name: Talk K 02 1
   m_EditorClassIdentifier: 
-  afterEndTalk: 2
+  afterEndTalk: 5
   timelineName: 
   runEvent: {fileID: 0}
   TalkContexts:
@@ -20,8 +20,8 @@ MonoBehaviour:
     talkText: "\u3147\u3141\uB098\uC624"
     TalkSendDelay: 1
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
-    talkText: "\uB098 \uC695\uC870\uC5D0\uC694 \uC774\uC0C1\uD55C \uAC83\uB4E4\uC774
-      \uBB3C\uC704\uB85C \uB9C9\uB6F0\uACE0"
+    talkText: "\uB098 \uC695\uC870\uC5D0\uC694 \uC774\uC0C1\uD55C \uAC83\uB4E4\uC774\n\uBB3C\uC704\uB85C
+      \uB9C9\uB6F0\uACE0"
     TalkSendDelay: 1
   - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
     talkText: "\uB3C4\uC640\uC918\uC694 \uC81C\uBC1C"

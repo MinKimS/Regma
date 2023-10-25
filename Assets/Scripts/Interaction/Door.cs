@@ -24,7 +24,7 @@ public class Door : MonoBehaviour
 
     public void SetDoorOpen() {
         isOpen = false;
-        print("open door");
+        SetAnimKnock(false);
         TimelineManager.instance.timelineController.SetTimelineStart("LT F");
         interactionObjData.IsOkInteracting = true;
         interactionObjData.GmEventIdx++;

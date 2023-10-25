@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class KitchenDamageObj : MonoBehaviour
 {
-    bool isCollide = false;
     IEnumerator damage;
 
     public float damageTimeGap;

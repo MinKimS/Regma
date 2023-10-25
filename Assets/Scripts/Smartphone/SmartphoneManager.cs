@@ -27,6 +27,8 @@ public class SmartphoneManager : MonoBehaviour
 
     public Sprite invenslotSirte;
 
+    bool isSelecting = false;
+
     private void Awake() {
         if(instance == null)
         {
@@ -46,6 +48,7 @@ public class SmartphoneManager : MonoBehaviour
         phone.HidePhone();
 
     }
+
     private void Update() {
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End 
             && !inven.filesInven.IsInvenItemActive
@@ -92,20 +95,19 @@ public class SmartphoneManager : MonoBehaviour
         //    inven.filesInven.HideDiary();
         //}
 
-        //화살표키==================================
-        //톡 화면 스크롤
         if (!inven.filesInven.IsInvenItemActive)
         {
+            //톡 화면 스크롤
             if(phone.IsOpenPhone && !inven.IsOpenInven && phone.talkScView.verticalNormalizedPosition != 0)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetAxisRaw("Vertical") > 0)
                 {
                     if (phone.talkScView.verticalNormalizedPosition < 1f)
                     {
                         phone.talkScBar.value += talkScrollSpeed;
                     }
                 }
-                if (Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetAxisRaw("Vertical") < 0)
                 {
                     if (phone.talkScView.verticalNormalizedPosition > 0f)
                     {
@@ -113,144 +115,143 @@ public class SmartphoneManager : MonoBehaviour
                     }
                 }
             }
-            
-            
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
+                if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
                 {
                     phone.SelectTalk(-1);
                 }
                 //얻은 아이템 항목 선택
-                if(inven.selectedOption >2)
+                if (inven.selectedOption > 2)
                 {
-                    if(inven.IsOpenFiles && inven.MaxFilesSlot != 0)
+                    if (inven.IsOpenFiles && inven.MaxFilesSlot != 0)
                     {
                         inven.SetSelectInvenItem(-2, inven.filesInven);
 
                         //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
-                        if(inven.IsFirstLine)
+                        if (inven.IsFirstLine)
                         {
                             inven.ShowOutLine(inven.filesInven, -2, true);
                         }
                         //화면상 첫번째 라인이지 체크
-                        if(inven.selectedOption == inven.FirstLineFirstNum || inven.SelectedOption == inven.FirstLineFirstNum + 1)
+                        if (inven.selectedOption == inven.FirstLineFirstNum || inven.SelectedOption == inven.FirstLineFirstNum + 1)
                         {
                             inven.IsFirstLine = true;
-                        } 
+                        }
                     }
-                    if(inven.IsOpenPictures && inven.MaxPicSlot !=0)
+                    if (inven.IsOpenPictures && inven.MaxPicSlot != 0)
                     {
                         inven.SetSelectInvenItem(-2, inven.picsInven);
 
                         //만약 화면상 첫번째 라인이면 다음 라인 아래로 보이기
-                        if(inven.IsFirstLine)
+                        if (inven.IsFirstLine)
                         {
                             inven.ShowOutLine(inven.picsInven, -2, true);
                         }
                         //화면상 첫번째 라인이지 체크
-                        if(inven.SelectedOption == inven.FirstLineFirstNum || inven.SelectedOption == inven.FirstLineFirstNum + 1)
+                        if (inven.SelectedOption == inven.FirstLineFirstNum || inven.SelectedOption == inven.FirstLineFirstNum + 1)
                         {
                             inven.IsFirstLine = true;
                         }
                     }
                 }
-                if(inven.IsLastLine)
+                if (inven.IsLastLine)
                 {
-                    inven.IsLastLine=false;
+                    inven.IsLastLine = false;
                 }
             }
-            if(Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if(phone.IsOpenPhone && !inven.IsOpenInven&& phone.SelectedOption < phone.ShowedCount)
+                if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption < phone.ShowedCount)
                 {
                     phone.SelectTalk(1);
                 }
                 //얻은 아이템 항목 선택
-                if(inven.IsOpenFiles && inven.MaxFilesSlot!=0 && inven.SelectedOption < inven.MaxFilesSlot - 1)
+                if (inven.IsOpenFiles && inven.MaxFilesSlot != 0 && inven.SelectedOption < inven.MaxFilesSlot - 1)
                 {
                     inven.SetSelectInvenItem(2, inven.filesInven);
-                        
+
                     //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
-                    if(inven.IsLastLine)
+                    if (inven.IsLastLine)
                     {
                         inven.ShowOutLine(inven.filesInven, 2, false);
                     }
                     //화면상 마지막 라인이지 체크
-                    if(inven.SelectedOption == inven.LastLineFirstNum || inven.SelectedOption == inven.LastLineFirstNum + 1)
+                    if (inven.SelectedOption == inven.LastLineFirstNum || inven.SelectedOption == inven.LastLineFirstNum + 1)
                     {
                         inven.IsLastLine = true;
-                    } 
+                    }
                 }
-                if(inven.IsOpenPictures && inven.MaxPicSlot != 0 && inven.SelectedOption < inven.MaxPicSlot - 1)
-                {   
+                if (inven.IsOpenPictures && inven.MaxPicSlot != 0 && inven.SelectedOption < inven.MaxPicSlot - 1)
+                {
                     inven.SetSelectInvenItem(2, inven.picsInven);
 
                     //만약 화면상 마지막 라인이면 다음 라인 위로 보이기
-                    if(inven.IsLastLine)
+                    if (inven.IsLastLine)
                     {
                         inven.ShowOutLine(inven.picsInven, 2, false);
                     }
                     //화면상 마지막 라인이지 체크
-                    if(inven.SelectedOption == inven.LastLineFirstNum || inven.SelectedOption == inven.LastLineFirstNum + 1)
+                    if (inven.SelectedOption == inven.LastLineFirstNum || inven.SelectedOption == inven.LastLineFirstNum + 1)
                     {
                         inven.IsLastLine = true;
-                    }  
+                    }
                 }
-                if(inven.IsFirstLine)
+                if (inven.IsFirstLine)
                 {
-                    inven.IsFirstLine=false;
+                    inven.IsFirstLine = false;
                 }
             }
-            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 //파일 선택
-                if(inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
+                if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
                 {
                     inven.SelectedInvenOption = 0;
                     inven.invenOption[1].color = Color.white;
                     inven.invenOption[0].color = Color.gray;
                 }
                 //얻은 아이템 항목 선택
-                if(inven.SelectedOption %2==0 && (inven.IsOpenFiles || inven.IsOpenPictures))
+                if (inven.SelectedOption % 2 == 0 && (inven.IsOpenFiles || inven.IsOpenPictures))
                 {
-                    if(inven.IsOpenFiles && inven.MaxFilesSlot !=0)
+                    if (inven.IsOpenFiles && inven.MaxFilesSlot != 0)
                     {
                         inven.SetSelectInvenItem(-1, inven.filesInven);
                     }
-                    if(inven.IsOpenPictures && inven.MaxPicSlot!=0)
+                    if (inven.IsOpenPictures && inven.MaxPicSlot != 0)
                     {
                         //선택 해제 표시
                         inven.SetSelectInvenItem(-1, inven.picsInven);
                     }
                 }
             }
-            if(Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 //사진 선택
-                if(inven.IsOpenInven&&!inven.IsOpenFiles && !inven.IsOpenPictures)
+                if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
                 {
                     inven.SelectedInvenOption = 1;
                     inven.invenOption[0].color = Color.white;
                     inven.invenOption[1].color = Color.gray;
                 }
                 //얻은 아이템 항목 선택
-                if(inven.SelectedOption%2!=0 && (inven.IsOpenFiles||inven.IsOpenPictures))
+                if (inven.SelectedOption % 2 != 0 && (inven.IsOpenFiles || inven.IsOpenPictures))
                 {
                     //얻은 아이템의 수에 따라 항목 이동 가능여부 결정
-                    if(inven.IsOpenFiles && inven.MaxFilesSlot!=0 && inven.MaxFilesSlot != inven.SelectedOption)
+                    if (inven.IsOpenFiles && inven.MaxFilesSlot != 0 && inven.MaxFilesSlot != inven.SelectedOption)
                     {
                         inven.SetSelectInvenItem(1, inven.filesInven);
                     }
-                    if(inven.IsOpenPictures && inven.MaxPicSlot!=0 && inven.MaxPicSlot!=inven.SelectedOption)
+                    if (inven.IsOpenPictures && inven.MaxPicSlot != 0 && inven.MaxPicSlot != inven.SelectedOption)
                     {
                         inven.SetSelectInvenItem(1, inven.picsInven);
                     }
                 }
             }
-            //화살표키---------------------
 
-            if(Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing)
+            //선택 및 사용
+            if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing)
             {
                 //파일과 사진 중 선택
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)
@@ -307,6 +308,11 @@ public class SmartphoneManager : MonoBehaviour
                         return;
                     }
 
+                    if (phone.curSendTalk.nextSendTalk == null)
+                    {
+                        phone.isTalkNeedToBeSend = false;
+                    }
+
                     //더 이상 보낼 플레이어가 보낼 톡이 없는 경우 수행
                     if (phone.curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent
                         && phone.curTalk.runEvent != null)
@@ -331,9 +337,8 @@ public class SmartphoneManager : MonoBehaviour
                     {
                         phone.SetNextTalk();
                         TimelineManager.instance.timelineController.SetTimelineStart(phone.curTalk.timelineName);
+                        print("settimelinestart");
                     }
-
-                    phone.isTalkNeedToBeSend = false;
                     phone.isOkStartTalk = true;
                 }
             }

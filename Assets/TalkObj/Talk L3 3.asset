@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85760b68be4da734dbd1058e0d6a4440, type: 3}
   m_Name: Talk L3 3
   m_EditorClassIdentifier: 
-  afterEndTalk: 2
+  afterEndTalk: 7
   timelineName: 
   runEvent: {fileID: 0}
   TalkContexts:
   - user: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
     talkText: "\uC624\uB298\uB3C4 \uC77C\uAE30..."
-    TalkSendDelay: 0
+    TalkSendDelay: 1
   - user: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
     talkText: "\uC368\uC57C\uD558\uB294\uB370...."
     TalkSendDelay: 1.5
   - user: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
     talkText: "\uC548 \uC4F0\uBA74 \uD63C\uB098..."
     TalkSendDelay: 2
-  answerTalk:
-  - {fileID: 11400000, guid: c43ce88dc3ebdc24e842b607e3542bcc, type: 2}
-  nextTalk: []
+  answerTalk: []
+  nextTalk:
+  - {fileID: 11400000, guid: 11e00dcd4f869674085ede2f97e03fc1, type: 2}
   isInTimeline: 1

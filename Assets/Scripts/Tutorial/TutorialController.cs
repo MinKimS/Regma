@@ -41,7 +41,6 @@ public class TutorialController : MonoBehaviour
     {
         if(IsTutorialShowing && Input.GetKeyDown(KeyCode.E))
         {
-            print("close tutorial screen");
             CloseTutorialScreen();
         }
     }

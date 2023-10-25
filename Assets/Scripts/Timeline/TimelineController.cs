@@ -18,7 +18,10 @@ public class TimelineController : MonoBehaviour
     private void Start()
     {
         TimelineManager.instance.timelineController = this;
-        SetTimelineStart(0);
+        if(SceneManager.GetActiveScene().name != "Veranda")
+        {
+            SetTimelineStart(0);
+        }
         phone = GetComponent<SmartPhoneTimeline>();
         dlg = GetComponent<DialogueTimeline>();
     }
@@ -81,5 +84,10 @@ public class TimelineController : MonoBehaviour
         cutSceneAppearence.SetBool("isRunCutScene", false);
         pd[curPD].Stop();
         TimelineManager.instance.tlstate = TimelineManager.TlState.End;
+    }
+
+    public void MoveScene(string sceneName)
+    {
+        LoadingManager.LoadScene(sceneName);
     }
 }

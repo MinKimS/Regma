@@ -16,9 +16,15 @@ MonoBehaviour:
   timelineName: 
   runEvent: {fileID: 0}
   TalkContexts:
-  - user: {fileID: 0}
-    talkText: talktalktlakatlk
-    TalkSendDelay: 0
+  - user: {fileID: 11400000, guid: d31d1a9f4f29a9b41a9d03e96b58d7ba, type: 2}
+    talkText: "1111\uD1A1\uCE74 \uC758\uB4E4\uB78C\uC0AC \uC740\uC8FD"
+    TalkSendDelay: 1
+  - user: {fileID: 11400000, guid: b6d165c2947840749a5534b4a1845c6d, type: 2}
+    talkText: "2222\uD1A1\uCE74 \uC758\uB4E4\uB78C\uC0AC \uC740\uC8FD"
+    TalkSendDelay: 1
+  - user: {fileID: 11400000, guid: 5b29eb5a95f03da4db0e18a9955102c8, type: 2}
+    talkText: "3333\uD1A1\uCE74 \uC758\uB4E4\uB78C\uC0AC \uC740\uC8FD"
+    TalkSendDelay: 1
   answerTalk: []
   nextTalk: []
   isInTimeline: 0

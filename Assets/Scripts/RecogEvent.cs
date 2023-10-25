@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class RecogEvent : MonoBehaviour
 {
@@ -10,8 +11,15 @@ public class RecogEvent : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !SmartphoneManager.instance.notification.isTalkIconShow && !SmartphoneManager.instance.phone.IsOpenPhone 
-            && !SmartphoneManager.instance.phone.isTalkNeedToBeSend)
+        if(SceneManager.GetActiveScene().name != "Veranda")
+        {
+            if (other.CompareTag("Player") && !SmartphoneManager.instance.notification.isTalkIconShow && !SmartphoneManager.instance.phone.IsOpenPhone
+                        && !SmartphoneManager.instance.phone.isTalkNeedToBeSend)
+            {
+                ActiveEvent();
+            }
+        }
+        else
         {
             ActiveEvent();
         }

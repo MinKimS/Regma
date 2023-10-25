@@ -54,12 +54,12 @@ public class REFRIGPower : MonoBehaviour
                 iod.IsOkInteracting = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
                 LightOn(pressNum);
                 pressNum += 2;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetAxisRaw("Vertical") < 0)
             {
                 LightOn(pressNum + 1);
                 pressNum += 2;

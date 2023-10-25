@@ -95,7 +95,6 @@ public class DialogueManager : MonoBehaviour
     private void Start() {
         speakerImg = speakersObj.GetComponent<Image>();
         speakerRectTr = speakersObj.GetComponent<RectTransform>();
-        //curDlg = dialogueList[1];
         dlgPos = DlgRT.anchoredPosition;
     }
     private void OnEnable()
@@ -107,8 +106,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (scene.name != "LoadingScene")
         {
-            curDlg = dialogueList[dlgListIdx];
-            dlgListIdx++;
+            if(scene.buildIndex - 1 > 0 || scene.buildIndex - 1 < dialogueList.Count)
+            {
+                curDlg = dialogueList[scene.buildIndex - 1];
+            }
             //TODO : 같은 씬을 불러 왔을 때 설정
             //-----------------------------------------------------------
             //if (LoadingManager.nextScene != SceneManager.GetActiveScene().name)

@@ -18,7 +18,7 @@ public class DialogueSelection : MonoBehaviour
     void Update()
     {
         //위의 버튼으로 이동
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (selectIdx > 0)
             {
@@ -27,7 +27,7 @@ public class DialogueSelection : MonoBehaviour
             }
         }
         //아래의 버튼으로 이동
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (selectIdx < btnLists.Length - 1)
             {

@@ -11,7 +11,7 @@ public class LivingroomSelection : MonoBehaviour
     public void ChangeFrame()
     {
         DialogueManager.instance.PlayDlg();
-        sr.sprite = changeSp;
+        //sr.sprite = changeSp;
     }
 
     public void NoiseActivation()

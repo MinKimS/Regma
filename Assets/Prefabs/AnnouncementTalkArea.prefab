@@ -426,7 +426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkId: 0
-  readNumText: {fileID: 0}
   talkText: {fileID: 154980672919290180}
   nameText: {fileID: 154980673140671731}
   textRT: {fileID: 154980672919290181}
@@ -435,7 +434,6 @@ MonoBehaviour:
   profile: {fileID: 0}
   profileImage: {fileID: 154980671702580154}
   userName: 
-  readNum: 0
 --- !u!1 &154980672919290186
 GameObject:
   m_ObjectHideFlags: 0

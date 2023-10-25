@@ -251,7 +251,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 222.5, y: 0}
-  m_SizeDelta: {x: 445, y: 0}
+  m_SizeDelta: {x: 550, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2455639997350430369
 MonoBehaviour:
@@ -306,7 +306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkId: 0
-  readNumText: {fileID: 0}
   talkText: {fileID: 0}
   nameText: {fileID: 2455639996872562650}
   textRT: {fileID: 0}
@@ -315,7 +314,6 @@ MonoBehaviour:
   profile: {fileID: 2455639998380075155}
   profileImage: {fileID: 2455639998051413049}
   userName: 
-  readNum: 0
 --- !u!1 &2455639997912131735
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 340, y: 0}
-  m_SizeDelta: {x: 445, y: 0}
+  m_SizeDelta: {x: 550, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3902645245538652461
 MonoBehaviour:
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkId: 0
-  readNumText: {fileID: 0}
   talkText: {fileID: 6324094727516878616}
   nameText: {fileID: 0}
   textRT: {fileID: 0}
@@ -102,7 +101,6 @@ MonoBehaviour:
   profile: {fileID: 0}
   profileImage: {fileID: 0}
   userName: 
-  readNum: 0
 --- !u!1 &6324094726060327908
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 222.5, y: 0}
+  m_AnchoredPosition: {x: 275, y: 0}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6324094726060327832
@@ -315,8 +313,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

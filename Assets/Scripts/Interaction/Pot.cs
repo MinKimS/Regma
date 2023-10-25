@@ -96,19 +96,13 @@ public class Pot : MonoBehaviour
         }   
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void Update()
     {
-        if(collision.gameObject.CompareTag("Player") && isPushing)
+        if (isPushing 
+            && ((isPushAtLeft && Input.GetAxisRaw("Horizontal")<0) || (!isPushAtLeft && Input.GetAxisRaw("Horizontal")>0)))
         {
             CancelPush(playerPos);
         }
-    }
-
-    private void Update() {
-        if(isPushing && ((isPushAtLeft&&Input.GetKeyDown(KeyCode.LeftArrow)) || (!isPushAtLeft&&Input.GetKeyDown(KeyCode.RightArrow))))
-        {
-            CancelPush(playerPos);
-        }    
     }
 
     //타임라인에서도 사용

@@ -7,6 +7,7 @@ public class PlayerFallingController : MonoBehaviour
     [HideInInspector]
     public bool isNoFallingDamage = false;
     bool isJump = false;
+    bool isCheckInTheAir = false;
 
     Animator anim;
     Rigidbody2D rb;
@@ -14,12 +15,10 @@ public class PlayerFallingController : MonoBehaviour
     public Chmovingbath movingBath;
     public Chmoving moving;
 
-    LayerMask layer;
+    public Damaging damaging;
 
-    RaycastHit2D hit;
-
-    float distance = 1f;
-    public Vector3 origin;
+    float jumpedPosY = 0;
+    public float damageHeight = 8;
 
     private void Awake()
     {
@@ -27,19 +26,27 @@ public class PlayerFallingController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
-        Debug.DrawRay(transform.position + origin, Vector2.down * distance, Color.blue);
-        hit = Physics2D.Raycast(transform.position + origin, Vector2.down, distance, layer.value);
-
-        if (hit.collider != null)
-        {
-            print("dlkjfsdfjsldjflsjlksjdfldsfjsdf");
-        }
-    }
 
     private void Update()
     {
+        if(!isCheckInTheAir && !moving.isGround)
+        {
+            isCheckInTheAir = true;
+            jumpedPosY = transform.position.y;
+        }
+        
+        if(moving.isGround && isCheckInTheAir)
+        {
+            isCheckInTheAir = false;
+            
+            //낙뎀 부하 여부
+            if(Mathf.Abs(jumpedPosY-transform.position.y) > damageHeight)
+            {
+                Debug.LogWarning("DAMAGE!!!!");
+                damaging.Damage();
+            }
+        }
+
         //애니메이션 전환 넣기
         //낙뎀 막는거 넣기
         //천천히 떨어지기
