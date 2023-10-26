@@ -142,24 +142,53 @@ public class Chmoving : MonoBehaviour
             // SlowObj와 충돌하면 움직임을 제어
             transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
             currentMoveSpeed = moveSpeed * moveInputX;
-            animator.SetBool("Walk", isMoving);
-
+            animator.SetBool("Walk", false);
+            animator.SetBool("WetIdle", false);
             // "Wet" 애니메이션을 활성화합니다.
             animator.SetBool("Wet", true);
         }
-        else
-        {
-            // 그 외의 경우는 정상적인 이동 속도 적용
-            currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
-        }
+        
     }
+
+    // else if(inWater)
+    // {
+    //     animator.SetBool("WetIdle", true);
+    //     animator.SetBool("Wet", false);
+    // }
+
+
     else
     {
+
+        if (inWater)
+        {
+            // SlowObj와 충돌하고 움직이지 않을 때 WetIdle 애니메이션을 활성화합니다.
+            if (!isMoving)
+            {
+                animator.SetBool("WetIdle", true);
+                animator.SetBool("walk", false);
+            }
+        }
+        else
+        {
+            // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
+            animator.SetBool("Wet", false);
+        }
+
+
         // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
         animator.SetBool("Wet", false);
         isMoving = false;
         currentMoveSpeed = 0f;
         StopWalkSound();
+
+        // if(!isMoving && inWater)
+        // {
+        //     print("테스트");
+        // animator.SetBool("Idle", false);
+        // animator.SetBool("WetIdle", true);
+        // animator.SetBool("Wet", false);
+        // }
     }
 
     rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
@@ -226,14 +255,14 @@ public class Chmoving : MonoBehaviour
         {
             moveSpeed = 2f;
             AudioManager.instance.SFXPlay("주방_개수대 입장");
-            //inWater = true;
-            MovinginWater = true;
+            inWater = true;
+            //MovinginWater = true;
 
             // if (moveInputX != 0 && isMoving)
             // {
             //     MovinginWater = true;
-            //     animator.SetBool("Wet", true);
-            //     animator.SetBool("walk", false);
+            //     //animator.SetBool("Wet", true);
+            //     //animator.SetBool("walk", false);
             //     //print("물 속에 있음");
             // }
             // else if(moveInputX == 0)
@@ -264,6 +293,25 @@ public class Chmoving : MonoBehaviour
         //    animator.SetBool("Wet", false);
         //    animator.SetBool("walk", true);
         //}
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SlowObj"))
+        {
+
+            if (moveInputX != 0 && isMoving)
+            {
+                MovinginWater = true;
+                //animator.SetBool("Wet", true);
+                animator.SetBool("walk", false);
+                //print("물 속에 있음");
+            }
+
+
+            inWater = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
