@@ -3746,7 +3746,7 @@ MonoBehaviour:
   videoTalk: {fileID: 2455639997350430374, guid: 9e6cdc8cd0f4e2746bfea72c5b951407, type: 3}
   sendTalk: {fileID: 1313855441797531865, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
   lastPlayerTalk: {fileID: 0}
-  curTalk: {fileID: 11400000, guid: a27c4a58aa0452c40a57ea6d62f17297, type: 2}
+  curTalk: {fileID: 11400000, guid: c3a2419237531924d9d2a7f95e6f74e2, type: 2}
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
@@ -9514,6 +9514,8 @@ MonoBehaviour:
   sp: []
   isOnlyChild: 0
   isOkErase: 0
+  needToCloseDlg: {fileID: 0}
+  bc: []
 --- !u!1 &1066562945
 GameObject:
   m_ObjectHideFlags: 0
