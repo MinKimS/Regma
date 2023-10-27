@@ -150,11 +150,7 @@ public class Chmoving : MonoBehaviour
         
     }
 
-    // else if(inWater)
-    // {
-    //     animator.SetBool("WetIdle", true);
-    //     animator.SetBool("Wet", false);
-    // }
+
 
 
     else
@@ -169,15 +165,16 @@ public class Chmoving : MonoBehaviour
                 animator.SetBool("walk", false);
             }
         }
-        else
-        {
+            else
+            {
+                // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
+                animator.SetBool("Wet", false);
+                animator.SetBool("WetIdle", false);
+            }
+
+
             // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
             animator.SetBool("Wet", false);
-        }
-
-
-        // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
-        animator.SetBool("Wet", false);
         isMoving = false;
         currentMoveSpeed = 0f;
         StopWalkSound();

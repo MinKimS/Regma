@@ -46,4 +46,12 @@ public class DisMonster : MonoBehaviour
             animator.SetBool("MonChWalk", false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mob") || collision.gameObject.CompareTag("RandMob"))
+        {
+            print("Ãæµ¹");
+        }
+    }
 }
