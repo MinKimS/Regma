@@ -19,6 +19,7 @@ public class PTimeLine : MonoBehaviour
     private bool Interaction1 = false; // E Ű�� �̹� ĵ������ �������� Ȯ���ϴ� ����
 
     public GameObject mobAppear;
+    public GameObject respawnPoint_Power;
 
     //����� ������ ��� �����ϰ�
     public REFRIGPower power;
@@ -50,6 +51,7 @@ public class PTimeLine : MonoBehaviour
                 if(mobAppear != null)
                 {
                     mobAppear.SetActive(true);
+                    respawnPoint_Power.SetActive(true);
                 }
 
 

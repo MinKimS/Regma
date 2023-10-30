@@ -244,6 +244,15 @@ public class Chmoving : MonoBehaviour
         }
     }
 
+    #region 리스폰
+    public IEnumerator RespawnCharacterAfterWhile(Transform targetPosition, float delay)
+    { 
+        yield return new WaitForSeconds(delay);
+        transform.position = targetPosition.position;
+    }
+
+    #endregion
+
     //발 젖는 애니메이션
 
     private void OnTriggerEnter2D(Collider2D collision)

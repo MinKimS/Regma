@@ -29,7 +29,7 @@ public class PlayerMobRecog : MonoBehaviour
                     AudioManager.instance.SFXPlay("주방_괴생명체1 도원발견");
 
                     // 충돌 시 안전한 위치로 주인공을 되돌림
-                    transform.position = lastSafePosition;
+                  //  transform.position = lastSafePosition;
                 }
             }
         }
