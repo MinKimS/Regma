@@ -8,6 +8,7 @@ public class REFRIG : MonoBehaviour
     public REFRIGPower rPower;
     public ItemData squid;
     public Transform mobAppear;
+    public Transform respawnPoint_Refrig;
     public Transform talkStarting;
 
     bool isOpened = false;
@@ -66,6 +67,7 @@ public class REFRIG : MonoBehaviour
     {
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         mobAppear.gameObject.SetActive(true);
+        respawnPoint_Refrig.gameObject.SetActive(true);
     }
     IEnumerator GetSquid()
     {

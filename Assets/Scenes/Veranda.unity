@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 120059733}
   - component: {fileID: 120059735}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 2"
+  m_Name: Pots_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1919,7 +1919,7 @@ GameObject:
   - component: {fileID: 250264725}
   - component: {fileID: 250264724}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 9"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5927,7 +5927,7 @@ GameObject:
   - component: {fileID: 846702670}
   - component: {fileID: 846702672}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 4"
+  m_Name: Pots_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6070,7 +6070,7 @@ GameObject:
   - component: {fileID: 859825054}
   - component: {fileID: 859825053}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 12"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7643,7 +7643,7 @@ GameObject:
   - component: {fileID: 991694409}
   - component: {fileID: 991694408}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 10"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7854,7 +7854,7 @@ GameObject:
   - component: {fileID: 1043426899}
   - component: {fileID: 1043426898}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 13"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9304,7 +9304,7 @@ GameObject:
   - component: {fileID: 1116052947}
   - component: {fileID: 1116052946}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 8"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9519,7 +9519,7 @@ GameObject:
   - component: {fileID: 1146266365}
   - component: {fileID: 1146266364}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 14"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13692,7 +13692,7 @@ GameObject:
   - component: {fileID: 1763873973}
   - component: {fileID: 1763873975}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 3"
+  m_Name: Pots_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13838,7 +13838,7 @@ GameObject:
   - component: {fileID: 1765993749}
   - component: {fileID: 1765993751}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 5"
+  m_Name: Pots_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14027,7 +14027,7 @@ GameObject:
   - component: {fileID: 1778920585}
   - component: {fileID: 1778920584}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 11"
+  m_Name: clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16482,7 +16482,7 @@ GameObject:
   - component: {fileID: 2046013659}
   - component: {fileID: 2046013658}
   m_Layer: 0
-  m_Name: "\uC790\uC0B0 15"
+  m_Name: "\uBE68\uB798\uC904"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

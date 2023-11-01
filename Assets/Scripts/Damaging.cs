@@ -8,7 +8,7 @@ public class Damaging : MonoBehaviour
 {
     Image img;
 
-    int damageCount = 0;
+     int damageCount = 0;
     public int maxDamaging = 3;
 
     bool isGetDamaging = false;
@@ -39,6 +39,14 @@ public class Damaging : MonoBehaviour
         c.a += 0.35f;
         img.color = c;
         damageCount++;
+
+        if(damageCount == maxDamaging)
+            ResponManager.Instance.OnGameOver.Invoke();
+    }
+
+    public int GetDamage()
+    {
+        return damageCount;
     }
 
     IEnumerator DecreaseDamage()
