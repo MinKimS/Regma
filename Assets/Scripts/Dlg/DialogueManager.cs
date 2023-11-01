@@ -108,8 +108,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (scene.name != "LoadingScene")
         {
-            print(scene.buildIndex-1);
-            print(scene.name);
             StartCoroutine(SetDialogueWhenSceneStart());
         }
     }

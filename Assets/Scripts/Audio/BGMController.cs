@@ -7,7 +7,7 @@ public class BGMController : MonoBehaviour
 {
     AudioSource BGM;
     public AudioClip[] bgmList;
-
+    bool isOkChgBGM = false;
     private void Awake()
     {
         BGM = GetComponent<AudioSource>();
@@ -34,21 +34,43 @@ public class BGMController : MonoBehaviour
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
 
-        BGM.Stop();
         switch (sc.name)
         {
             case "SampleScene":
+            case "Bathroom":
+            case "Bath":
+            case "SampleScene 2":
+                if(BGM.clip != bgmList[0])
+                {
+                    isOkChgBGM = true;
+                    BGM.Stop();
+                }
+                else { isOkChgBGM = false; }
                 BGM.clip = bgmList[0];
+                if(isOkChgBGM) { BGM.Play(); }
                 break;
             case "Kitchen":
+                if (BGM.clip != bgmList[1])
+                {
+                    isOkChgBGM = true;
+                    BGM.Stop();
+                }
+                else { isOkChgBGM = false; }
                 BGM.clip = bgmList[1];
+                if (isOkChgBGM) { BGM.Play(); }
                 break;
             case "Veranda":
+                if (BGM.clip != bgmList[2])
+                {
+                    isOkChgBGM = true;
+                    BGM.Stop();
+                }
+                else { isOkChgBGM = false; }
                 BGM.clip = bgmList[2];
+                if (isOkChgBGM) { BGM.Play(); }
                 break;
             default:
                 break;
         }
-        BGM.Play();
     }
 }
