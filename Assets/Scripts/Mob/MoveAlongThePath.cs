@@ -133,4 +133,9 @@ public class MoveAlongThePath : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
+    public void StopMob()
+    {
+        isTrace = false;
+    }
 }

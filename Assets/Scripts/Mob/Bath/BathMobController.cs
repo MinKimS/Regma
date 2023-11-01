@@ -16,7 +16,8 @@ public class BathMobController : MonoBehaviour
     //---
 
     //물 안밖으로 나가는 텀
-    public float waterInOutWaitTime = 2f;
+    public float waterInWaitTime = 2f;
+    public float waterOutWaitTime = 4f;
     //빠르게 지나가는 순간
     public int toyIdxToRunWild = 4;
 
@@ -42,7 +43,7 @@ public class BathMobController : MonoBehaviour
 
     private void Update()
     {
-        if (!hand.isMoveHand && isTracingStart)
+        if (!hand.isMoveHand && isTracingStart && !hand.isCatchPlayer)
         {
             //몬스터가 물 밖에 있을 때 공격
             if (data.state == BathMobData.State.OutWater)
@@ -59,11 +60,11 @@ public class BathMobController : MonoBehaviour
                 print("runwild");
                 if (isTryCatchPlayer)
                 {
-                    hand.MoveHandToPlayer(8);
+                    hand.MoveHandToPlayer(12);
                 }
                 else if (hand.toyList[hand.toyList.Length - 1].gameObject.activeSelf)
                 {
-                    hand.MoveHandToToy(hand.moveSpeed * 0.8f);
+                    hand.MoveHandToToy(hand.moveSpeed * 3.5f);
                 }
             }
         }
@@ -103,7 +104,8 @@ public class BathMobController : MonoBehaviour
     //물 안 밖으로 이동
     IEnumerator MoveInOutWater()
     {
-        WaitForSeconds wait = new WaitForSeconds(waterInOutWaitTime);
+        WaitForSeconds afterInWait = new WaitForSeconds(waterInWaitTime);
+        WaitForSeconds afterOutWait = new WaitForSeconds(waterOutWaitTime);
 
         while (data.state != BathMobData.State.RuningWild)
         {
@@ -115,7 +117,7 @@ public class BathMobController : MonoBehaviour
                 data.state = BathMobData.State.RuningWild;
                 break;
             }
-            yield return wait;
+            yield return afterInWait;
             StopCoroutine(movement.moveIntoTheWater);
 
             movement.MoveOutWater();
@@ -126,7 +128,7 @@ public class BathMobController : MonoBehaviour
                 data.state = BathMobData.State.RuningWild;
                 break;
             }
-            yield return wait;
+            yield return afterOutWait;
             StopCoroutine(movement.moveOutOfTheWater);
         }
         movement.SetMoveOutWater();

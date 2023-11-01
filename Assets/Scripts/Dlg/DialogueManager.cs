@@ -59,6 +59,8 @@ public class DialogueManager : MonoBehaviour
     //대사 출력 시 태그 여부
     bool isTag = false;
 
+    IEnumerator typingIEnumerator = null;
+
     public int SetenceIdx
     {
         get
@@ -106,25 +108,25 @@ public class DialogueManager : MonoBehaviour
     {
         if (scene.name != "LoadingScene")
         {
-            if(scene.buildIndex - 1 > 0 || scene.buildIndex - 1 < dialogueList.Count)
-            {
-                curDlg = dialogueList[scene.buildIndex - 1];
-            }
-            //TODO : 같은 씬을 불러 왔을 때 설정
-            //-----------------------------------------------------------
-            //if (LoadingManager.nextScene != SceneManager.GetActiveScene().name)
-            //{
-            //    dlgListIdx++;
-            //}
-            //else
-            //{
-            //    dlgListIdx = 0;
-            //}
+            print(scene.buildIndex-1);
+            print(scene.name);
+            StartCoroutine(SetDialogueWhenSceneStart());
         }
+    }
+    IEnumerator SetDialogueWhenSceneStart()
+    {
+        Scene sc = SceneManager.GetActiveScene();
+        yield return new WaitWhile(() => sc.name == "LoadingScene");
+        curDlg = dialogueList[sc.buildIndex-1];
     }
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
+
+    public void SetCurDlg(int idx)
+    {
+        curDlg = dialogueList[idx];
     }
 
     //===========
@@ -180,6 +182,7 @@ public class DialogueManager : MonoBehaviour
         dlgState = DlgState.DONE;
         
         nextArrow.enabled = true;
+        typingIEnumerator = null;
     }
 
     //대화창 보이기
@@ -396,12 +399,14 @@ public class DialogueManager : MonoBehaviour
             //사람인경우
             if (curDlg.sentences[setenceIdx].speakerIdx != -1)
             {
-                StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerName));
+                typingIEnumerator = TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, curDlg.speakers[curDlg.sentences[setenceIdx].speakerIdx].speakerName);
+                StartCoroutine(typingIEnumerator);
             }
             //사람 아닌경우
             else
             {
-                StartCoroutine(TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, ""));
+                typingIEnumerator = TypingDlg(curDlg.sentences[setenceIdx].dlgTexts, "");
+                StartCoroutine(typingIEnumerator);
             }
             setenceIdx++;
         }
@@ -428,12 +433,14 @@ public class DialogueManager : MonoBehaviour
             //사람인경우
             if (dlg.sentences[setenceIdx].speakerIdx != -1)
             {
-                StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+                typingIEnumerator = TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName);
+                StartCoroutine(typingIEnumerator);
             }
             //사람 아닌경우
             else
             {
-                StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
+                typingIEnumerator = TypingDlg(dlg.sentences[setenceIdx].dlgTexts, "");
+                StartCoroutine(typingIEnumerator);
             }
             setenceIdx++;
         }
@@ -469,12 +476,14 @@ public class DialogueManager : MonoBehaviour
         SetChrImg();
         //사람인경우
         if(dlg.sentences[setenceIdx].speakerIdx!=-1){
-            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName));
+            typingIEnumerator = TypingDlg(dlg.sentences[setenceIdx].dlgTexts, dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerName);
+            StartCoroutine(typingIEnumerator);
         }
         //사람 아닌경우
         else
         {
-            StartCoroutine(TypingDlg(dlg.sentences[setenceIdx].dlgTexts, ""));
+            typingIEnumerator = TypingDlg(dlg.sentences[setenceIdx].dlgTexts, "");
+            StartCoroutine(typingIEnumerator);
         }
         setenceIdx++;
     }

@@ -23,8 +23,10 @@ public class BathMobHand : MonoBehaviour
     public bool isMoveHand = false;
     bool isBackOrigin = true;
     bool isCatchSomething = false;
+    [HideInInspector] public bool isCatchPlayer = false;
 
     [HideInInspector] public BathToy bathToy;
+    BathToy catchBathToy;
 
     public float moveSpeed = 10f;
     public float dragSpeed = 10f;
@@ -44,17 +46,30 @@ public class BathMobHand : MonoBehaviour
     }
     public void MoveHandToToyToAttack()
     {
-        if(bathToy != null)
+        if(bathToy != null && !bathToy.isDrawning)
         {
+            bathToy.isBeingTarget = true;
             isMoveHand = true;
             isBackOrigin = false;
             StartCoroutine(GoCatchToyToAttack());
+        }
+    }
+    public void MoveHandToToyToAttack(float speed = 20f)
+    {
+        if(bathToy != null)
+        {
+            bathToy.isBeingTarget = true;
+            isMoveHand = true;
+            isBackOrigin = false;
+            StartCoroutine(GoCatchToyToAttack(speed));
         }
     }
     public void MoveHandToToy(float speed = 20)
     {
         isMoveHand = true;
         isBackOrigin = false;
+        catchBathToy = toyList[toyIdx].GetComponent<BathToy>();
+        catchBathToy.isBeingTarget = true;
         StartCoroutine(GoCatchToy(speed));
     }
     public IEnumerator GoCatchToy()
@@ -62,7 +77,7 @@ public class BathMobHand : MonoBehaviour
         //장난감으로 가기
         while (Vector2.Distance(transform.position, toyList[toyIdx].position) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, toyList[toyIdx].position, moveSpeed * Time.deltaTime);
+            transform.localPosition = Vector2.MoveTowards(transform.position, toyList[toyIdx].position, moveSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -85,16 +100,41 @@ public class BathMobHand : MonoBehaviour
 
         bc.enabled = true;
     }
-    public IEnumerator GoCatchToy(float speed = 20)
+    public IEnumerator GoCatchToyToAttack(float speed = 20f)
     {
         //장난감으로 가기
-        while (Vector2.Distance(transform.position, toyList[toyIdx].position) > 0.1f)
+        while (Vector2.Distance(transform.position, bathToy.transform.position) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, toyList[toyIdx].position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, bathToy.transform.position, speed * Time.deltaTime);
             yield return null;
         }
 
         bc.enabled = true;
+    }
+    public IEnumerator GoCatchToy(float speed = 20)
+    {
+        //장난감으로 가기
+        while (Vector2.Distance(transform.position, catchBathToy.transform.position) > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, catchBathToy.transform.position, speed * Time.deltaTime);
+            if (isCatchSomething)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        if (!isCatchSomething)
+        {
+            bc.enabled = true;
+        }
+        else
+        {
+            isCatchSomething = false;
+            catchBathToy.gameObject.SetActive(false);
+            toyIdx++;
+            BackOriginPos();
+        }
     }
     //손을 플레이어를 향해 이동
     public void MoveHandToPlayer(float speed = 30)
@@ -105,6 +145,7 @@ public class BathMobHand : MonoBehaviour
 
     public IEnumerator GoCatchPlayer(float speed)
     {
+        yield return new WaitForSeconds(0.1f);
         //플레이어에게 가기
         while (Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > 0.1f)
         {
@@ -114,6 +155,12 @@ public class BathMobHand : MonoBehaviour
 
         bc.enabled = true;
     }
+    
+    void SetHandPos(Vector3 pos)
+    {
+        transform.position = pos;
+    }
+
     //플레이어or장난감을 물 속으로 끌고 감
     void DragIntoTheWater(Transform tr)
     {
@@ -121,7 +168,7 @@ public class BathMobHand : MonoBehaviour
         StartCoroutine(MoveHandDown(tr));
     }
     IEnumerator MoveHandDown(Transform tr)
-    {
+     {
         while (transform.position.y >= dragPos.position.y + 0.01f)
         {
             transform.position = Vector2.MoveTowards(transform.position, dragPosY, dragSpeed * Time.deltaTime);
@@ -131,7 +178,7 @@ public class BathMobHand : MonoBehaviour
         tr.SetParent(null);
         tr.gameObject.SetActive(false);
 
-        if (!toyList[toyIdx].gameObject.activeSelf)
+        if (catchBathToy != null && !catchBathToy.gameObject.activeSelf)
         {
             toyIdx++;
         }
@@ -155,6 +202,7 @@ public class BathMobHand : MonoBehaviour
         }
         isMoveHand = false;
         bathToy = null;
+        catchBathToy = null;
         isBackOrigin = true;
     }
 
@@ -181,167 +229,50 @@ public class BathMobHand : MonoBehaviour
 
             Transform tr = collision.GetComponent<Transform>();
             tr.SetParent(gameObject.transform);
-            collision.GetComponent<Chmoving>().enabled = false;
+            collision.GetComponent<ChMovingInBath>().enabled = false;
             collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
             collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-            dragPosY = new Vector2(transform.position.x, dragPos.position.y);
+            isCatchPlayer = true;
+
+            StartCoroutine(BringToMob(tr));
         }
-        //플레이어를 잡은 경우
-        //if (collision.CompareTag("Player") && !bmc.IsMobInWater)
-        //{
-        //    bc.enabled = false;
-
-        //    player = collision.gameObject;
-        //    player.transform.SetParent(transform);
-
-        //    //물 효과 영향 안받게
-        //    player.GetComponent<CapsuleCollider2D>().enabled = false;
-        //    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //    player.GetComponent<Rigidbody2D>().gravityScale = 0f;
-
-        //    //targetPosY = transform.position.y-10f;
-        //    //targetPos = new Vector2(transform.position.x, targetPosY);
-        //    dragPosY = new Vector2(transform.position.x, dragPos.position.y);
-        //    //플레이어 끌어내리기
-        //    bmc.StopMoving();
-        //    StartCoroutine(MoveHandDown());
-        //    bmc.isCatchPlayer = true;
-        //}
     }
 
-    //---
+    IEnumerator BringToMob(Transform tr)
+    {
+        bool isBringToOrigin = false;
+        Vector2 pos = new Vector2(handOriginPos.position.x - 3f, PlayerInfoData.instance.playerTr.position.y);
+        while (Vector2.Distance(transform.position, pos) > 0.1f)
+        {
+            transform.position = Vector2.Lerp(transform.position, pos, 0.1f);
+            yield return null;
+        }
+        isMoveHand = false;
+        isBackOrigin = true;
+        isBringToOrigin = true;
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //플레이어를 잡은 경우
-    //    if(collision.CompareTag("Player") && !bmc.IsMobInWater)
-    //    {
-    //        bc.enabled = false;
+        yield return new WaitUntil(() => isBringToOrigin);
 
-    //        player = collision.gameObject;
-    //        player.transform.SetParent(transform);
+        dragPosY = new Vector2(transform.position.x, dragPos.position.y);
+        while (transform.position.y >= dragPos.position.y + 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, dragPosY, dragSpeed * Time.deltaTime);
+            yield return null;
+        }
 
-    //        //물 효과 영향 안받게
-    //        player.GetComponent<CapsuleCollider2D>().enabled = false;
-    //        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-    //        player.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        tr.SetParent(null);
+        tr.gameObject.SetActive(false);
 
-    //        //targetPosY = transform.position.y-10f;
-    //        //targetPos = new Vector2(transform.position.x, targetPosY);
-    //        dragPosY = new Vector2(transform.position.x, dragPos.position.y);
-    //        //플레이어 끌어내리기
-    //        bmc.StopMoving();
-    //        StartCoroutine(MoveHandDown());
-    //        bmc.isCatchPlayer = true;
-    //    }
+        yield return new WaitForSeconds(0.1f);
+        BackOriginPos();
+    }
 
-    //    //낚시대를 잡은 경우
-    //    if(collision.CompareTag("FishingRod"))
-    //    {
-    //        bc.enabled = false;
-
-    //        GameObject fRod = collision.gameObject;
-    //        fRod.transform.SetParent(transform);
-
-    //        //targetPosY = transform.position.y -8f;
-    //        dragPosY = new Vector2(transform.position.x, dragPos.position.y);
-    //        StartCoroutine(DropPlayer());
-    //    }
-    //}
-
-    //플레이어 다음 이동시, 물 속에 몬스터 있을때
-    //장난감을 향해 손 이동
-    //public IEnumerator GoCatchToy()
-    //{
-    //    //장난감으로 가기
-    //    while (Vector2.Distance(transform.position, ToyList[TargetToyIdx].position)>0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, ToyList[TargetToyIdx].position, 0.1f);
-    //        yield return null;
-    //    }
-
-    //    bc.enabled = true;
-    //    isMoveHand = false;
-    //    TargetToyIdx++;
-    //}
-
-    //public IEnumerator GoCatchPlayer()
-    //{
-    //    while (Vector2.Distance(transform.position, playerPos.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 1f);
-    //        yield return null;
-    //    }
-
-    //    bc.enabled = true;
-    //    isMoveHand = false;
-    //}
-
-    ////낚시대를 향해 손 이동
-    //public IEnumerator GoCatchFishingRod()
-    //{
-    //    bmc.fRod.gameObject.GetComponent<FishingRod>().IsCaught = true;
-
-    //    while (Vector2.Distance(transform.position, bmc.fRod.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, bmc.fRod.position, 0.1f);
-    //        yield return null;
-    //    }
-    //    bc.enabled = true;
-
-    //    isMoveHand = false;
-    //}
-
-    //물로 끌고가기
-    //IEnumerator MoveHandDown()
-    //{
-    //    while (transform.position.y >= dragPos.position.y + 0.01f)
-    //    {
-    //        transform.position = Vector2.Lerp(transform.position, dragPosY, 0.1f);
-    //        yield return null;
-    //    }
-
-    //    player.transform.SetParent(null);
-    //    player.SetActive(false);
-
-    //    yield return new WaitForSeconds(0.1f);
-    //    BackOriginPos();
-    //}
-
-    //플레이어를 끌어내리기
-    //IEnumerator DropPlayer()
-    //{
-    //    //아래로 빠르게 쭉 내림
-    //    while (transform.position.y >= dragPos.position.y + 0.01f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, dragPosY, 0.05f);
-    //        yield return null;
-    //    }
-
-    //    //플레이어가 아래로 내려옴
-    //    bmc.PlayerPos.position = transform.position + Vector3.left * 3;
-    //    bmc.PlayerPos.rotation = Quaternion.Euler(0f, 0f, 180f);
-    //    yield return new WaitForSeconds(1.5f);
-    //    Rigidbody2D pRb = bmc.PlayerPos.GetComponent<Rigidbody2D>();
-    //    pRb.gravityScale = 0f;
-    //    pRb.velocity = Vector3.zero;
-    //}
-
-    //void BackOriginPos()
-    //{
-    //    StartCoroutine(BackHandOrigin());
-    //    print("back");
-    //}
-
-    //원래 손 위치로 이동
-    //IEnumerator BackHandOrigin()
-    //{
-    //    while(Vector2.Distance(transform.position, handOriginPos.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.Lerp(transform.position, handOriginPos.position, 0.1f);
-    //        yield return null;
-    //    }
-    //    bmc.IsMobTryCatch = false;
-    //}
+    private void FixedUpdate()
+    {
+        if (isMoveHand && Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > Camera.main.orthographicSize * Camera.main.aspect)
+        {
+            isCatchSomething = true;
+        }
+    }
 }

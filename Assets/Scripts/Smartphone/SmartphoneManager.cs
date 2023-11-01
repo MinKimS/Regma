@@ -27,8 +27,6 @@ public class SmartphoneManager : MonoBehaviour
 
     public Sprite invenslotSirte;
 
-    bool isSelecting = false;
-
     private void Awake() {
         if(instance == null)
         {
@@ -90,10 +88,6 @@ public class SmartphoneManager : MonoBehaviour
             }
         }
 
-        //if(inven.filesInven.IsInvenItemActive && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
-        //{
-        //    inven.filesInven.HideDiary();
-        //}
 
         if (!inven.filesInven.IsInvenItemActive)
         {
@@ -397,7 +391,7 @@ public class SmartphoneManager : MonoBehaviour
         SetInvenItemDataNull(inven.maxFilesSlot - 1, itemData);
         inven.filesInven.slotDataList[inven.maxFilesSlot - 1].slotItemImg.sprite = invenslotSirte;
         inven.filesInven.slotDataList[inven.maxFilesSlot - 1].isFull = false;
-        inven.filesInven.slotDataList.RemoveAt(inven.maxFilesSlot);
+        //inven.filesInven.slotDataList.RemoveAt(inven.maxFilesSlot);
         inven.maxFilesSlot--;
     }
 
@@ -415,5 +409,22 @@ public class SmartphoneManager : MonoBehaviour
         itemData.itemImg = null;
         itemData.itemID = -1;
         itemData.itemEvent = null;
+    }
+
+    //모든 인벤토리 아이템 삭제
+    public void DeleteAllItemInInven()
+    {
+        ItemData itemData;
+
+        for(int i = 0; i < inven.maxFilesSlot; i++)
+        {
+            itemData = inven.filesInven.slotDataList[i].gameObject.GetComponent<ItemData>();
+            SetInvenItemDataNull(i, itemData);
+            inven.filesInven.slotDataList[i].slotItemImg.sprite = invenslotSirte;
+            inven.filesInven.slotDataList[i].isFull = false;
+        }
+
+        //inven.filesInven.slotDataList.Clear();
+        inven.maxFilesSlot = 0;
     }
 }

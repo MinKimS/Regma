@@ -119,20 +119,39 @@ public class Phone : MonoBehaviour
     {
         if (scene.name != "LoadingScene" && scene.name != "Bathroom" && scene.name != "Bath")
         {
-            //TODO : 같은 씬을 불러 왔을 때 설정
-            //-----------------------------------------------------------
-            //if(scene.name != SceneManager.GetActiveScene().name)
-            //{
-            //    talkListIdx++;
-            //}
-            //else
-            //{
-            //    talkListIdx = 0;
-            //}
-            talkListIdx++;
-            curTalk = talkList[talkListIdx];
-            print(talkListIdx);
+            StartCoroutine(SetCurTalkWhenSceneStart());
         }
+    }
+
+    IEnumerator SetCurTalkWhenSceneStart()
+    {
+        Scene sc = SceneManager.GetActiveScene();
+        yield return new WaitWhile(() => sc.name == "LoadingScene");
+
+        switch (sc.name)
+        {
+            case "SampleScene":
+                curTalk = talkList[0];
+                break;
+            case "Kitchen":
+                curTalk = talkList[1];
+                break;
+            case "SampleScene 2":
+                curTalk = talkList[2];
+                break;
+            case "Veranda":
+                curTalk = talkList[3];
+                break;
+        }
+    }
+
+    public void SetCurTalk()
+    {
+        curTalk = talkList[talkListIdx];
+    }
+    public void SetCurTalk(int idx)
+    {
+        curTalk = talkList[idx];
     }
     //폰 보이기
     public void ShowPhone()

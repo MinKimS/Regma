@@ -25,3 +25,4 @@ MonoBehaviour:
     dlgTexts: "\uC9C0\uC560\_\uB2D8?\_\uC544\uD638\_\uB2D8?\_\uC784\uC911\_\uB2D8?"
     eventType: 0
   nextDlg: {fileID: 11400000, guid: cd150053a9d47574c8ebe8cd863ec07b, type: 2}
+  gmEvent: {fileID: 0}

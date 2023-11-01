@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public AudioSource BGM;
     public AudioSource[] SFX;
     public AudioClip[] sfxList;
     int sfxIdx = 0;

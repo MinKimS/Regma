@@ -38,29 +38,4 @@ public class TimelineManager : MonoBehaviour
         }
         else Destroy(gameObject);
     }
-
-    //For test
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F2))
-        {
-            LoadingManager.LoadScene("SampleScene");
-        }
-        if(Input.GetKeyDown(KeyCode.F3))
-        {
-            LoadingManager.LoadScene("Kitchen");
-        }
-        if(Input.GetKeyDown(KeyCode.F4))
-        {
-            LoadingManager.LoadScene("Bathroom");
-        }
-        if(Input.GetKeyDown(KeyCode.F5))
-        {
-            LoadingManager.LoadScene("Bath");
-        }
-        if(Input.GetKeyDown(KeyCode.F6))
-        {
-            LoadingManager.LoadScene("SampleScene 2");
-        }
-    }
 }
