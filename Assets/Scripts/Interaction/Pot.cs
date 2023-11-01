@@ -11,6 +11,7 @@ public class Pot : MonoBehaviour
     public BoxCollider2D blacketColl;
     bool isPushing = false;
     bool isPushAtLeft = false;
+    bool isOkPush = false;
     public Animator potAnim;
     public GameObject[] bloods;
     //밀어서 도달해야하는 곳
@@ -102,6 +103,12 @@ public class Pot : MonoBehaviour
             && ((isPushAtLeft && Input.GetAxisRaw("Horizontal")<0) || (!isPushAtLeft && Input.GetAxisRaw("Horizontal")>0)))
         {
             CancelPush(playerPos);
+        }
+
+        if(!isOkPush && SmartphoneManager.instance.diary.isAfterDlg)
+        {
+            isOkPush = true;
+            interactionData.GmEventIdx=1;
         }
     }
 

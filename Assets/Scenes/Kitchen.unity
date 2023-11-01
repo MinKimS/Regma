@@ -4705,7 +4705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398909169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.82, y: -5.06, z: 0}
+  m_LocalPosition: {x: -33.82, y: -3.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8475,7 +8475,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.507317, y: 18.88829}
+  m_Size: {x: 13.0194645, y: 18.88829}
   m_EdgeRadius: 0
 --- !u!4 &722444837
 Transform:
@@ -18739,6 +18739,7 @@ MonoBehaviour:
   inven: {fileID: 1925549703}
   flipSpeed: 0.5
   dlg: {fileID: 11400000, guid: 3946f2b2a0c0ef84d9029115b2c40445, type: 2}
+  isAfterDlg: 0
 --- !u!224 &1561860950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24199,6 +24200,7 @@ MonoBehaviour:
   notification: {fileID: 0}
   phone: {fileID: 0}
   inven: {fileID: 0}
+  diary: {fileID: 0}
   talkScrollSpeed: 0.01
   gmEventList: []
   invenslotSirte: {fileID: 21300000, guid: e5fbc92424796574b889a380ec998d88, type: 3}

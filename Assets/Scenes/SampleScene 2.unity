@@ -1332,6 +1332,7 @@ MonoBehaviour:
   inven: {fileID: 1292771291}
   flipSpeed: 0.5
   dlg: {fileID: 11400000, guid: 3946f2b2a0c0ef84d9029115b2c40445, type: 2}
+  isAfterDlg: 0
 --- !u!224 &71961830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8173,6 +8174,7 @@ MonoBehaviour:
   notification: {fileID: 0}
   phone: {fileID: 0}
   inven: {fileID: 0}
+  diary: {fileID: 0}
   talkScrollSpeed: 0.01
   gmEventList: []
   invenslotSirte: {fileID: 21300000, guid: e5fbc92424796574b889a380ec998d88, type: 3}
@@ -10896,6 +10898,7 @@ MonoBehaviour:
   checkWorkDo: 1
   isOpen: 0
   diaryEvent: {fileID: 0}
+  eventManager: {fileID: 0}
 --- !u!114 &1047426057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15711,8 +15714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9031d8b7005c4f344a6666f1ee153e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 0}
+  objs: []
 --- !u!114 &1572679835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16903,7 +16905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672785479}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.66, y: 7.27, z: 0}
+  m_LocalPosition: {x: 58.66, y: 8.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18918,7 +18920,7 @@ MonoBehaviour:
   m_Intensity: 33.9
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000025f65c859361e11fc7319b84
   m_LightCookieSprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -21856,6 +21858,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b35c42a0bb074d48b0f863b9a046c02, type: 3}
   - {fileID: 8300000, guid: f7356c7420cb7994cb2d0c37d4ce233a, type: 3}
   - {fileID: 8300000, guid: 9363ffd55d281794693d52aae972454d, type: 3}
+  - {fileID: 8300000, guid: aea6d38e29b8d9d4da08eb466201c3b5, type: 3}
+  - {fileID: 8300000, guid: 127db61326ad4074d96f2136a384af89, type: 3}
+  - {fileID: 8300000, guid: e64d028ebda11cd4fbccfa78747f226b, type: 3}
+  - {fileID: 8300000, guid: 09b8a5ce425cbf34a854f80b13fc930f, type: 3}
+  - {fileID: 8300000, guid: fe43d839dc7b72f44b7430d776b988e0, type: 3}
+  - {fileID: 8300000, guid: 07206172fcce84843b5b12dab8d10105, type: 3}
+  - {fileID: 8300000, guid: 1579b97449c5d78458fdde9a1601b17f, type: 3}
+  - {fileID: 8300000, guid: b326e1f681e7d244ba2b076fc6a0c444, type: 3}
 --- !u!1 &2113540649
 GameObject:
   m_ObjectHideFlags: 0

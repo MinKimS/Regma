@@ -131,6 +131,8 @@ public class MoveAlongThePath : MonoBehaviour
 
     public void AppearMob()
     {
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
         gameObject.SetActive(true);
     }
 

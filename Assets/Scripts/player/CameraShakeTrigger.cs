@@ -28,7 +28,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake"))
+        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg)
         {
             canvasBook.SetActive(true);
             StopAllCoroutines();
@@ -42,7 +42,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("shake"))
+        if (collision.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg)
         {
             print("충돌");
             collidingObject = collision; 

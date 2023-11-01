@@ -17,6 +17,7 @@ public class SmartphoneManager : MonoBehaviour
     [HideInInspector] public Phone phone;
     //핸드폰 인벤토리
     [HideInInspector] public InventoryController inven;
+    [HideInInspector] public Diary diary;
 
     //톡 스크롤되는 속도
     public float talkScrollSpeed = 0.05f;
@@ -39,7 +40,7 @@ public class SmartphoneManager : MonoBehaviour
         phone = GetComponentInChildren<Phone>();
         inven = phone.GetComponentInChildren<InventoryController>();
         notification = GetComponentInChildren<TalkNotification>();
-
+        diary = GetComponentInChildren<Diary>();
     }
     private void Start() {
         inven.HideInven();

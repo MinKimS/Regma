@@ -70,6 +70,7 @@ public class SceneMapMenuController : MonoBehaviour
         //오징어, 유리조각 저장
         else if (sceneName == "SampleScene 2")
         {
+            SmartphoneManager.instance.SetInvenItem(itemList[0]);
             SmartphoneManager.instance.SetInvenItem(itemList[1]);
             SmartphoneManager.instance.SetInvenItem(itemList[2]);
         }

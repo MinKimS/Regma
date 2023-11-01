@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
     public bool isOpen = false;
     public GameObject diaryEvent;
     InteractionObjData interactionObjData;
+    public EventManager eventManager;
 
     private void Start() {
         anim = GetComponent<Animator>();
@@ -45,7 +46,7 @@ public class Door : MonoBehaviour
     {
         TimelineManager.instance.timelineController.SetTimelineStart("DoorEvent 0");
         doorDetailImg.enabled = false;
-        EventManager.instance.ActiveEvent(0);
+        eventManager.ActiveObj(0);
         diaryEvent.SetActive(true);
         interactionObjData.IsOkInteracting = false;
     }

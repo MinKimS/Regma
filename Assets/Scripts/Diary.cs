@@ -17,7 +17,7 @@ public class Diary : MonoBehaviour
     public float flipSpeed = 0.5f;
 
     public Dialogue dlg;
-    bool isAfterDlg = false;
+    [HideInInspector] public bool isAfterDlg = false;
 
     private void Update()
     {
