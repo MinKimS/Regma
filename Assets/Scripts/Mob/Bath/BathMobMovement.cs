@@ -46,6 +46,7 @@ public class BathMobMovement : MonoBehaviour
 
         if(isStartRunWild)
         {
+            if(transform.position.x < 278f)
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(movePos[movePos.Length-1].position.x, transform.position.y), mobRunWildSpeed * Time.deltaTime);
         }
     }

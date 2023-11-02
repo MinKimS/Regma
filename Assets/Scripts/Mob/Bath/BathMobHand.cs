@@ -72,6 +72,40 @@ public class BathMobHand : MonoBehaviour
         catchBathToy.isBeingTarget = true;
         StartCoroutine(GoCatchToy(speed));
     }
+    public void MoveHandToToyWhenRunWild(float speed = 20)
+    {
+        isMoveHand = true;
+        isBackOrigin = false;
+        catchBathToy = toyList[toyIdx].GetComponent<BathToy>();
+        catchBathToy.isBeingTarget = true;
+        StartCoroutine(GoCatchToyWhenRunWild(speed));
+    }
+    public IEnumerator GoCatchToyWhenRunWild(float speed = 20)
+    {
+        //장난감으로 가기
+        while (Vector2.Distance(transform.position, catchBathToy.transform.position) > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, catchBathToy.transform.position, speed * Time.deltaTime);
+            print("GoCatchToyWhenRunWild");
+            if (isCatchSomething)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        if (!isCatchSomething)
+        {
+            bc.enabled = true;
+        }
+        else
+        {
+            isCatchSomething = false;
+            catchBathToy.gameObject.SetActive(false);
+            toyIdx++;
+            BackOriginPosWhenRunWild();
+        }
+    }
     public IEnumerator GoCatchToy()
     {
         //장난감으로 가기
@@ -84,9 +118,20 @@ public class BathMobHand : MonoBehaviour
         bc.enabled = true;
 
         yield return new WaitForSeconds(1f);
-        if(!isBackOrigin && !isCatchSomething)
+
+        if (!isCatchSomething)
         {
-            BackOriginPos();
+            bc.enabled = true;
+        }
+        else
+        {
+            isCatchSomething = false;
+            catchBathToy.gameObject.SetActive(false);
+            toyIdx++;
+            if(!isBackOrigin)
+            {
+                BackOriginPos();
+            }
         }
     }
     public IEnumerator GoCatchToyToAttack()
@@ -205,6 +250,23 @@ public class BathMobHand : MonoBehaviour
         catchBathToy = null;
         isBackOrigin = true;
     }
+    void BackOriginPosWhenRunWild()
+    {
+        isCatchSomething = false;
+        StartCoroutine(BackHandOriginWhenRunWild());
+    }
+    IEnumerator BackHandOriginWhenRunWild()
+    {
+        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, handOriginPos.position, 20f);
+            yield return null;
+        }
+        isMoveHand = false;
+        bathToy = null;
+        catchBathToy = null;
+        isBackOrigin = true;
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -221,7 +283,7 @@ public class BathMobHand : MonoBehaviour
 
             DragIntoTheWater(tr);
         }
-        if(toyIdx >= toyList.Length-1 && collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             CapsuleCollider2D col = collision.GetComponent<CapsuleCollider2D>();
             col.enabled = false;

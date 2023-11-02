@@ -178,7 +178,7 @@ MonoBehaviour:
   - {fileID: 522716198}
   moveValueX: 1
   mobMoveSpeed: 16
-  mobRunWildSpeed: 3.5
+  mobRunWildSpeed: 20
   moveInWaterPos: {fileID: 1714166302}
   moveOutWaterPos: {fileID: 2132984759}
   isStartRunWild: 0
@@ -1299,7 +1299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &187494679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13730,7 +13730,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 1
+  m_Constraints: 5
 --- !u!61 &1784544191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16274,7 +16274,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e0a84a6d8f68aeb4a9f465d9bd8c95ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

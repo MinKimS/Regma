@@ -33,9 +33,34 @@ public class SceneMapMenuController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5))
+        if(Input.GetKeyDown(KeyCode.F12))
         {
             btnObj.SetActive(!btnObj.activeSelf);
+        }
+
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            MoveScene("SampleScene");
+        }
+        else if(Input.GetKeyDown(KeyCode.F3))
+        {
+            MoveScene("Kitchen");
+        }
+        else if(Input.GetKeyDown(KeyCode.F4))
+        {
+            MoveScene("Bathroom");
+        }
+        else if(Input.GetKeyDown(KeyCode.F5))
+        {
+            MoveScene("Bath");
+        }
+        else if(Input.GetKeyDown(KeyCode.F6))
+        {
+            MoveScene("SampleScene 2");
+        }
+        else if(Input.GetKeyDown(KeyCode.F7))
+        {
+            MoveScene("Veranda");
         }
     }
 

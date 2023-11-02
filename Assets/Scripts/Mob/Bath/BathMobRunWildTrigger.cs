@@ -12,7 +12,7 @@ public class BathMobRunWildTrigger : MonoBehaviour
         {
             bmc.movement.isStartAttack = true;
             bmc.StartRunWild();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

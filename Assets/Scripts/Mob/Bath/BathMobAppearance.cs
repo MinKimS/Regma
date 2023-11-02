@@ -16,6 +16,7 @@ public class BathMobAppearance : MonoBehaviour
         {
             if(!isOnTrigger)
             {
+                collision.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 StartCoroutine(AppearMob());
             }
             else
