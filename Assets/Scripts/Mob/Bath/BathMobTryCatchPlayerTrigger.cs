@@ -9,7 +9,9 @@ public class BathMobTryCatchPlayerTrigger : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            bmc.isTryCatchPlayer = true;
+            Debug.LogError("startRunwildCatchPlayer");
+            bmc.data.IsTryCatchPlayer = true;
+            bmc.hand.isTargetPlayer = true;
             Destroy(gameObject);
         }
     }

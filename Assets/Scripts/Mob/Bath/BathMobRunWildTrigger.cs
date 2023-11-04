@@ -10,9 +10,12 @@ public class BathMobRunWildTrigger : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            bmc.movement.isStartAttack = true;
-            bmc.StartRunWild();
-            //Destroy(gameObject);
+            Debug.LogError("startRunwild");
+            //bmc.movement.isStartAttack = true;
+            //bmc.StartRunWild();
+            bmc.movement.StartRunningWild();
+            bmc.hand.SetToyIdx(4);
+            Destroy(gameObject);
         }
     }
 }

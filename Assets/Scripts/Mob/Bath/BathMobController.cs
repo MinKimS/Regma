@@ -24,14 +24,20 @@ public class BathMobController : MonoBehaviour
     public PlayerHide playerHide;
 
     [HideInInspector] public bool isTracingStart = false;
-    [HideInInspector] public bool isTryCatchPlayer = false;
+
+    //==========================
+
+    public Animator animator;
 
     private void Awake()
     {
         hand = GetComponentInChildren<BathMobHand>();
         movement = GetComponent<BathMobMovement>();
         data = GetComponent<BathMobData>();
+        animator = GetComponent<Animator>();
 
+        movement.data = this.data;
+        hand.data = this.data;
     }
 
     private void Start()
@@ -43,26 +49,24 @@ public class BathMobController : MonoBehaviour
 
     private void Update()
     {
-        if (!hand.isMoveHand && isTracingStart && !hand.isCatchPlayer)
+        if (isTracingStart && data.IsMobTryCatch && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
         {
-            //몬스터가 물 밖에 있을 때 공격
-            if (data.state == BathMobData.State.OutWater)
+            if(data.state == BathMobData.State.OutWater)
             {
-                if (!playerHide.isHide)
+                if(!playerHide.isHide)
                 {
-                    hand.MoveHandToToyToAttack();
+                    hand.SetTarget();
+                    hand.AttackTarget(0.4f);
                 }
             }
-
-            //폭주해서 플레이어 잡으러 가기
-            if (data.state == BathMobData.State.RuningWild && movement.isStartAttack)
+            else if(data.state == BathMobData.State.RuningWild)
             {
-                if (hand.toyList[hand.toyList.Length - 1].gameObject.activeSelf)
+                if (!data.IsTryCatchPlayer)
                 {
-                    Debug.LogWarning("runwild");
-                    hand.MoveHandToToyWhenRunWild(20);
+                    hand.SetTargetToy(hand.toyIdx);
+                    hand.AttackTarget(0.44f);
                 }
-                else if (isTryCatchPlayer)
+                else
                 {
                     hand.MoveHandToPlayer(12);
                 }
@@ -70,67 +74,24 @@ public class BathMobController : MonoBehaviour
         }
     }
 
-    //폭주해서 쫓아가기
-    public void StartRunWild()
+    //플레이어 추적 시작
+    public void StartTracingPlayer()
     {
-        hand.toyIdx = 4;
-        movement.isStartRunWild = true;
-        data.state = BathMobData.State.RuningWild;
+        movement.TracingPlayer();
+        movement.MoveOutAndInWater();
+        SetStartMovingAnim();
+        isTracingStart = true;
+    }
+
+    void SetStartMovingAnim()
+    {
+        animator.SetTrigger("Moving");
     }
 
     //처음 등장하기
     public void Appearance()
     {
-        data.state = BathMobData.State.OutWater;
         movement.ShowMob();
-        movement.MoveOutWater();
-    }
-
-    //모습 숨기기
-    void Hiding()
-    {
-        data.state = BathMobData.State.InWater;
-        movement.HideMob();
-        movement.MoveInWater();
-    }
-
-    //움직이기 시작
-    public void StartMoving()
-    {
-        isTracingStart = true;
-        StartCoroutine(MoveInOutWater());
-    }
-
-    //물 안 밖으로 이동
-    IEnumerator MoveInOutWater()
-    {
-        WaitForSeconds afterInWait = new WaitForSeconds(waterInWaitTime);
-        WaitForSeconds afterOutWait = new WaitForSeconds(waterOutWaitTime);
-
-        while (data.state != BathMobData.State.RuningWild)
-        {
-            movement.MoveInWater();
-            if(!movement.isStartRunWild)
-                data.state = BathMobData.State.InWater;
-            else
-            {
-                data.state = BathMobData.State.RuningWild;
-                break;
-            }
-            yield return afterInWait;
-            StopCoroutine(movement.moveIntoTheWater);
-
-            movement.MoveOutWater();
-            if (!movement.isStartRunWild)
-                data.state = BathMobData.State.OutWater;
-            else
-            {
-                data.state = BathMobData.State.RuningWild;
-                break;
-            }
-            yield return afterOutWait;
-            StopCoroutine(movement.moveOutOfTheWater);
-        }
-        movement.SetMoveOutWater();
+        movement.MoveOutOfTheWater();
     }
 }

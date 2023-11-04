@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BathMobHand : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class BathMobHand : MonoBehaviour
     [HideInInspector]
     public bool isMoveHand = false;
     bool isBackOrigin = true;
-    bool isCatchSomething = false;
     [HideInInspector] public bool isCatchPlayer = false;
 
     [HideInInspector] public BathToy bathToy;
@@ -31,108 +31,225 @@ public class BathMobHand : MonoBehaviour
     public float moveSpeed = 10f;
     public float dragSpeed = 10f;
 
+    [HideInInspector] public bool isCatchSomething = false;
+    [HideInInspector] public bool isTargetPlayer = false;
+    bool isOkAttackTarget = false;
+    Transform targetPos;
+    [HideInInspector] public BathToy targetToy = null;
+    [HideInInspector] public BathMobData data;
 
     private void Awake()
     {
         bc = GetComponent<BoxCollider2D>();
     }
 
-    //손을 장난감을 향해 이동
-    public void MoveHandToToy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isMoveHand = true;
-        isBackOrigin = false;
-        StartCoroutine(GoCatchToy());
-    }
-    public void MoveHandToToyToAttack()
-    {
-        if(bathToy != null && !bathToy.isDrawning)
+        if (!isTargetPlayer && collision.CompareTag("Toy"))
         {
-            bathToy.isBeingTarget = true;
-            isMoveHand = true;
-            isBackOrigin = false;
-            StartCoroutine(GoCatchToyToAttack());
+            CatchSomething(false, collision);
         }
-    }
-    public void MoveHandToToyToAttack(float speed = 20f)
-    {
-        if(bathToy != null)
+        else if (isTargetPlayer && collision.CompareTag("Player"))
         {
-            bathToy.isBeingTarget = true;
-            isMoveHand = true;
-            isBackOrigin = false;
-            StartCoroutine(GoCatchToyToAttack(speed));
-        }
-    }
-    public void MoveHandToToy(float speed = 20)
-    {
-        isMoveHand = true;
-        isBackOrigin = false;
-        catchBathToy = toyList[toyIdx].GetComponent<BathToy>();
-        catchBathToy.isBeingTarget = true;
-        StartCoroutine(GoCatchToy(speed));
-    }
-    public void MoveHandToToyWhenRunWild(float speed = 20)
-    {
-        isMoveHand = true;
-        isBackOrigin = false;
-        catchBathToy = toyList[toyIdx].GetComponent<BathToy>();
-        catchBathToy.isBeingTarget = true;
-        StartCoroutine(GoCatchToyWhenRunWild(speed));
-    }
-    public IEnumerator GoCatchToyWhenRunWild(float speed = 20)
-    {
-        //장난감으로 가기
-        while (Vector2.Distance(transform.position, catchBathToy.transform.position) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, catchBathToy.transform.position, speed * Time.deltaTime);
-            print("GoCatchToyWhenRunWild");
-            if (isCatchSomething)
+            if (data.state != BathMobData.State.RuningWild)
             {
-                break;
+                CatchSomething(true, collision);
             }
-            yield return null;
+            else
+            {
+                if(data.IsTryCatchPlayer)
+                {
+                    BringWhatCaughtToMob();
+                }
+            }
         }
+        isOkAttackTarget = false;
+    }
 
-        if (!isCatchSomething)
+    //타겟을 특정 장난감으로 설정
+    public void SetTargetToy()
+    {
+        isTargetPlayer = false;
+        targetToy = bathToy;
+        if (targetToy != null)
         {
-            bc.enabled = true;
+            targetPos = targetToy.transform;
+            Debug.LogError(targetToy.name);
+        }
+    }
+    public void SetTargetToy(int idx)
+    {
+        isTargetPlayer = false;
+        targetToy = toyList[idx].GetComponent<BathToy>();
+        if (targetToy != null)
+        {
+            targetPos = targetToy.transform;
+        }
+    }
+    //타겟을 플레이어로 설정
+    public void SetTargetPlayer()
+    {
+        isTargetPlayer = true;
+        targetPos = PlayerInfoData.instance.playerTr;
+    }
+    public void SetTarget()
+    {
+        targetToy = bathToy;
+        if (targetToy != null)
+        {
+            SetTargetToy();
         }
         else
         {
-            isCatchSomething = false;
-            catchBathToy.gameObject.SetActive(false);
-            toyIdx++;
-            BackOriginPosWhenRunWild();
+            SetTargetPlayer();
         }
     }
-    public IEnumerator GoCatchToy()
+
+    //잡은 걸 몬스터에게 가져오기
+    void BringWhatCaughtToMob()
     {
-        //장난감으로 가기
-        while (Vector2.Distance(transform.position, toyList[toyIdx].position) > 0.1f)
+        targetPos = PlayerInfoData.instance.playerTr;
+        data.IsTryCatchPlayer = false;
+        isCatchSomething = true;
+        targetPos.SetParent(transform);
+        targetPos.GetComponentInParent<Collider2D>().enabled = false;
+        ChMovingInBath playerMoving = targetPos.GetComponent<ChMovingInBath>();
+        playerMoving.enabled = false;
+
+        transform.position = new Vector2(data.transform.position.x, handOriginPos.position.y);
+        MoveIntoWater(0.45f);
+    }
+
+    //공격
+    public void AttackTarget(float moveHandSpeed)
+    {
+        isMoveHand = true;
+        StartCoroutine(IEAttackTarget(moveHandSpeed));
+    }
+    IEnumerator IEAttackTarget(float moveHandSpeed)
+    {
+        //공격하기 위한 준비
+        ReadyToAttack(moveHandSpeed);
+
+        yield return new WaitUntil(() => isOkAttackTarget);
+        //타겟으로 이동
+        if (!isCatchSomething)
         {
-            transform.localPosition = Vector2.MoveTowards(transform.position, toyList[toyIdx].position, moveSpeed * Time.deltaTime);
+            MoveToTarget(moveHandSpeed);
+        }
+    }
+
+    //공격할 위치로 이동
+    void ReadyToAttack(float moveHandSpeed)
+    {
+        //Vector2 attackPos = new Vector2(targetPos.position.x, handOriginPos.position.y + 5f);
+        StartCoroutine(IEReadyToAttack(moveHandSpeed));
+    }
+    IEnumerator IEReadyToAttack(float moveHandSpeed)
+    {
+        while(Vector2.Distance(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y + 5f)) > 0.03f && !data.IsTryCatchPlayer)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y + 5f), moveHandSpeed);
             yield return null;
         }
 
         bc.enabled = true;
+        isOkAttackTarget = true;
+    }
+    
+    //타겟으로 이동
+    void MoveToTarget(float moveHandSpeed)
+    {
+        Vector3 _targetPos = targetPos.position;
 
-        yield return new WaitForSeconds(1f);
+        if (!isTargetPlayer)
+        {
+            _targetPos += Vector3.up * 2f;
+        }
 
-        if (!isCatchSomething)
+        StartCoroutine(IEMoveToTarget(_targetPos, moveHandSpeed));
+    }
+    IEnumerator IEMoveToTarget(Vector3 _targetPos, float moveHandSpeed)
+    {
+        while(Vector2.Distance(transform.position, _targetPos) > 0.02f && !isCatchSomething && !data.IsTryCatchPlayer)
         {
-            bc.enabled = true;
+            transform.position = Vector2.MoveTowards(transform.position, _targetPos, moveHandSpeed);
+            yield return null;
         }
-        else
+        transform.position = _targetPos;
+
+        if(data.IsTryCatchPlayer)
         {
-            isCatchSomething = false;
-            catchBathToy.gameObject.SetActive(false);
-            toyIdx++;
-            if(!isBackOrigin)
-            {
-                BackOriginPos();
-            }
+            BackToOriginHandPos(0.5f);
         }
+    }
+
+    //무언가 잡기
+    void CatchSomething(bool isPlayer, Collider2D target)
+    {
+        isCatchSomething = true;
+
+        targetPos.SetParent(transform);
+        Debug.LogWarning(targetPos.name + " CatchSomething");
+        target.GetComponentInParent<Collider2D>().enabled = false;
+
+        if (isPlayer)
+        {
+            ChMovingInBath playerMoving = target.transform.GetComponent<ChMovingInBath>();
+            playerMoving.enabled = false;
+        }
+
+        MoveIntoWater(0.45f);
+    }
+
+    //물 속으로 끌고 가기
+    void MoveIntoWater(float moveHandSpeed)
+    {
+        bc.enabled = false;
+
+        StartCoroutine(IEMoveIntoWater(moveHandSpeed));
+    }
+    IEnumerator IEMoveIntoWater(float moveHandSpeed)
+    {
+        while(Vector2.Distance(transform.position, new Vector3(transform.position.x, dragPos.position.y)) > 0.02f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(transform.position.x, dragPos.position.y), moveHandSpeed);
+            yield return null;
+        }
+
+        ReleaseWhatCaught();
+        BackToOriginHandPos(0.5f);
+    }
+    
+    //잡았던 타겟 놓기
+    void ReleaseWhatCaught()
+    {
+        targetPos.SetParent(null);
+        targetToy = null;
+        isCatchSomething = false;
+        targetPos.gameObject.SetActive(false);
+        toyIdx++;
+    }
+
+    //원래 손이 있어야 할 위치로 이동
+    void BackToOriginHandPos(float moveHandSpeed)
+    {
+        StartCoroutine(IEBackToOriginHandPos(moveHandSpeed));
+    }
+    IEnumerator IEBackToOriginHandPos(float moveHandSpeed)
+    {
+        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.02f && !data.IsTryCatchPlayer)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, handOriginPos.position, moveHandSpeed);
+            yield return null;
+        }
+        transform.position = handOriginPos.position;
+        isMoveHand = false;
+    }
+
+    public void SetToyIdx(int idx)
+    {
+        toyIdx = idx;
     }
     public IEnumerator GoCatchToyToAttack()
     {
@@ -156,31 +273,6 @@ public class BathMobHand : MonoBehaviour
 
         bc.enabled = true;
     }
-    public IEnumerator GoCatchToy(float speed = 20)
-    {
-        //장난감으로 가기
-        while (Vector2.Distance(transform.position, catchBathToy.transform.position) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, catchBathToy.transform.position, speed * Time.deltaTime);
-            if (isCatchSomething)
-            {
-                break;
-            }
-            yield return null;
-        }
-
-        if (!isCatchSomething)
-        {
-            bc.enabled = true;
-        }
-        else
-        {
-            isCatchSomething = false;
-            catchBathToy.gameObject.SetActive(false);
-            toyIdx++;
-            BackOriginPos();
-        }
-    }
     //손을 플레이어를 향해 이동
     public void MoveHandToPlayer(float speed = 30)
     {
@@ -195,146 +287,10 @@ public class BathMobHand : MonoBehaviour
         while (Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position, PlayerInfoData.instance.playerTr.position, speed * Time.deltaTime);
+            Debug.LogWarning("gocatchplayer");
             yield return null;
         }
 
         bc.enabled = true;
-    }
-    
-    void SetHandPos(Vector3 pos)
-    {
-        transform.position = pos;
-    }
-
-    //플레이어or장난감을 물 속으로 끌고 감
-    void DragIntoTheWater(Transform tr)
-    {
-        isCatchSomething = true;
-        StartCoroutine(MoveHandDown(tr));
-    }
-    IEnumerator MoveHandDown(Transform tr)
-     {
-        while (transform.position.y >= dragPos.position.y + 0.01f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, dragPosY, dragSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        tr.SetParent(null);
-        tr.gameObject.SetActive(false);
-
-        if (catchBathToy != null && !catchBathToy.gameObject.activeSelf)
-        {
-            toyIdx++;
-        }
-
-        yield return new WaitForSeconds(0.1f);
-        BackOriginPos();
-    }
-
-    //원래 손 위치로 이동
-    void BackOriginPos()
-    {
-        isCatchSomething = false;
-        StartCoroutine(BackHandOrigin());
-    }
-    IEnumerator BackHandOrigin()
-    {
-        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.1f)
-        {
-            transform.position = Vector2.Lerp(transform.position, handOriginPos.position, 0.1f);
-            yield return null;
-        }
-        isMoveHand = false;
-        bathToy = null;
-        catchBathToy = null;
-        isBackOrigin = true;
-    }
-    void BackOriginPosWhenRunWild()
-    {
-        isCatchSomething = false;
-        StartCoroutine(BackHandOriginWhenRunWild());
-    }
-    IEnumerator BackHandOriginWhenRunWild()
-    {
-        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, handOriginPos.position, 20f);
-            yield return null;
-        }
-        isMoveHand = false;
-        bathToy = null;
-        catchBathToy = null;
-        isBackOrigin = true;
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Toy")&& isMoveHand)
-        {
-            PolygonCollider2D col = collision.GetComponent<PolygonCollider2D>();
-            col.enabled = false;
-            bc.enabled = false;
-
-            Transform tr = collision.GetComponentsInParent<Transform>()[1];
-            tr.SetParent(gameObject.transform);
-            dragPosY = new Vector2(transform.position.x, dragPos.position.y);
-
-            DragIntoTheWater(tr);
-        }
-        if(collision.CompareTag("Player"))
-        {
-            CapsuleCollider2D col = collision.GetComponent<CapsuleCollider2D>();
-            col.enabled = false;
-            bc.enabled = false;
-
-            Transform tr = collision.GetComponent<Transform>();
-            tr.SetParent(gameObject.transform);
-            collision.GetComponent<ChMovingInBath>().enabled = false;
-            collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
-            collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
-            isCatchPlayer = true;
-
-            StartCoroutine(BringToMob(tr));
-        }
-    }
-
-    IEnumerator BringToMob(Transform tr)
-    {
-        bool isBringToOrigin = false;
-        Vector2 pos = new Vector2(handOriginPos.position.x - 3f, PlayerInfoData.instance.playerTr.position.y);
-        while (Vector2.Distance(transform.position, pos) > 0.1f)
-        {
-            transform.position = Vector2.Lerp(transform.position, pos, 0.1f);
-            yield return null;
-        }
-        isMoveHand = false;
-        isBackOrigin = true;
-        isBringToOrigin = true;
-
-        yield return new WaitUntil(() => isBringToOrigin);
-
-        dragPosY = new Vector2(transform.position.x, dragPos.position.y);
-        while (transform.position.y >= dragPos.position.y + 0.01f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, dragPosY, dragSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        tr.SetParent(null);
-        tr.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(0.1f);
-        BackOriginPos();
-    }
-
-    private void FixedUpdate()
-    {
-        if (isMoveHand && Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > Camera.main.orthographicSize * Camera.main.aspect)
-        {
-            isCatchSomething = true;
-        }
     }
 }

@@ -10,13 +10,14 @@ public class BathMobData : MonoBehaviour
         InWater,
         OutWater,
         RuningWild,
+        Moving,
     }
     [HideInInspector] public State state = State.InWater;
 
     bool isMobAppear = false;
     bool isMobInWater = true;
     bool isMobTryCatch = false;
-    bool isMobSeeFishingRod = false;
+    bool isTryCatchPlayer = false;
     bool isMobStuck = false;
     [HideInInspector]
     public bool isCatchPlayer = false;
@@ -32,9 +33,10 @@ public class BathMobData : MonoBehaviour
         get { return isMobTryCatch; }
         set { isMobTryCatch = value; }
     }
-    public bool IsMobSeeFishingRod
+    public bool IsTryCatchPlayer
     {
-        get { return isMobSeeFishingRod; }
+        get { return isTryCatchPlayer; }
+        set { isTryCatchPlayer = value; }
     }
     public bool IsMobStuck
     {

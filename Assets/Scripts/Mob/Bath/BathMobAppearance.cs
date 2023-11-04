@@ -21,7 +21,7 @@ public class BathMobAppearance : MonoBehaviour
             }
             else
             {
-                bmc.StartMoving();
+                bmc.StartTracingPlayer();
                 Destroy(gameObject);
             }
         }
@@ -34,8 +34,10 @@ public class BathMobAppearance : MonoBehaviour
         DialogueManager.instance.PlayDlg(dlg);
 
         yield return new WaitWhile(() =>DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
-        
-        bmc.hand.MoveHandToToy(12);
+
+        bmc.hand.SetTargetToy(0);
+        bmc.hand.AttackTarget(0.4f);
+
         Destroy(gameObject);
     }
 }

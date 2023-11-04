@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BathToy : MonoBehaviour
@@ -11,6 +12,20 @@ public class BathToy : MonoBehaviour
     public bool isBeingTarget = false;
     [HideInInspector]
     public bool isDrawning = false;
+    [HideInInspector] public BoxCollider2D toyBC;
+
+    private void Awake()
+    {
+        toyBC = GetComponent<BoxCollider2D>();
+    }
+
+    private void Update()
+    {
+        if(transform.position.y < -20)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,6 +39,11 @@ public class BathToy : MonoBehaviour
                 StartCoroutine(IEDrawn());
             }
         }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            bmc.hand.bathToy = null;
     }
 
     IEnumerator IEDrawn()

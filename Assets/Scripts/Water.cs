@@ -11,7 +11,7 @@ public class Water : MonoBehaviour
     public float drownPosY;
 
     //익사여부
-    bool isDrwon = false;
+    [HideInInspector] public bool isDrwon = false;
     bool isDrainageHoleOpen = false;
     bool isGameOverWaterLevel = false;
 
