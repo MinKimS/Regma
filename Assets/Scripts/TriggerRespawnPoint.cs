@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ResponManager;
+using static RespawnManager;
 
 public class TriggerRespawnPoint : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class TriggerRespawnPoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            ResponManager.Instance.ChangeUpdatingMethod(ResponManager.ChangeMethod.MobBased);
-            ResponManager.Instance.OnUpdateRespawnPoint.Invoke(targetPosition);
+            RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.MobBased);
+            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(targetPosition);
             
 
         }

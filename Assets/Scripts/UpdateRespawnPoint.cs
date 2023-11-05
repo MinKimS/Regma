@@ -18,14 +18,12 @@ public class UpdateRespawnPoint : MonoBehaviour
         while (true)
         {
             // ResponManager.Instance 가 null인지 체크하는 것이 좋습니다.
-            if (ResponManager.Instance != null && ResponManager.Instance.currentMethod == ResponManager.ChangeMethod.DamageBased)
+            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
             {
-                ResponManager.Instance.ChangeUpdatingMethod(ResponManager.ChangeMethod.DamageBased);
-
                 if (damageCount.GetDamage() == 0)
                 {
                     transform.position = player.position;
-                    ResponManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+                    RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
                     Debug.Log($"리스폰 위치 갱신함 : {transform.position}");
                 }
             }
