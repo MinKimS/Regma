@@ -5,6 +5,10 @@ using UnityEngine.Events;
 
 public class ResponManager : MonoBehaviour
 {
+    public enum ChangeMethod { MobBased, DamageBased }
+
+    public ChangeMethod currentMethod = ChangeMethod.DamageBased;
+
     public static ResponManager Instance;
     public UnityEvent<Transform> OnUpdateRespawnPoint = new UnityEvent<Transform>();
     public UnityEvent OnGameOver = new UnityEvent();
@@ -29,5 +33,12 @@ public class ResponManager : MonoBehaviour
             //여기 클래스에서 게임오버 이후 자동으로 복귀시키는 함수 구현
         });
 
+        ChangeUpdatingMethod(ChangeMethod.DamageBased);
+
+    }
+    public void ChangeUpdatingMethod(ChangeMethod type)
+    {
+        currentMethod = type;
+        print(type);
     }
 }
