@@ -23,7 +23,7 @@ public class TriggerRespawnPoint : MonoBehaviour
             
 
         }
-                // Destroy(this.gameObject);
+        // Destroy(this.gameObject);
             
     }
 }

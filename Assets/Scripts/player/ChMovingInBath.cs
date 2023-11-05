@@ -122,7 +122,7 @@ public class ChMovingInBath : MonoBehaviour
 
                     if (isJumpingWithMovement)
                     {
-                        print("dd");
+                        
                         animator.SetBool("walk", false);
                     }
                 }
@@ -175,6 +175,12 @@ public class ChMovingInBath : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
+    }
+
+    public IEnumerator RespawnCharacterAfterWhile(Transform targetPosition, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        transform.position = targetPosition.position;
     }
 
     void PlayWalkSound()
