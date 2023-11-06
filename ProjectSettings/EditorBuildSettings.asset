@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Veranda.unity
     guid: a148218eeb3972a4085d3f5aeb3136e0
   - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 32ddd288df2b56f4a8d28af240d383ca
+  - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: d5691629579e1124ab8e457c57a68e9e
   - enabled: 1

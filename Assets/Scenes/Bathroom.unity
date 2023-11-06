@@ -7964,6 +7964,7 @@ GameObject:
   - component: {fileID: 1254502949}
   - component: {fileID: 1254502961}
   - component: {fileID: 1254502962}
+  - component: {fileID: 1254502963}
   m_Layer: 3
   m_Name: ch 1
   m_TagString: Player
@@ -8088,7 +8089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254502948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 219afbd3caf857c49aeb54e186a77e90, type: 3}
   m_Name: 
@@ -8252,7 +8253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254502948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.24, y: 7.6362996, z: 0}
+  m_LocalPosition: {x: -1.2, y: 7.6362996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8268,7 +8269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254502948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8451f8be2119ad640b3f6cf777f50c50, type: 3}
   m_Name: 
@@ -8323,6 +8324,28 @@ MonoBehaviour:
   moving: {fileID: 1254502955}
   damaging: {fileID: 1499971908}
   damageHeight: 8
+--- !u!114 &1254502963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254502948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66de19515c6f9554eb9b297d8ff219db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1254502953}
+  jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
+  walkAudioSource: {fileID: 1254502949}
+  jumpForce: 16
+  isGround: 0
+  pos: {fileID: 1466646051}
+  islayer:
+    serializedVersion: 2
+    m_Bits: 64
+  JumpCount: 1
 --- !u!1 &1254596048
 GameObject:
   m_ObjectHideFlags: 0

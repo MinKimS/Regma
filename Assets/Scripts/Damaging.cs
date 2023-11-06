@@ -41,7 +41,16 @@ public class Damaging : MonoBehaviour
         damageCount++;
 
         if(damageCount == maxDamaging)
-            ResponManager.Instance.OnGameOver.Invoke();
+        {
+            RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.DamageBased);
+
+            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod. DamageBased)
+            {
+                print("데미지로 전환");
+                RespawnManager.Instance.OnGameOver.Invoke();
+            }
+        }
+            
     }
 
     public int GetDamage()

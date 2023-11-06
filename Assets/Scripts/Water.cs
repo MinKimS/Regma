@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Water : MonoBehaviour
@@ -48,7 +49,9 @@ public class Water : MonoBehaviour
             Rigidbody2D targetRb = targetPos.GetComponent<Rigidbody2D>();
             targetRb.velocity = Vector2.down;
             targetRb.gravityScale = 0f;
-            print("over");
+            print("Over____");
+
+            //RespawnManager.Instance.OnGameOver.Invoke();
         }
     }
 

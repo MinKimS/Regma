@@ -122,7 +122,7 @@ public class ChMovingInBath : MonoBehaviour
 
                     if (isJumpingWithMovement)
                     {
-                        //print("dd");
+                        print("dd");
                         animator.SetBool("walk", false);
                     }
                 }
@@ -141,7 +141,7 @@ public class ChMovingInBath : MonoBehaviour
                     isRunning = true;
                     currentMoveSpeed = runSpeed * moveInputX;
                     animator.SetBool("walk", true);
-                    //print("달리는 중");
+                    print("달리는 중");
                 }
                 else
                 {
@@ -175,6 +175,12 @@ public class ChMovingInBath : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
+    }
+
+    public IEnumerator RespawnCharacterAfterWhile(Transform targetPosition, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        transform.position = targetPosition.position;
     }
 
     void PlayWalkSound()

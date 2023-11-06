@@ -175,9 +175,9 @@ public class Chmoving : MonoBehaviour
 
             // 방향키 입력이 없을 때 "Wet" 애니메이션을 비활성화합니다.
             animator.SetBool("Wet", false);
-        isMoving = false;
-        currentMoveSpeed = 0f;
-        StopWalkSound();
+            isMoving = false;
+            currentMoveSpeed = 0f;
+            StopWalkSound();
 
         // if(!isMoving && inWater)
         // {

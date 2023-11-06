@@ -52,7 +52,8 @@ public class DisMonster : MonoBehaviour
         if (collision.gameObject.CompareTag("Mob") || collision.gameObject.CompareTag("RandMob"))
         {
             print("Ãæµ¹");
-            ResponManager.Instance.OnGameOver.Invoke();
+            RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.MobBased);
+            RespawnManager.Instance.OnGameOver.Invoke();
         }
     }
 }
