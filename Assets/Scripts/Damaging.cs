@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static RespawnManager;
 
 public class Damaging : MonoBehaviour
 {
@@ -42,15 +44,24 @@ public class Damaging : MonoBehaviour
 
         if(damageCount == maxDamaging)
         {
-            RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.DamageBased);
+            RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
 
-            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod. DamageBased)
+            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
             {
+
+                //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
                 print("데미지로 전환");
                 RespawnManager.Instance.OnGameOver.Invoke();
             }
-        }
             
+
+
+            //if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
+            //{
+            //    
+            //}
+        }
+
     }
 
     public int GetDamage()

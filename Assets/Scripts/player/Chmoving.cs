@@ -7,6 +7,7 @@ public class Chmoving : MonoBehaviour
     public Animator animator;
     public AudioClip jumpSound;
     public AudioSource walkAudioSource;
+    public PlayerFallingController nofalling;
 
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
@@ -51,6 +52,7 @@ public class Chmoving : MonoBehaviour
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
                        TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
                        !TutorialController.instance.IsTutorialShowing;
+
 
         if (canMove)
         {
@@ -179,13 +181,7 @@ public class Chmoving : MonoBehaviour
             currentMoveSpeed = 0f;
             StopWalkSound();
 
-        // if(!isMoving && inWater)
-        // {
-        //     print("테스트");
-        // animator.SetBool("Idle", false);
-        // animator.SetBool("WetIdle", true);
-        // animator.SetBool("Wet", false);
-        // }
+     
     }
 
     rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);

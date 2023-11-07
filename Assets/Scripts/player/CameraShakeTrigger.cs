@@ -103,6 +103,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
         if (collidingObject != null && collidingObject.CompareTag("shake"))
         {
+            print("충돌");
             collidingObject.gameObject.SetActive(false);
             collidingObject = null;
             isActive = false;

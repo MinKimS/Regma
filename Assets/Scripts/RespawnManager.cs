@@ -41,34 +41,42 @@ public class RespawnManager : MonoBehaviour
             
         });
 
-        ChangeUpdatingMethod(ChangeMethod.DamageBased);
+        //ChangeUpdatingMethod(ChangeMethod.DamageBased);
     }
 
     public void ChangeUpdatingMethod(ChangeMethod type)
     {
         currentMethod = type;
         print(type);
+
+        //if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
+        //{
+        //    RespawnManager.Instance.currentMethod = RespawnManager.ChangeMethod.MobBased;
+        //}
+        //else
+        //{
+        //    RespawnManager.Instance.currentMethod = RespawnManager.ChangeMethod.DamageBased;
+        //}
+
+        //게임 오버 시 호출하여 다른 씬으로 전환하는 함수
+        //void GoToGameOverScene()
+        //{
+        //    // 여기에 게임 오버 시 전환할 씬의 이름을 입력합니다.
+        //    string gameOverSceneName = "GameOverScene"; // 예시: 실제 씬 이름으로 변경
+
+        //    // 실제 씬 이름으로 변경된 부분입니다.
+        //    SceneManager.LoadScene(gameOverSceneName);
+        //}
+
+        //public void OnClickRestart(Vector3 newRespawnPosition)
+        //{
+        //    // 새로운 리스폰 위치로 설정
+        //    respawnPosition.position = newRespawnPosition;
+        //    // print(respawnPosition); // 리스폰 위치 업데이트 확인용 print
+
+        //    // 이벤트 호출
+        //    OnUpdateRespawnPoint.Invoke(respawnPosition);
+        //}
+
     }
-
-    //게임 오버 시 호출하여 다른 씬으로 전환하는 함수
-    //void GoToGameOverScene()
-    //{
-    //    // 여기에 게임 오버 시 전환할 씬의 이름을 입력합니다.
-    //    string gameOverSceneName = "GameOverScene"; // 예시: 실제 씬 이름으로 변경
-
-    //    // 실제 씬 이름으로 변경된 부분입니다.
-    //    SceneManager.LoadScene(gameOverSceneName);
-    //}
-
-    //public void OnClickRestart(Vector3 newRespawnPosition)
-    //{
-    //    // 새로운 리스폰 위치로 설정
-    //    respawnPosition.position = newRespawnPosition;
-    //    // print(respawnPosition); // 리스폰 위치 업데이트 확인용 print
-
-    //    // 이벤트 호출
-    //    OnUpdateRespawnPoint.Invoke(respawnPosition);
-    //}
-
-
 }

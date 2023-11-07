@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RespawnManager;
 using static UnityEngine.UI.Image;
 
 public class FallingObject : MonoBehaviour
@@ -18,6 +19,18 @@ public class FallingObject : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             print("fall on player");
+            RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
+
+            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
+            {
+
+                //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+                print("데미지로 전환");
+                RespawnManager.Instance.OnGameOver.Invoke();
+            }
+            
+            //RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.DamageBased);
+            //RespawnManager.Instance.OnGameOver.Invoke();
         }
 
         print("false");

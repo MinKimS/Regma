@@ -12,7 +12,7 @@ public class PlayerFallingController : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
 
-    public Chmovingbath movingBath;
+    //public Chmovingbath movingBath;
     public Chmoving moving;
 
     public Damaging damaging;
@@ -58,15 +58,16 @@ public class PlayerFallingController : MonoBehaviour
             print(anim);
         }
 
-        if(movingBath != null)
-        {
-            if (movingBath.isGround && isJump)
-            {
-                rb.gravityScale = 1f;
-                isJump = false;
-                isNoFallingDamage = false;
-            }
-        }
+        //if(movingBath != null)
+        //{
+        //    if (movingBath.isGround && isJump)
+        //    {
+        //        rb.gravityScale = 1f;
+        //        isJump = false;
+        //        isNoFallingDamage = false;
+        //    }
+        //}
+
         if(moving != null)
         {
             if (moving.isGround && isJump)

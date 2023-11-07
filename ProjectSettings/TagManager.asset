@@ -23,6 +23,8 @@ TagManager:
   - RandMob
   - HidingPoint
   - Pos
+  - water
+  - FallingClothes
   layers:
   - Default
   - TransparentFX

@@ -115,7 +115,7 @@ public class Chmovingbath : MonoBehaviour
 
                 if (isJumpingWithMovement)
                 {
-                    print("dd");
+                    
                     animator.SetBool("walk", false);
                 }
             }

@@ -26,7 +26,11 @@ public class UpdateRespawnPoint : MonoBehaviour
                     RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
                     Debug.Log($"리스폰 위치 갱신함 : {transform.position}");
                 }
+
+               
             }
+
+            //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
             yield return new WaitForSeconds(routineSpeed);
         }
     }

@@ -7,6 +7,7 @@ public class TriggerRespawnPoint : MonoBehaviour
 {
     [SerializeField] Transform targetPosition;
     [SerializeField] bool isTargetMyself = true;
+    [SerializeField] Damaging damageCount;
 
     private void Awake()
     {
@@ -18,12 +19,28 @@ public class TriggerRespawnPoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.MobBased);
-            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(targetPosition);
-            
+            RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.MobBased);
 
+            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.MobBased)
+            {
+                RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(targetPosition);
+            }
+            // Destroy(this.gameObject);
+
+            if (damageCount.GetDamage() == 3)
+            {
+                print("±Í½ÅÀÌ¶û Ãæµ¹ + µ¥¹ÌÁö 3¹ø");
+                RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
+            }
         }
-        // Destroy(this.gameObject);
-            
+
+        
+
+
+    }
+
+    private void Update()
+    {
+        
     }
 }

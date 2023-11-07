@@ -6,6 +6,7 @@ public class OverMng : MonoBehaviour
 {
     [SerializeField] private SaveLoad theSaveNLoad;
     [SerializeField] private GameObject go_BaseUI;
+    [SerializeField] private RespawnManager respawnManager;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,19 @@ public class OverMng : MonoBehaviour
     public void OnClickReStart()
     {
         //theSaveNLoad.SaveData();
-        RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+        //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+        //respawnManager.OnUpdateRespawnPoint.Invoke(respawnManager.respawnPosition);
+
+        if (respawnManager != null && respawnManager.respawnPosition != null) // Null 체크를 추가하여 오류 방지
+        {
+            respawnManager.OnUpdateRespawnPoint.Invoke(respawnManager.respawnPosition);
+        }
+        else
+        {
+            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+            Debug.LogWarning("RespawnManager나 respawnPosition이 null입니다.");
+        }
+
         Time.timeScale = 1f;
         go_BaseUI.SetActive(false);
         Debug.Log("재시작");
