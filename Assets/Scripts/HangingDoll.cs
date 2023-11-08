@@ -7,10 +7,12 @@ public class HangingDoll : MonoBehaviour
     public float fallingSpeed = 3f;
     public Sprite dollSprite;
     SpriteRenderer sp;
-    public Dialogue dlg;
+    public Dialogue[] dlg;
     bool isOkUseSquid = false;
     InteractionObjData interactionObjData;
     public Transform talkEventActivation;
+
+    public GameObject checkBringDollTriggerobj;
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class HangingDoll : MonoBehaviour
             }
             else
             {
-                DialogueManager.instance.PlayDlg(dlg);
+                DialogueManager.instance.PlayDlg(dlg[0]);
             }
         }
     }
@@ -47,7 +49,7 @@ public class HangingDoll : MonoBehaviour
             }
             else
             {
-                DialogueManager.instance.PlayDlg(dlg);
+                DialogueManager.instance.PlayDlg(dlg[0]);
                 TimelineManager.instance.timelineController.SetTimelineEnd();
             }
         }
@@ -85,5 +87,6 @@ public class HangingDoll : MonoBehaviour
         print("carrydoll");
         gameObject.SetActive(false);
         talkEventActivation.gameObject.SetActive(true);
+        checkBringDollTriggerobj.SetActive(false);
     }
 }

@@ -15,15 +15,10 @@ public class MoveAlongThePath : MonoBehaviour
     SpriteRenderer sp;
 
     //for jump
-    Rigidbody2D rb;
-    public float jumpForce = 10f;
-    float lastJumpTime;
-    public float jumpCoolTime = 2f;
     public float fromPosToGroundDist = 0.1f;
     public LayerMask groundLayer;
-    //첫 점프때 바로 점프하게 하기 위해
-    //bool isJumped = false;
-    //public float disToNode;
+
+    public Transform spawnPos;
 
     public bool isTrace = false;
 
@@ -36,8 +31,18 @@ public class MoveAlongThePath : MonoBehaviour
     private void Awake()
     {
         pathFinder = GetComponentInChildren<PathFinder>();
-        rb = GetComponentInChildren<Rigidbody2D>();
         sp = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        transform.position = spawnPos.position;
+        AppearMob();
+    }
+
+    private void OnDisable()
+    {
+        transform.position = spawnPos.position;
     }
 
     private void Start()
@@ -105,31 +110,21 @@ public class MoveAlongThePath : MonoBehaviour
         //jump
         if (isTrace)
         {
-            //Debug.DrawRay(pos.position, Vector2.down, Color.yellow);
-            //bool isOnGround = Physics2D.Raycast(pos.position, Vector2.down, fromPosToGroundDist, groundLayer);
             TraceToTarget();
-
-            
-            //disToNode = (node.transform.position - pos.position).magnitude;
-
-            //점프 기능 일단 꺼둠
-            //if (node.transform.position.y > pos.transform.position.y)
-            //{
-            //    if (Time.time - lastJumpTime >= jumpCoolTime)
-            //    {
-            //        Jump();
-            //    }
-            //}
         }
     }
 
-    void Jump()
-    {
-        rb.AddForce(Vector2.up * jumpForce * 2);
-        lastJumpTime = Time.time;      
-    }
-
     public void AppearMob()
+    {
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+            AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
+            gameObject.SetActive(true);
+            isTrace = true;
+        }
+    }
+    public void AppearMobNoTrace()
     {
         AudioManager.instance.SFXPlay("주방_괴생명체 등장");
         AudioManager.instance.SFXPlay("주방_괴생명체1 음성");

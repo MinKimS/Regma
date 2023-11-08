@@ -13,6 +13,7 @@ public class MobAppear : MonoBehaviour
 
     public bool isMobAppear = false;
     [HideInInspector] public bool isLastMob = false;
+    [HideInInspector] public bool isReadySpawn = true;
 
     private void Awake()
     {
@@ -40,21 +41,7 @@ public class MobAppear : MonoBehaviour
     public void OnCabinet()
     {
         isMobAppear = true;
-        StartCoroutine(AppearOnCabinetInKitchen());
-    }
-
-    IEnumerator AppearOnCabinetInKitchen()
-    {
         mob[1].SetActive(true);
-        Camera.main.GetComponent<CameraController>().target = mob[1].transform;
-        vCam.Follow = mob[1].transform;
-        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
-        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        DialogueManager.instance.PlayDlg(dlg[1]);
-        while (!Input.GetKeyDown(KeyCode.Return))
-        {
-            yield return null;
-        }
         ActivateTrace(1);
     }
 
@@ -62,21 +49,9 @@ public class MobAppear : MonoBehaviour
     {
         isLastMob = true;
         isMobAppear = true;
-        StartCoroutine(AppearLastInKitchen());
-    }
-
-    IEnumerator AppearLastInKitchen()
-    {
         mob[2].SetActive(true);
-        Camera.main.GetComponent<CameraController>().target = mob[2].transform;
-        vCam.Follow = mob[2].transform;
-        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
-        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        DialogueManager.instance.PlayDlg(dlg[2]);
-        while (!Input.GetKeyDown(KeyCode.Return))
-        {
-            yield return null;
-        }
+        mob[2].transform.position = PlayerInfoData.instance.playerTr.position + Vector3.right * 6f;
+        isReadySpawn = false;
         ActivateTrace(2);
     }
 

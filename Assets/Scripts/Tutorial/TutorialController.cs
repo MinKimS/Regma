@@ -29,6 +29,11 @@ public class TutorialController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
+
         TutorialArea = GetComponentInChildren<Transform>();
     }
 

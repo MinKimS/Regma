@@ -8,8 +8,6 @@ public class TimelineManager : MonoBehaviour
 {
     public static TimelineManager instance;
     public TimelineController timelineController;
-    //Animator playerAnim;
-    //public Animator cutSceneAppearence;
 
     public enum TlState
     {
@@ -37,5 +35,10 @@ public class TimelineManager : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
+
+        if(LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
     }
 }

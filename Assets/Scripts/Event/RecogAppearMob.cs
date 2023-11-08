@@ -21,7 +21,7 @@ public class RecogAppearMob : MonoBehaviour
         if ((aTag == ActivateTag.Player && collision.CompareTag("Player") || aTag == ActivateTag.Mob && collision.CompareTag("Mob")) && !appear.isMobAppear)
         {
             gmEvent.Raise();
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

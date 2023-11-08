@@ -22,6 +22,11 @@ public class PlayerInfoData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Door : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class Door : MonoBehaviour
     public void SetAnimKnock(bool value)
     {
         anim.SetBool("isKnock", value);
+        AudioManager.instance.SFXPlayLoop("Game Sound_Door konck");
     }
 
     public void MoveNextStage()
@@ -63,6 +65,9 @@ public class Door : MonoBehaviour
         {
             print("move next stage");
             LoadingManager.LoadScene("Kitchen");
+            anim.SetBool("isKnock", false);
+            AudioManager.instance.StopSFXAll();
+            AudioManager.instance.SFXPlay("Game Sound_Door open");
         }
     }
 

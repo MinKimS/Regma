@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 using static UnityEngine.Rendering.VolumeComponent;
 
 public class SmartphoneManager : MonoBehaviour
@@ -35,6 +34,11 @@ public class SmartphoneManager : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
+
+        if (LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
 
         itemUsage = GetComponent<InventoryItemUsage>();
         phone = GetComponentInChildren<Phone>();

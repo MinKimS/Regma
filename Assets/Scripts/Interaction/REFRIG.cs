@@ -10,6 +10,8 @@ public class REFRIG : MonoBehaviour
     public Transform mobAppear;
     public Transform respawnPoint_Refrig;
     public Transform talkStarting;
+    public MoveAlongThePath mob;
+    public MobAppear appear;
 
     bool isOpened = false;
     bool isActivateEvent = false;
@@ -35,11 +37,16 @@ public class REFRIG : MonoBehaviour
             //어댑터 고장내기 전
             if (!rPower.isBroken)
             {
-                DialogueManager.instance.PlayDlg(iod.objDlg[0]);
                 if(!isActivateEvent)
                 {
                     isActivateEvent = true;
+                    DialogueManager.instance.PlayDlg(iod.objDlg[0]);
                     StartCoroutine(ReadyToMobAppear());
+                }
+                else
+                {
+                    mob.AppearMob();
+                    respawnPoint_Refrig.gameObject.SetActive(true);
                 }
             }
             //어댑터 고장낸 후
@@ -47,19 +54,17 @@ public class REFRIG : MonoBehaviour
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[1]);
                 SmartphoneManager.instance.SetInvenItem(squid);
+                AudioManager.instance.SFXPlay("Game Sound_Door open");
                 isOpened = true;
                 iod.IsOkInteracting = false;
                 StartCoroutine(GetSquid());
+                respawnPoint_Refrig.gameObject.SetActive(true);
             }
         }
     }
 
     public void DlgStart()
     {
-        if (isOpened)
-        {
-        }
-        print("test");
         SmartphoneManager.instance.phone.StartTalk();
     }
 
@@ -73,8 +78,20 @@ public class REFRIG : MonoBehaviour
     {
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         TimelineManager.instance.timelineController.SetTimelineStart("GetSquid");
+        AudioManager.instance.SFXPlay("Game Sound_Item get");
         yield return new WaitWhile(() => TimelineManager.instance._Tlstate != TimelineManager.TlState.End);
         talkStarting.gameObject.SetActive(true);
         talkStarting.position = PlayerInfoData.instance.playerTr.position;
+    }
+    private void Update()
+    {
+        if (appear.isLastMob && !RespawnManager.isGameOver && !appear.mob[2].gameObject.activeSelf && !appear.isReadySpawn && Vector2.Distance(PlayerInfoData.instance.playerTr.position, RespawnManager.Instance.respawnPosition.position) > 0.02f)
+        {
+            respawnPoint_Refrig.gameObject.SetActive(true);
+            appear.isReadySpawn = true;
+            talkStarting.position = RespawnManager.Instance.respawnPosition.position;
+            talkStarting.gameObject.SetActive(true);
+            appear.isMobAppear = false;
+        }
     }
 }

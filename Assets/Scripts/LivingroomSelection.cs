@@ -19,18 +19,12 @@ public class LivingroomSelection : MonoBehaviour
         print("nooooooise");
     }
 
-    public void SelectionOne()
+    public void StartErase()
     {
-        StartCoroutine(StartErase());
-        print("select one");
-    }
-    public void SelectionTow()
-    {
-        StartCoroutine(StartErase());
-        print("select two");
+        StartCoroutine(IEStartErase());
     }
 
-    IEnumerator StartErase()
+    IEnumerator IEStartErase()
     {
         DialogueManager.instance.PlayDlg();
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);

@@ -27,7 +27,8 @@ public class PlayerMobRecog : MonoBehaviour
                 {
                     print("be found player");
                     AudioManager.instance.SFXPlay("주방_괴생명체1 도원발견");
-
+                    AudioManager.instance.StopSFX("주방_괴생명체1 도원 추격");
+                    collision.GetComponentInParent<MoveAlongThePath>().gameObject.SetActive(false);
                     // 충돌 시 안전한 위치로 주인공을 되돌림
                   //  transform.position = lastSafePosition;
                 }

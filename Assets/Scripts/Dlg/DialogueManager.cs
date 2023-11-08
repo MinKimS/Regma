@@ -89,6 +89,11 @@ public class DialogueManager : MonoBehaviour
         }
         else Destroy(gameObject);
 
+        if (LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
+
         //대화창 텍스트 초기설정
         dlgText.text = "";
         speaker.text = "";

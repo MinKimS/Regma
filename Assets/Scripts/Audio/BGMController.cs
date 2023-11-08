@@ -36,6 +36,7 @@ public class BGMController : MonoBehaviour
 
         switch (sc.name)
         {
+            case "Title":
             case "SampleScene":
             case "Bathroom":
             case "Bath":

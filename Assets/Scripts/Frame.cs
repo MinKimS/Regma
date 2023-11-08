@@ -19,6 +19,7 @@ public class Frame : MonoBehaviour
     public Dialogue needToCloseDlg;
 
     public BoxCollider2D[] bc;
+    public GameEvent[] selectionEvents;
 
     private void Awake()
     {
@@ -83,10 +84,12 @@ public class Frame : MonoBehaviour
                 if (isOnlyChild)
                 {
                     sr.sprite = sp[0];
+                    selectionEvents[0].Raise();
                 }
                 else
                 {
                     sr.sprite = sp[1];
+                    selectionEvents[1].Raise();
                 }
 
                 VibrationHouse();

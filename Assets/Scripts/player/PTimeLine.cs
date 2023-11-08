@@ -24,6 +24,9 @@ public class PTimeLine : MonoBehaviour
     //����� ������ ��� �����ϰ�
     public REFRIGPower power;
 
+    bool isActive = false;
+    public MoveAlongThePath mob;
+
     void Start()
     {
         
@@ -43,36 +46,31 @@ public class PTimeLine : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                print("충돌");
-                Refrianim.SetBool("OFF", true);
-                Interaction1 = true;
-                refri2Object.SetActive(true);
-                power.isBroken = true;
-                if(mobAppear != null)
+                if(!isActive)
                 {
-                    mobAppear.SetActive(true);
-                    respawnPoint_Power.SetActive(true);
+                    print("충돌");
+                    Refrianim.SetBool("OFF", true);
+                    Interaction1 = true;
+                    refri2Object.SetActive(true);
+                    power.isBroken = true;
+                    if (mobAppear != null)
+                    {
+                        mobAppear.SetActive(true);
+                        respawnPoint_Power.SetActive(true);
+                    }
+                    isActive = true;
                 }
-
-
+                else
+                {
+                    mob.AppearMob();
+                    respawnPoint_Power.gameObject.SetActive(true);
+                }
             }
-
-            
-
-
         }
-
-
-
-
     }
 
     public bool IsInteractionCompleted()
     {
         return Interaction1;
     }
-
-
-   
-
 }

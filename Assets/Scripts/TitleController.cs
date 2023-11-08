@@ -16,7 +16,7 @@ public class TitleController : MonoBehaviour
     void Update()
     {
         //위의 버튼으로 이동
-        if(Input.GetAxisRaw("Vertical") > 0)
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if(btnSelectIdx < btnLists.Length-1)
             {
@@ -25,7 +25,7 @@ public class TitleController : MonoBehaviour
             }
         }
         //아래의 버튼으로 이동
-        if(Input.GetAxisRaw("Vertical") < 0)
+        if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             if(btnSelectIdx > 0)
             {
