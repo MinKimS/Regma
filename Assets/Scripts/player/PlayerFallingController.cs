@@ -40,41 +40,32 @@ public class PlayerFallingController : MonoBehaviour
             isCheckInTheAir = false;
             
             //낙뎀 부하 여부
-            if(Mathf.Abs(jumpedPosY-transform.position.y) > damageHeight)
+            if(!isNoFallingDamage && Mathf.Abs(jumpedPosY-transform.position.y) > damageHeight)
             {
                 Debug.LogWarning("DAMAGE!!!!");
                 damaging.Damage();
             }
+            isNoFallingDamage = false;
         }
 
         //애니메이션 전환 넣기
         //낙뎀 막는거 넣기
         //천천히 떨어지기
-        if(isNoFallingDamage && Input.GetKeyUp(KeyCode.Space))
-        {
+        if (isNoFallingDamage && Input.GetKeyUp(KeyCode.Space))
+        { 
             rb.gravityScale = 0.2f;
             rb.velocity = Vector2.zero;
             isJump = true;
-            print(anim);
+            anim.SetBool("isJumpWithBlanket", true);
         }
-
-        //if(movingBath != null)
-        //{
-        //    if (movingBath.isGround && isJump)
-        //    {
-        //        rb.gravityScale = 1f;
-        //        isJump = false;
-        //        isNoFallingDamage = false;
-        //    }
-        //}
 
         if(moving != null)
         {
             if (moving.isGround && isJump)
             {
-                rb.gravityScale = 1f;
+                rb.gravityScale = 5f;
                 isJump = false;
-                isNoFallingDamage = false;
+                anim.SetBool("isJumpWithBlanket", false);
             }
         }
         

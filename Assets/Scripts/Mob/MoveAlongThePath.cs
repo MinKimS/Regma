@@ -21,6 +21,7 @@ public class MoveAlongThePath : MonoBehaviour
     public Transform spawnPos;
 
     public bool isTrace = false;
+    bool isReadyToSpawn = false;
 
     public bool IsTrace
     {
@@ -37,12 +38,19 @@ public class MoveAlongThePath : MonoBehaviour
     private void OnEnable()
     {
         transform.position = spawnPos.position;
-        AppearMob();
+        if (isReadyToSpawn)
+        {
+            AppearMob();
+        }
+        isReadyToSpawn = true;
     }
 
     private void OnDisable()
     {
-        transform.position = spawnPos.position;
+        if(spawnPos != null)
+        {
+            transform.position = spawnPos.position;
+        }
     }
 
     private void Start()

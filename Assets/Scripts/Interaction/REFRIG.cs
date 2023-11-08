@@ -54,7 +54,7 @@ public class REFRIG : MonoBehaviour
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[1]);
                 SmartphoneManager.instance.SetInvenItem(squid);
-                AudioManager.instance.SFXPlay("Game Sound_Door open");
+                AudioManager.instance.SFXPlay("주방_냉장고 문 열림");
                 isOpened = true;
                 iod.IsOkInteracting = false;
                 StartCoroutine(GetSquid());

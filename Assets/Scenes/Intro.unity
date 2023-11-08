@@ -324,7 +324,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9f06e64669f593b43aeb887e78696e98, type: 3}
   - {fileID: 21300000, guid: db08b4c4bd5e40744bc8a8620e12fbfa, type: 3}
   dlgText: {fileID: 1800403376}
-  typingSpeed: 0.05
+  typingSpeed: 0.02
 --- !u!114 &853844258
 MonoBehaviour:
   m_ObjectHideFlags: 0

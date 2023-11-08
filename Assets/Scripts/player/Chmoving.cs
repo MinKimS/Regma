@@ -126,7 +126,7 @@ public class Chmoving : MonoBehaviour
         if (isJumping)
         {
             StopWalkSound();
-            rb.gravityScale = 5.0f;
+            //rb.gravityScale = 5.0f;
         }
         else if (!isJumpingWithMovement && isGround)
         {
@@ -135,7 +135,7 @@ public class Chmoving : MonoBehaviour
         else if (!isGround)
         {
             animator.SetBool("walk", false);
-            rb.gravityScale = 5.0f;
+            //rb.gravityScale = 5.0f;
         }
 
         if (MovinginWater)

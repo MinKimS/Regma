@@ -58,42 +58,45 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        //변경하고자 하는 세팅 선택
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        if(menuPanel.gameObject.activeSelf)
         {
-            if(btnIdx > 0)
+            //변경하고자 하는 세팅 선택
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                SetBtn(false);
+                if (btnIdx > 0)
+                {
+                    SetBtn(false);
+                }
             }
-        }
-        else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-        {
-            if(btnIdx < btnList.Length-1)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
-                SetBtn(true);
+                if (btnIdx < btnList.Length - 1)
+                {
+                    SetBtn(true);
+                }
             }
-        }
-        //선택한 세팅 변경
-        else if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            SetSetting(false);
-        }
-        else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            SetSetting(true);
-        }
+            //선택한 세팅 변경
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                SetSetting(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                SetSetting(true);
+            }
 
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            if(btnIdx == 2)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                SetShowOrHideHowToControlling();
+                if (btnIdx == 2)
+                {
+                    SetShowOrHideHowToControlling();
+                }
+                else if (btnIdx == btnList.Length - 1)
+                {
+                    menuPanel.gameObject.SetActive(false);
+                    LoadingManager.LoadScene("Title");
+                }
             }
-            else if(btnIdx == btnList.Length-1)
-            {
-                menuPanel.gameObject.SetActive(false);
-                LoadingManager.LoadScene("Title");
-            }    
         }
     }
 

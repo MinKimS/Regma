@@ -10,7 +10,7 @@ public class Television : MonoBehaviour
     public Light2D tvLight;
 
     public Sprite[] channelSprite;
-    int channelIndex = 0;
+    public GlitchController glitch;
     public InteractionObjData interactionData;
     bool isOnTv = false;
     public Door door;
@@ -29,65 +29,6 @@ public class Television : MonoBehaviour
         interactionData.IsOkInteracting = true;
         tvLight.intensity = 0f;
     }
-
-    private void Update()
-    {
-        if (isOnTv)
-        {
-            //if (Input.GetKeyDown(KeyCode.UpArrow))
-            //{
-            //    channelIndex++;
-            //    if (channelIndex >= channelSprite.Length)
-            //    {
-            //        channelIndex = 0;
-            //        //PlayTvSound();
-            //    }
-            //    print(channelIndex);
-
-            //}
-            //else if (Input.GetKeyDown(KeyCode.DownArrow))
-            //{
-            //    channelIndex--;
-            //    if (channelIndex < 0)
-            //    {
-            //        channelIndex = channelSprite.Length - 1;
-                    
-            //    }
-            //    print(channelIndex);
-
-            //}
-            //ChgColor();
-
-            //if (channelIndex >= 2)
-            //{
-            //    AudioManager.instance.StopSFX("Game Sound_TV");
-            //    isOnTv = false;
-            //    DialogueManager.instance.PlayDlg(dlg[1]);
-            //    door.checkWorkDo++;
-            //    door.isOpen = true;
-            //    interactionData.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            //}
-        }
-    }
-
-    //public void ChgColor()
-    //{
-    //    switch(channelIndex)
-    //    {
-    //        case 0:
-    //            tvLight.color = Color.white;
-    //            break;
-    //        case 1:
-    //            tvLight.color = Color.green;
-    //            break;
-    //        case 2:
-    //            tvLight.color = Color.blue;
-    //            break;
-    //        default:
-    //            tvLight.color = Color.red;
-    //            break;
-    //    }
-    //}
 
     // 책 읽기 전 TV 켜기
     public void TVOnBeforeReadingDiary()
@@ -111,6 +52,7 @@ public class Television : MonoBehaviour
     // 책 읽은 후 TV 켜기
     public void TVOnAfterReadingDairy()
     {
+        glitch.SetGlitchActiveTime(1f);
         tvLight.color = Color.red;
         AudioManager.instance.SFXPlay("Game Sound_TV");
         jumpscareEvent.gameObject.SetActive(false);

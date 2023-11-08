@@ -51,12 +51,15 @@ public class Water : MonoBehaviour
             targetRb.velocity = Vector2.down;
             targetRb.gravityScale = 0f;
             print("Over____");
-            animator.SetTrigger("DieInWater");
             StartCoroutine(GameOverAfterDelay(0.2f));
             //RespawnManager.Instance.OnGameOverScene.Invoke();
             
         }
 
+        if(targetPos.position.y < drownPosY+6f)
+        {
+            animator.SetTrigger("DieInWater");
+        }
 
     }
 
