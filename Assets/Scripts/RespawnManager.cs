@@ -14,9 +14,11 @@ public class RespawnManager : MonoBehaviour
     public static RespawnManager Instance;
     public UnityEvent<Transform> OnUpdateRespawnPoint = new UnityEvent<Transform>();
     public UnityEvent OnGameOver = new UnityEvent();
+    public UnityEvent OnGameOverScene = new UnityEvent();
     public Transform respawnPosition;
     [SerializeField] Chmoving chmoving;
     public static bool isGameOver = false;
+    public static bool isGameOverScene = false;
 
 
     void Awake()
@@ -35,13 +37,20 @@ public class RespawnManager : MonoBehaviour
         OnGameOver.AddListener(() =>
         {
             isGameOver = true;
-            //GoToGameOverScene();
-            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPosition, 0.1f));
             
+            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPosition, 0.1f));
             
         });
 
-        //ChangeUpdatingMethod(ChangeMethod.DamageBased);
+        OnGameOverScene.AddListener(() => // 욕조맵에서 다시 리셋용
+        {
+            isGameOver = true;
+            GoToGameOverScene();
+
+        });
+
+
+
     }
 
     public void ChangeUpdatingMethod(ChangeMethod type)
@@ -49,34 +58,17 @@ public class RespawnManager : MonoBehaviour
         currentMethod = type;
         print(type);
 
-        //if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
-        //{
-        //    RespawnManager.Instance.currentMethod = RespawnManager.ChangeMethod.MobBased;
-        //}
-        //else
-        //{
-        //    RespawnManager.Instance.currentMethod = RespawnManager.ChangeMethod.DamageBased;
-        //}
 
-        //게임 오버 시 호출하여 다른 씬으로 전환하는 함수
-        //void GoToGameOverScene()
-        //{
-        //    // 여기에 게임 오버 시 전환할 씬의 이름을 입력합니다.
-        //    string gameOverSceneName = "GameOverScene"; // 예시: 실제 씬 이름으로 변경
-
-        //    // 실제 씬 이름으로 변경된 부분입니다.
-        //    SceneManager.LoadScene(gameOverSceneName);
-        //}
-
-        //public void OnClickRestart(Vector3 newRespawnPosition)
-        //{
-        //    // 새로운 리스폰 위치로 설정
-        //    respawnPosition.position = newRespawnPosition;
-        //    // print(respawnPosition); // 리스폰 위치 업데이트 확인용 print
-
-        //    // 이벤트 호출
-        //    OnUpdateRespawnPoint.Invoke(respawnPosition);
-        //}
 
     }
+
+    void GoToGameOverScene()
+    {
+        // 게임 오버 시 전환할 씬의 이름을 입력합니다.
+        string gameOverSceneName = "Bath"; // 실제 씬 이름으로 변경
+
+        // 실제 씬 이름으로 변경된 부분입니다.
+        SceneManager.LoadScene(gameOverSceneName);
+    }
+
 }

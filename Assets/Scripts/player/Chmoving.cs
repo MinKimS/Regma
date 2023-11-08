@@ -197,19 +197,21 @@ public class Chmoving : MonoBehaviour
         }
 
         if (inWater)
+        {
             //animator.SetBool("Wet", true);
             //print(inWater);
-            print(MovinginWater);
-
+            //print(MovinginWater);
+        }
         else
+        {
             animator.SetBool("walk", isMoving);
+        }
 
         //animator.SetBool("wet", inWater);
         animator.SetBool("jump", isJumping);
 
         // 발 젖는 애니메이션
         //animator.SetBool("Wet", MovinginWater);
-
 
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
         animator.SetBool("isPush", animator.GetBool("isPush"));

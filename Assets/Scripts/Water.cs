@@ -10,6 +10,7 @@ public class Water : MonoBehaviour
 
     public Transform targetPos;
     public float drownPosY;
+    public Animator animator;
 
     //익사여부
     [HideInInspector] public bool isDrwon = false;
@@ -50,9 +51,19 @@ public class Water : MonoBehaviour
             targetRb.velocity = Vector2.down;
             targetRb.gravityScale = 0f;
             print("Over____");
-
-            //RespawnManager.Instance.OnGameOver.Invoke();
+            animator.SetTrigger("DieInWater");
+            StartCoroutine(GameOverAfterDelay(0.2f));
+            //RespawnManager.Instance.OnGameOverScene.Invoke();
+            
         }
+
+
+    }
+
+    IEnumerator GameOverAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        RespawnManager.Instance.OnGameOverScene.Invoke(); // 게임 오버 씬으로 전환
     }
 
 
