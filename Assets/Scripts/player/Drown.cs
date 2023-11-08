@@ -5,6 +5,7 @@ using UnityEngine;
 public class Drown : MonoBehaviour
 {
     bool drown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class Drown : MonoBehaviour
             // 이 때, 필요에 따라 다른 작업을 수행할 수 있습니다.
             Debug.Log("Player has drowned!");
             drown = true;
+
             RespawnManager.Instance.OnGameOver.Invoke();
         }
     }

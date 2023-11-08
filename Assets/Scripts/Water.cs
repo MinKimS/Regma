@@ -51,7 +51,7 @@ public class Water : MonoBehaviour
             targetRb.gravityScale = 0f;
             print("Over____");
 
-            //RespawnManager.Instance.OnGameOver.Invoke();
+            RespawnManager.Instance.OnGameOver.Invoke();
         }
     }
 
