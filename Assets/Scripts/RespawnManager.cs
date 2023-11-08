@@ -14,9 +14,11 @@ public class RespawnManager : MonoBehaviour
     public static RespawnManager Instance;
     public UnityEvent<Transform> OnUpdateRespawnPoint = new UnityEvent<Transform>();
     public UnityEvent OnGameOver = new UnityEvent();
+    public UnityEvent OnGameOverScene = new UnityEvent();
     public Transform respawnPosition;
     [SerializeField] Chmoving chmoving;
     public static bool isGameOver = false;
+    public static bool isGameOverScene = false;
 
 
     void Awake()
@@ -35,13 +37,20 @@ public class RespawnManager : MonoBehaviour
         OnGameOver.AddListener(() =>
         {
             isGameOver = true;
-            //GoToGameOverScene();
-            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPosition, 0.1f));
             
+            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPosition, 0.1f));
             
         });
 
-        //ChangeUpdatingMethod(ChangeMethod.DamageBased);
+        OnGameOverScene.AddListener(() => // 욕조맵에서 다시 리셋용
+        {
+            isGameOver = true;
+            GoToGameOverScene();
+
+        });
+
+
+
     }
 
     public void ChangeUpdatingMethod(ChangeMethod type)
@@ -52,4 +61,14 @@ public class RespawnManager : MonoBehaviour
 
 
     }
+
+    void GoToGameOverScene()
+    {
+        // 게임 오버 시 전환할 씬의 이름을 입력합니다.
+        string gameOverSceneName = "Bath"; // 실제 씬 이름으로 변경
+
+        // 실제 씬 이름으로 변경된 부분입니다.
+        SceneManager.LoadScene(gameOverSceneName);
+    }
+
 }

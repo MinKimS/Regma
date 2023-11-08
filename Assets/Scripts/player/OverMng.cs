@@ -23,6 +23,8 @@ public class OverMng : MonoBehaviour
             print("게임오버");
             Time.timeScale = 0f;
         }
+
+        
     }
 
     public void OnClickReStart()

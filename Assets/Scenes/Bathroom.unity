@@ -9127,6 +9127,9 @@ MonoBehaviour:
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
+  OnGameOverScene:
+    m_PersistentCalls:
+      m_Calls: []
   respawnPosition: {fileID: 0}
   chmoving: {fileID: 1254502955}
 --- !u!114 &1254502965
@@ -9141,6 +9144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287b2c96d3e483346af3a676a0d6a02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1254502953}
 --- !u!1 &1254596048
 GameObject:
   m_ObjectHideFlags: 0
