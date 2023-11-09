@@ -28,7 +28,7 @@ public class CameraShakeTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg)
+        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg) // 꽃 관련 일기장을 읽고 나서 흔들리기
         {
             canvasBook.SetActive(true);
             StopAllCoroutines();
