@@ -282,7 +282,7 @@ public class BathMobHand : MonoBehaviour
 
     public IEnumerator GoCatchPlayer(float speed)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         //플레이어에게 가기
         while (Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > 0.1f)
         {

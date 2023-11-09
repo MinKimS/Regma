@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Water : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class Water : MonoBehaviour
     public Transform targetPos;
     public float drownPosY;
     public Animator animator;
+
+    public Volume volume;
+    public VolumeProfile volumeProfile;
+    DepthOfField dph;
+
 
     //익사여부
     [HideInInspector] public bool isDrwon = false;
@@ -28,19 +34,24 @@ public class Water : MonoBehaviour
     }
     public float gmOverWaterLevel;
 
+    private void Start()
+    {
+        volumeProfile = volume.profile;
+        DepthOfField tmp;
+        if (volumeProfile.TryGet(out tmp))
+        {
+            dph = tmp;
+        }
+    }
     void Update()
     {
-        //물 빠지기
-        if (isDrainageHoleOpen)
+        if(targetPos.position.y < -3)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, waterDes), drainSpeed * Time.deltaTime);
+            dph.focalLength.value = 18f;
         }
-
-        if (transform.position.y < gmOverWaterLevel)
+        else
         {
-            print("over");
-            isGameOverWaterLevel = true;
-
+            dph.focalLength.value = 1f;
         }
 
         //물에 빠지면 게임오버
