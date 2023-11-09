@@ -72,10 +72,10 @@ public class BathMobMovement : MonoBehaviour
             data.IsMobTryCatch = false;
             MoveIntoTheWater();
             yield return waitAfterInWater;
-            MoveOutOfTheWater();
+            MoveOutOfTheWater(0.4f);
             yield return waitAfteroutWater;
         }
-        MoveOutOfTheWater();
+        MoveOutOfTheWater(0.4f);
     }
 
     //물 안으로 이동
@@ -95,20 +95,20 @@ public class BathMobMovement : MonoBehaviour
     }
 
     //물 밖으로 이동
-    public void MoveOutOfTheWater()
+    public void MoveOutOfTheWater(float speed)
     {
         AudioManager.instance.SFXPlay("주방_개수대 입장", 0.05f, 0.7f);
         if (data.state != BathMobData.State.RuningWild)
         {
             data.state = BathMobData.State.OutWater;
         }
-        StartCoroutine(IEMoveOutOfTheWater());
+        StartCoroutine(IEMoveOutOfTheWater(speed));
     }
-    IEnumerator IEMoveOutOfTheWater()
+    IEnumerator IEMoveOutOfTheWater(float speed)
     {
         while (Mathf.Abs(transform.position.y - moveOutWaterPos.position.y) > 0.02f && data.state == BathMobData.State.OutWater)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, moveOutWaterPos.position.y), 0.2f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, moveOutWaterPos.position.y), speed);
             yield return null;
         }
         transform.position = new Vector2(transform.position.x, moveOutWaterPos.position.y);

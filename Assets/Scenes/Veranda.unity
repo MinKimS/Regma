@@ -5423,8 +5423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553451139}
-  - component: {fileID: 553451138}
-  - component: {fileID: 553451137}
+  - component: {fileID: 553451140}
   m_Layer: 8
   m_Name: MobPos (0)
   m_TagString: Untagged
@@ -5432,42 +5431,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &553451137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553451136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e6a203d10389e4cbb81e5ef5f348fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopTraceTime: 2
-  noRecogDis: 10
-  pHide: {fileID: 157110312}
-  eventWhenMobDisappear: {fileID: 11400000, guid: 22be2b41f052b164193b473a7227d37a, type: 2}
-  appear: {fileID: 0}
---- !u!114 &553451138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553451136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db0d7197848131a4ba1d8212ec6da3e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traceSpeed: 9
-  fromPosToGroundDist: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  spawnPos: {fileID: 920595619}
-  isTrace: 1
 --- !u!4 &553451139
 Transform:
   m_ObjectHideFlags: 0
@@ -5484,6 +5447,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &553451140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553451136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da966ac731df92f46934ab0174b0c8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {fileID: 920595619}
+  mob: {fileID: 1682071325}
+  traceSpeed: 10
 --- !u!1 &568665983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7265,17 +7243,29 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553451138}
-        m_TargetAssemblyTypeName: MoveAlongThePath, Assembly-CSharp
-        m_MethodName: AppearMob
-        m_Mode: 1
+      - m_Target: {fileID: 553451140}
+        m_TargetAssemblyTypeName: VerandaMob, Assembly-CSharp
+        m_MethodName: SetMobVisible
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 553451140}
+        m_TargetAssemblyTypeName: VerandaMob, Assembly-CSharp
+        m_MethodName: SetIsTrace
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!61 &813965544
 BoxCollider2D:
@@ -13270,7 +13260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &892505072
@@ -13693,7 +13683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -14434,7 +14424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -19936,7 +19926,7 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553451138}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MoveAlongThePath, Assembly-CSharp
         m_MethodName: AppearMob
         m_Mode: 1
@@ -25937,7 +25927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638592634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 245.5, y: 11.8, z: 0}
+  m_LocalPosition: {x: 234.9, y: 11.8, z: 0}
   m_LocalScale: {x: 3.5615, y: 3.5615, z: 3.5615}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26281,7 +26271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -26456,8 +26446,6 @@ GameObject:
   - component: {fileID: 1682071330}
   - component: {fileID: 1682071329}
   - component: {fileID: 1682071328}
-  - component: {fileID: 1682071327}
-  - component: {fileID: 1682071326}
   m_Layer: 8
   m_Name: Mob
   m_TagString: Mob
@@ -26480,35 +26468,6 @@ Transform:
   m_Father: {fileID: 553451139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1682071326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682071324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b6626525856ae4aa339940598eed9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traceRange: 5
-  traceStopRange: 10
-  way: 2
---- !u!114 &1682071327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682071324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f05dc186a55fb4f82c9ef50ab323a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPos: {fileID: 157110323}
-  pos: {fileID: 553451139}
 --- !u!50 &1682071328
 Rigidbody2D:
   serializedVersion: 4
@@ -30356,10 +30315,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 553451138}
-        m_TargetAssemblyTypeName: MoveAlongThePath, Assembly-CSharp
-        m_MethodName: StopMob
-        m_Mode: 1
+      - m_Target: {fileID: 553451140}
+        m_TargetAssemblyTypeName: VerandaMob, Assembly-CSharp
+        m_MethodName: SetIsTrace
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

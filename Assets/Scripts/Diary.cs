@@ -72,7 +72,7 @@ public class Diary : MonoBehaviour
         {
             DialogueManager.instance.PlayDlg(dlg);
             isAfterDlg = true;
-            SmartphoneManager.instance.itemUsage.isUsingItem = false;
         }
+        SmartphoneManager.instance.itemUsage.isUsingItem = false;
     }
 }

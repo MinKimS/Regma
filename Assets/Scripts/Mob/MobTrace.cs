@@ -11,6 +11,7 @@ public class MobTrace : MonoBehaviour
     public float traceStopRange = 10f;
     float disToTarget;
     Transform traceTarget;
+
     public enum MoveWay{
         None,
         RangeTrace,
