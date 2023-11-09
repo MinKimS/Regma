@@ -211,7 +211,7 @@ MonoBehaviour:
   toyIdxToRunWild: 4
   playerHide: {fileID: 561195408}
   isTracingStart: 0
-  animator: {fileID: 0}
+  animator: {fileID: 18965508}
 --- !u!4 &18965507
 Transform:
   m_ObjectHideFlags: 0
@@ -13563,7 +13563,7 @@ MonoBehaviour:
   isMoveHand: 0
   isCatchPlayer: 0
   bathToy: {fileID: 0}
-  moveSpeed: 23
+  moveSpeed: 30
   dragSpeed: 30
   isCatchSomething: 0
   isTargetPlayer: 0
