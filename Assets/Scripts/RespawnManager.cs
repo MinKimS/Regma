@@ -66,7 +66,7 @@ public class RespawnManager : MonoBehaviour
     {
         // 게임 오버 시 전환할 씬의 이름을 입력합니다.
         string gameOverSceneName = "Bath"; // 실제 씬 이름으로 변경
-
+        AudioManager.instance.StopSFXAll();
         // 실제 씬 이름으로 변경된 부분입니다.
         SceneManager.LoadScene(gameOverSceneName);
     }

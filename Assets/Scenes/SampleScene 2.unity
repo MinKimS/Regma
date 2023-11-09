@@ -19198,7 +19198,6 @@ GameObject:
   - component: {fileID: 1047426054}
   - component: {fileID: 1047426059}
   - component: {fileID: 1047426058}
-  - component: {fileID: 1047426057}
   - component: {fileID: 1047426056}
   - component: {fileID: 1047426060}
   m_Layer: 7
@@ -19292,25 +19291,6 @@ MonoBehaviour:
   isOpen: 0
   diaryEvent: {fileID: 0}
   eventManager: {fileID: 0}
---- !u!114 &1047426057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047426053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 921f2aa1fe9be0b4da0f2d684ac8671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gmEvent:
-  - {fileID: 11400000, guid: b624fdb01142c9d4cafda1a7a14aceb5, type: 2}
-  cancelEvent:
-  - {fileID: 11400000, guid: 93ebd279e9fca0b4faa374c53e5d7bae, type: 2}
-  isOkInteracting: 1
-  isRunInteraction: 0
-  objDlg: []
 --- !u!61 &1047426058
 BoxCollider2D:
   m_ObjectHideFlags: 0

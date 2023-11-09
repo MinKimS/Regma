@@ -246,6 +246,7 @@ public class Chmoving : MonoBehaviour
     public IEnumerator RespawnCharacterAfterWhile(Transform targetPosition, float delay)
     { 
         yield return new WaitForSeconds(delay);
+        AudioManager.instance.StopSFXAll();
         transform.position = targetPosition.position;
     }
 

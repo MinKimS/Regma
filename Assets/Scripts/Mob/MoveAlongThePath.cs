@@ -142,5 +142,8 @@ public class MoveAlongThePath : MonoBehaviour
     public void StopMob()
     {
         isTrace = false;
+        AudioManager.instance.StopSFX("주방_괴생명체 등장");
+        AudioManager.instance.StopSFX("주방_괴생명체1 음성");
+        AudioManager.instance.StopSFX("주방_괴생명체 등장");
     }
 }

@@ -97,7 +97,8 @@ public class BathMobMovement : MonoBehaviour
     //물 밖으로 이동
     public void MoveOutOfTheWater()
     {
-        if(data.state != BathMobData.State.RuningWild)
+        AudioManager.instance.SFXPlay("주방_개수대 입장", 0.05f, 0.7f);
+        if (data.state != BathMobData.State.RuningWild)
         {
             data.state = BathMobData.State.OutWater;
         }

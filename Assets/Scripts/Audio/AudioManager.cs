@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,13 +22,15 @@ public class AudioManager : MonoBehaviour
     }
 
     //효과임 재생
-    public void SFXPlay(string sfxName)
+    public void SFXPlay(string sfxName, float volume = 1, float pitch = 1)
     {
         AudioClip clip = FindPlaySFX(sfxName);
         
         if(clip != null)
         {
             SFX[sfxIdx].clip = clip;
+            SFX[sfxIdx].volume = volume;
+            SFX[sfxIdx].pitch = pitch;
             SFX[sfxIdx].PlayOneShot(clip);
             if(++sfxIdx >= SFX.Length)
             {
@@ -73,6 +76,8 @@ public class AudioManager : MonoBehaviour
                 if (SFX[i].clip == clip)
                 {
                     SFX[i].loop = false;
+                    SFX[i].volume = 1f;
+                    SFX[i].pitch = 1f;
                     SFX[i].Stop();
                     SFX[i].clip = null;
                     break;

@@ -17089,6 +17089,7 @@ MonoBehaviour:
   selectionEvents:
   - {fileID: 11400000, guid: c24c1ddea3a79e84e97d37e7aa66ef1c, type: 2}
   - {fileID: 11400000, guid: 1446da66d9adeb543b7cec9e4036b71f, type: 2}
+  glitch: {fileID: 0}
 --- !u!1 &1066562945
 GameObject:
   m_ObjectHideFlags: 0
@@ -34316,6 +34317,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8aa3cbee21a91f847aa242afb4cd7c55, type: 3}
   - {fileID: 8300000, guid: 5bef884a8ba9cf9479a69dfdb7e947d9, type: 3}
   - {fileID: 8300000, guid: 98d2839f4207c5a4f84b00839f1fe37a, type: 3}
+  - {fileID: 8300000, guid: c4dc0f33dd371614683184f865cc586a, type: 3}
 --- !u!1 &2118977746
 GameObject:
   m_ObjectHideFlags: 0

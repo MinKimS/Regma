@@ -29,4 +29,24 @@ public class GlitchController : MonoBehaviour
         SetGlitchActive(false);
         AudioManager.instance.StopSFX("TV noise");
     }
+
+    public void PlayGlitch(float time, float nextTime)
+    {
+        StartCoroutine(IEPlayGlitch(time, nextTime));
+    }
+
+    IEnumerator IEPlayGlitch(float time, float nextTime)
+    {
+        WaitForSeconds wait = new WaitForSeconds(time);
+        WaitForSeconds waitNext = new WaitForSeconds(nextTime);
+        while(true)
+        {
+            AudioManager.instance.SFXPlay("TV noise");
+            SetGlitchActive(true);
+            yield return wait;
+            SetGlitchActive(false);
+            AudioManager.instance.StopSFX("TV noise");
+            yield return waitNext;
+        }
+    }
 }

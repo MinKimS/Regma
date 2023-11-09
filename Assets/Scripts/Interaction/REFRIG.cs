@@ -16,6 +16,8 @@ public class REFRIG : MonoBehaviour
     bool isOpened = false;
     bool isActivateEvent = false;
 
+    public GameObject trigger;
+
     private void Awake()
     {
         iod = GetComponent<InteractionObjData>();
@@ -41,6 +43,7 @@ public class REFRIG : MonoBehaviour
                 {
                     isActivateEvent = true;
                     DialogueManager.instance.PlayDlg(iod.objDlg[0]);
+                    trigger.SetActive(false);
                     StartCoroutine(ReadyToMobAppear());
                 }
                 else
