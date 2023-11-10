@@ -14,22 +14,13 @@ public class Bookcontrol : MonoBehaviour
     private int clickCount = 0;
 
     private bool isAnimationPlaying = false;
-    private bool isActive = true; // �浹 ���Ŀ��� ��Ȱ��ȭ�ϱ� ���� ����
+    private bool isActive = true; 
 
     public Door door;
 
     void Start()
     {
-        //// isActive ������ ���� gameObject�� Ȱ��ȭ/��Ȱ��ȭ�� �����մϴ�. 8.16
-        //gameObject.SetActive(isActive); // �浹 �������� isActive ������ ���� Ȱ��ȭ ���¸� �����մϴ�.
-
-        //// activeBook�� Ȱ��ȭ�Ǿ� �ִ� ��쿡�� gameObject�� Ȱ��ȭ�մϴ�.
-        //if (book.activeSelf)
-        //{
-        //    gameObject.SetActive(isActive);
-        //}
-
-        // AudioSource ������Ʈ�� �����ɴϴ�.
+        
         audioSource = GetComponent<AudioSource>();
 
         // ����� �ҽ��� ���� ��쿡�� ������Ʈ�� �߰��մϴ�.
@@ -41,16 +32,36 @@ public class Bookcontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAnimationPlaying)
+        //if (Input.GetMouseButtonDown(0) && !isAnimationPlaying)
+        //{
+        //    if (clickCount == 0)
+        //    {
+        //        TearingSound(); // �Ҹ� ���
+        //    }
+
+        //    clickCount++;
+
+        //    if (clickCount >= 4)
+        //    {
+        //        bookAnimator.SetBool("cut", true);
+        //        StartCoroutine(WaitForAnimation());
+        //    }
+        //    else
+        //    {
+        //        bookAnimator.SetBool("cut", false);
+        //    }
+        //}
+
+        if (Input.GetKeyDown(KeyCode.E) && !isAnimationPlaying)
         {
             if (clickCount == 0)
             {
-                TearingSound(); // �Ҹ� ���
+                TearingSound(); // 찢기 소리 재생
             }
 
             clickCount++;
 
-            if (clickCount >= 4)
+            if (clickCount >= 5) // 5번째 연타 시
             {
                 bookAnimator.SetBool("cut", true);
                 StartCoroutine(WaitForAnimation());
