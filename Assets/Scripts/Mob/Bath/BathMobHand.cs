@@ -131,6 +131,7 @@ public class BathMobHand : MonoBehaviour
         //공격하기 위한 준비
         ReadyToAttack(moveHandSpeed);
 
+        //여기 텀 긺
         yield return new WaitUntil(() => isOkAttackTarget);
         //타겟으로 이동
         if (!isCatchSomething)
@@ -150,6 +151,7 @@ public class BathMobHand : MonoBehaviour
         while(Vector2.Distance(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y + 5f)) > 0.03f && !data.IsTryCatchPlayer)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y + 5f), moveHandSpeed);
+            print("ready to attack");
             yield return null;
         }
 
@@ -173,6 +175,7 @@ public class BathMobHand : MonoBehaviour
     {
         while(Vector2.Distance(transform.position, _targetPos) > 0.02f && !isCatchSomething && !data.IsTryCatchPlayer)
         {
+            print("move to target");
             transform.position = Vector2.MoveTowards(transform.position, _targetPos, moveHandSpeed);
             yield return null;
         }
