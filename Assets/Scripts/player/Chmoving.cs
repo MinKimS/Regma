@@ -100,13 +100,16 @@ public class Chmoving : MonoBehaviour
             //jumpCnt--;
 
         }
+        
         if (isGround)
         {
             jumpCnt = JumpCount;
             //isJumping = true;
 
         }
-        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+       
+        //if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+        if(isGround && rb.velocity.y <0)
         {
             jumpCnt--;
             isJumping = false;
