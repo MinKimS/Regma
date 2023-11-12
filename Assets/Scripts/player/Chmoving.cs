@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Chmoving : MonoBehaviour
@@ -43,9 +44,15 @@ public class Chmoving : MonoBehaviour
         rb.gravityScale = 5.0f;
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(pos.position, checkRadius * transform.localScale.y);
+    }
+
     private void Update()
     {
-        isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
+        isGround = Physics2D.OverlapCircle(pos.position, checkRadius * transform.localScale.y, islayer);
 
         // 플레이어가 움직일 수 있는 조건
         bool canMove = DialogueManager.instance._dlgState == DialogueManager.DlgState.End &&
@@ -142,7 +149,7 @@ public class Chmoving : MonoBehaviour
         {
             isMoving = false;
             // SlowObj와 충돌하면 움직임을 제어
-            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed) * Mathf.Abs(transform.lossyScale.x), transform.localScale.y, transform.localScale.z);
             currentMoveSpeed = moveSpeed * moveInputX;
             animator.SetBool("Walk", false);
             animator.SetBool("WetIdle", false);
@@ -193,7 +200,7 @@ public class Chmoving : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
         if (inWater)
