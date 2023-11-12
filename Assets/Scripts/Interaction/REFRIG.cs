@@ -88,11 +88,11 @@ public class REFRIG : MonoBehaviour
     }
     private void Update()
     {
-        if (appear.isLastMob && !RespawnManager.isGameOver && !appear.mob[2].gameObject.activeSelf && !appear.isReadySpawn && Vector2.Distance(PlayerInfoData.instance.playerTr.position, RespawnManager.Instance.respawnPosition.position) > 0.02f)
+        if (appear.isLastMob && !RespawnManager.isGameOver && !appear.mob[2].gameObject.activeSelf && !appear.isReadySpawn && Vector2.Distance(PlayerInfoData.instance.playerTr.position, RespawnManager.Instance.respawnPositionByType[RespawnManager.ChangeMethod.MobBased].position) > 0.02f)
         {
             respawnPoint_Refrig.gameObject.SetActive(true);
             appear.isReadySpawn = true;
-            talkStarting.position = RespawnManager.Instance.respawnPosition.position;
+            talkStarting.position = RespawnManager.Instance.respawnPositionByType[RespawnManager.ChangeMethod.MobBased].position;
             talkStarting.gameObject.SetActive(true);
             appear.isMobAppear = false;
         }

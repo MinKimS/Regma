@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OverMng : MonoBehaviour
 {
     [SerializeField] private SaveLoad theSaveNLoad;
     [SerializeField] private GameObject go_BaseUI;
     [SerializeField] private RespawnManager respawnManager;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +25,6 @@ public class OverMng : MonoBehaviour
             print("게임오버");
             Time.timeScale = 0f;
         }
-
-        
     }
 
     public void OnClickReStart()
@@ -33,19 +33,21 @@ public class OverMng : MonoBehaviour
         //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
         //respawnManager.OnUpdateRespawnPoint.Invoke(respawnManager.respawnPosition);
 
-        if (respawnManager != null && respawnManager.respawnPosition != null) // Null 체크를 추가하여 오류 방지
+        if (respawnManager != null && respawnManager.respawnPositionByType[RespawnManager.ChangeMethod.MobBased] != null) // Null 체크를 추가하여 오류 방지
         {
-            respawnManager.OnUpdateRespawnPoint.Invoke(respawnManager.respawnPosition);
+            respawnManager.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, respawnManager.respawnPositionByType[RespawnManager.ChangeMethod.MobBased]);
         }
         else
         {
-            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
+            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, transform);
             Debug.LogWarning("RespawnManager나 respawnPosition이 null입니다.");
         }
 
         Time.timeScale = 1f;
         go_BaseUI.SetActive(false);
         Debug.Log("재시작");
+
+       
     }
 
     public void OnClickExit()

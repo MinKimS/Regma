@@ -4,21 +4,30 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using static RespawnManager;
+
+[System.Serializable]
+public class RespawnUpdateEvent : UnityEvent<RespawnManager.ChangeMethod, Transform>
+{
+}
 
 public class RespawnManager : MonoBehaviour
 {
     public enum ChangeMethod { MobBased, DamageBased }
 
-    public ChangeMethod currentMethod = ChangeMethod.DamageBased;
-
     public static RespawnManager Instance;
-    public UnityEvent<Transform> OnUpdateRespawnPoint = new UnityEvent<Transform>();
-    public UnityEvent OnGameOver = new UnityEvent();
+    public RespawnUpdateEvent OnUpdateRespawnPoint = new RespawnUpdateEvent();
+    public UnityEvent<ChangeMethod> OnGameOver = new UnityEvent<ChangeMethod>();
     public UnityEvent OnGameOverScene = new UnityEvent();
-    public Transform respawnPosition;
+    //public Transform respawnPosition;
     [SerializeField] Chmoving chmoving;
     public static bool isGameOver = false;
     public static bool isGameOverScene = false;
+    public Dictionary<ChangeMethod, Transform> respawnPositionByType = new Dictionary<ChangeMethod, Transform>()
+    {
+        {   ChangeMethod.MobBased, null},
+        { ChangeMethod.DamageBased, null},
+    };
 
 
     void Awake()
@@ -29,16 +38,15 @@ public class RespawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OnUpdateRespawnPoint.AddListener((targetPosition) => {
-            respawnPosition = targetPosition;
+        OnUpdateRespawnPoint.AddListener((method, targetPosition) => {
+            respawnPositionByType[method] = targetPosition;
             isGameOver = false;
         });
 
-        OnGameOver.AddListener(() =>
+        OnGameOver.AddListener((method) =>
         {
             isGameOver = true;
-            
-            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPosition, 0.1f));
+            chmoving.StartCoroutine(chmoving.RespawnCharacterAfterWhile(respawnPositionByType[method], 0.1f));
             
         });
 
@@ -53,6 +61,7 @@ public class RespawnManager : MonoBehaviour
 
     }
 
+    /*
     public void ChangeUpdatingMethod(ChangeMethod type)
     {
         currentMethod = type;
@@ -61,6 +70,7 @@ public class RespawnManager : MonoBehaviour
 
 
     }
+    */
 
     void GoToGameOverScene()
     {

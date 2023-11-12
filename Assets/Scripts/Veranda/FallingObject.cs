@@ -21,7 +21,7 @@ public class FallingObject : MonoBehaviour
             print("fall on player");
 
             //RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
-            RespawnManager.Instance.OnGameOver.Invoke();
+            RespawnManager.Instance.OnGameOver.Invoke(RespawnManager.ChangeMethod.MobBased);
         }
 
         //바닥이나 플레이어에 떨어지면 안보이게 설정
