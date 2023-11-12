@@ -91,7 +91,8 @@ public class Chmoving : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        if (!isJumping && Input.GetKeyDown(KeyCode.Space) )//&& jumpCnt > 0)
+      
+        if (!isJumping && Input.GetKeyDown(KeyCode.Space) && !animator.GetCurrentAnimatorStateInfo(0).IsName("DieInwater"))//&& jumpCnt > 0)
         {
             isJumping = true;
             rb.gravityScale = defaultGravityScale;

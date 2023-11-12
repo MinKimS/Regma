@@ -454,6 +454,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: jump
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: DieInWater
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4550927670197946768}
   m_Solo: 0
@@ -627,12 +630,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: DieInWater
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: isJumpWithBlanket
     m_Type: 4
     m_DefaultFloat: 0
@@ -641,6 +638,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Revive
     m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: DieInWater
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -802,7 +805,7 @@ AnimatorStateMachine:
     m_Position: {x: 650, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1692413614866545340}
-    m_Position: {x: 880, y: -100, z: 0}
+    m_Position: {x: 870, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7594444400296324953}
     m_Position: {x: 660, y: 190, z: 0}

@@ -69,7 +69,7 @@ public class Water : MonoBehaviour
 
         if(targetPos.position.y < drownPosY)
         {
-            animator.SetTrigger("DieInWater");
+            animator.SetBool("DieInWater", true);
         }
 
     }
