@@ -24,9 +24,10 @@ public class Chmoving : MonoBehaviour
     private bool MovinginWater = false;
 
     private float moveInputX;
+    float defaultGravityScale;
 
 
-    int jumpCnt;
+   // int jumpCnt;
 
     [HideInInspector]
     public bool isGround;
@@ -34,20 +35,26 @@ public class Chmoving : MonoBehaviour
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
     bool isJumping = false;
-    public int JumpCount;
+   // public int JumpCount;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        jumpCnt = JumpCount;
+      //  jumpCnt = JumpCount;
         rb.gravityScale = 5.0f;
+        defaultGravityScale = rb.gravityScale; //중력의 기본값을 정함(오류 발생시 돌아올 기본값)
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(pos.position, checkRadius * transform.localScale.y);
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.Log(rb.gravityScale);
     }
 
     private void Update()
@@ -59,7 +66,6 @@ public class Chmoving : MonoBehaviour
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
                        TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
                        !TutorialController.instance.IsTutorialShowing;
-
 
         if (canMove)
         {
@@ -85,33 +91,27 @@ public class Chmoving : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        if (isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
+        if (!isJumping && Input.GetKeyDown(KeyCode.Space) )//&& jumpCnt > 0)
         {
             isJumping = true;
+            rb.gravityScale = defaultGravityScale;
             rb.velocity = Vector2.up * jumpForce;
             PlayJumpSound();
             //jumpCnt--;
         }
-        else if (!isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
-        {
-            isJumping = true;
-            rb.velocity = Vector2.up * jumpForce;
-            PlayJumpSound();
-            //jumpCnt--;
 
-        }
-        
+        /*
         if (isGround)
         {
             jumpCnt = JumpCount;
             //isJumping = true;
-
         }
-       
+        */
+
         //if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-        if(isGround && rb.velocity.y <0)
+        if (isGround && rb.velocity.y < 0 || isGround && isJumping && rb.velocity.y < 0.01f)
         {
-            jumpCnt--;
+          //  jumpCnt--;
             isJumping = false;
             //isJumpingWithMovement = true;
         }

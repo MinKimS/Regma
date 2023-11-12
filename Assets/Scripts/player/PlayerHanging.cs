@@ -75,7 +75,7 @@ public class PlayerHanging : MonoBehaviour
         public void EndHanging()
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.gravityScale = 1f;
+            rb.gravityScale = 5f;
             rb.velocity = Vector2.zero;
 
             transform.rotation = Quaternion.identity;
