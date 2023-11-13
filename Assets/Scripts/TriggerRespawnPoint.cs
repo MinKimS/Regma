@@ -19,16 +19,11 @@ public class TriggerRespawnPoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.MobBased);
+         
 
-            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod != RespawnManager.ChangeMethod.DamageBased)
+            if (RespawnManager.Instance != null )
             {
-                RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(targetPosition);
-            }
-
-            else
-            {
-                RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
+                RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, targetPosition);
             }
 
             // Destroy(this.gameObject);

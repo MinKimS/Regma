@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Chmoving : MonoBehaviour
@@ -23,9 +24,10 @@ public class Chmoving : MonoBehaviour
     private bool MovinginWater = false;
 
     private float moveInputX;
+    float defaultGravityScale;
 
 
-    int jumpCnt;
+   // int jumpCnt;
 
     [HideInInspector]
     public bool isGround;
@@ -33,26 +35,37 @@ public class Chmoving : MonoBehaviour
     float checkRadius = 0.35f;
     [SerializeField] LayerMask islayer;
     bool isJumping = false;
-    public int JumpCount;
+   // public int JumpCount;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        jumpCnt = JumpCount;
+      //  jumpCnt = JumpCount;
         rb.gravityScale = 5.0f;
+        defaultGravityScale = rb.gravityScale; //중력의 기본값을 정함(오류 발생시 돌아올 기본값)
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(pos.position, checkRadius * transform.localScale.y);
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.Log(rb.gravityScale);
     }
 
     private void Update()
     {
-        isGround = Physics2D.OverlapCircle(pos.position, checkRadius, islayer);
+        isGround = Physics2D.OverlapCircle(pos.position, checkRadius * transform.localScale.y, islayer);
 
         // 플레이어가 움직일 수 있는 조건
         bool canMove = DialogueManager.instance._dlgState == DialogueManager.DlgState.End &&
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
                        TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
                        !TutorialController.instance.IsTutorialShowing;
-
 
         if (canMove)
         {
@@ -78,30 +91,28 @@ public class Chmoving : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        if (isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
+      
+        if (!isJumping && Input.GetKeyDown(KeyCode.Space) && !animator.GetCurrentAnimatorStateInfo(0).IsName("DieInwater"))//&& jumpCnt > 0)
         {
             isJumping = true;
+            rb.gravityScale = defaultGravityScale;
             rb.velocity = Vector2.up * jumpForce;
             PlayJumpSound();
             //jumpCnt--;
         }
-        else if (!isGround && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
-        {
-            isJumping = true;
-            rb.velocity = Vector2.up * jumpForce;
-            PlayJumpSound();
-            //jumpCnt--;
 
-        }
+        /*
         if (isGround)
         {
             jumpCnt = JumpCount;
             //isJumping = true;
-
         }
-        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+        */
+
+        //if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+        if (isGround && rb.velocity.y < 0 || isGround && isJumping && rb.velocity.y < 0.01f)
         {
-            jumpCnt--;
+          //  jumpCnt--;
             isJumping = false;
             //isJumpingWithMovement = true;
         }
@@ -142,7 +153,7 @@ public class Chmoving : MonoBehaviour
         {
             isMoving = false;
             // SlowObj와 충돌하면 움직임을 제어
-            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed) * Mathf.Abs(transform.lossyScale.x), transform.localScale.y, transform.localScale.z);
             currentMoveSpeed = moveSpeed * moveInputX;
             animator.SetBool("Walk", false);
             animator.SetBool("WetIdle", false);
@@ -193,7 +204,7 @@ public class Chmoving : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(currentMoveSpeed) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
         if (inWater)

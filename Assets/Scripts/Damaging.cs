@@ -44,14 +44,12 @@ public class Damaging : MonoBehaviour
 
         if(damageCount == maxDamaging)
         {
-            RespawnManager.Instance.ChangeUpdatingMethod(ChangeMethod.DamageBased);
-
-            if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
+            if (RespawnManager.Instance != null)
             {
 
                 //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
-                print("데미지로 전환");
-                RespawnManager.Instance.OnGameOver.Invoke();
+                print("데미지 방식에 의한 게임오버");
+                RespawnManager.Instance.OnGameOver.Invoke(RespawnManager.ChangeMethod.DamageBased);
             }
             
 
