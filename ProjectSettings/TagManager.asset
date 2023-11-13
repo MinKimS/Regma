@@ -20,11 +20,11 @@ TagManager:
   - HideObj
   - Refri2
   - HideSereal
-  - RandMob
   - HidingPoint
   - Pos
   - water
   - FallingClothes
+  - Hand
   layers:
   - Default
   - TransparentFX

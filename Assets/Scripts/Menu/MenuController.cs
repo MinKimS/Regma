@@ -150,13 +150,11 @@ public class MenuController : MonoBehaviour
     {
         if(fullIdx == 0)
         {
-            print("full " + fullIdx);
             Screen.fullScreen = true;
             fullScreenText.text = "FullScreen";
         }
         else if(fullIdx == 1)
         {
-            print("windowed " + fullIdx);
             Screen.fullScreen = false;
             fullScreenText.text = "Windowed";
         }
@@ -164,8 +162,6 @@ public class MenuController : MonoBehaviour
 
     void SetResolution()
     {
-        print("function2 " + resolutionIdx);
-
         ResolutionText.text = resolutionList[resolutionIdx];
         
         Resolution resolution = resolutions[resolutionIdx];
@@ -175,8 +171,6 @@ public class MenuController : MonoBehaviour
     //조작법 숨기기 or 보이기
     void SetShowOrHideHowToControlling()
     {
-        print("howto");
-
         controlExplainScreen.SetActive(!controlExplainScreen.activeSelf);
     }
 

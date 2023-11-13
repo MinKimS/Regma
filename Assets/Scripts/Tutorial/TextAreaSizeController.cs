@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextAreaSizeController : MonoBehaviour
 {
     RectTransform rectTr;
-    Vector2 minimumSize = new Vector2(1725.175f, 597.8059f);
+    Vector2 minimumSize = new Vector2(1725.175f, 600);
 
     private void Awake()
     {
@@ -30,6 +30,6 @@ public class TextAreaSizeController : MonoBehaviour
         width = Mathf.Max(width, minimumSize.x);
         height = Mathf.Max(height, minimumSize.y);
 
-        rectTr.sizeDelta = new Vector2(width, height);
+        rectTr.sizeDelta = new Vector2(width, height + 1.5f);
     }
 }

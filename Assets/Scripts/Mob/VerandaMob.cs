@@ -34,6 +34,11 @@ public class VerandaMob : MonoBehaviour
     {
         if(isTrace && !SmartphoneManager.instance.phone.IsOpenPhone)
         {
+            if(target == null)
+            {
+                target = PlayerInfoData.instance.playerTr;
+            }
+
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), traceSpeed * Time.fixedDeltaTime);
         }
     }

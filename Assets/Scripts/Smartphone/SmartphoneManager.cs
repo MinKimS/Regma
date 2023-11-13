@@ -55,7 +55,8 @@ public class SmartphoneManager : MonoBehaviour
     private void Update() {
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End 
             && !inven.filesInven.IsInvenItemActive
-            &&!TutorialController.instance.IsTutorialShowing)
+            &&!TutorialController.instance.IsTutorialShowing
+            && !itemUsage.isUsingItem)
         {
             //폰 열기
             if(Input.GetKeyDown(KeyCode.P))
@@ -73,17 +74,17 @@ public class SmartphoneManager : MonoBehaviour
             //인벤 열기
             if (Input.GetKeyDown(KeyCode.I))
             {
-                if (!inven.IsOpenInven && phone.IsOpenPhone)
+                if (!inven.IsOpenInven)
                 {
-                    //if (!phone.IsOpenPhone)
-                    //{
-                    //    phone.ShowPhone();
-                    //    inven.ShowInven();
-                    //}
-                    //else
-                    //{
-                    //    inven.ShowInven();
-                    //}
+                    if (!phone.IsOpenPhone)
+                    {
+                        phone.ShowPhone();
+                        inven.ShowInven();
+                    }
+                    else
+                    {
+                        inven.ShowInven();
+                    }
                     inven.ShowInven();
                 }
                 else
@@ -282,7 +283,7 @@ public class SmartphoneManager : MonoBehaviour
                     print(inven.SelectedOption - 1);
                 }
 
-                if(phone.curTalk.answerTalk == null)
+                if(phone.curTalk != null && phone.curTalk.answerTalk == null)
                 {
                     phone.IsOKSendTalk = false;
                 }
@@ -299,9 +300,10 @@ public class SmartphoneManager : MonoBehaviour
                     //화면에 톡 추가
                     phone.AddTalk(phone.curSendTalk.talkText);
                     phone.HideSendTalk();
+                    AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
 
                     //플레이어가 이어서 보낼 톡이 있는경우
-                    if(phone.curSendTalk.nextSendTalk != null)
+                    if (phone.curSendTalk.nextSendTalk != null)
                     {
                         phone.Invoke("SetNextSendTalk", 1.0f);
                         return;

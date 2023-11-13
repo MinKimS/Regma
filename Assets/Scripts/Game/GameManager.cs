@@ -31,4 +31,16 @@ public class GameManager : MonoBehaviour
         isEndingTwo = b ? true : false;
         print("isEndingTwo : " + isEndingTwo);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Home))
+        {
+            SetEndingRoute(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.End))
+        {
+            SetEndingRoute(true);
+        }
+    }
 }

@@ -9,6 +9,8 @@ public class EndingController : MonoBehaviour
 
     Image endingImg;
 
+    bool isFirstEnding = false;
+
     private void Awake()
     {
         endingImg = GetComponentInChildren<Image>();
@@ -23,7 +25,15 @@ public class EndingController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            LoadingManager.LoadScene("Title");
+            if(isFirstEnding)
+            {
+                LoadingManager.LoadScene("Title");
+            }
+            else
+            {
+                SmartphoneManager.instance.phone.ShowPhone();
+                SmartphoneManager.instance.phone.DeleteTalks();
+            }
         }
     }
 
@@ -42,12 +52,14 @@ public class EndingController : MonoBehaviour
     //첫번째 루트로 엔딩 설정
     void SetEndingOne()
     {
+        isFirstEnding = true;
         endingImg.sprite = endingSPs[0];
     }
 
     //두번째 루트로 엔딩 설정
     void SetEndingTwo()
     {
+        isFirstEnding = false;
         endingImg.sprite = endingSPs[1];
     }
 }

@@ -137,6 +137,7 @@ public class Pot : MonoBehaviour
         }
         potColl.isTrigger = false;
         playerAnim.SetBool("isPush",true);
+        AudioManager.instance.SFXPlayLoop("Game Sound_Pot");
     }
 
     //화분 밀기 취소
@@ -146,6 +147,7 @@ public class Pot : MonoBehaviour
         playerAnim.SetBool("isPush",false);
         isPushing = false;
         potColl.isTrigger = true;
+        AudioManager.instance.StopSFX("Game Sound_Pot");
     }
 
     //장애물이 안되게 설정

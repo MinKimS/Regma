@@ -49,7 +49,7 @@ public class DisMonster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Mob") || collision.gameObject.CompareTag("RandMob"))
+        if (collision.gameObject.CompareTag("Mob"))
         {
             print("Ãæµ¹");
             RespawnManager.Instance.ChangeUpdatingMethod(RespawnManager.ChangeMethod.MobBased);

@@ -38,7 +38,6 @@ public class LightControl : MonoBehaviour
             if (LightObj.activeSelf)
             {
                 LightObj.SetActive(false);
-
                 isLightOn = false;
             }
 
@@ -48,6 +47,7 @@ public class LightControl : MonoBehaviour
 
                 isLightOn = true;
             }
+            AudioManager.instance.SFXPlay("Game Sound_headlight on-off");
         }
     } // Start is called before the first frame update
     

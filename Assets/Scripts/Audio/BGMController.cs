@@ -38,7 +38,6 @@ public class BGMController : MonoBehaviour
         {
             case "Title":
             case "SampleScene":
-            case "Bathroom":
             case "Bath":
             case "SampleScene 2":
                 if(BGM.clip != bgmList[0])
@@ -68,6 +67,16 @@ public class BGMController : MonoBehaviour
                 }
                 else { isOkChgBGM = false; }
                 BGM.clip = bgmList[2];
+                if (isOkChgBGM) { BGM.Play(); }
+                break;
+            case "Bathroom":
+                if (BGM.clip != bgmList[3])
+                {
+                    isOkChgBGM = true;
+                    BGM.Stop();
+                }
+                else { isOkChgBGM = false; }
+                BGM.clip = bgmList[3];
                 if (isOkChgBGM) { BGM.Play(); }
                 break;
             default:

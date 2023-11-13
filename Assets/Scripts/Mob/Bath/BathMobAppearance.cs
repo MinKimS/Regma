@@ -7,8 +7,7 @@ public class BathMobAppearance : MonoBehaviour
     public BathMobController bmc;
     public Dialogue dlg;
     public bool isOnTrigger = false;
-    //bool isInputReturn = false;
-
+    public GameObject block;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +15,7 @@ public class BathMobAppearance : MonoBehaviour
         {
             if(!isOnTrigger)
             {
+                block.SetActive(true);
                 collision.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 StartCoroutine(AppearMob());
             }
@@ -29,15 +29,16 @@ public class BathMobAppearance : MonoBehaviour
 
     IEnumerator AppearMob()
     {
+        print("appear");
         bmc.movement.SetMobPosInitialPos();
         bmc.Appearance();
         DialogueManager.instance.PlayDlg(dlg);
 
-        yield return new WaitWhile(() =>DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
 
         bmc.hand.SetTargetToy(0);
-        bmc.hand.AttackTarget(1f);
-
+        bmc.hand.AttackTarget(0.3f);
+        
         Destroy(gameObject);
     }
 }

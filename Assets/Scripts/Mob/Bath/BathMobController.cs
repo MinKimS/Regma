@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BathMobController : MonoBehaviour
 {
@@ -24,10 +25,11 @@ public class BathMobController : MonoBehaviour
     public PlayerHide playerHide;
 
     [HideInInspector] public bool isTracingStart = false;
-
-    //==========================
+    [HideInInspector] public bool isStop = false;
 
     public Animator animator;
+    //==========================
+
 
     private void Awake()
     {
@@ -45,30 +47,55 @@ public class BathMobController : MonoBehaviour
         movement.HideMob();
     }
 
-    //모습 보이기
+    ////모습 보이기
+
+    //private void Update()
+    //{
+    //    if (isTracingStart && data.IsMobTryCatch && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
+    //    {
+    //        if(data.state == BathMobData.State.OutWater)
+    //        {
+    //            if(!playerHide.isHide)
+    //            {
+    //                hand.SetTarget();
+    //                hand.AttackTarget(1f);
+    //            }
+    //        }
+    //        else if(data.state == BathMobData.State.RuningWild)
+    //        {
+    //            if (!data.IsTryCatchPlayer)
+    //            {
+    //                hand.SetTargetToy(hand.toyIdx);
+    //                hand.AttackTarget(1.5f);
+    //            }
+    //            else
+    //            {
+    //                hand.MoveHandToPlayer(12);
+    //            }
+    //        }
+    //    }
+    //}
 
     private void Update()
     {
-        if (isTracingStart && data.IsMobTryCatch && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
+        if (!isStop && isTracingStart && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
         {
-            if(data.state == BathMobData.State.OutWater)
+            if (data.state == BathMobData.State.OutWater)
             {
-                if(!playerHide.isHide)
+                if (!playerHide.isHide)
                 {
                     hand.SetTarget();
-                    hand.AttackTarget(1f);
+                    hand.AttackTarget(0.3f);
                 }
             }
             else if(data.state == BathMobData.State.RuningWild)
             {
-                if (!data.IsTryCatchPlayer)
+                if(!hand.isCatchSomething && hand.toyIdx < hand.toyList.Length)
                 {
+                    print("runwilddddddd");
                     hand.SetTargetToy(hand.toyIdx);
-                    hand.AttackTarget(1.5f);
-                }
-                else
-                {
-                    hand.MoveHandToPlayer(12);
+                    hand.AttackTarget(0.05f);
+                    data.canMove = false;
                 }
             }
         }

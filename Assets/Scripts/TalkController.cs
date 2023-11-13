@@ -11,4 +11,9 @@ public class TalkController : MonoBehaviour
         SmartphoneManager.instance.phone.StartTalk();
     }
 
+    public void ShowNotification()
+    {
+        SmartphoneManager.instance.phone.SetNotification();
+    }
+
 }

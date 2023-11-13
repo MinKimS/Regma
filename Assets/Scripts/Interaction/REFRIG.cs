@@ -57,7 +57,7 @@ public class REFRIG : MonoBehaviour
             {
                 DialogueManager.instance.PlayDlg(iod.objDlg[1]);
                 SmartphoneManager.instance.SetInvenItem(squid);
-                AudioManager.instance.SFXPlay("주방_냉장고 문 열림");
+                AudioManager.instance.SFXPlay("Kitchen_refrigerator open");
                 isOpened = true;
                 iod.IsOkInteracting = false;
                 StartCoroutine(GetSquid());

@@ -22,11 +22,6 @@ public class PlayerInfoData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (LoadingManager.nextScene == "Ending")
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnEnable()
@@ -46,6 +41,10 @@ public class PlayerInfoData : MonoBehaviour
 
     IEnumerator SetPlayerInfo()
     {
+        if (LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();

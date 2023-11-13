@@ -69,6 +69,11 @@ public class Phone : MonoBehaviour
     float phoneShowSpeed = 0.1f;
 
     int showedCount = 0;
+
+    //엔딩2에서 톡 지우기를 위한 용도
+    int talkCout = 0;
+    List<Transform> phoneTalkList;
+
     //선택된 아이템
     int selectedOption = 1;
     [HideInInspector] public int talkIdx = 0;
@@ -105,6 +110,7 @@ public class Phone : MonoBehaviour
         talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
         phoneBgPanel = GetComponent<Image>();
         phoneFrame = GetComponentsInChildren<RectTransform>()[1].gameObject;
+        phoneTalkList = new List<Transform>();
     }
 
     private void Start()
@@ -153,7 +159,7 @@ public class Phone : MonoBehaviour
     //폰 보이기
     public void ShowPhone()
     {
-        if (!PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if (PlayerInfoData.instance != null || !PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
             PlayerInfoData.instance.playerAnim.SetBool("walk", false);
             PlayerInfoData.instance.playerAnim.SetBool("jump", false);
@@ -187,12 +193,14 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
+        phoneTalkList.Add(talk.transform);
+        talkCout++;
+
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
 
         //이어지는 톡 설정
         talk.tail.SetActive(!isSameUser);
-
 
         lastTalk = talk;
         lastPlayerTalk = talk;
@@ -207,8 +215,10 @@ public class Phone : MonoBehaviour
     {
         TalkData talk = Instantiate(isAnnouncement ? announcementTalk : anotherTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
-
         talk.talkText.text = text;
+
+        phoneTalkList.Add(talk.transform);
+        talkCout++;
 
         if (!isAnnouncement) talk.userName = user.talkName;
 
@@ -242,6 +252,8 @@ public class Phone : MonoBehaviour
         TalkData talk = Instantiate(inOutTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
 
+        phoneTalkList.Add(talk.transform);
+        talkCout++;
         if (isIn)
         {
             talk.talkText.text = text + "님이 들어왔습니다.";
@@ -357,6 +369,8 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.userName = user.talkName;
 
+        phoneTalkList.Add(talk.transform);
+        talkCout++;
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
 
@@ -443,6 +457,24 @@ public class Phone : MonoBehaviour
         }
     }
 
+    public void SetNotification()
+    {
+        StartCoroutine(IESetNotification());
+    }
+    IEnumerator IESetNotification()
+    {
+        WaitForSeconds wait = new WaitForSeconds(2);
+        while(SceneManager.GetActiveScene().name == "Veranda")
+        {
+            notification.SetShowTalkIconState();
+
+            yield return wait;
+
+            notification.SetHideTalkIconState();
+        }
+        notification.SetHideTalkIconState();
+    }
+
     //톡 출력
     IEnumerator OutputOtherUserTalk()
     {
@@ -501,6 +533,22 @@ public class Phone : MonoBehaviour
             isTalkNeedToBeSend = false;
             //다른 톡을 시작 가능하게 설정
             isOkStartTalk = true;
+        }
+    }
+
+    public void DeleteTalks()
+    {
+        StartCoroutine(IEDeleteTalks());
+    }
+
+    IEnumerator IEDeleteTalks()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1);
+        for (int i = phoneTalkList.Count-1; i > 0; i--)
+        {
+            phoneTalkList[i].gameObject.SetActive(false);
+            yield return wait;
         }
     }
 }

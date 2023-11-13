@@ -3616,7 +3616,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1077456970}
         m_TargetAssemblyTypeName: TalkController, Assembly-CSharp
-        m_MethodName: StartTalk
+        m_MethodName: ShowNotification
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5461,7 +5461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 920595619}
   mob: {fileID: 1682071325}
-  traceSpeed: 10
+  traceSpeed: 6
 --- !u!1 &568665983
 GameObject:
   m_ObjectHideFlags: 0

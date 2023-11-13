@@ -48,7 +48,8 @@ public class InventoryItemUsage : MonoBehaviour
     {
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
-        pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
+        if(PlayerInfoData.instance != null)
+            pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
     }
 
     public void UseItem(ItemData item)

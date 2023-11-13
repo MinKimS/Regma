@@ -16756,7 +16756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1050715327
 Transform:
   m_ObjectHideFlags: 0
@@ -29736,7 +29736,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 5603609389184759481, guid: 9bad5fffd086b7846930f8efb70ae215, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -34318,6 +34318,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5bef884a8ba9cf9479a69dfdb7e947d9, type: 3}
   - {fileID: 8300000, guid: 98d2839f4207c5a4f84b00839f1fe37a, type: 3}
   - {fileID: 8300000, guid: c4dc0f33dd371614683184f865cc586a, type: 3}
+  - {fileID: 8300000, guid: 79435114b83db2f41ad0daca4edb4b8c, type: 3}
+  - {fileID: 8300000, guid: 23bb41c16403ab24e8522c269eff895c, type: 3}
+  - {fileID: 8300000, guid: f45bfe767931695449298db443b07bd7, type: 3}
+  - {fileID: 8300000, guid: bdf59216a1e444f499b86bbd1200f1de, type: 3}
+  - {fileID: 8300000, guid: 4c9bea9fc5736ee45b0c9cf4604a256a, type: 3}
+  - {fileID: 8300000, guid: e14a32c7556cab44d85b0e9659ee0f11, type: 3}
+  - {fileID: 8300000, guid: 7a0a513f39b861d4abe0a5775b132ddc, type: 3}
 --- !u!1 &2118977746
 GameObject:
   m_ObjectHideFlags: 0

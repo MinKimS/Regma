@@ -90,4 +90,9 @@ public class TimelineController : MonoBehaviour
     {
         LoadingManager.LoadScene(sceneName);
     }
+
+    public void SetTimelineView(bool value)
+    {
+        cutSceneAppearence.SetBool("isRunCutScene", value);
+    }
 }

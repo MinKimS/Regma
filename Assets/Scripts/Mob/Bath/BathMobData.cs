@@ -14,11 +14,12 @@ public class BathMobData : MonoBehaviour
     }
     [HideInInspector] public State state = State.InWater;
 
-    bool isMobAppear = false;
     bool isMobInWater = true;
     bool isMobTryCatch = false;
     bool isTryCatchPlayer = false;
     bool isMobStuck = false;
+
+    [HideInInspector] public bool canMove = true;
     [HideInInspector]
     public bool isCatchPlayer = false;
 

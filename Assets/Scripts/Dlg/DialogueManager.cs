@@ -120,7 +120,8 @@ public class DialogueManager : MonoBehaviour
     {
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
-        curDlg = dialogueList[sc.buildIndex-1];
+        if(sc.buildIndex - 1 < dialogueList.Count)
+            curDlg = dialogueList[sc.buildIndex-1];
     }
     private void OnDisable()
     {

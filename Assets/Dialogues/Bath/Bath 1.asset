@@ -16,6 +16,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "\uAE84\uC544\uC545!"
+    dlgTexts: "<size=200%>\uAE84\uC544\uC544\uC544\uC545!</size=200%>"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "<size=200%>\uC800\uAC8C \uBB50\uC57C!!!</size=200%>"
     eventType: 0
   nextDlg: {fileID: 0}
+  gmEvent: {fileID: 0}
