@@ -11,7 +11,7 @@ public class EndingController : MonoBehaviour
 
     bool isFirstEnding = false;
     bool isShowingEnding = false;
-    bool isShowAllImg = false;
+    bool isShowImg = false;
 
     private void Awake()
     {
@@ -25,17 +25,18 @@ public class EndingController : MonoBehaviour
 
     private void Update()
     {
-        if(!isShowingEnding && Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            if(isFirstEnding)
+            if(!isShowingEnding)
+            {
+                isShowingEnding = true;
+                StartCoroutine(IEEndingTwo());
+            }
+
+            if (isFirstEnding || isShowImg)
             {
                 LoadingManager.LoadScene("Title");
             }
-            else
-            {
-                StartCoroutine(IEEndingTwo());
-            }
-            isShowingEnding = true;
         }
     }
 
@@ -60,16 +61,11 @@ public class EndingController : MonoBehaviour
 
         SmartphoneManager.instance.phone.DeleteTalks();
 
+        yield return new WaitUntil(() => !SmartphoneManager.instance.phone.phoneTalkList[0].gameObject.activeSelf);
         yield return new WaitForSeconds(1.5f);
         SmartphoneManager.instance.phone.HidePhone();
 
-        yield return new WaitUntil(() => SmartphoneManager.instance.phone.phoneTalkList.Count < 0);
-
         ShowImage();
-
-        yield return new WaitUntil(() => isShowAllImg);
-        yield return new WaitForSeconds(1.5f);
-        LoadingManager.LoadScene("Title");
     }
 
     void SetEnding()
@@ -100,6 +96,7 @@ public class EndingController : MonoBehaviour
 
     void ShowImage()
     {
-        print("showImg");
+        endingImg.sprite = endingSPs[2];
+        isShowImg = true;
     }
 }

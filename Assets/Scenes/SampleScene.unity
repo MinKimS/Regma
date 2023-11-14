@@ -4922,6 +4922,7 @@ MonoBehaviour:
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.15
+  phoneTalkList: []
   talkIdx: 0
   sendTalkList:
   - {fileID: 1792757980}
@@ -7281,92 +7282,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &603608967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 603608968}
-  - component: {fileID: 603608970}
-  - component: {fileID: 603608969}
-  m_Layer: 0
-  m_Name: TutorialTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &603608968
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603608967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.61, y: -0.23, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1572679833}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &603608969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603608967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b2120d6ab29384fa5bbe63bdbf2813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveRecogEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 375188656}
-        m_TargetAssemblyTypeName: ShowTutorialScreen, Assembly-CSharp
-        m_MethodName: ShowTutorial
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!61 &603608970
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603608967}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 19.278055}
-  m_EdgeRadius: 0
 --- !u!1 &606496680
 GameObject:
   m_ObjectHideFlags: 0
@@ -27588,6 +27503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563444940}
+  - component: {fileID: 1563444941}
   m_Layer: 5
   m_Name: Tutorial Area
   m_TagString: Untagged
@@ -27617,6 +27533,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1563444941
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563444939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd98ff1b3f8919141be2b1957a857309, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1572679832
 GameObject:
   m_ObjectHideFlags: 0
@@ -27655,7 +27592,6 @@ Transform:
   - {fileID: 1792207242}
   - {fileID: 2025886913}
   - {fileID: 477283770}
-  - {fileID: 603608968}
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29369,6 +29305,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b08db9c1490508944a0f69524c66b1a2, type: 2}
     - {fileID: 11400000, guid: 763d5bbe7d50dc94786f76edc6cb1c49, type: 2}
     - {fileID: 11400000, guid: 567481a032261fa42983aaaf25363313, type: 2}
+    - {fileID: 11400000, guid: d533122e5688f7d42afb43a1de2acd7a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -29546,6 +29483,20 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 375188656}
+          m_TargetAssemblyTypeName: ShowTutorialScreen, Assembly-CSharp
+          m_MethodName: ShowTutorial
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 2
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!320 &1711232010

@@ -7,6 +7,8 @@ public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
 
+    Animator animator;
+
     bool isTutorialShowing = false;
     public bool IsTutorialShowing
     {
@@ -35,6 +37,7 @@ public class TutorialController : MonoBehaviour
         }
 
         TutorialArea = GetComponentInChildren<Transform>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -54,7 +57,8 @@ public class TutorialController : MonoBehaviour
     {
         if (!IsTutorialShowing)
         {
-            TutorialArea.gameObject.SetActive(true);
+            animator.SetBool("isShow", true);
+            //TutorialArea.gameObject.SetActive(true);
             isTutorialShowing = true;
             SetTutorialText(str);
         }
@@ -69,8 +73,13 @@ public class TutorialController : MonoBehaviour
 
     void CloseTutorialScreen()
     {
-        TutorialArea.gameObject.SetActive(false);
-        isTutorialShowing=false;
+        animator.SetBool("isShow", false);
+        //TutorialArea.gameObject.SetActive(false);
+        isTutorialShowing = false;
         tutorialText.text = "";
+        if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
+        {
+            TimelineManager.instance.timelineController.SetTimelineResume();
+        }
     }
 }

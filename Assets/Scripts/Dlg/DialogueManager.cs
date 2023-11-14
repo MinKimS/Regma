@@ -111,7 +111,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "LoadingScene")
+        if (scene.name != "LoadingScene" || scene.name != "Title" || scene.name != "Intro")
         {
             StartCoroutine(SetDialogueWhenSceneStart());
         }

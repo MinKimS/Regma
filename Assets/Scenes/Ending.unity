@@ -4127,6 +4127,7 @@ MonoBehaviour:
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
   phoneShowSpeed: 0.15
+  phoneTalkList: []
   talkIdx: 0
   sendTalkList:
   - {fileID: 717070799}
@@ -5514,7 +5515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6127,7 +6128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7199,7 +7200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11135,8 +11136,8 @@ Camera:
   m_GameObject: {fileID: 1641481778}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -13124,7 +13125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2046654477
@@ -13240,6 +13241,7 @@ MonoBehaviour:
   endingSPs:
   - {fileID: 21300000, guid: 03a6f2aeb9ba2a1448515b486370b2aa, type: 3}
   - {fileID: 21300000, guid: 0b7e244772922a54d9062ba2b13998d5, type: 3}
+  - {fileID: 21300000, guid: 88e66b47fa84db144bf97d1c183a5527, type: 3}
 --- !u!114 &2048486068
 MonoBehaviour:
   m_ObjectHideFlags: 0
