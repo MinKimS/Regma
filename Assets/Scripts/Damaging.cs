@@ -4,7 +4,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static RespawnManager;
 
 public class Damaging : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class Damaging : MonoBehaviour
         img.color = c;
         damageCount++;
 
-        if(damageCount == maxDamaging)
+        if(damageCount >= maxDamaging)
         {
             if (RespawnManager.Instance != null)
             {
@@ -50,6 +49,7 @@ public class Damaging : MonoBehaviour
                 //RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(transform);
                 print("데미지 방식에 의한 게임오버");
                 RespawnManager.Instance.OnGameOver.Invoke(RespawnManager.ChangeMethod.DamageBased);
+                ClearDamage();
             }
             
 
@@ -85,6 +85,16 @@ public class Damaging : MonoBehaviour
             img.color = c;
             damageCount--;
         }
+        isGetDamaging = false;
+    }
+
+    public void ClearDamage()
+    {
+        StopAllCoroutines();
+        damageCount = 0;
+        Color c = img.color;
+        c.a = 0f;
+        img.color = c;
         isGetDamaging = false;
     }
 }

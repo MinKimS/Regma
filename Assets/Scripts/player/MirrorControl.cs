@@ -27,6 +27,7 @@ public class MirrorControl : MonoBehaviour
     [SerializeField] GameObject shakingTarget;
 
     public GameObject glassItem;
+    Coroutine vibrate;
 
     private void Start()
     {
@@ -38,53 +39,95 @@ public class MirrorControl : MonoBehaviour
 
     private void Update()
     {
-
-
-        if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
+        if(Input.GetKeyDown(KeyCode.E) && !hasOpened)
         {
-            ShowImage();
             hasOpened = true;
-            MirrorAnimator.SetBool("Broken", true);
-
-            if(glassItem != null)
-            {
-                glassItem.SetActive(true);
-            }
-
-            PlayMirrorAnimation();
-        }
-        else if (hasOpened && Input.GetKeyDown(KeyCode.E))
-        {
-            ExitImage();
-            MirrorAnimator.SetBool("Broken", false);
-            //StopMirrorAnimation();
+            StartMirror();
         }
 
-        if(hasOpened){
-            MirrorAnimator.SetBool("Broken", true);
-        }
+        //if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
+        //{
+        //    ShowImage();
+        //    hasOpened = true;
+        //    MirrorAnimator.SetBool("Broken", true);
+
+        //    if(glassItem != null)
+        //    {
+        //        glassItem.SetActive(true);
+        //    }
+
+        //    PlayMirrorAnimation();
+        //}
+        //else if (hasOpened && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    ExitImage();
+        //    MirrorAnimator.SetBool("Broken", false);
+        //    StopMirrorAnimation();
+        //}
+
+        //if(hasOpened){
+        //    MirrorAnimator.SetBool("Broken", true);
+        //}
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Mirror"))
+    //    {
+    //        if (count == 0) // 1�� �浹 �Ŀ��� ���� ����
+    //        {
+    //            StartVibration();
+    //        }
+
+    //        isCollisionActive = true;
+    //        count++;
+    //    }
+    //}
+
+    void StartMirror()
     {
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Mirror"))
-        {
-            if (count == 0) // 1�� �浹 �Ŀ��� ���� ����
-            {
-                StartVibration();
-            }
+        StartCoroutine(IEMirror());
+    }
+    IEnumerator IEMirror()
+    {
+        TimelineManager.instance.timelineController.SetCutScene(true);
+        TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
+        DialogueManager.instance.PlayDlg();
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
 
-            isCollisionActive = true;
-            count++;
+        StartVibration();
+        isCollisionActive = true;
+        count++;
+        yield return new WaitForSeconds(1f);
+
+        AudioManager.instance.SFXPlay("Restroom voice 2");
+        DialogueManager.instance.PlayDlg();
+
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+        ShowImage();
+        MirrorAnimator.SetBool("Broken", true);
+
+        yield return new WaitForSeconds(2f);
+        ExitImage();
+        MirrorAnimator.SetBool("Broken", false);
+
+        DialogueManager.instance.PlayDlg();
+
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+        if (glassItem != null)
+        {
+            glassItem.SetActive(true);
         }
+        TimelineManager.instance.timelineController.SetCutScene(false);
+        TimelineManager.instance.tlstate = TimelineManager.TlState.End;
     }
 
-    private void StartVibration()
+    public void StartVibration()
     {
         if (shakingTarget != null)
         {
             shakingObject = shakingTarget;
-            StartCoroutine(Vibrate());
+            vibrate = StartCoroutine(Vibrate());
         }
     }
 
@@ -92,7 +135,7 @@ public class MirrorControl : MonoBehaviour
     {
         if (shakingObject != null)
         {
-            StopAllCoroutines();
+            StopCoroutine(vibrate);
             shakingObject.transform.position = shakingOriginalPosition;
         }
     }

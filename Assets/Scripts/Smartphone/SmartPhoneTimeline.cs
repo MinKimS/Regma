@@ -30,4 +30,9 @@ public class SmartPhoneTimeline : MonoBehaviour
     {
         SmartphoneManager.instance.phone.SetNextTalk();
     }
+
+    public void SetGetInvenItem(ItemData item)
+    {
+        SmartphoneManager.instance.SetInvenItem(item);
+    }
 }

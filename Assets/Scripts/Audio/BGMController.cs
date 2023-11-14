@@ -40,47 +40,34 @@ public class BGMController : MonoBehaviour
             case "SampleScene":
             case "Bath":
             case "SampleScene 2":
-                if(BGM.clip != bgmList[0])
-                {
-                    isOkChgBGM = true;
-                    BGM.Stop();
-                }
-                else { isOkChgBGM = false; }
-                BGM.clip = bgmList[0];
-                if(isOkChgBGM) { BGM.Play(); }
+                SetBGM(0);
                 break;
             case "Kitchen":
-                if (BGM.clip != bgmList[1])
-                {
-                    isOkChgBGM = true;
-                    BGM.Stop();
-                }
-                else { isOkChgBGM = false; }
-                BGM.clip = bgmList[1];
-                if (isOkChgBGM) { BGM.Play(); }
+                SetBGM(1);
                 break;
             case "Veranda":
-                if (BGM.clip != bgmList[2])
-                {
-                    isOkChgBGM = true;
-                    BGM.Stop();
-                }
-                else { isOkChgBGM = false; }
-                BGM.clip = bgmList[2];
-                if (isOkChgBGM) { BGM.Play(); }
+                SetBGM(2);
                 break;
             case "Bathroom":
-                if (BGM.clip != bgmList[3])
-                {
-                    isOkChgBGM = true;
-                    BGM.Stop();
-                }
-                else { isOkChgBGM = false; }
-                BGM.clip = bgmList[3];
-                if (isOkChgBGM) { BGM.Play(); }
+                SetBGM(3);
+                break;
+            case "Ending":
+                SetBGM(4);
                 break;
             default:
                 break;
         }
+    }
+
+    void SetBGM(int num)
+    {
+        if (BGM.clip != bgmList[num])
+        {
+            isOkChgBGM = true;
+            BGM.Stop();
+        }
+        else { isOkChgBGM = false; }
+        BGM.clip = bgmList[num];
+        if (isOkChgBGM) { BGM.Play(); }
     }
 }

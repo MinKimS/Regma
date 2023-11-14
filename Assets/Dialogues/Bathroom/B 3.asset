@@ -24,5 +24,5 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uC544\uC774\uB97C...?"
     eventType: 0
-  nextDlg: {fileID: 0}
+  nextDlg: {fileID: 11400000, guid: ea1a26f0bbb7f5c49a8c4eccafe461a7, type: 2}
   gmEvent: {fileID: 0}

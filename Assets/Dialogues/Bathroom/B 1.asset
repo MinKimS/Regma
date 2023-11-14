@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: B 1
   m_EditorClassIdentifier: 
   speakers:
-  - {fileID: 11400000, guid: 9cc09187ab1c4b340a498bc1d942a539, type: 2}
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "<color=#ff3131><size=130%>\uC774\uB807\uAC8C, \uC774\uB807\uAC8C \uD558\uB780
-      \uB9D0\uC774\uC57C!</size=130%></color=#ff3131>"
+    dlgTexts: "\uAC70\uC6B8\uC774\uB124..\uBFCC\uC598\uC11C \uC544\uBB34\uAC83\uB3C4
+      \uBCF4\uC774\uC9C0 \uC54A\uC544"
     eventType: 0
   nextDlg: {fileID: 11400000, guid: 5e5ddd4aaba4e3c4c92ccd0054911837, type: 2}
   gmEvent: {fileID: 0}

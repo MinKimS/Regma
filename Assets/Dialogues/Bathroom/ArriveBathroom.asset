@@ -22,4 +22,5 @@ MonoBehaviour:
     dlgTexts: "\uADF8\uB0E5 \uB0B4\uB824\uAC08 \uC21C \uC5C6\uACA0\uC5B4.\n<color=#cb5301><b>\uB0B4\uB824\uAC08
       \uBC29\uBC95</b></color=#cb5301>\uC744 \uCC3E\uC544\uBCF4\uC790."
     eventType: 0
-  nextDlg: {fileID: 0}
+  nextDlg: {fileID: 11400000, guid: d9bec09aff74e8b48b8ff8be84f32521, type: 2}
+  gmEvent: {fileID: 0}

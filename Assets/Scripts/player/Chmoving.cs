@@ -66,7 +66,6 @@ public class Chmoving : MonoBehaviour
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
                        TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
                        !TutorialController.instance.IsTutorialShowing;
-
         if (canMove)
         {
             // 점프 관련 입력 처리

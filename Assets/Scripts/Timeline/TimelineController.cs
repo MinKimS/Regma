@@ -53,6 +53,11 @@ public class TimelineController : MonoBehaviour
         TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
     }
 
+    public void SetCutScene(bool value)
+    {
+        cutSceneAppearence.SetBool("isRunCutScene", value);
+    }
+
     public void SetTimelineStart(int playTimelineIdx)
     {
         cutSceneAppearence.SetBool("isRunCutScene", true);

@@ -29,6 +29,7 @@ public class TalkNotification : MonoBehaviour
         //보지 않은 톡이 온경우
         if(!isTalkIconShow && (SmartphoneManager.instance.inven.IsOpenInven || !SmartphoneManager.instance.phone.IsOpenPhone))
         {
+            AudioManager.instance.SFXPlay("Game Sound_messgae alarm");
             talkIcon.enabled = true;
             StartCoroutine(MoveTalkPos(showPos));
             isTalkIconShow = true;
@@ -38,6 +39,7 @@ public class TalkNotification : MonoBehaviour
     //톡 알림만 깜빡이기
     public void SetNotification()
     {
+        AudioManager.instance.SFXPlayLoop("ending_messenger alarm");
         StartCoroutine(IESetNotification());
     }
     IEnumerator IESetNotification()

@@ -16,6 +16,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cc09187ab1c4b340a498bc1d942a539, type: 2}
   sentences:
   - speakerIdx: 0
+    dlgTexts: "<color=#ff3131><size=130%>\uC5BC\uB978 \uC548 \uC53B\uC5B4?!</size=130%></color=#ff3131>"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "<color=#ff3131><size=130%>\uC774\uB807\uAC8C, \uC774\uB807\uAC8C \uD558\uB780
+      \uB9D0\uC774\uC57C!</size=130%></color=#ff3131>"
+    eventType: 0
+  - speakerIdx: 0
     dlgTexts: "<color=#ff3131><size=130%>\uC2DC\uB044\uB7EC\uC6CC! \uC774 \uB354\uB7FD\uACE0
       \uBB34\uC2DD\uD55C \uB144...\n\uB2C8 \uC560\uBE44\uB791 \uB611\uAC19\uC544.</size=130%></color=#ff3131>"
     eventType: 0

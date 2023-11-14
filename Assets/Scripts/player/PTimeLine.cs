@@ -50,6 +50,7 @@ public class PTimeLine : MonoBehaviour
                 {
                     print("충돌");
                     Refrianim.SetBool("OFF", true);
+                    AudioManager.instance.SFXPlay("Kitchen_power off");
                     Interaction1 = true;
                     refri2Object.SetActive(true);
                     power.isBroken = true;

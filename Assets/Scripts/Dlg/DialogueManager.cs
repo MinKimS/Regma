@@ -234,7 +234,7 @@ public class DialogueManager : MonoBehaviour
         dlgState = DlgState.End;
         HideChrImg();
 
-        SetNextDlg();
+        SetNextDlg(); 
 
         if (TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)
         {
@@ -327,6 +327,7 @@ public class DialogueManager : MonoBehaviour
         {
             if(!speakerImg.enabled){speakerImg.enabled = true;}
             speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+            speakerImg.color = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerColor;
         }
         else
         {
@@ -343,6 +344,7 @@ public class DialogueManager : MonoBehaviour
         {
             if(!speakerImg.enabled){speakerImg.enabled = true;}
             speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;
+            speakerImg.color = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerColor;
         }
         else
         {

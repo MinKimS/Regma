@@ -9,6 +9,7 @@ public class Speaker : ScriptableObject {
     public string speakerName;
     //화자 이미지
     public Sprite speakerSprite;
+    public Color speakerColor;
     //카톡이름
     public string talkName;
     //카톡 프로필
