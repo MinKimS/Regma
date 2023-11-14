@@ -52,10 +52,10 @@ public class Chmoving : MonoBehaviour
         Gizmos.DrawWireSphere(pos.position, checkRadius * transform.localScale.y);
     }
 
-    private void FixedUpdate()
-    {
-        Debug.Log(rb.gravityScale);
-    }
+    //private void FixedUpdate()
+    //{
+    //    Debug.Log(rb.gravityScale);
+    //}
 
     private void Update()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -111,7 +112,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "LoadingScene" || scene.name != "Title" || scene.name != "Intro")
+        if (scene.name != "LoadingScene" || scene.name != "Title" || scene.name != "Intro" && scene != null)
         {
             StartCoroutine(SetDialogueWhenSceneStart());
         }
@@ -120,8 +121,11 @@ public class DialogueManager : MonoBehaviour
     {
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
-        if(sc.buildIndex - 1 < dialogueList.Count)
-            curDlg = dialogueList[sc.buildIndex-1];
+        print(sc.buildIndex - 1 +" : " + sc.name);
+        if (sc.buildIndex - 1 > 0 && sc.buildIndex - 1 < dialogueList.Count)
+        {
+            curDlg = dialogueList[sc.buildIndex - 1];
+        }
     }
     private void OnDisable()
     {
