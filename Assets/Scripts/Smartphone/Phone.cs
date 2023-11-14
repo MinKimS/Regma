@@ -193,7 +193,6 @@ public class Phone : MonoBehaviour
         talk.talkText.text = text;
 
         phoneTalkList.Add(talk.transform);
-        talkCout++;
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
@@ -217,7 +216,6 @@ public class Phone : MonoBehaviour
         talk.talkText.text = text;
 
         phoneTalkList.Add(talk.transform);
-        talkCout++;
 
         if (!isAnnouncement) talk.userName = user.talkName;
 
@@ -252,7 +250,6 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
 
         phoneTalkList.Add(talk.transform);
-        talkCout++;
         if (isIn)
         {
             talk.talkText.text = text + "님이 들어왔습니다.";
@@ -369,7 +366,6 @@ public class Phone : MonoBehaviour
         talk.userName = user.talkName;
 
         phoneTalkList.Add(talk.transform);
-        talkCout++;
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
 
