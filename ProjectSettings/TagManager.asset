@@ -25,6 +25,7 @@ TagManager:
   - water
   - FallingClothes
   - Hand
+  - Ladder
   layers:
   - Default
   - TransparentFX
