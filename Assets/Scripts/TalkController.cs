@@ -13,7 +13,7 @@ public class TalkController : MonoBehaviour
 
     public void ShowNotification()
     {
-        SmartphoneManager.instance.phone.SetNotification();
+        SmartphoneManager.instance.phone.notification.SetNotification();
     }
 
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TalkNotification : MonoBehaviour
@@ -31,6 +33,32 @@ public class TalkNotification : MonoBehaviour
             StartCoroutine(MoveTalkPos(showPos));
             isTalkIconShow = true;
         }
+    }
+
+    //톡 알림만 깜빡이기
+    public void SetNotification()
+    {
+        StartCoroutine(IESetNotification());
+    }
+    IEnumerator IESetNotification()
+    {
+        WaitForSeconds wait = new WaitForSeconds(1);
+        while (SceneManager.GetActiveScene().name == "Veranda")
+        {
+            talkIcon.enabled = true;
+            StartCoroutine(MoveTalkPos(showPos));
+            isTalkIconShow = true;
+            print("show");
+            yield return wait;
+
+            talkIcon.enabled = false;
+            curTr.anchoredPosition = hidePos;
+            isTalkIconShow = false;
+            print("hide");
+
+            yield return wait;
+        }
+        SetHideTalkIconState();
     }
 
     //톡 알림 표시 상태 설정

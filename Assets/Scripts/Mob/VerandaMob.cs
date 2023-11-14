@@ -19,6 +19,7 @@ public class VerandaMob : MonoBehaviour
         if(spawnPos != null)
         {
             transform.position = spawnPos.position;
+            StartCoroutine(IETraceMob());
         }
     }
 
@@ -33,28 +34,35 @@ public class VerandaMob : MonoBehaviour
     {
         if (isTrace && !SmartphoneManager.instance.phone.IsOpenPhone && !RespawnManager.isGameOver)
         {
+            print("move");
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), traceSpeed * Time.deltaTime);
         }
     }
 
-    private void Update()
+    IEnumerator IETraceMob()
     {
-        if(RespawnManager.isGameOver)
+        WaitUntil waitGameOver = new WaitUntil(() => RespawnManager.isGameOver);
+        WaitUntil waitUnGameOver = new WaitUntil(() => !RespawnManager.isGameOver);
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
+        WaitForSeconds wait2 = new WaitForSeconds(0.1f);
+
+        yield return new WaitUntil(() => isTrace);
+        while (true)
         {
-            print("set position");
-            transform.position = new Vector3(target.transform.position.x - 10f, transform.position.y);
-            if(isTrace)
-            {
-                SetIsTrace(false);
-            }
+            yield return wait;
+            SetIsTrace(true);
+            yield return waitGameOver;
+            SetIsTrace(false);
+            yield return waitUnGameOver;
+            yield return wait2;
+            transform.position = new Vector3(target.transform.position.x - 25f, transform.position.y);
+
         }
-        else
-        {
-            if(!isTrace)
-            {
-                SetIsTrace(true);
-            }
-        }
+    }
+
+    public void SetMobPos()
+    {
+        transform.position = new Vector3(target.transform.position.x - 25f, transform.position.y);
     }
 
     public void SetIsTrace(bool value)

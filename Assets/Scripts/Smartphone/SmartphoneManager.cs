@@ -35,11 +35,6 @@ public class SmartphoneManager : MonoBehaviour
         }
         else Destroy(gameObject);
 
-        if (LoadingManager.nextScene == "Ending")
-        {
-            Destroy(gameObject);
-        }
-
         itemUsage = GetComponent<InventoryItemUsage>();
         phone = GetComponentInChildren<Phone>();
         inven = phone.GetComponentInChildren<InventoryController>();
