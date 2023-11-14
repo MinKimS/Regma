@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.VolumeComponent;
 
@@ -51,7 +52,8 @@ public class SmartphoneManager : MonoBehaviour
         if((TimelineManager.instance._Tlstate == TimelineManager.TlState.End) &&DialogueManager.instance._dlgState == DialogueManager.DlgState.End 
             && !inven.filesInven.IsInvenItemActive
             &&!TutorialController.instance.IsTutorialShowing
-            && !itemUsage.isUsingItem)
+            && !itemUsage.isUsingItem
+            && SceneManager.GetActiveScene().name != "Ending")
         {
             //폰 열기
             if(Input.GetKeyDown(KeyCode.P))

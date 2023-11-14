@@ -71,8 +71,7 @@ public class Phone : MonoBehaviour
     int showedCount = 0;
 
     //엔딩2에서 톡 지우기를 위한 용도
-    int talkCout = 0;
-    List<Transform> phoneTalkList;
+    [HideInInspector] public List<Transform> phoneTalkList;
 
     //선택된 아이템
     int selectedOption = 1;
@@ -159,7 +158,7 @@ public class Phone : MonoBehaviour
     //폰 보이기
     public void ShowPhone()
     {
-        if (PlayerInfoData.instance != null || !PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
+        if (PlayerInfoData.instance != null && !PlayerInfoData.instance.playerAnim.GetCurrentAnimatorStateInfo(0).IsName("standing"))
         {
             PlayerInfoData.instance.playerAnim.SetBool("walk", false);
             PlayerInfoData.instance.playerAnim.SetBool("jump", false);
@@ -525,9 +524,9 @@ public class Phone : MonoBehaviour
 
     IEnumerator IEDeleteTalks()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(1);
-        for (int i = phoneTalkList.Count-1; i > 0; i--)
+        for (int i = phoneTalkList.Count-1; i > -1; i--)
         {
             phoneTalkList[i].gameObject.SetActive(false);
             yield return wait;

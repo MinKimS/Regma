@@ -21,7 +21,7 @@ public class InventoryItemUsage : MonoBehaviour
     private void Start()
     {
         diary.gameObject.SetActive(false);
-        if (LoadingManager.nextScene != "Ending" || SceneManager.GetActiveScene().name != "Ending")
+        if ((LoadingManager.nextScene != "Ending" || SceneManager.GetActiveScene().name != "Ending") && PlayerInfoData.instance != null)
         {
             pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
         }
