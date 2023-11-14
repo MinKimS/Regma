@@ -10,6 +10,7 @@ public class EndingController : MonoBehaviour
     Image endingImg;
 
     bool isFirstEnding = false;
+    bool isShowingEnding = false;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class EndingController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(!isShowingEnding && Input.GetKeyDown(KeyCode.Return))
         {
             if(isFirstEnding)
             {
@@ -31,10 +32,23 @@ public class EndingController : MonoBehaviour
             }
             else
             {
-                SmartphoneManager.instance.phone.ShowPhone();
-                SmartphoneManager.instance.phone.DeleteTalks();
+                StartCoroutine(IEEndingTwo());
             }
+            isShowingEnding = true;
         }
+    }
+
+    IEnumerator IEEndingTwo()
+    {
+        SmartphoneManager.instance.phone.AddTalk("test");
+
+        yield return new WaitForSeconds(1f);
+
+        SmartphoneManager.instance.phone.ShowPhone();
+
+        yield return new WaitForSeconds(1f);
+
+        SmartphoneManager.instance.phone.DeleteTalks();
     }
 
     void SetEnding()

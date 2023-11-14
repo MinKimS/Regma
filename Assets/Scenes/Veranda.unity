@@ -1912,7 +1912,6 @@ MonoBehaviour:
   islayer:
     serializedVersion: 2
     m_Bits: 64
-  JumpCount: 1
 --- !u!114 &157110325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2187,7 +2186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185931859}
   - component: {fileID: 185931860}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3141,7 +3140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310438613}
   - component: {fileID: 310438614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4552,7 +4551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 480210701}
   - component: {fileID: 480210702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5459,7 +5458,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 920595619}
   mob: {fileID: 1682071325}
-  traceSpeed: 6
+  target: {fileID: 157110323}
+  respawnPoint: {fileID: 632888925}
+  traceSpeed: 10
 --- !u!1 &568665983
 GameObject:
   m_ObjectHideFlags: 0
@@ -25528,7 +25529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538695853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.91, y: 18.11, z: 0}
+  m_LocalPosition: {x: -21.91, y: 18.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25759,7 +25760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583291753}
   - component: {fileID: 1583291754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

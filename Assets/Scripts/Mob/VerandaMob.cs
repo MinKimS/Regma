@@ -7,7 +7,8 @@ public class VerandaMob : MonoBehaviour
 {
     public Transform spawnPos;
     public Transform mob;
-    Transform target;
+    public Transform target;
+    public UpdateRespawnPoint respawnPoint;
 
     bool isTrace = false;
 
@@ -26,20 +27,33 @@ public class VerandaMob : MonoBehaviour
         transform.position = spawnPos.position;
 
         mob.gameObject.SetActive(false);
+    }
 
-        target = PlayerInfoData.instance.playerTr;
+    private void FixedUpdate()
+    {
+        if (isTrace && !SmartphoneManager.instance.phone.IsOpenPhone && !RespawnManager.isGameOver)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), traceSpeed * Time.deltaTime);
+        }
     }
 
     private void Update()
     {
-        if(isTrace && !SmartphoneManager.instance.phone.IsOpenPhone)
+        if(RespawnManager.isGameOver)
         {
-            if(target == null)
+            print("set position");
+            transform.position = new Vector3(target.transform.position.x - 10f, transform.position.y);
+            if(isTrace)
             {
-                target = PlayerInfoData.instance.playerTr;
+                SetIsTrace(false);
             }
-
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), traceSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            if(!isTrace)
+            {
+                SetIsTrace(true);
+            }
         }
     }
 

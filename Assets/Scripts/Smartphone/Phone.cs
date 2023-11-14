@@ -463,7 +463,7 @@ public class Phone : MonoBehaviour
     }
     IEnumerator IESetNotification()
     {
-        WaitForSeconds wait = new WaitForSeconds(2);
+        WaitForSeconds wait = new WaitForSeconds(1);
         while(SceneManager.GetActiveScene().name == "Veranda")
         {
             notification.SetShowTalkIconState();
@@ -471,6 +471,8 @@ public class Phone : MonoBehaviour
             yield return wait;
 
             notification.SetHideTalkIconState();
+
+            yield return wait;
         }
         notification.SetHideTalkIconState();
     }

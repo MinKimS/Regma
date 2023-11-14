@@ -26,7 +26,10 @@ public class PlayerInfoData : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += LoadSceneEvent;
+        if (LoadingManager.nextScene != "Ending" || SceneManager.GetActiveScene().name != "Ending")
+        {
+            SceneManager.sceneLoaded += LoadSceneEvent;
+        }
     }
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
@@ -41,10 +44,6 @@ public class PlayerInfoData : MonoBehaviour
 
     IEnumerator SetPlayerInfo()
     {
-        if (LoadingManager.nextScene == "Ending")
-        {
-            Destroy(gameObject);
-        }
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();

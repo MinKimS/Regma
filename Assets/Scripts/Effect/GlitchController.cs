@@ -49,4 +49,13 @@ public class GlitchController : MonoBehaviour
             yield return waitNext;
         }
     }
+
+    private void Update()
+    {
+        if(RespawnManager.isGameOver)
+        {
+            StopAllCoroutines();
+            SetGlitchActive(false);
+        }
+    }
 }
