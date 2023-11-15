@@ -135,16 +135,15 @@ public class Chmoving : MonoBehaviour
     {
             // 사다리를 타고 있는 중일 때 상하 이동 제어
             Debug.Log("moveInputY: " + moveInputY);
-            //currentMoveSpeed = climbSpeed;
-            ////rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
-            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * climbSpeed);
-            ////rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+
+            animator.SetBool("OntheLadder", true);
             currentMoveSpeed = climbSpeed;
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
     }
 
         else
         {
+            animator.SetBool("OntheLadder", false);
             // 이 부분을 추가하여 이동 방향을 Y값으로 변경
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, rb.velocity.y); // 여기서 변경
         }
