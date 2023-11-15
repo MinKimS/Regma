@@ -24,10 +24,12 @@ public class Chmoving : MonoBehaviour
     private bool MovinginWater = false;
 
     private float moveInputX;
+    private float moveInputY;
     float defaultGravityScale;
+    private bool isClimbingLadder = false;
+    [SerializeField] float climbSpeed = 5f;
 
-
-   // int jumpCnt;
+    // int jumpCnt;
 
     [HideInInspector]
     public bool isGround;
@@ -127,11 +129,31 @@ public class Chmoving : MonoBehaviour
     private void HandleMovementInput()
 {
     moveInputX = Input.GetAxisRaw("Horizontal");
+    moveInputY = Input.GetAxisRaw("Vertical");
 
-    if (moveInputX != 0)
+    if(isClimbingLadder)
     {
-        isMoving = true;
-        currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
+            // 사다리를 타고 있는 중일 때 상하 이동 제어
+            Debug.Log("moveInputY: " + moveInputY);
+            //currentMoveSpeed = climbSpeed;
+            ////rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
+            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * climbSpeed);
+            ////rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+            currentMoveSpeed = climbSpeed;
+            rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
+    }
+
+        else
+        {
+            // 이 부분을 추가하여 이동 방향을 Y값으로 변경
+            rb.velocity = new Vector2(moveInputX * currentMoveSpeed, rb.velocity.y); // 여기서 변경
+        }
+
+        if (moveInputX != 0)
+    {
+            Debug.Log("moveInputX: " + moveInputX);
+            isMoving = true;
+            currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
 
         if (isJumping)
         {
@@ -194,7 +216,7 @@ public class Chmoving : MonoBehaviour
      
     }
 
-    rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y);
+    rb.velocity = new Vector2(currentMoveSpeed, rb.velocity.y); // 좌우이동
 }
 
     
@@ -327,6 +349,13 @@ public class Chmoving : MonoBehaviour
             inWater = true;
         }
 
+        if (collision.CompareTag("Ladder"))
+        {
+            print("사다리 충돌");
+            isClimbingLadder = true;
+            rb.gravityScale = 0;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -338,6 +367,12 @@ public class Chmoving : MonoBehaviour
             MovinginWater = false;
             animator.SetBool("Wet", false);
             animator.SetBool("walk", true);
+        }
+
+        if (collision.CompareTag("Ladder"))
+        {
+            isClimbingLadder = false;
+            rb.gravityScale = defaultGravityScale;
         }
     }
 }
