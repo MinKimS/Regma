@@ -34,7 +34,11 @@ public class PlayerInfoData : MonoBehaviour
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(SetPlayerInfo());
+        if(LoadingManager.nextScene == "Title" || LoadingManager.nextScene == "Intro" || LoadingManager.nextScene == "Ending")
+        {
+            Destroy(gameObject);
+        }
+            StartCoroutine(SetPlayerInfo());
     }
 
     private void OnDisable()

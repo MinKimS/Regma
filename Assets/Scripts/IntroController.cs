@@ -49,6 +49,7 @@ public class IntroController : MonoBehaviour
 
     void ChgImg()
     {
+        if (introImgidx > introImgs.Length) { print("dddd"); }
         introImg.sprite =  introImgs[introImgidx];
     }
 

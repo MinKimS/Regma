@@ -42,17 +42,6 @@ public class EndingController : MonoBehaviour
 
     IEnumerator IEEndingTwo()
     {
-        SmartphoneManager.instance.phone.AddTalk("test1");
-        SmartphoneManager.instance.phone.AddTalk("test2");
-        SmartphoneManager.instance.phone.AddTalk("test3");
-        SmartphoneManager.instance.phone.AddTalk("test4");
-        SmartphoneManager.instance.phone.AddTalk("test5");
-        SmartphoneManager.instance.phone.AddTalk("test6");
-        SmartphoneManager.instance.phone.AddTalk("test7");
-        SmartphoneManager.instance.phone.AddTalk("test8");
-        SmartphoneManager.instance.phone.AddTalk("test9");
-        SmartphoneManager.instance.phone.AddTalk("test10");
-
         yield return new WaitForSeconds(1f);
 
         SmartphoneManager.instance.phone.ShowPhone();

@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: "\uC9C0\uC560"
   speakerSprite: {fileID: 21300000, guid: 2c9bdd3f9093c6f459bf3b6441cfa736, type: 3}
   speakerColor: {r: 1, g: 1, b: 1, a: 1}
-  talkName: "\uC9C0\uC560"
+  talkName: "\uACF5\uB989\uB3D9\uBD88\uC8FC\uBA39"
   talkProfileSp: {fileID: 21300000, guid: f87fa8e5111d34c4887051a948ec246e, type: 3}

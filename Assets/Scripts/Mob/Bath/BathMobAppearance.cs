@@ -37,7 +37,7 @@ public class BathMobAppearance : MonoBehaviour
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
 
         bmc.hand.SetTargetToy(0);
-        bmc.hand.AttackTarget(0.3f);
+        bmc.hand.AttackTarget(0.1f*Time.deltaTime);
         
         Destroy(gameObject);
     }

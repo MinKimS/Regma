@@ -47,35 +47,6 @@ public class BathMobController : MonoBehaviour
         movement.HideMob();
     }
 
-    ////모습 보이기
-
-    //private void Update()
-    //{
-    //    if (isTracingStart && data.IsMobTryCatch && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
-    //    {
-    //        if(data.state == BathMobData.State.OutWater)
-    //        {
-    //            if(!playerHide.isHide)
-    //            {
-    //                hand.SetTarget();
-    //                hand.AttackTarget(1f);
-    //            }
-    //        }
-    //        else if(data.state == BathMobData.State.RuningWild)
-    //        {
-    //            if (!data.IsTryCatchPlayer)
-    //            {
-    //                hand.SetTargetToy(hand.toyIdx);
-    //                hand.AttackTarget(1.5f);
-    //            }
-    //            else
-    //            {
-    //                hand.MoveHandToPlayer(12);
-    //            }
-    //        }
-    //    }
-    //}
-
     private void Update()
     {
         if (!isStop && isTracingStart && !hand.isMoveHand && !hand.isCatchSomething && !water.isDrwon)
@@ -85,7 +56,7 @@ public class BathMobController : MonoBehaviour
                 if (!playerHide.isHide)
                 {
                     hand.SetTarget();
-                    hand.AttackTarget(0.3f);
+                    hand.AttackTarget(0.4f);
                 }
             }
             else if(data.state == BathMobData.State.RuningWild)
@@ -94,7 +65,7 @@ public class BathMobController : MonoBehaviour
                 {
                     print("runwilddddddd");
                     hand.SetTargetToy(hand.toyIdx);
-                    hand.AttackTarget(0.05f);
+                    hand.AttackTarget(0.07f);
                     data.canMove = false;
                 }
             }

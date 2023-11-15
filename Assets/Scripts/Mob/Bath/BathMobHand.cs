@@ -29,9 +29,6 @@ public class BathMobHand : MonoBehaviour
     [HideInInspector] public bool isMoveIntoWater = false;
     bool isAnimationDone = false;
 
-    public float moveSpeed = 10f;
-    public float dragSpeed = 10f;
-
     //[HideInInspector] public bool isCatchSomething = false;
     Transform targetPos;
     [HideInInspector] public BathMobData data;
@@ -126,7 +123,6 @@ public class BathMobHand : MonoBehaviour
         ReadyToAttack(readyHandSpeed);
 
         yield return new WaitUntil(() => isReadyAttack);
-        Debug.LogWarning(Time.time);
         //타겟으로 이동
         MoveToTargetAndAttack();
     }
@@ -152,7 +148,6 @@ public class BathMobHand : MonoBehaviour
 
     void MoveToTargetAndAttack()
     {
-        print("MoveToTargetAndAttack");
         StartCoroutine(IEMoveToTargetAndAttack());
     }
 

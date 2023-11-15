@@ -119,31 +119,24 @@ public class Phone : MonoBehaviour
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "LoadingScene" && scene.name != "Bathroom" && scene.name != "Bath")
+        if (scene.name != "LoadingScene" && scene.name != "Bathroom" && scene.name != "Bath" && scene.name != "Title" && scene.name != "Intro" && scene != null)
         {
-            StartCoroutine(SetCurTalkWhenSceneStart());
-        }
-    }
-
-    IEnumerator SetCurTalkWhenSceneStart()
-    {
-        Scene sc = SceneManager.GetActiveScene();
-        yield return new WaitWhile(() => sc.name == "LoadingScene");
-
-        switch (sc.name)
-        {
-            case "SampleScene":
-                curTalk = talkList[0];
-                break;
-            case "Kitchen":
-                curTalk = talkList[1];
-                break;
-            case "SampleScene 2":
-                curTalk = talkList[2];
-                break;
-            case "Veranda":
-                curTalk = talkList[3];
-                break;
+            switch (scene.name)
+            {
+                case "SampleScene":
+                    curTalk = talkList[0];
+                    break;
+                case "Kitchen":
+                    curTalk = talkList[1];
+                    break;
+                case "SampleScene 2":
+                    curTalk = talkList[2];
+                    break;
+                case "Veranda":
+                    curTalk = talkList[3];
+                    break;
+            }
+            HidePhone();
         }
     }
 
@@ -340,6 +333,7 @@ public class Phone : MonoBehaviour
         }
         StartCoroutine(FixLayoutGroup());
 
+        isTalkNeedToBeSend = false;
         //if (curSendTalk == null && curTalk.isInTimeline)
         //{
         //    TimelineManager.instance.timelineController.SetTimelineResume();
@@ -527,5 +521,96 @@ public class Phone : MonoBehaviour
             phoneTalkList[i].gameObject.SetActive(false);
             yield return wait;
         }
+    }
+    public void DeleteTalkAll()
+    {
+        foreach(Transform talkItem in talkParent.transform)
+        {
+            Destroy(talkItem.gameObject);
+        }
+    }
+
+    //¾À¸¶´Ù ³²¾ÆÀÖ´Â Åå ¼³Á¤
+    public void SetRemainTalks(int idx)
+    {
+        StartCoroutine(IESetRemainTalks(idx));
+    }
+
+    IEnumerator IESetRemainTalks(int idx)
+    {
+        Talk talk = talkList[0];
+        for (int i = 0; i < idx+1; i++)
+        {
+            talk = talkList[i];
+
+            while(talk.nextTalk != null && talk.nextTalk.Length > 0)
+            {
+                if (talk.TalkContexts.Count > 0)
+                {
+                    while (talk.TalkContexts.Count > talkIdx)
+                    {
+                        AddTalk(false, talk.TalkContexts[talkIdx].user, talk.TalkContexts[talkIdx++].talkText);
+                        yield return null;
+                    }
+                }
+                if (talk.answerTalk.Length > 0)
+                {
+                    curSendTalk = talk.answerTalk[0];
+                    AddTalk(curSendTalk.talkText);
+                    while (curSendTalk.nextSendTalk != null)
+                    {
+                        if (curSendTalk.nextSendTalk != null)
+                        {
+                            SetNextSendTalk();
+                        }
+                        AddTalk(curSendTalk.talkText);
+                        yield return null;
+                    }
+                }
+
+                talkIdx = 0;
+                if (talk.nextTalk != null && talk.nextTalk.Length > 0)
+                {
+                    if (talk.answerTalk.Length < 2)
+                    {
+                        talk = talk.nextTalk[0];
+                    }
+                    else
+                    {
+                        talk = talk.nextTalk[selectedOption - 1];
+                    }
+                }
+            }
+
+            if (talk.TalkContexts.Count > 0)
+            {
+                while (talk.TalkContexts.Count > talkIdx)
+                {
+                    AddTalk(false, talk.TalkContexts[talkIdx].user, talk.TalkContexts[talkIdx++].talkText);
+                    yield return null;
+                }
+            }
+            if (talk.answerTalk.Length > 0)
+            {
+                curSendTalk = talk.answerTalk[0];
+                AddTalk(curSendTalk.talkText);
+                while (curSendTalk.nextSendTalk != null)
+                {
+                    if (curSendTalk.nextSendTalk != null)
+                    {
+                        SetNextSendTalk();
+                    }
+                    AddTalk(curSendTalk.talkText);
+                    yield return null;
+                }
+            }
+
+            talkIdx = 0;
+        }
+        
+        HideSendTalk();
+        isTalkNeedToBeSend = false;
+        isOKSendTalk = true;
+        isOkStartTalk = true;
     }
 }

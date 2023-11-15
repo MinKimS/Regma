@@ -14,6 +14,9 @@ public class MenuController : MonoBehaviour
     public Image[] btnList;
     int btnIdx = 0;
 
+    Color selectColor = new Vector4(0.5f, 0.5f, 0.5f, 0.5f);
+    Color unSelectColor = new Vector4(1f, 1f, 1f, 0.5f);
+
     int resolutionIdx = 0;
     int fullIdx = 0;
     public GameObject controlExplainScreen;
@@ -23,6 +26,8 @@ public class MenuController : MonoBehaviour
     Resolution[] resolutions;
 
     List<string> resolutionList;
+
+    [HideInInspector] public static bool isOpenMenu = false;
 
     private void Awake()
     {
@@ -46,11 +51,18 @@ public class MenuController : MonoBehaviour
     private void Update()
     {
         //화면에 보이기/숨기기
-        if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene" && SceneManager.GetActiveScene().name != "Title")
+        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene" && SceneManager.GetActiveScene().name != "Title";
+
+
+        if (canInput)
         {
             if(!controlExplainScreen.activeSelf)
             {
-                menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
+                if (!DialogueManager.instance.isShowDlg)
+                {
+                    menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
+                    isOpenMenu = !isOpenMenu;
+                }
             }
             else
             {
@@ -94,6 +106,19 @@ public class MenuController : MonoBehaviour
                 else if (btnIdx == btnList.Length - 1)
                 {
                     menuPanel.gameObject.SetActive(false);
+                    isOpenMenu = false;
+
+                    SmartphoneManager.instance.phone.HidePhone();
+                    SmartphoneManager.instance.phone.DeleteTalkAll();
+                    SmartphoneManager.instance.phone.HideSendTalk();
+                    SmartphoneManager.instance.phone.SetCurTalk(0);
+                    if(DialogueManager.instance.isShowDlg)
+                    {
+                        DialogueManager.instance.DialogueHide();
+                    }
+                    DialogueManager.instance.SetCurDlg(0);
+                    TutorialController.instance.CloseTutorialScreen();
+
                     LoadingManager.LoadScene("Title");
                 }
             }
@@ -102,18 +127,18 @@ public class MenuController : MonoBehaviour
 
     void SetBtn(bool isPlus)
     {
-        btnList[btnIdx].color = Color.white;
+        btnList[btnIdx].color = unSelectColor;
 
         if (isPlus) { btnIdx++; }
         else { btnIdx--; }
 
-        btnList[btnIdx].color = Color.gray;
+        btnList[btnIdx].color = selectColor;
     }
 
     void SetInitialBtn()
     {
         btnIdx = btnList.Length-1;
-        btnList[btnIdx].color = Color.gray;
+        btnList[btnIdx].color = selectColor;
     }
 
     void SetSetting(bool isPlus)

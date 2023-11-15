@@ -77,6 +77,9 @@ public class SceneMapMenuController : MonoBehaviour
 
         SmartphoneManager.instance.inven.HideInven();
         SmartphoneManager.instance.phone.HidePhone();
+        SmartphoneManager.instance.phone.HideSendTalk();
+        SmartphoneManager.instance.phone.isOkStartTalk = true;
+        TutorialController.instance.CloseTutorialScreen();
     }
 
     public ItemData[] itemList;
@@ -100,8 +103,10 @@ public class SceneMapMenuController : MonoBehaviour
             SmartphoneManager.instance.SetInvenItem(itemList[2]);
         }
 
+        SmartphoneManager.instance.phone.DeleteTalkAll();
+
         //카톡, 대사 설정
-        switch(sceneName)
+        switch (sceneName)
         {
             case "SampleScene":
                 SmartphoneManager.instance.phone.SetCurTalk(0);
@@ -110,20 +115,28 @@ public class SceneMapMenuController : MonoBehaviour
             case "Kitchen":
                 SmartphoneManager.instance.phone.SetCurTalk(1);
                 DialogueManager.instance.SetCurDlg(1);
+                SmartphoneManager.instance.phone.SetRemainTalks(0);
                 break;
             case "Bathroom":
                 DialogueManager.instance.SetCurDlg(2);
+                SmartphoneManager.instance.phone.SetRemainTalks(1);
                 break;
             case "Bath":
                 DialogueManager.instance.SetCurDlg(3);
+                SmartphoneManager.instance.phone.SetRemainTalks(1);
                 break;
             case "SampleScene 2":
                 SmartphoneManager.instance.phone.SetCurTalk(2);
                 DialogueManager.instance.SetCurDlg(4);
+                SmartphoneManager.instance.phone.SetRemainTalks(1);
                 break;
             case "Veranda":
                 SmartphoneManager.instance.phone.SetCurTalk(3);
                 DialogueManager.instance.SetCurDlg(5);
+                SmartphoneManager.instance.phone.SetRemainTalks(2);
+                break;
+            case "Ending":
+                SmartphoneManager.instance.phone.SetRemainTalks(3);
                 break;
             default:
                 break;

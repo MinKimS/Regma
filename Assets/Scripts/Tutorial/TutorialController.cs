@@ -17,8 +17,6 @@ public class TutorialController : MonoBehaviour
 
     public TextMeshProUGUI tutorialText;
 
-    Transform TutorialArea;
-
     private void Awake()
     {
         if(instance == null)
@@ -36,7 +34,6 @@ public class TutorialController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        TutorialArea = GetComponentInChildren<Transform>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -58,7 +55,6 @@ public class TutorialController : MonoBehaviour
         if (!IsTutorialShowing)
         {
             animator.SetBool("isShow", true);
-            //TutorialArea.gameObject.SetActive(true);
             isTutorialShowing = true;
             SetTutorialText(str);
         }
@@ -71,10 +67,9 @@ public class TutorialController : MonoBehaviour
         tutorialText.text = str;
     }
 
-    void CloseTutorialScreen()
+    public void CloseTutorialScreen()
     {
         animator.SetBool("isShow", false);
-        //TutorialArea.gameObject.SetActive(false);
         isTutorialShowing = false;
         tutorialText.text = "";
         if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)

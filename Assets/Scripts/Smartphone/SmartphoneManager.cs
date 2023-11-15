@@ -56,7 +56,7 @@ public class SmartphoneManager : MonoBehaviour
             && SceneManager.GetActiveScene().name != "Ending")
         {
             //폰 열기
-            if(Input.GetKeyDown(KeyCode.P))
+            if(Input.GetKeyDown(KeyCode.P) && !MenuController.isOpenMenu)
             {
                 if(!phone.IsOpenPhone)
                 {
@@ -69,7 +69,7 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
             //인벤 열기
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) && !MenuController.isOpenMenu)
             {
                 if (!inven.IsOpenInven)
                 {
@@ -113,7 +113,7 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !MenuController.isOpenMenu)
             {
                 if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
                 {
@@ -158,7 +158,7 @@ public class SmartphoneManager : MonoBehaviour
                     inven.IsLastLine = false;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && !MenuController.isOpenMenu)
             {
                 if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption < phone.ShowedCount)
                 {
@@ -200,7 +200,7 @@ public class SmartphoneManager : MonoBehaviour
                     inven.IsFirstLine = false;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !MenuController.isOpenMenu)
             {
                 //파일 선택
                 if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
@@ -223,7 +223,7 @@ public class SmartphoneManager : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !MenuController.isOpenMenu)
             {
                 //사진 선택
                 if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
@@ -248,7 +248,8 @@ public class SmartphoneManager : MonoBehaviour
             }
 
             //선택 및 사용
-            if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing)
+            if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing
+                 && !MenuController.isOpenMenu)
             {
                 //파일과 사진 중 선택
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)
@@ -340,12 +341,6 @@ public class SmartphoneManager : MonoBehaviour
                     phone.isOkStartTalk = true;
                 }
             }
-            //if(Input.GetKeyDown(KeyCode.Delete))
-            //{
-            //    //서랍창 나가기
-            //    if(inven.IsOpenFiles) { inven.SetFilesActive(false);}
-            //    if(inven.IsOpenPictures) { inven.SetPicsActive(false);}
-            //}
         }
     }
 
