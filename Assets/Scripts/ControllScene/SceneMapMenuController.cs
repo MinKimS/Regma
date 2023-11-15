@@ -5,18 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneMapMenuController : MonoBehaviour
 {
-
+    public static SceneMapMenuController instance;
     private void Awake()
     {
-        var obj = FindObjectsOfType<SceneMapMenuController>();
-        if (obj.Length==1)
+        if (instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+            instance = this;
+            DontDestroyOnLoad(instance);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
     public GameObject btnObj;
@@ -29,6 +26,24 @@ public class SceneMapMenuController : MonoBehaviour
         SetInvenNeededItemAtCurrentScene(sceneName);
 
         LoadingManager.LoadScene(sceneName);
+    }
+
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene" && scene.name != "Title" && scene.name != "Intro" && scene != null)
+        {
+            ReadyToSceneChange();
+            SetInvenNeededItemAtCurrentScene(scene.name);
+        }
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
     private void Update()
@@ -64,7 +79,7 @@ public class SceneMapMenuController : MonoBehaviour
         }
     }
 
-    void ReadyToSceneChange()
+    public void ReadyToSceneChange()
     {
         if(TimelineManager.instance._Tlstate != TimelineManager.TlState.End)
         {
@@ -84,7 +99,7 @@ public class SceneMapMenuController : MonoBehaviour
 
     public ItemData[] itemList;
 
-    void SetInvenNeededItemAtCurrentScene(string sceneName)
+    public void SetInvenNeededItemAtCurrentScene(string sceneName)
     {
         //모든 인벤토리의 아이템 삭제
         SmartphoneManager.instance.DeleteAllItemInInven();
@@ -141,5 +156,7 @@ public class SceneMapMenuController : MonoBehaviour
             default:
                 break;
         }
+
+        GameManager.instance.SetLastScene(SceneManager.GetActiveScene().name);
     }
 }

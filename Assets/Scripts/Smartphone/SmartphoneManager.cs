@@ -53,7 +53,9 @@ public class SmartphoneManager : MonoBehaviour
             && !inven.filesInven.IsInvenItemActive
             &&!TutorialController.instance.IsTutorialShowing
             && !itemUsage.isUsingItem
-            && SceneManager.GetActiveScene().name != "Ending")
+            && SceneManager.GetActiveScene().name != "Ending"
+            && SceneManager.GetActiveScene().name != "Title"
+            && SceneManager.GetActiveScene().name != "Intro")
         {
             //폰 열기
             if(Input.GetKeyDown(KeyCode.P) && !MenuController.isOpenMenu)

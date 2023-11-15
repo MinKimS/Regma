@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     }
 
     bool isEndingTwo = false;
+    string lastScene = "Title";
 
     public bool _isEndingTwo
     {
@@ -30,6 +31,15 @@ public class GameManager : MonoBehaviour
     {
         isEndingTwo = b ? true : false;
         print("isEndingTwo : " + isEndingTwo);
+    }
+
+    public void SetLastScene(string str)
+    {
+        lastScene = str;
+    }
+    public string GetLastScene()
+    {
+        return lastScene;
     }
 
     private void Update()

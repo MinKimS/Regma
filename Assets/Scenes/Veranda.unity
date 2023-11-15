@@ -26933,6 +26933,7 @@ MonoBehaviour:
   nextArrow: {fileID: 1054494578}
   setenceIdx: 0
   typingSpeed: 0.05
+  isShowDlg: 0
 --- !u!114 &1736163040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31492,7 +31493,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393332238}
   m_HandleRect: {fileID: 1393332237}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

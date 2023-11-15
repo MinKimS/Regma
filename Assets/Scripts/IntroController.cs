@@ -30,11 +30,11 @@ public class IntroController : MonoBehaviour
             if(introImgidx < introImgs.Length)
             {
                 ChgImg();
-                if(introImgidx!=0&&introImgidx!=1&&introImgidx!=8&&introImgidx!=13&&introImgidx!=17&&introImgidx!=20&&introImgidx!=21)
+                if(introImgidx>4&&introImgidx!=11&&introImgidx!=16&&introImgidx!=20&&introImgidx!=23&&introImgidx!=24)
                 {
                     StartCoroutine(TypingDlg(dlgIntro[introDlgIdx++]));
                 }
-                if(introImgidx==20)
+                if(introImgidx==23)
                 {
                     Invoke("ChgImg", 0.5f);
                 }
@@ -49,7 +49,6 @@ public class IntroController : MonoBehaviour
 
     void ChgImg()
     {
-        if (introImgidx > introImgs.Length) { print("dddd"); }
         introImg.sprite =  introImgs[introImgidx];
     }
 

@@ -514,7 +514,7 @@ public class Phone : MonoBehaviour
 
     IEnumerator IEDeleteTalks()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.5f);
+        WaitForSeconds wait = new WaitForSeconds(0.02f);
         yield return new WaitForSeconds(1);
         for (int i = phoneTalkList.Count-1; i > -1; i--)
         {

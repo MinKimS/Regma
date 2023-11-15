@@ -301,6 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introImg: {fileID: 846629612}
   introImgs:
+  - {fileID: 21300000, guid: 45d59dad51eb1354d9b8c4349f73caae, type: 3}
+  - {fileID: 21300000, guid: 20941de6730a8534fb161efa6c541446, type: 3}
+  - {fileID: 21300000, guid: 04127daf5f4945b46ba4aaa06dcf3eee, type: 3}
   - {fileID: 21300000, guid: 88e66b47fa84db144bf97d1c183a5527, type: 3}
   - {fileID: 21300000, guid: 521144556d992bf42be4a8d458d29215, type: 3}
   - {fileID: 21300000, guid: 351958810cd98034d95dac359d26d8b5, type: 3}

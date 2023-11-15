@@ -54,7 +54,12 @@ public class EndingController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         SmartphoneManager.instance.phone.HidePhone();
 
-        ShowImage();
+        ShowImage(2);
+        yield return new WaitForSeconds(1.5f);
+        ShowImage(3);
+        yield return new WaitForSeconds(1.5f);
+        ShowImage(4);
+        isShowImg = true;
     }
 
     void SetEnding()
@@ -83,9 +88,8 @@ public class EndingController : MonoBehaviour
         endingImg.sprite = endingSPs[1];
     }
 
-    void ShowImage()
+    void ShowImage(int num)
     {
-        endingImg.sprite = endingSPs[2];
-        isShowImg = true;
+        endingImg.sprite = endingSPs[num];
     }
 }

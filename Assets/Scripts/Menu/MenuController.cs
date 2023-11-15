@@ -118,6 +118,7 @@ public class MenuController : MonoBehaviour
                     }
                     DialogueManager.instance.SetCurDlg(0);
                     TutorialController.instance.CloseTutorialScreen();
+                    GameManager.instance.SetLastScene(SceneManager.GetActiveScene().name);
 
                     LoadingManager.LoadScene("Title");
                 }

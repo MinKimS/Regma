@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleController : MonoBehaviour
@@ -42,7 +43,10 @@ public class TitleController : MonoBehaviour
             }
             else if(btnSelectIdx == 1)
             {
-                howToScreen.gameObject.SetActive(true);
+                if(GameManager.instance.GetLastScene() != SceneManager.GetActiveScene().name)
+                {
+                    LoadingManager.LoadScene(GameManager.instance.GetLastScene());
+                }
             }
             else
             {
@@ -51,11 +55,11 @@ public class TitleController : MonoBehaviour
             }
         }
 
-        //조작법 창 숨기기
-        if(Input.GetKeyDown(KeyCode.Escape) && howToScreen.gameObject.activeSelf)
-        {
-            howToScreen.gameObject.SetActive(false);
-        }
+        ////조작법 창 숨기기
+        //if(Input.GetKeyDown(KeyCode.Escape) && howToScreen.gameObject.activeSelf)
+        //{
+        //    howToScreen.gameObject.SetActive(false);
+        //}
     }
 
     void SelectBtn()
