@@ -2097,7 +2097,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.20150095, y: -0.042171523}
+  m_Offset: {x: 0.208868, y: -0.042171523}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2108,7 +2108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.740388, y: 0.18468425}
+  m_Size: {x: 1.3425546, y: 0.18468425}
   m_EdgeRadius: 0
 --- !u!1 &278128131
 GameObject:
@@ -3207,6 +3207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTr: {fileID: 1254502959}
+  playerRb: {fileID: 0}
   playerAnim: {fileID: 1254502953}
 --- !u!4 &360570777
 Transform:
@@ -10226,6 +10227,7 @@ MonoBehaviour:
   walkAudioSource: {fileID: 1254502949}
   nofalling: {fileID: 1254502962}
   jumpForce: 16
+  climbSpeed: 5
   isGround: 0
   pos: {fileID: 1466646051}
   islayer:
@@ -10413,8 +10415,9 @@ MonoBehaviour:
   animator: {fileID: 1254502953}
   jumpSound: {fileID: 8300000, guid: 2e0e1029715756a469330028429e8360, type: 3}
   walkAudioSource: {fileID: 1254502949}
-  nofalling: {fileID: 0}
+  nofalling: {fileID: 1254502962}
   jumpForce: 16
+  climbSpeed: 5
   isGround: 0
   pos: {fileID: 1466646051}
   islayer:

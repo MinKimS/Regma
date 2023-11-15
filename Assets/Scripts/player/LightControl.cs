@@ -32,7 +32,7 @@ public class LightControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.H))
         {
 
             if (LightObj.activeSelf)

@@ -51,7 +51,7 @@ public class PlayerFallingController : MonoBehaviour
         //애니메이션 전환 넣기
         //낙뎀 막는거 넣기
         //천천히 떨어지기
-        if (isNoFallingDamage && Input.GetKeyUp(KeyCode.Space))
+        if (isNoFallingDamage && Input.GetKey(KeyCode.Space))
         { 
             rb.gravityScale = 0.2f;
             rb.velocity = Vector2.zero;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class OverMng : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class OverMng : MonoBehaviour
         if(RespawnManager.isGameOver)
         {
             go_BaseUI.SetActive(true);
-            print("게임오버");
+            //print("게임오버");
             Time.timeScale = 0f;
         }
     }
@@ -52,7 +53,8 @@ public class OverMng : MonoBehaviour
 
     public void OnClickExit()
     {
-        //메인메뉴씬으로 이동? 
+        //메인메뉴씬으로 이동?
+        SceneManager.LoadScene("Title");
         Debug.Log("나가기");
     }
 }

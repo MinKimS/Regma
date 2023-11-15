@@ -7886,6 +7886,7 @@ MonoBehaviour:
   walkAudioSource: {fileID: 0}
   nofalling: {fileID: 0}
   jumpForce: 7.5
+  climbSpeed: 5
   isGround: 0
   pos: {fileID: 1378315513}
   islayer:
@@ -17090,7 +17091,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050715326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14be0fa3c2bdc41438cfffeb51eec280, type: 3}
   m_Name: 
@@ -29690,6 +29691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTr: {fileID: 1620223286}
+  playerRb: {fileID: 0}
   playerAnim: {fileID: 1620223287}
 --- !u!4 &1604196672
 Transform:
@@ -29762,6 +29764,7 @@ MonoBehaviour:
   walkAudioSource: {fileID: 1620223291}
   nofalling: {fileID: 0}
   jumpForce: 16
+  climbSpeed: 5
   isGround: 0
   pos: {fileID: 1677597372}
   islayer:
@@ -36797,7 +36800,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 23bb41c16403ab24e8522c269eff895c, type: 3}
   - {fileID: 8300000, guid: f45bfe767931695449298db443b07bd7, type: 3}
   - {fileID: 8300000, guid: bdf59216a1e444f499b86bbd1200f1de, type: 3}
-  - {fileID: 8300000, guid: 4c9bea9fc5736ee45b0c9cf4604a256a, type: 3}
+  - {fileID: 8300000, guid: bdf59216a1e444f499b86bbd1200f1de, type: 3}
   - {fileID: 8300000, guid: e14a32c7556cab44d85b0e9659ee0f11, type: 3}
   - {fileID: 8300000, guid: 7a0a513f39b861d4abe0a5775b132ddc, type: 3}
   - {fileID: 8300000, guid: 8b51a5dbf2b2e724d833f28172c239a1, type: 3}
