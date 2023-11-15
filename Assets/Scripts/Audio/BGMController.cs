@@ -40,7 +40,7 @@ public class BGMController : MonoBehaviour
             case "SampleScene":
             case "Bath":
             case "SampleScene 2":
-                SetBGM(0);
+                SetBGM(0, 0.5f);
                 break;
             case "Kitchen":
                 SetBGM(1);
@@ -59,7 +59,7 @@ public class BGMController : MonoBehaviour
         }
     }
 
-    void SetBGM(int num)
+    void SetBGM(int num, float volume = 1)
     {
         if (BGM.clip != bgmList[num])
         {
@@ -68,6 +68,10 @@ public class BGMController : MonoBehaviour
         }
         else { isOkChgBGM = false; }
         BGM.clip = bgmList[num];
-        if (isOkChgBGM) { BGM.Play(); }
+        if (isOkChgBGM)
+        {
+            BGM.Play();
+            BGM.volume = volume;
+        }
     }
 }

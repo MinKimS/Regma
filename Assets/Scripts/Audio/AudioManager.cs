@@ -115,4 +115,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public bool CheckAudioPlaying(string targetClip)
+    {
+        for (int i = 0; i < SFX.Length; ++i)
+        {
+            if (SFX[i].clip != null && SFX[i].clip.name == targetClip)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

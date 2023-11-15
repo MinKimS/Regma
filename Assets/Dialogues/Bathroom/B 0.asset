@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakers:
   - {fileID: 11400000, guid: 9cc09187ab1c4b340a498bc1d942a539, type: 2}
-  - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
     dlgTexts: "<color=#ff3131><size=130%>\uC57C!!!</size=130%> \uBB50\uD558\uB294
@@ -26,6 +25,6 @@ MonoBehaviour:
     eventType: 0
   - speakerIdx: 0
     dlgTexts: "<color=#ff3131>\uADF8\uB7EC\uC9C0!</color=#ff3131>"
-    eventType: 0
+    eventType: 2
   nextDlg: {fileID: 11400000, guid: ce1f244a444d51a4e8fe81c314463e65, type: 2}
   gmEvent: {fileID: 11400000, guid: 087aea936ff03764283de4795bd05d57, type: 2}

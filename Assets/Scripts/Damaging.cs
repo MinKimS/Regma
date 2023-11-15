@@ -51,15 +51,7 @@ public class Damaging : MonoBehaviour
                 RespawnManager.Instance.OnGameOver.Invoke(RespawnManager.ChangeMethod.DamageBased);
                 ClearDamage();
             }
-            
-
-
-            //if (RespawnManager.Instance != null && RespawnManager.Instance.currentMethod == RespawnManager.ChangeMethod.DamageBased)
-            //{
-            //    
-            //}
         }
-
     }
 
     public int GetDamage()

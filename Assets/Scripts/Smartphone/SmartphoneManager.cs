@@ -300,7 +300,10 @@ public class SmartphoneManager : MonoBehaviour
                     //화면에 톡 추가
                     phone.AddTalk(phone.curSendTalk.talkText);
                     phone.HideSendTalk();
-                    AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
+                    if(!AudioManager.instance.CheckAudioPlaying("Game Sound_카톡타자2"))
+                    {
+                        AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
+                    }
 
                     //플레이어가 이어서 보낼 톡이 있는경우
                     if (phone.curSendTalk.nextSendTalk != null)
