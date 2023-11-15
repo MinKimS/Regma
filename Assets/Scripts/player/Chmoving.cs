@@ -151,7 +151,7 @@ public class Chmoving : MonoBehaviour
 
         if (moveInputX != 0)
     {
-            Debug.Log("moveInputX: " + moveInputX);
+            //Debug.Log("moveInputX: " + moveInputX);
             isMoving = true;
             currentMoveSpeed = isRunning ? runSpeed * moveInputX : moveSpeed * moveInputX;
 
