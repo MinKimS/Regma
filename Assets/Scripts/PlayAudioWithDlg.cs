@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class PlayAudioWithDlg : MonoBehaviour
 {
-    AudioSource audioSource;
-    public AudioClip[] clips;
-
-    private void Awake()
+    public void PlayAudio(string audio)
     {
-        audioSource = GetComponent<AudioSource>();
+        AudioManager.instance.SFXPlay(audio);
     }
 
-    public void PlayAudio(int num)
+    public void StopAudio(string audio)
     {
-        audioSource.clip = clips[num];
-        audioSource.Play();
+        AudioManager.instance.StopSFX(audio);
     }
 }

@@ -9,7 +9,7 @@ public class PlayerFallingController : MonoBehaviour
     bool isJump = false;
     bool isCheckInTheAir = false;
 
-    Animator anim;
+    [HideInInspector] public Animator anim;
     Rigidbody2D rb;
 
     //public Chmovingbath movingBath;
@@ -48,18 +48,17 @@ public class PlayerFallingController : MonoBehaviour
             isNoFallingDamage = false;
         }
 
+
         //애니메이션 전환 넣기
         //낙뎀 막는거 넣기
         //천천히 떨어지기
-        if (isNoFallingDamage && Input.GetKey(KeyCode.Space))
+        if (isNoFallingDamage && Input.GetKeyUp(KeyCode.Space))
         { 
             rb.gravityScale = 0.2f;
             rb.velocity = Vector2.zero;
             isJump = true;
-            anim.SetBool("isJumpWithBlanket", true);
         }
-
-        if(moving != null)
+        if (moving != null)
         {
             if (moving.isGround && isJump)
             {
@@ -68,6 +67,6 @@ public class PlayerFallingController : MonoBehaviour
                 anim.SetBool("isJumpWithBlanket", false);
             }
         }
-        
+
     }
 }

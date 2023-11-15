@@ -250,6 +250,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+
+
         if(curDlg.sentences[setenceIdx].eventType == Dialogue.EventType.RunGameEventAfterDlg)
         {
             curDlg.gmEvent.Raise();
@@ -273,6 +275,10 @@ public class DialogueManager : MonoBehaviour
         dlgState = DlgState.End;
         HideChrImg();
 
+        if (dlg.sentences[setenceIdx-1].eventType == Dialogue.EventType.RunGameEventAfterDlg)
+        {
+            dlg.gmEvent.Raise();
+        }
         SetNextDlg(dlg);
         isSingleDlg = false;
     }

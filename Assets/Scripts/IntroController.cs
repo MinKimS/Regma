@@ -38,7 +38,8 @@ public class IntroController : MonoBehaviour
                 {
                     Invoke("ChgImg", 0.5f);
                 }
-                introImgidx++;
+                if (introImgidx < introImgs.Length)
+                    introImgidx++;
             }
             else
             {

@@ -51,8 +51,10 @@ public class VerandaMob : MonoBehaviour
         {
             yield return wait;
             SetIsTrace(true);
+            AudioManager.instance.SFXPlay("林规_鲍积疙眉1 澜己");
             yield return waitGameOver;
             SetIsTrace(false);
+            AudioManager.instance.StopSFX("林规_鲍积疙眉1 澜己");
             yield return waitUnGameOver;
             yield return wait2;
             transform.position = new Vector3(target.transform.position.x - 25f, transform.position.y);

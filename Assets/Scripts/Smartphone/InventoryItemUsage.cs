@@ -106,5 +106,6 @@ public class InventoryItemUsage : MonoBehaviour
     {
         print("플레이어 점프 낙하 데미지 없음 모드로 변경");
         pfc.isNoFallingDamage = true;
+        pfc.anim.SetBool("isJumpWithBlanket", true);
     }
 }

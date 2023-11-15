@@ -104,6 +104,7 @@ public class MirrorControl : MonoBehaviour
         DialogueManager.instance.PlayDlg();
 
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+        AudioManager.instance.StopSFX("Restroom voice 2");
         ShowImage();
         MirrorAnimator.SetBool("Broken", true);
 
