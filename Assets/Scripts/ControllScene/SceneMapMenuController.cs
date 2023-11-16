@@ -90,6 +90,7 @@ public class SceneMapMenuController : MonoBehaviour
             DialogueManager.instance.DialogueHide();
         }
 
+        AudioManager.instance.StopSFXAll();
         SmartphoneManager.instance.inven.HideInven();
         SmartphoneManager.instance.phone.HidePhone();
         SmartphoneManager.instance.phone.HideSendTalk();

@@ -107,7 +107,7 @@ public class MenuController : MonoBehaviour
                 {
                     menuPanel.gameObject.SetActive(false);
                     isOpenMenu = false;
-
+                    AudioManager.instance.StopSFXAll();
                     SmartphoneManager.instance.phone.HidePhone();
                     SmartphoneManager.instance.phone.DeleteTalkAll();
                     SmartphoneManager.instance.phone.HideSendTalk();

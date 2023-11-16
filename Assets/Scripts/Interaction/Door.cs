@@ -56,7 +56,14 @@ public class Door : MonoBehaviour
     public void SetAnimKnock(bool value)
     {
         anim.SetBool("isKnock", value);
-        AudioManager.instance.SFXPlayLoop("Game Sound_Door konck");
+        if(value)
+        {
+            AudioManager.instance.SFXPlayLoop("Game Sound_Door konck");
+        }
+        else
+        {
+            AudioManager.instance.StopSFX("Game Sound_Door konck");
+        }
     }
 
     public void MoveNextStage()

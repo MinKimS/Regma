@@ -486,8 +486,7 @@ public class Phone : MonoBehaviour
             TimelineManager.instance.timelineController.SetTimelineResume();
         }
 
-        if ((curTalk.afterEndTalk == Talk.AfterEndTalk.SendTalkAndRunEvent
-            || curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent)
+        if (curTalk.afterEndTalk == Talk.AfterEndTalk.RunEvent
             && curTalk.runEvent != null)
         {
             curTalk.runEvent.Raise();

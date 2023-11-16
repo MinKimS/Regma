@@ -119,7 +119,7 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < SFX.Length; ++i)
         {
-            if (SFX[i].clip != null && SFX[i].clip.name == targetClip)
+            if (SFX[i].clip != null && SFX[i].clip.name == targetClip && SFX[i].isPlaying)
             {
                 return true;
             }
