@@ -100,6 +100,11 @@ public class SceneMapMenuController : MonoBehaviour
 
     public ItemData[] itemList;
 
+    public void SetEndingRoute(bool isTwo)
+    {
+        GameManager.instance.SetEndingRoute(isTwo);
+    }
+
     public void SetInvenNeededItemAtCurrentScene(string sceneName)
     {
         //모든 인벤토리의 아이템 삭제
