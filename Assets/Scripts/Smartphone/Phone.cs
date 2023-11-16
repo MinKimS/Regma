@@ -71,7 +71,7 @@ public class Phone : MonoBehaviour
     int showedCount = 0;
 
     //엔딩2에서 톡 지우기를 위한 용도
-    [HideInInspector] public List<Transform> phoneTalkList;
+    [HideInInspector] public List<RectTransform> phoneTalkList;
 
     //선택된 아이템
     int selectedOption = 1;
@@ -109,7 +109,7 @@ public class Phone : MonoBehaviour
         talkInputAreaRT = talkInputArea.GetComponent<RectTransform>();
         phoneBgPanel = GetComponent<Image>();
         phoneFrame = GetComponentsInChildren<RectTransform>()[1].gameObject;
-        phoneTalkList = new List<Transform>();
+        phoneTalkList = new List<RectTransform>();
     }
 
     private void Start()
@@ -185,7 +185,7 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
-        phoneTalkList.Add(talk.transform);
+        phoneTalkList.Add(talk.talkRT);
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
@@ -208,7 +208,7 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
-        phoneTalkList.Add(talk.transform);
+        phoneTalkList.Add(talk.talkRT);
 
         if (!isAnnouncement) talk.userName = user.talkName;
 
@@ -242,7 +242,7 @@ public class Phone : MonoBehaviour
         TalkData talk = Instantiate(inOutTalk).GetComponent<TalkData>();
         talk.transform.SetParent(talkParent.transform, false);
 
-        phoneTalkList.Add(talk.transform);
+        phoneTalkList.Add(talk.talkRT);
         if (isIn)
         {
             talk.talkText.text = text + "님이 들어왔습니다.";
@@ -359,7 +359,7 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.userName = user.talkName;
 
-        phoneTalkList.Add(talk.transform);
+        phoneTalkList.Add(talk.talkRT);
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
 
@@ -527,6 +527,7 @@ public class Phone : MonoBehaviour
         {
             Destroy(talkItem.gameObject);
         }
+        phoneTalkList.Clear();
     }
 
     //씬마다 남아있는 톡 설정

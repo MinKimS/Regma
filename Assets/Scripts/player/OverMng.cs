@@ -18,7 +18,7 @@ public class OverMng : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(RespawnManager.isGameOver)
         {
@@ -42,7 +42,7 @@ public class OverMng : MonoBehaviour
         {
             RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, transform);
             Debug.LogWarning("RespawnManager나 respawnPosition이 null입니다.");
-        }
+        } 
 
         Time.timeScale = 1f;
         go_BaseUI.SetActive(false);
