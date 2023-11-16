@@ -58,6 +58,7 @@ public class Pot : MonoBehaviour
             //끝까지 밀어서 화분이 넘거가는 경우
             if(potTr.localPosition.x > xDestination)
             {
+                AudioManager.instance.StopSFX("Game Sound_Pot");
                 potColl.isTrigger = true;
                 potAnim.SetBool("isFallLeft", false);
                 potAnim.SetBool("isFall", true);
@@ -74,6 +75,7 @@ public class Pot : MonoBehaviour
             }
             if(potTr.localPosition.x < -xDestination)
             {
+                AudioManager.instance.StopSFX("Game Sound_Pot");
                 potColl.isTrigger = true;
                 potAnim.SetBool("isFallLeft", true);
                 potAnim.SetBool("isFall", true);

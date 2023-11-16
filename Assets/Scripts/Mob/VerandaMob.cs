@@ -33,7 +33,6 @@ public class VerandaMob : MonoBehaviour
     {
         if (isTrace && !SmartphoneManager.instance.phone.IsOpenPhone && !RespawnManager.isGameOver)
         {
-            print("move");
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), traceSpeed * Time.deltaTime);
         }
     }
@@ -50,10 +49,10 @@ public class VerandaMob : MonoBehaviour
         {
             yield return wait;
             SetIsTrace(true);
-            AudioManager.instance.SFXPlay("林规_鲍积疙眉1 澜己");
+            AudioManager.instance.SFXPlay("Exit_Monster");
             yield return waitGameOver;
             SetIsTrace(false);
-            AudioManager.instance.StopSFX("林规_鲍积疙眉1 澜己");
+            AudioManager.instance.StopSFX("Exit_Monster");
             yield return waitUnGameOver;
             yield return wait2;
             transform.position = new Vector3(target.transform.position.x - 25f, transform.position.y);
