@@ -753,6 +753,7 @@ MonoBehaviour:
   nextArrow: {fileID: 1620638516}
   setenceIdx: 0
   typingSpeed: 0.05
+  isShowDlg: 0
 --- !u!114 &53826749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNoFallingDamage: 0
+  anim: {fileID: 0}
   moving: {fileID: 122648008}
   damaging: {fileID: 1856332807}
   damageHeight: 8
@@ -1736,6 +1738,7 @@ MonoBehaviour:
   walkAudioSource: {fileID: 122648004}
   nofalling: {fileID: 0}
   jumpForce: 16
+  climbSpeed: 5
   isGround: 0
   pos: {fileID: 1743188847}
   islayer:
@@ -10945,7 +10948,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1050715330}
-  canvas: {fileID: 2090279379}
 --- !u!222 &535437705
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19759,7 +19761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1050715330}
-  canvas: {fileID: 2090279379}
 --- !u!251 &1050715332
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -24922,6 +24923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTr: {fileID: 122648012}
+  playerRb: {fileID: 0}
   playerAnim: {fileID: 122648006}
 --- !u!4 &1604196672
 Transform:
@@ -30330,7 +30332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2090279381
 MonoBehaviour:
   m_ObjectHideFlags: 0
