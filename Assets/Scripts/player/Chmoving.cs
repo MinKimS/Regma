@@ -13,7 +13,7 @@ public class Chmoving : MonoBehaviour
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
     public float jumpForce = 12f;
-    private float PushSpeed = 20f;
+    //private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
@@ -86,6 +86,11 @@ public class Chmoving : MonoBehaviour
         {
             // 플레이어가 움직일 수 없을 때 정지
             rb.velocity = new Vector2(0f, rb.velocity.y);
+            StopWalkSound();
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush")) // 11.18
+        {
             StopWalkSound();
         }
     }
@@ -245,7 +250,7 @@ public class Chmoving : MonoBehaviour
         //animator.SetBool("Wet", MovinginWater);
 
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
-        animator.SetBool("isPush", animator.GetBool("isPush"));
+        //animator.SetBool("isPush", animator.GetBool("isPush")); 11.8
         //animator.SetBool("isPush", animator.GetBool("isPush"));
     }
 
@@ -269,7 +274,15 @@ public class Chmoving : MonoBehaviour
     {
         if (walkAudioSource != null && walkAudioSource.clip != null && walkAudioSource.isPlaying && !isJumpingWithMovement)
         {
+            
+
             walkAudioSource.Stop();
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush"))
+        {
+            walkAudioSource.Stop();
+            Debug.Log("Walk sound stopped");
         }
     }
 
