@@ -89,7 +89,7 @@ public class Chmoving : MonoBehaviour
             StopWalkSound();
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush")) // 11.18
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush"))
         {
             StopWalkSound();
         }
@@ -141,13 +141,20 @@ public class Chmoving : MonoBehaviour
             // 사다리를 타고 있는 중일 때 상하 이동 제어
             Debug.Log("moveInputY: " + moveInputY);
 
-            animator.SetBool("OntheLadder", true);
+            if (Mathf.Abs(moveInputX) > 0.1f || Mathf.Abs(moveInputY) > 0.1f)
+            {
+                animator.SetBool("OntheLadder", true);
+            }
+            else
+            {
+                animator.SetBool("OntheLadder", false);
+            }
+
             currentMoveSpeed = climbSpeed;
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
     }
-
         else
-        {
+        { 
             animator.SetBool("OntheLadder", false);
             // 이 부분을 추가하여 이동 방향을 Y값으로 변경
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, rb.velocity.y); // 여기서 변경
