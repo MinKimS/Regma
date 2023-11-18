@@ -24,6 +24,9 @@ public class Drown : MonoBehaviour
             drown = true;
             animator.SetBool("DieInWater", true);
             StartCoroutine(GameOverAfterDelay(5.0f));
+            Rigidbody2D Player = GetComponent<Rigidbody2D>();
+            Player.gravityScale = 0f;
+            Player.velocity = Vector2.down;
             //RespawnManager.Instance.OnGameOver.Invoke();
         }
     }
@@ -33,6 +36,9 @@ public class Drown : MonoBehaviour
         StartCoroutine(SwitchDrownFlag(false));
         animator.SetTrigger("Revive");
         animator.SetBool("DieInWater", false);
+
+        Rigidbody2D Player = GetComponent<Rigidbody2D>();
+        Player.gravityScale = 1f;
     }
 
     IEnumerator SwitchDrownFlag(bool isDrown)
