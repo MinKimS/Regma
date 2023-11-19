@@ -21,7 +21,6 @@ public class MirrorControl : MonoBehaviour
     public Image MirrorImage;
     public GameObject Mirrorcanvas;
 
-    private bool isCollisionActive = false;
     private bool hasOpened = false;
 
     [SerializeField] GameObject shakingTarget;
@@ -45,45 +44,7 @@ public class MirrorControl : MonoBehaviour
             hasOpened = true;
             StartMirror();
         }
-
-        //if (isCollisionActive && Input.GetKeyDown(KeyCode.E) && !hasOpened)
-        //{
-        //    ShowImage();
-        //    hasOpened = true;
-        //    MirrorAnimator.SetBool("Broken", true);
-
-        //    if(glassItem != null)
-        //    {
-        //        glassItem.SetActive(true);
-        //    }
-
-        //    PlayMirrorAnimation();
-        //}
-        //else if (hasOpened && Input.GetKeyDown(KeyCode.E))
-        //{
-        //    ExitImage();
-        //    MirrorAnimator.SetBool("Broken", false);
-        //    StopMirrorAnimation();
-        //}
-
-        //if(hasOpened){
-        //    MirrorAnimator.SetBool("Broken", true);
-        //}
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Mirror"))
-    //    {
-    //        if (count == 0) // 1�� �浹 �Ŀ��� ���� ����
-    //        {
-    //            StartVibration();
-    //        }
-
-    //        isCollisionActive = true;
-    //        count++;
-    //    }
-    //}
 
     void StartMirror()
     {
@@ -97,7 +58,6 @@ public class MirrorControl : MonoBehaviour
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
 
         StartVibration();
-        isCollisionActive = true;
         count++;
         yield return new WaitForSeconds(1f);
 
@@ -179,7 +139,6 @@ public class MirrorControl : MonoBehaviour
         Mirrorcanvas.SetActive(false);
         MirrorImage.enabled = false;
         StopVibration();
-        //StopMirrorAnimation();
     }
 
     // 이미지 애니메이션을 재생하는 메서드
@@ -190,13 +149,4 @@ public class MirrorControl : MonoBehaviour
             MirrorAnimator.Play(mirrorAnimation.name);
         }
     }
-
-    //이미지 애니메이션을 정지하는 메서드
-    // private void StopMirrorAnimation()
-    // {
-    //     if (MirrorAnimator != null)
-    //     {
-    //         MirrorAnimator.Rebind(); // 애니메이션을 초기 상태로 되돌립니다.
-    //     }
-    // }
 }

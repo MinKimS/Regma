@@ -13,8 +13,6 @@ public class PTimeLine : MonoBehaviour
 
     
     public GameObject refri2Object; // Refri2 �±׸� ���� ���� ������Ʈ
-
-    private bool isCollisionActive = false;
    
     private bool Interaction1 = false; // E Ű�� �̹� ĵ������ �������� Ȯ���ϴ� ����
 

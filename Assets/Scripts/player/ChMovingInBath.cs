@@ -12,14 +12,11 @@ public class ChMovingInBath : MonoBehaviour
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
     public float jumpForce = 9f;
-    private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
-    private bool isRunning = false;
     private Rigidbody2D rb;
     private bool isMoving = false;
     private bool isJumpingWithMovement = false;
-    private bool inWater = false;
     public int JumpCount;
 
 
@@ -97,15 +94,6 @@ public class ChMovingInBath : MonoBehaviour
                 animator.SetBool("isSit", false);
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                isRunning = true;
-            }
-            else
-            {
-                isRunning = false;
-            }
-
             float moveInputX = Input.GetAxisRaw("Horizontal");
 
             if (moveInputX != 0)
@@ -138,14 +126,12 @@ public class ChMovingInBath : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    isRunning = true;
                     currentMoveSpeed = runSpeed * moveInputX;
                     animator.SetBool("walk", true);
                     print("달리는 중");
                 }
                 else
                 {
-                    isRunning = false;
                     currentMoveSpeed = moveSpeed * moveInputX;
                 }
             }

@@ -8,7 +8,6 @@ public class Damage : MonoBehaviour
 {
     public GameObject ItemHp;
     public Image HpScreen;
-    bool isActive = false;
 
     void Start()
     {
@@ -19,7 +18,6 @@ public class Damage : MonoBehaviour
     {
         if (collision.CompareTag("Player") && collision.CompareTag("Item"))
         {
-            isActive = true;
             ShowHpScreen();
         }
     }

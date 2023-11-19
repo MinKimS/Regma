@@ -12,7 +12,6 @@ public class Television : MonoBehaviour
     public Sprite[] channelSprite;
     public GlitchController glitch;
     public InteractionObjData interactionData;
-    bool isOnTv = false;
     public Door door;
 
     bool isInteraction = false;
@@ -38,7 +37,6 @@ public class Television : MonoBehaviour
             DialogueManager.instance.PlayDlg(interactionData.objDlg[0]);
             tvLight.intensity = 2.5f;
             tvAnim.SetBool("Tv", true);
-            isOnTv = true;
             jumpscareEvent.gameObject.SetActive(true);
             AudioManager.instance.SFXPlay("Game Sound_TV");
             isInteraction = true;
@@ -57,14 +55,4 @@ public class Television : MonoBehaviour
         AudioManager.instance.SFXPlay("Game Sound_TV");
         jumpscareEvent.gameObject.SetActive(false);
     }
-
-    //// TV 끄기
-    //public void TVOff()
-    //{
-    //    tvLight.intensity = 0f;
-    //    interactionData.IsRunInteraction = false;
-    //    tvAnim.SetBool("Tv", false);
-    //    isOnTv = false;
-    //    AudioManager.instance.StopSFX("Game Sound_TV");
-    //}
 }

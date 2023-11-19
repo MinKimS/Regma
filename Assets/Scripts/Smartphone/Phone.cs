@@ -65,9 +65,6 @@ public class Phone : MonoBehaviour
     [HideInInspector]
     public bool isTalkNeedToBeSend = false;
 
-    [SerializeField]
-    float phoneShowSpeed = 0.1f;
-
     int showedCount = 0;
 
     //엔딩2에서 톡 지우기를 위한 용도

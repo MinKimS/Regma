@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
     //모든 씬에 나올 첫번째 대화들
     public List<Dialogue> dialogueList;
-    int dlgListIdx = 0;
     //현재 출력될 대화
     public Dialogue curDlg;
     public Dialogue singleDlg;
@@ -389,8 +388,6 @@ public class DialogueManager : MonoBehaviour
         setenceIdx = 0;
         isSingleDlg = true;
         singleDlg = dlg;
-        //if(SmartphoneManager.instance != null)
-        //    SmartphoneManager.instance.phone.IsOKSendTalk =false;
         DialogueShow(dlg);
         //등장캐릭터가 나오는 경우에만 캐릭터 설정
         //오브젝트인 경우에는 설정x
