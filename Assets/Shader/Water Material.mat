@@ -64,7 +64,7 @@ Material:
     - _SineSpeed: 0.01
     - _YValue: 1
     m_Colors:
-    - _Color: {r: 0.40251565, g: 0.63391393, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _WaterColor: {r: 0.65723264, g: 1, b: 0.89031446, a: 1}
