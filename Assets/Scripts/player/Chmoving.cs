@@ -13,7 +13,7 @@ public class Chmoving : MonoBehaviour
     private float moveSpeed = 5f;
     private float runSpeed = 10f;
     public float jumpForce = 12f;
-    private float PushSpeed = 20f;
+    //private float PushSpeed = 20f;
     private float currentMoveSpeed = 0f;
 
     private bool isRunning = false;
@@ -88,6 +88,11 @@ public class Chmoving : MonoBehaviour
             rb.velocity = new Vector2(0f, rb.velocity.y);
             StopWalkSound();
         }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush"))
+        {
+            StopWalkSound();
+        }
     }
 
     private void HandleJumpInput()
@@ -136,13 +141,20 @@ public class Chmoving : MonoBehaviour
             // 사다리를 타고 있는 중일 때 상하 이동 제어
             Debug.Log("moveInputY: " + moveInputY);
 
-            animator.SetBool("OntheLadder", true);
+            if (Mathf.Abs(moveInputX) > 0.1f || Mathf.Abs(moveInputY) > 0.1f)
+            {
+                animator.SetBool("OntheLadder", true);
+            }
+            else
+            {
+                animator.SetBool("OntheLadder", false);
+            }
+
             currentMoveSpeed = climbSpeed;
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, moveInputY * currentMoveSpeed);
     }
-
         else
-        {
+        { 
             animator.SetBool("OntheLadder", false);
             // 이 부분을 추가하여 이동 방향을 Y값으로 변경
             rb.velocity = new Vector2(moveInputX * currentMoveSpeed, rb.velocity.y); // 여기서 변경
@@ -245,7 +257,7 @@ public class Chmoving : MonoBehaviour
         //animator.SetBool("Wet", MovinginWater);
 
         animator.SetBool("isSit", Input.GetKey(KeyCode.LeftControl));
-        animator.SetBool("isPush", animator.GetBool("isPush"));
+        //animator.SetBool("isPush", animator.GetBool("isPush")); 11.8
         //animator.SetBool("isPush", animator.GetBool("isPush"));
     }
 
@@ -269,7 +281,15 @@ public class Chmoving : MonoBehaviour
     {
         if (walkAudioSource != null && walkAudioSource.clip != null && walkAudioSource.isPlaying && !isJumpingWithMovement)
         {
+            
+
             walkAudioSource.Stop();
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("pPush"))
+        {
+            walkAudioSource.Stop();
+            Debug.Log("Walk sound stopped");
         }
     }
 
