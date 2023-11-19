@@ -32,9 +32,7 @@ public class MobAppear : MonoBehaviour
         Camera.main.GetComponent<CameraController>().target = mob[0].transform;
         vCam.Follow = mob[0].transform;
         DialogueManager.instance.PlayDlg(dlg[0]);
-        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
-        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
-        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
         ActivateTrace(0);
     }
 
@@ -61,7 +59,7 @@ public class MobAppear : MonoBehaviour
         matp[num].IsTrace = true;
         Camera.main.GetComponent<CameraController>().target = playerPos;
         vCam.Follow = playerPos;
-        AudioManager.instance.StopSFX("주방_괴생명체 등장");
+        //AudioManager.instance.StopSFX("주방_괴생명체 등장");
         AudioManager.instance.StopSFX("주방_괴생명체1 음성");
         AudioManager.instance.SFXPlayLoop("주방_괴생명체1 도원 추격");
     }

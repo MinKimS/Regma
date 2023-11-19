@@ -11,7 +11,9 @@ public class EndingController : MonoBehaviour
 
     bool isFirstEnding = false;
     bool isShowingEnding = false;
-    bool isShowImg = false;
+    bool isGoingTitle = false;
+
+    public Fade fade;
 
     private void Awake()
     {
@@ -25,17 +27,17 @@ public class EndingController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) && !isGoingTitle)
         {
-            if(!isShowingEnding)
+            if(!isShowingEnding && !isFirstEnding)
             {
                 isShowingEnding = true;
                 StartCoroutine(IEEndingTwo());
             }
 
-            if (isFirstEnding || isShowImg)
+            if (isFirstEnding)
             {
-                LoadingManager.LoadScene("Title");
+                StartCoroutine(IEGoToTitle());
             }
         }
     }
@@ -59,7 +61,16 @@ public class EndingController : MonoBehaviour
         ShowImage(3);
         yield return new WaitForSeconds(1.5f);
         ShowImage(4);
-        isShowImg = true;
+        StartCoroutine(IEGoToTitle());
+    }
+
+    IEnumerator IEGoToTitle()
+    {
+        isGoingTitle = true;
+        yield return new WaitForSeconds(1.5f);
+        fade.SetFadeOut(0.00001f);
+        yield return new WaitForSeconds(1.5f);
+        LoadingManager.LoadScene("Title");
     }
 
     void SetEnding()

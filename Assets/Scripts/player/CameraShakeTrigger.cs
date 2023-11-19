@@ -16,6 +16,10 @@ public class CameraShakeTrigger : MonoBehaviour
     GameObject camObj;
     Collider2D collidingObject;
     private bool isActive = true;
+
+    public Dialogue[] dlg;
+    public Fade fade;
+
     void Start()
     {
         gameObject.SetActive(isActive);
@@ -26,19 +30,21 @@ public class CameraShakeTrigger : MonoBehaviour
         m_originRot = camObj.transform.rotation;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg) // 꽃 관련 일기장을 읽고 나서 흔들리기
-        {
-            canvasBook.SetActive(true);
-            StopAllCoroutines();
-            StartCoroutine(Reset());
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E) && collidingObject != null && collidingObject.CompareTag("shake") && SmartphoneManager.instance.diary.isAfterDlg) // 꽃 관련 일기장을 읽고 나서 흔들리기
+    //    {
+    //        canvasBook.SetActive(true);
+    //        StopAllCoroutines();
+    //        StartCoroutine(Reset());
 
-            collidingObject = null;
-            isActive = false;
-            //collidingObject.CompareTag("shake").SetActive(isActive);
-        }
-    }
+    //        collidingObject = null;
+    //        isActive = false;
+    //        //collidingObject.CompareTag("shake").SetActive(isActive);
+    //    }
+    //}
+
+    bool isShaking = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -51,11 +57,41 @@ public class CameraShakeTrigger : MonoBehaviour
             isActive = false;
             collision.gameObject.SetActive(isActive);
 
+            if(!isShaking)
+            {
+                isShaking = true;
+                StartCoroutine(IEShakingEvent());
+            }
         }
 
         //collidingObject = null; 
         //isActive = false;
         //collidingObject.CompareTag("shake").SetActive(isActive);
+    }
+
+    //추가된 대사 실행
+    IEnumerator IEShakingEvent()
+    {
+        DialogueManager.instance.PlayDlg(dlg[0]);
+
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+
+        fade.SetBlack();
+
+        DialogueManager.instance.PlayDlg(dlg[1]);
+
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+
+        //흔들림 멈춤
+        fade.SetVisible();
+        canvasBook.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(Reset());
+
+        collidingObject = null;
+        isActive = false;
+
+        DialogueManager.instance.PlayDlg(dlg[2]);
     }
 
     //private void OnTriggerExit2D(Collider2D collision)

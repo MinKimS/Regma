@@ -4403,6 +4403,8 @@ MonoBehaviour:
   - {fileID: 1792757980}
   - {fileID: 1229573658}
   - {fileID: 2034460705}
+  talkSelections: 0000000000000000
+  talkselectionsIdx: 0
 --- !u!114 &382715637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4946,6 +4948,11 @@ MonoBehaviour:
   m_force: 100
   m_offset: {x: 10, y: 10, z: 10}
   shake: {fileID: 417363579}
+  dlg:
+  - {fileID: 11400000, guid: fbabf199c7f79dd4fb00cfa4177e8551, type: 2}
+  - {fileID: 11400000, guid: ca8b94497a6e0294190be30389337864, type: 2}
+  - {fileID: 11400000, guid: 123aa05c95f8cf24c880cfe95cf2117b, type: 2}
+  fade: {fileID: 1189657956}
 --- !u!1 &427480162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,6 +5072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53ed070499e66e41ac9108b100fa2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMenuOpen: 0
 --- !u!4 &435536748
 Transform:
   m_ObjectHideFlags: 0
@@ -10887,7 +10895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &933144376
@@ -19682,7 +19690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -30460,6 +30468,11 @@ MonoBehaviour:
   m_force: 150
   m_offset: {x: 10, y: 10, z: 10}
   shake: {fileID: 417363579}
+  dlg:
+  - {fileID: 11400000, guid: fbabf199c7f79dd4fb00cfa4177e8551, type: 2}
+  - {fileID: 11400000, guid: ca8b94497a6e0294190be30389337864, type: 2}
+  - {fileID: 11400000, guid: 123aa05c95f8cf24c880cfe95cf2117b, type: 2}
+  fade: {fileID: 1189657956}
 --- !u!70 &1677597374
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -31815,7 +31828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -35910,7 +35923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y

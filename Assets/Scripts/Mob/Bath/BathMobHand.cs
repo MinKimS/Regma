@@ -63,7 +63,6 @@ public class BathMobHand : MonoBehaviour
             isReadyAttack = false;
         }
     }
-
     public void SetTarget()
     {
         targetToy = bathToy;

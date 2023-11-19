@@ -13,6 +13,7 @@ public class MoveAlongThePath : MonoBehaviour
     Node nextNode = null;
 
     SpriteRenderer sp;
+    BoxCollider2D bc;
 
     //for jump
     public float fromPosToGroundDist = 0.1f;
@@ -22,6 +23,7 @@ public class MoveAlongThePath : MonoBehaviour
 
     public bool isTrace = false;
     bool isReadyToSpawn = false;
+    bool isNeedChangePos = false;
 
     public bool IsTrace
     {
@@ -33,6 +35,7 @@ public class MoveAlongThePath : MonoBehaviour
     {
         pathFinder = GetComponentInChildren<PathFinder>();
         sp = GetComponentInChildren<SpriteRenderer>();
+        bc = GetComponentInChildren<BoxCollider2D>();
     }
 
     private void OnEnable()
@@ -99,10 +102,11 @@ public class MoveAlongThePath : MonoBehaviour
         //move
         if (isTrace && node != null)
         {
+            //노드에 도착했을 때 플레이어를 추적
             transform.position = Vector2.MoveTowards(transform.position, node.transform.position, traceSpeed * Time.fixedDeltaTime);
 
             //바라보는 방향
-            if(node.transform.position.x > transform.position.x)
+            if (node.transform.position.x > transform.position.x)
             {
                 sp.flipX = true;
             }
@@ -111,6 +115,27 @@ public class MoveAlongThePath : MonoBehaviour
                 sp.flipX = false;
             }
         }
+
+        //플레이어 리스폰 시 위치 재설정
+        if(!RespawnManager.isGameOver)
+        {
+            if(isNeedChangePos)
+            {
+                Invoke("InvokeChangePos", 0.15f);
+            }
+        }
+        else
+        {
+            isNeedChangePos = true;
+            bc.enabled = false;
+        }
+    }
+
+    void InvokeChangePos()
+    {
+        isNeedChangePos = false;
+        bc.enabled = true;
+        transform.position = PlayerInfoData.instance.playerTr.position + Vector3.right * 20f;
     }
 
     private void Update()
@@ -129,7 +154,6 @@ public class MoveAlongThePath : MonoBehaviour
             AudioManager.instance.SFXPlay("주방_괴생명체 등장");
             AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
             gameObject.SetActive(true);
-            isTrace = true;
         }
     }
     public void AppearMobNoTrace()
@@ -142,8 +166,7 @@ public class MoveAlongThePath : MonoBehaviour
     public void StopMob()
     {
         isTrace = false;
-        AudioManager.instance.StopSFX("주방_괴생명체 등장");
+        //AudioManager.instance.StopSFX("주방_괴생명체 등장");
         AudioManager.instance.StopSFX("주방_괴생명체1 음성");
-        AudioManager.instance.StopSFX("주방_괴생명체 등장");
     }
 }

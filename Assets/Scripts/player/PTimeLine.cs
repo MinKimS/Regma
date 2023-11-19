@@ -27,6 +27,8 @@ public class PTimeLine : MonoBehaviour
     bool isActive = false;
     public MoveAlongThePath mob;
 
+    public Dialogue dlg;
+
     void Start()
     {
         
@@ -38,15 +40,13 @@ public class PTimeLine : MonoBehaviour
         }
     }
 
-    
-
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if(!isActive)
+                if (!isActive)
                 {
                     print("충돌");
                     Refrianim.SetBool("OFF", true);
@@ -56,8 +56,7 @@ public class PTimeLine : MonoBehaviour
                     power.isBroken = true;
                     if (mobAppear != null)
                     {
-                        mobAppear.SetActive(true);
-                        respawnPoint_Power.SetActive(true);
+                        StartCoroutine(InvokeMobAppear());
                     }
                     isActive = true;
                 }
@@ -68,6 +67,17 @@ public class PTimeLine : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator InvokeMobAppear()
+    {
+        DialogueManager.instance.PlayDlg(dlg);
+
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+        yield return new WaitForSeconds(1f);
+
+        mobAppear.SetActive(true);
+        respawnPoint_Power.SetActive(true);
     }
 
     public bool IsInteractionCompleted()

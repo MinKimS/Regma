@@ -55,7 +55,7 @@ public class BathMobController : MonoBehaviour
             {
                 if (!playerHide.isHide)
                 {
-                    hand.SetTarget();
+                    hand.SetTargetPlayer();
                     hand.AttackTarget(0.4f, 0.5f);
                 }
             }

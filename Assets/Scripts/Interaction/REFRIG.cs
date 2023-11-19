@@ -14,9 +14,12 @@ public class REFRIG : MonoBehaviour
     public MobAppear appear;
 
     bool isOpened = false;
-    bool isActivateEvent = false;
+    [HideInInspector] public bool isActivateEvent = false;
+
+    public BoxCollider2D powerBc;
 
     public GameObject trigger;
+    public GameObject dlgTrigger;
 
     private void Awake()
     {
@@ -42,8 +45,8 @@ public class REFRIG : MonoBehaviour
                 if(!isActivateEvent)
                 {
                     isActivateEvent = true;
-                    DialogueManager.instance.PlayDlg(iod.objDlg[0]);
-                    trigger.SetActive(false);
+                    powerBc.enabled = true;
+                    dlgTrigger.SetActive(true);
                     StartCoroutine(ReadyToMobAppear());
                 }
                 else
@@ -73,7 +76,9 @@ public class REFRIG : MonoBehaviour
 
     IEnumerator ReadyToMobAppear()
     {
-        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        DialogueManager.instance.PlayDlg(iod.objDlg[0]);
+        trigger.SetActive(false);
+        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
         mobAppear.gameObject.SetActive(true);
         respawnPoint_Refrig.gameObject.SetActive(true);
     }
