@@ -5210,7 +5210,7 @@ MonoBehaviour:
   mob: {fileID: 1682071325}
   target: {fileID: 157110323}
   respawnPoint: {fileID: 632888925}
-  traceSpeed: 7
+  traceSpeed: 8
 --- !u!1 &568665983
 GameObject:
   m_ObjectHideFlags: 0
