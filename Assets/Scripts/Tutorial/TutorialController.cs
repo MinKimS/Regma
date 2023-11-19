@@ -10,6 +10,8 @@ public class TutorialController : MonoBehaviour
     Animator animator;
 
     bool isTutorialShowing = false;
+
+    public GameObject backgroundPanel;
     public bool IsTutorialShowing
     {
         get { return isTutorialShowing; }
@@ -56,6 +58,7 @@ public class TutorialController : MonoBehaviour
         {
             animator.SetBool("isShow", true);
             isTutorialShowing = true;
+            backgroundPanel.SetActive(true);
             SetTutorialText(str);
         }
     }
@@ -70,6 +73,7 @@ public class TutorialController : MonoBehaviour
     public void CloseTutorialScreen()
     {
         animator.SetBool("isShow", false);
+        backgroundPanel.SetActive(false);
         isTutorialShowing = false;
         tutorialText.text = "";
         if(TimelineManager.instance._Tlstate == TimelineManager.TlState.Stop)

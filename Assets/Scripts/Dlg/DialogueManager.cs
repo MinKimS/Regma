@@ -200,7 +200,7 @@ public class DialogueManager : MonoBehaviour
         if (!speakerImg.enabled)
         {
             DlgRT.offsetMin = new Vector2(640f, DlgRT.offsetMin.y);
-            DlgRT.offsetMax = new Vector2(-30f, DlgRT.offsetMax.y);
+            DlgRT.offsetMax = new Vector2(-185f, DlgRT.offsetMax.y);
         }
         else
         {
@@ -221,7 +221,7 @@ public class DialogueManager : MonoBehaviour
         if (!speakerImg.enabled)
         {
             DlgRT.offsetMin = new Vector2(640f, DlgRT.offsetMin.y);
-            DlgRT.offsetMax = new Vector2(-30f, DlgRT.offsetMax.y);
+            DlgRT.offsetMax = new Vector2(-185f, DlgRT.offsetMax.y);
         }
         else
         {
