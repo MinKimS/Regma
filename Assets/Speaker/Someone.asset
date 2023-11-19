@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerID: 0
   speakerName: ???
-  speakerSprite: {fileID: 21300000, guid: 2c9bdd3f9093c6f459bf3b6441cfa736, type: 3}
+  speakerSprite: {fileID: 0}
   speakerColor: {r: 0, g: 0, b: 0, a: 1}
   talkName: 
   talkProfileSp: {fileID: 0}

@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 561e843bbec28cf4191b25d7c9a6772f, type: 3}
-  m_Name: ArriveBathroom
+  m_Name: Test
   m_EditorClassIdentifier: 
   speakers:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
+  - {fileID: 11400000, guid: df6a0b26f3c57da4190843e877cec830, type: 2}
   sentences:
-  - speakerIdx: 0
-    dlgTexts: "\uC5EC\uAE34... \uC695\uC2E4\uC774\uAD6C\uB098."
+  - speakerIdx: 1
+    dlgTexts: "\uC774\uC81C \uC880 \uC0B4 \uAC83 \uAC19\uC544. \uACE0\uB9C8\uC6CC."
     eventType: 0
-  - speakerIdx: 0
-    dlgTexts: "\uADF8\uB0E5 \uB0B4\uB824\uAC08 \uC21C \uC5C6\uACA0\uC5B4.\n<color=#cb5301><b>\uB0B4\uB824\uAC08
-      \uBC29\uBC95</b></color=#cb5301>\uC744 \uCC3E\uC544\uBCF4\uC790."
-    eventType: 0
-  nextDlg: {fileID: 11400000, guid: ea1a26f0bbb7f5c49a8c4eccafe461a7, type: 2}
+  nextDlg: {fileID: 11400000, guid: 303c0c08014a40643add817e687f7ba1, type: 2}
   gmEvent: {fileID: 0}

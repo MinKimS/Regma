@@ -38,7 +38,6 @@ public class BGMController : MonoBehaviour
         {
             case "Title":
             case "SampleScene":
-            case "Bath":
             case "SampleScene 2":
                 SetBGM(0, 0.5f);
                 break;
@@ -49,6 +48,7 @@ public class BGMController : MonoBehaviour
                 SetBGM(2);
                 break;
             case "Bathroom":
+            case "Bath":
                 SetBGM(3);
                 break;
             case "Ending":

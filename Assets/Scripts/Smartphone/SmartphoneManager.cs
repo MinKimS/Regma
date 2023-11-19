@@ -97,7 +97,8 @@ public class SmartphoneManager : MonoBehaviour
         if (!inven.filesInven.IsInvenItemActive)
         {
             //톡 화면 스크롤
-            if(phone.IsOpenPhone && !inven.IsOpenInven && phone.talkScView.verticalNormalizedPosition != 0)
+            if(phone.IsOpenPhone && !inven.IsOpenInven && phone.talkScView.verticalNormalizedPosition != 0
+                && !phone.IsOKSendTalk)
             {
                 if (Input.GetAxisRaw("Vertical") > 0)
                 {
@@ -295,6 +296,11 @@ public class SmartphoneManager : MonoBehaviour
                     if(phone.IsPlayerFirstTalk)
                     {
                         phone.curSendTalk = phone.curTalk.answerTalk[phone.SelectedOption -1];
+                        
+                        if(phone.curTalk.answerTalk.Length > 1)
+                        {
+                            phone.talkSelections[phone.talkselectionsIdx++] = phone.SelectedOption-1;
+                        }
                     }
 
                     //화면에 톡 추가

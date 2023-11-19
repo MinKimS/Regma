@@ -888,8 +888,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130692991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.5108, y: -7.8264, z: 7.354745}
-  m_LocalScale: {x: 32.79351, y: 37.64579, z: 1}
+  m_LocalPosition: {x: 79.9, y: -11.94, z: 7.354745}
+  m_LocalScale: {x: 10.23, y: 10.23, z: 10.23}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1777804241}
@@ -908,18 +908,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.19723523}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6.83, y: 5.23}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.83, y: 4.8355303}
   m_EdgeRadius: 0
 --- !u!212 &130692994
 SpriteRenderer:
@@ -962,9 +962,9 @@ SpriteRenderer:
   m_SortingLayerID: 534864275
   m_SortingLayer: 2
   m_SortingOrder: 4
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32f9259bfa2adae4a97dd059fcb008a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -1193,7 +1193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &187494679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2328,7 +2328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2611,7 +2611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253243613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.77, y: -0.35, z: 0}
+  m_LocalPosition: {x: -2.77, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2656,7 +2656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &261154923
@@ -3403,7 +3403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4195,7 +4195,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16078432, g: 0.5137255, b: 0.4431373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4953,23 +4953,9 @@ PolygonCollider2D:
       - {x: -1.5649999, y: 0.52}
       - {x: -1.755, y: 0.51}
       - {x: -1.915, y: 0.5}
-      - {x: -1.915, y: 0.84999996}
-      - {x: -1.785, y: 0.85999995}
-      - {x: -1.5749999, y: 0.91999996}
-      - {x: -1.285, y: 1.0699999}
-      - {x: -1.0749999, y: 1.3}
-      - {x: -1.005, y: 1.43}
-      - {x: -0.98499995, y: 1.56}
-      - {x: -1.015, y: 1.5699999}
-      - {x: -1.3349999, y: 1.51}
-      - {x: -1.535, y: 1.51}
-      - {x: -1.935, y: 1.5999999}
-      - {x: -1.9749999, y: 1.5999999}
-      - {x: -1.995, y: 1.5799999}
-      - {x: -1.995, y: 0.48999998}
-      - {x: -2.185, y: 0.48999998}
-      - {x: -2.2949998, y: 0.42}
-      - {x: -2.2949998, y: 0.13}
+      - {x: -2.2008944, y: 0.47008488}
+      - {x: -2.2851703, y: 0.32523888}
+      - {x: -2.28, y: 0.13}
       - {x: -2.235, y: 0.06}
       - {x: -1.9749999, y: -0.04}
       - {x: -1.925, y: -0.29}
@@ -13731,7 +13717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557138355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.7699986, y: -0.35000077, z: 0}
+  m_LocalPosition: {x: -2.7699986, y: 0.4399989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13769,6 +13755,7 @@ MonoBehaviour:
   isTryCatchSomething: 0
   isCatchSomething: 0
   isMoveIntoWater: 0
+  isBackToOriginPos: 0
   data: {fileID: 0}
   targetToy: {fileID: 0}
   bathToy: {fileID: 0}
@@ -13785,10 +13772,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2.78}
+  m_Offset: {x: 0.1520623, y: 0.83180565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.30805087, y: 0.6549357}
     oldSize: {x: 1.86, y: 3.5}
     newSize: {x: 3.59, y: 3.08}
     adaptiveTilingThreshold: 0.5
@@ -13796,7 +13783,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
+  m_Size: {x: 1.4165447, y: 0.5444807}
   m_EdgeRadius: 0
 --- !u!212 &1557138359
 SpriteRenderer:
@@ -21192,7 +21179,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672205641}
   m_HandleRect: {fileID: 1672205640}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22705,7 +22692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y

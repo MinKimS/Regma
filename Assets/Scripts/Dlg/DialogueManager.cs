@@ -198,9 +198,15 @@ public class DialogueManager : MonoBehaviour
             PlayerInfoData.instance.playerAnim.SetBool("jump", false);
         }
 
-        if(curDlg.sentences[setenceIdx].speakerIdx == -1)
+        if (!speakerImg.enabled)
         {
-            DlgRT.anchoredPosition -= (Vector2.right*300);
+            DlgRT.offsetMin = new Vector2(640f, DlgRT.offsetMin.y);
+            DlgRT.offsetMax = new Vector2(-30f, DlgRT.offsetMax.y);
+        }
+        else
+        {
+            DlgRT.offsetMin = new Vector2(350f, DlgRT.offsetMin.y);
+            DlgRT.offsetMax = new Vector2(-350f, DlgRT.offsetMax.y);
         }
         DlgBg.enabled = true;
         dlgState = DlgState.Start;
@@ -213,9 +219,15 @@ public class DialogueManager : MonoBehaviour
             PlayerInfoData.instance.playerAnim.SetBool("walk", false);
             PlayerInfoData.instance.playerAnim.SetBool("jump", false);
         }
-        if(dlg.sentences[setenceIdx].speakerIdx == -1)
+        if (!speakerImg.enabled)
         {
-            DlgRT.anchoredPosition -= (Vector2.right*300);
+            DlgRT.offsetMin = new Vector2(640f, DlgRT.offsetMin.y);
+            DlgRT.offsetMax = new Vector2(-30f, DlgRT.offsetMax.y);
+        }
+        else
+        {
+            DlgRT.offsetMin = new Vector2(350f, DlgRT.offsetMin.y);
+            DlgRT.offsetMax = new Vector2(-350f, DlgRT.offsetMax.y);
         }
         DlgBg.enabled = true;
         dlgState = DlgState.Start;
@@ -224,10 +236,6 @@ public class DialogueManager : MonoBehaviour
     public void DialogueHide()
     {
         isShowDlg = false;
-        if (curDlg.sentences[setenceIdx-1].speakerIdx == -1)
-        {
-            DlgRT.anchoredPosition += (Vector2.right*300);
-        }
         DlgBg.enabled = false;
         
         dlgText.text = "";
@@ -263,10 +271,6 @@ public class DialogueManager : MonoBehaviour
     public void DialogueHide(Dialogue dlg)
     {
         isShowDlg = false;
-        if (dlg.sentences[setenceIdx-1].speakerIdx == -1)
-        {
-            DlgRT.anchoredPosition = dlgPos;
-        }
         DlgBg.enabled = false;
         
         dlgText.text = "";
@@ -331,8 +335,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         //이미지 설정
-        //사람인경우
-        if(dlg.sentences[setenceIdx].speakerIdx!=-1)
+        //이미지가 있는 경우에만 설정
+        if(dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite != null)
         {
             if(!speakerImg.enabled){speakerImg.enabled = true;}
             speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;

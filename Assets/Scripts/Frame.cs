@@ -68,7 +68,6 @@ public class Frame : MonoBehaviour
         Camera.main.orthographicSize -= 1f;
 
         yield return new WaitForSeconds(2f);
-        glitch.SetGlitchActiveTime(0.1f);
 
         cam.target = PlayerInfoData.instance.playerTr;
         cam.fixedPosition = origin;

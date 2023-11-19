@@ -51,7 +51,7 @@ public class MenuController : MonoBehaviour
     private void Update()
     {
         //화면에 보이기/숨기기
-        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene" && SceneManager.GetActiveScene().name != "Title";
+        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene";
 
 
         if (canInput)
@@ -62,6 +62,15 @@ public class MenuController : MonoBehaviour
                 {
                     menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
                     isOpenMenu = !isOpenMenu;
+                    GameManager.instance.isMenuOpen = !GameManager.instance.isMenuOpen;
+                    if (isOpenMenu)
+                    {
+                        btnList[btnList.Length-1].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        btnList[btnList.Length - 1].gameObject.SetActive(true);
+                    }
                 }
             }
             else
@@ -82,7 +91,7 @@ public class MenuController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
-                if (btnIdx < btnList.Length - 1)
+                if (btnIdx < btnList.Length - 1 && btnList[btnList.Length - 1].gameObject.activeSelf || btnIdx < btnList.Length -2 && !btnList[btnList.Length - 1].gameObject.activeSelf)
                 {
                     SetBtn(true);
                 }
@@ -138,7 +147,7 @@ public class MenuController : MonoBehaviour
 
     void SetInitialBtn()
     {
-        btnIdx = btnList.Length-1;
+        btnIdx = 0;
         btnList[btnIdx].color = selectColor;
     }
 

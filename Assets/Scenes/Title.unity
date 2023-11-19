@@ -3464,6 +3464,8 @@ MonoBehaviour:
   - {fileID: 626656559}
   - {fileID: 1186077218}
   - {fileID: 1831888402}
+  talkSelections: 0000000000000000
+  talkselectionsIdx: 0
 --- !u!114 &488003779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4584,6 +4586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53ed070499e66e41ac9108b100fa2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMenuOpen: 0
 --- !u!4 &633114207
 Transform:
   m_ObjectHideFlags: 0
@@ -14293,7 +14296,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830746113}
   m_HandleRect: {fileID: 830746112}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -40,12 +40,10 @@ public class DialogueSelection : MonoBehaviour
         {
             if(selectIdx == 0)
             {
-                print("11111");
                 frame.isOnlyChild = true;
             }
             else if(selectIdx == 1)
             {
-                print("222222");
                 frame.isOnlyChild = false;
             }
             DialogueManager.instance._dlgState = DialogueManager.DlgState.End;
@@ -57,12 +55,12 @@ public class DialogueSelection : MonoBehaviour
 
     void SelectBtn()
     {
-        btnLists[selectIdx].color = Color.gray;
+        btnLists[selectIdx].color = Color.white;
         for (int i = 0; i < btnLists.Length; i++)
         {
             if (i == selectIdx)
             { continue; }
-            btnLists[i].color = Color.white;
+            btnLists[i].color = Color.gray;
         }
     }
 }

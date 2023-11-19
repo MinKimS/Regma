@@ -19,5 +19,5 @@ MonoBehaviour:
     dlgTexts: "\uAC70\uC6B8\uC774\uB124..\uBFCC\uC598\uC11C \uC544\uBB34\uAC83\uB3C4
       \uBCF4\uC774\uC9C0 \uC54A\uC544"
     eventType: 0
-  nextDlg: {fileID: 11400000, guid: 5e5ddd4aaba4e3c4c92ccd0054911837, type: 2}
+  nextDlg: {fileID: 11400000, guid: 31dfcaeb1d6927540a6517a70af72262, type: 2}
   gmEvent: {fileID: 0}

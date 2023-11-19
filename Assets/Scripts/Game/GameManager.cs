@@ -53,4 +53,8 @@ public class GameManager : MonoBehaviour
             SetEndingRoute(true);
         }
     }
+
+    //========
+
+    [HideInInspector] public bool isMenuOpen = false;
 }

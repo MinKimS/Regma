@@ -56,7 +56,7 @@ public class BathMobController : MonoBehaviour
                 if (!playerHide.isHide)
                 {
                     hand.SetTarget();
-                    hand.AttackTarget(0.4f);
+                    hand.AttackTarget(0.4f, 0.5f);
                 }
             }
             else if(data.state == BathMobData.State.RuningWild)
@@ -65,7 +65,7 @@ public class BathMobController : MonoBehaviour
                 {
                     print("runwilddddddd");
                     hand.SetTargetToy(hand.toyIdx);
-                    hand.AttackTarget(0.07f);
+                    hand.AttackTarget(0.4f, 0.5f);
                     data.canMove = false;
                 }
             }

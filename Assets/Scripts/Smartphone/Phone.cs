@@ -79,6 +79,9 @@ public class Phone : MonoBehaviour
 
     public List<sendTalkData> sendTalkList;
 
+    //남은 톡을 설정할때 선택지가 있는 톡을 자신이 선택한 톡으로 남기기 위한 용도
+    [HideInInspector] public int[] talkSelections = new int[2];
+    [HideInInspector] public int talkselectionsIdx = 0;
     public bool IsOpenPhone
     {
         get { return isOpenPhone;}
@@ -114,6 +117,8 @@ public class Phone : MonoBehaviour
 
     private void Start()
     {
+        talkSelections[0] = 0;
+        talkSelections[1] = 0;
         SceneManager.sceneLoaded += LoadSceneEvent;
     }
 
@@ -297,6 +302,7 @@ public class Phone : MonoBehaviour
 
         StartCoroutine(FitLayout(talkInputAreaRT));
 
+        talkScBar.value = 0f;
         isTalkNeedToBeSend = true;
         isOKSendTalk = true;
     }
@@ -334,10 +340,6 @@ public class Phone : MonoBehaviour
         StartCoroutine(FixLayoutGroup());
 
         isTalkNeedToBeSend = false;
-        //if (curSendTalk == null && curTalk.isInTimeline)
-        //{
-        //    TimelineManager.instance.timelineController.SetTimelineResume();
-        //}
     }
 
     public void SelectTalk(int value)
@@ -405,15 +407,6 @@ public class Phone : MonoBehaviour
         }
     }
 
-    IEnumerator ShowPhoneWithMotion()
-    {
-        while(transform.position.y <= 540f)
-        {
-            print("showing");
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 540), phoneShowSpeed);
-            yield return null;
-        }
-    }
     //레이아웃 버그 해소
     IEnumerator FitLayout(RectTransform rt)
     {
@@ -530,6 +523,7 @@ public class Phone : MonoBehaviour
         phoneTalkList.Clear();
     }
 
+
     //씬마다 남아있는 톡 설정
     public void SetRemainTalks(int idx)
     {
@@ -539,6 +533,8 @@ public class Phone : MonoBehaviour
     IEnumerator IESetRemainTalks(int idx)
     {
         Talk talk = talkList[0];
+        talkselectionsIdx = 0;
+
         for (int i = 0; i < idx+1; i++)
         {
             talk = talkList[i];
@@ -555,7 +551,14 @@ public class Phone : MonoBehaviour
                 }
                 if (talk.answerTalk.Length > 0)
                 {
-                    curSendTalk = talk.answerTalk[0];
+                    if(talk.answerTalk.Length < 2)
+                    {
+                        curSendTalk = talk.answerTalk[0];
+                    }
+                    else
+                    {
+                        curSendTalk = talk.answerTalk[talkSelections[talkselectionsIdx]];
+                    }
                     AddTalk(curSendTalk.talkText);
                     while (curSendTalk.nextSendTalk != null)
                     {
@@ -577,7 +580,8 @@ public class Phone : MonoBehaviour
                     }
                     else
                     {
-                        talk = talk.nextTalk[selectedOption - 1];
+                        talk = talk.nextTalk[talkSelections[talkselectionsIdx]];
+                        if (talkselectionsIdx < talkSelections.Length) { talkselectionsIdx++; }
                     }
                 }
             }
@@ -610,7 +614,8 @@ public class Phone : MonoBehaviour
         
         HideSendTalk();
         isTalkNeedToBeSend = false;
-        isOKSendTalk = true;
+        IsOKSendTalk = false;
         isOkStartTalk = true;
+        isPlayerFirstTalk = true;
     }
 }

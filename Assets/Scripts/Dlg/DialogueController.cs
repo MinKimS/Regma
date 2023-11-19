@@ -7,12 +7,6 @@ using UnityEngine.EventSystems;
 
 public class DialogueController : MonoBehaviour
 {
-    // void Start()
-    // {
-    //     //대화 출력 테스트용
-    //     DialogueManager.instance.Invoke("PlayDlg", 0.03f);
-    // }
-
     void Update()
     {
         //다음 대화로 넘어가기

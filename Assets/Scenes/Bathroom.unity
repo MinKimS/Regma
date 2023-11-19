@@ -3439,18 +3439,6 @@ MonoBehaviour:
   ActiveRecogEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1383786719}
-        m_TargetAssemblyTypeName: DialogueTimeline, Assembly-CSharp
-        m_MethodName: PlayDlgSingleTimeline
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 7b1f0c2e2228869479c0e2efb50274c9, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Dialogue, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1517436520}
         m_TargetAssemblyTypeName: PlayAudioWithDlg, Assembly-CSharp
         m_MethodName: PlayAudio
@@ -4509,7 +4497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8080,7 +8068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1034290090
@@ -8295,6 +8283,9 @@ MonoBehaviour:
   Mirrorcanvas: {fileID: 491075202}
   shakingTarget: {fileID: 811651709}
   glassItem: {fileID: 1778539716}
+  dlg:
+  - {fileID: 11400000, guid: d9bec09aff74e8b48b8ff8be84f32521, type: 2}
+  - {fileID: 11400000, guid: 31dfcaeb1d6927540a6517a70af72262, type: 2}
 --- !u!1 &1037965159
 GameObject:
   m_ObjectHideFlags: 0
@@ -9749,7 +9740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10712,8 +10703,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 304.18738, y: 30}
-  m_SizeDelta: {x: -675.6252, y: 333.3147}
+  m_AnchoredPosition: {x: 305, y: 30}
+  m_SizeDelta: {x: -670, y: 333.3147}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1275816850
 MonoBehaviour:
@@ -12101,6 +12092,7 @@ MonoBehaviour:
   Mirrorcanvas: {fileID: 1446684967}
   shakingTarget: {fileID: 811651709}
   glassItem: {fileID: 0}
+  dlg: []
 --- !u!95 &1446684973
 Animator:
   serializedVersion: 5
@@ -12671,7 +12663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -12850,6 +12842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acab7e525baef27469e0826367a728d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dlg: {fileID: 11400000, guid: ce1f244a444d51a4e8fe81c314463e65, type: 2}
 --- !u!4 &1517436521
 Transform:
   m_ObjectHideFlags: 0
@@ -20220,6 +20213,7 @@ MonoBehaviour:
   Mirrorcanvas: {fileID: 0}
   shakingTarget: {fileID: 0}
   glassItem: {fileID: 0}
+  dlg: []
 --- !u!212 &1793646920
 SpriteRenderer:
   m_ObjectHideFlags: 0

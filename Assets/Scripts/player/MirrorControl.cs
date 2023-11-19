@@ -28,6 +28,7 @@ public class MirrorControl : MonoBehaviour
 
     public GameObject glassItem;
     Coroutine vibrate;
+    public Dialogue[] dlg;
 
     private void Start()
     {
@@ -92,7 +93,7 @@ public class MirrorControl : MonoBehaviour
     {
         TimelineManager.instance.timelineController.SetCutScene(true);
         TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
-        DialogueManager.instance.PlayDlg();
+        DialogueManager.instance.PlayDlg(dlg[0]);
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
 
         StartVibration();
@@ -101,18 +102,15 @@ public class MirrorControl : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         AudioManager.instance.SFXPlay("Restroom voice 2");
-        DialogueManager.instance.PlayDlg();
-
-        yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
-        AudioManager.instance.StopSFX("Restroom voice 2");
+        yield return new WaitForSeconds(10f);
         ShowImage();
         MirrorAnimator.SetBool("Broken", true);
-
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10.625f);
+        AudioManager.instance.StopSFX("Restroom voice 2");
         ExitImage();
         MirrorAnimator.SetBool("Broken", false);
 
-        DialogueManager.instance.PlayDlg();
+        DialogueManager.instance.PlayDlg(dlg[1]);
 
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
         if (glassItem != null)

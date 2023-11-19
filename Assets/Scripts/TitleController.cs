@@ -16,26 +16,42 @@ public class TitleController : MonoBehaviour
     }
     void Update()
     {
-        //위의 버튼으로 이동
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        //왼쪽의 버튼으로 이동
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))&&!GameManager.instance.isMenuOpen)
         {
             if(btnSelectIdx < btnLists.Length-1)
             {
-                btnSelectIdx++;
-                SelectBtn();
+                if (GameManager.instance.GetLastScene() == SceneManager.GetActiveScene().name)
+                {
+                    btnSelectIdx += 2;
+                    SelectBtn();
+                }
+                else
+                {
+                    btnSelectIdx++;
+                    SelectBtn();
+                }
             }
         }
-        //아래의 버튼으로 이동
-        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        //오른쪽의 버튼으로 이동
+        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && !GameManager.instance.isMenuOpen)
         {
             if(btnSelectIdx > 0)
             {
-                btnSelectIdx--;
-                SelectBtn();
+                if(GameManager.instance.GetLastScene() == SceneManager.GetActiveScene().name)
+                {
+                    btnSelectIdx -= 2;
+                    SelectBtn();
+                }
+                else
+                {
+                    btnSelectIdx--;
+                    SelectBtn();
+                }
             }
         }
         //선택된 버튼 클릭
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return)&& !GameManager.instance.isMenuOpen)
         {
             if(btnSelectIdx == 2)
             {
@@ -54,22 +70,16 @@ public class TitleController : MonoBehaviour
                 print("quit");
             }
         }
-
-        ////조작법 창 숨기기
-        //if(Input.GetKeyDown(KeyCode.Escape) && howToScreen.gameObject.activeSelf)
-        //{
-        //    howToScreen.gameObject.SetActive(false);
-        //}
     }
 
     void SelectBtn()
     {
-        btnLists[btnSelectIdx].color = Color.gray;
+        btnLists[btnSelectIdx].color = Color.white;
         for(int i = 0; i < btnLists.Length; i++)
         {
             if(i == btnSelectIdx)
             {continue;}
-            btnLists[i].color = Color.white;
+            btnLists[i].color = Color.gray;
         }
     }
 }

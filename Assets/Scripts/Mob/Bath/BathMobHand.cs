@@ -27,7 +27,7 @@ public class BathMobHand : MonoBehaviour
     [HideInInspector] public bool isTryCatchSomething = false;
     [HideInInspector] public bool isCatchSomething = false;
     [HideInInspector] public bool isMoveIntoWater = false;
-    bool isAnimationDone = false;
+    [HideInInspector] public bool isBackToOriginPos = false;
 
     //[HideInInspector] public bool isCatchSomething = false;
     Transform targetPos;
@@ -55,12 +55,13 @@ public class BathMobHand : MonoBehaviour
         if (!isTargetPlayer && collision.CompareTag("Toy"))
         {
             CatchSomething(false, collision);
+            isReadyAttack = false;
         }
         else if (isTargetPlayer && collision.CompareTag("Player"))
         {
             CatchSomething(true, collision);
+            isReadyAttack = false;
         }
-        isReadyAttack = false;
     }
 
     public void SetTarget()
@@ -112,83 +113,90 @@ public class BathMobHand : MonoBehaviour
     }
 
     //공격
-    public void AttackTarget(float readyHandSpeed)
+    public void AttackTarget(float readyHandSpeed, float moveHandSpeed)
     {
         isMoveHand = true;
-        StartCoroutine(IEAttackTarget(readyHandSpeed));
+        StartCoroutine(IEAttackTarget(readyHandSpeed, moveHandSpeed));
     }
-    IEnumerator IEAttackTarget(float readyHandSpeed)
+    IEnumerator IEAttackTarget(float readyHandSpeed, float moveHandSpeed)
     {
         //공격하기 위한 준비
         ReadyToAttack(readyHandSpeed);
 
         yield return new WaitUntil(() => isReadyAttack);
         //타겟으로 이동
-        MoveToTargetAndAttack();
+        MoveToTargetAndAttack(moveHandSpeed);
     }
 
     //공격할 위치로 이동
     void ReadyToAttack(float moveHandSpeed)
     {
-        print("ReadyToAttack");
+        isBackToOriginPos = false;
         StartCoroutine(IEReadyToAttack(moveHandSpeed));
     }
     IEnumerator IEReadyToAttack(float moveHandSpeed)
     {
-        while (Vector2.Distance(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y)) > 0.03f) //&& !data.IsTryCatchPlayer)
+        float startTime = Time.time;
+        float checkTime = 0;
+        while (Vector2.Distance(transform.position, new Vector2(targetPos.position.x, transform.position.y)) > 0.1f || checkTime < 0.6f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, handOriginPos.position.y), moveHandSpeed);
+            checkTime = Time.time - startTime;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, transform.position.y), moveHandSpeed);
+            print("ReadyToAttack");
             yield return null;
         }
 
-        transform.position = new Vector2(targetPos.position.x, handOriginPos.position.y);
+        transform.position = new Vector2(targetPos.position.x, transform.position.y);
 
         isReadyAttack = true;
     }
 
-    void MoveToTargetAndAttack()
+    void MoveToTargetAndAttack(float moveHandSpeed)
     {
-        StartCoroutine(IEMoveToTargetAndAttack());
+        StartCoroutine(IEMoveToTargetAndAttack(moveHandSpeed));
     }
 
-    IEnumerator IEMoveToTargetAndAttack()
+    IEnumerator IEMoveToTargetAndAttack(float moveHandSpeed = 0.1f)
     {
-        animator.SetBool("isCatching", true);
-
-        yield return new WaitForSeconds(0.1f);
         bc.enabled = true;
         isTryCatchSomething = true;
 
-        yield return new WaitUntil(() => isAnimationDone);
-        isAnimationDone = false;
+        while (Vector2.Distance(transform.position, targetPos.position) > 0.02f && !isCatchSomething)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPos.position, moveHandSpeed);
+            print("IEMoveToTargetAndAttack" + targetPos.name);
+            yield return null;
+        }
 
-        if (!isCatchSomething)
+        yield return new WaitForSeconds(0.5f);
+
+        if (!isCatchSomething && !isBackToOriginPos)
         {
             isCatchSomething = false;
             BackToOriginHandPos(0.4f);
         }
     }
 
-    public void SetAnim()
-    {
-        isAnimationDone = true;
-    }
-
     //원래 손이 있어야 할 위치로 이동
     void BackToOriginHandPos(float moveHandSpeed)
     {
+        animator.SetBool("isCatching", false);
+        bc.enabled = false;
+        isBackToOriginPos = true;
         StartCoroutine(IEBackToOriginHandPos(moveHandSpeed));
     }
     IEnumerator IEBackToOriginHandPos(float moveHandSpeed)
     {
-        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.02f) //&& !data.IsTryCatchPlayer)
+        float startTime = Time.time;
+        float checkTime = 0;
+        while (Vector2.Distance(transform.position, handOriginPos.position) > 0.02f || checkTime < 0.5f)
         {
+            checkTime = Time.time - startTime;
             print("backtoOriginHandPos");
             transform.position = Vector2.MoveTowards(transform.position, handOriginPos.position, moveHandSpeed);
             yield return null;
         }
         transform.position = handOriginPos.position;
-        animator.SetBool("isCatching", false);
         isMoveHand = false;
         isMoveIntoWater = false;
     }
@@ -197,6 +205,7 @@ public class BathMobHand : MonoBehaviour
     void CatchSomething(bool isPlayer, Collider2D target)
     {
         isCatchSomething = true;
+        animator.SetBool("isCatching", true);
 
         targetPos.SetParent(transform);
         Debug.LogWarning(targetPos.name + " CatchSomething");
@@ -209,11 +218,11 @@ public class BathMobHand : MonoBehaviour
         }
         if(data.state != BathMobData.State.RuningWild)
         {
-            MoveIntoWater(1.45f);
+            MoveIntoWater(0.45f);
         }
         else
         {
-            MoveIntoWater(1.9f);
+            MoveIntoWater(0.9f);
         }
     }
 
@@ -233,10 +242,10 @@ public class BathMobHand : MonoBehaviour
     }
     IEnumerator IEMoveIntoWater(float moveHandSpeed, float curX)
     {
-        while (Vector2.Distance(transform.position, new Vector3(curX, dragPos.position.y)) > 0.04f)
+        while (Vector2.Distance(transform.position, new Vector3(transform.position.x, dragPos.position.y)) > 0.04f)
          {
             print("MoveIntoWater");
-            transform.position = Vector2.MoveTowards(transform.position, new Vector3(curX, dragPos.position.y), moveHandSpeed);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(transform.position.x, dragPos.position.y), moveHandSpeed);
             yield return null;
         }
 
@@ -270,47 +279,4 @@ public class BathMobHand : MonoBehaviour
     {
         toyIdx = idx;
     }
-
-    //public IEnumerator GoCatchToyToAttack()
-    //{
-    //    //장난감으로 가기
-    //    while (Vector2.Distance(transform.position, bathToy.transform.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, bathToy.transform.position, moveSpeed *1.5f * Time.deltaTime);
-    //        yield return null;
-    //    }
-
-    //    bc.enabled = true;
-    //}
-    //public IEnumerator GoCatchToyToAttack(float speed = 20f)
-    //{
-    //    //장난감으로 가기
-    //    while (Vector2.Distance(transform.position, bathToy.transform.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, bathToy.transform.position, speed * Time.deltaTime);
-    //        yield return null;
-    //    }
-
-    //    bc.enabled = true;
-    //}
-    ////손을 플레이어를 향해 이동
-    //public void MoveHandToPlayer(float speed = 30)
-    //{
-    //    isMoveHand = true;
-    //    StartCoroutine(GoCatchPlayer(speed));
-    //}
-
-    //public IEnumerator GoCatchPlayer(float speed)
-    //{
-    //    yield return new WaitForSeconds(0.3f);
-    //    //플레이어에게 가기
-    //    while (Vector2.Distance(transform.position, PlayerInfoData.instance.playerTr.position) > 0.1f)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, PlayerInfoData.instance.playerTr.position, speed * Time.deltaTime);
-    //        Debug.LogWarning("gocatchplayer");
-    //        yield return null;
-    //    }
-
-    //    bc.enabled = true;
-    //}
 }
