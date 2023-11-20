@@ -58,7 +58,7 @@ public class SmartphoneManager : MonoBehaviour
             && SceneManager.GetActiveScene().name != "Intro")
         {
             //폰 열기
-            if(Input.GetKeyDown(KeyCode.P) && !MenuController.isOpenMenu)
+            if(Input.GetKeyDown(KeyCode.P) && !GameManager.instance.isMenuOpen)
             {
                 if(!phone.IsOpenPhone)
                 {
@@ -71,7 +71,7 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
             //인벤 열기
-            if (Input.GetKeyDown(KeyCode.I) && !MenuController.isOpenMenu)
+            if (Input.GetKeyDown(KeyCode.I) && !GameManager.instance.isMenuOpen)
             {
                 if (!inven.IsOpenInven)
                 {
@@ -116,7 +116,7 @@ public class SmartphoneManager : MonoBehaviour
                 }
             }
 
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !MenuController.isOpenMenu)
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !GameManager.instance.isMenuOpen)
             {
                 if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption > 1)
                 {
@@ -161,7 +161,7 @@ public class SmartphoneManager : MonoBehaviour
                     inven.IsLastLine = false;
                 }
             }
-            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && !MenuController.isOpenMenu)
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && !GameManager.instance.isMenuOpen)
             {
                 if (phone.IsOpenPhone && !inven.IsOpenInven && phone.SelectedOption < phone.ShowedCount)
                 {
@@ -203,7 +203,7 @@ public class SmartphoneManager : MonoBehaviour
                     inven.IsFirstLine = false;
                 }
             }
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !MenuController.isOpenMenu)
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !GameManager.instance.isMenuOpen)
             {
                 //파일 선택
                 if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
@@ -226,7 +226,7 @@ public class SmartphoneManager : MonoBehaviour
                     }
                 }
             }
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !MenuController.isOpenMenu)
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !GameManager.instance.isMenuOpen)
             {
                 //사진 선택
                 if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
@@ -252,7 +252,7 @@ public class SmartphoneManager : MonoBehaviour
 
             //선택 및 사용
             if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing
-                 && !MenuController.isOpenMenu)
+                 && !GameManager.instance.isMenuOpen)
             {
                 //파일과 사진 중 선택
                 if (inven.IsOpenInven&&!inven.IsOpenFiles&&!inven.IsOpenPictures)

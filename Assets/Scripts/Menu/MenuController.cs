@@ -27,8 +27,6 @@ public class MenuController : MonoBehaviour
 
     List<string> resolutionList;
 
-    [HideInInspector] public static bool isOpenMenu = false;
-
     private void Awake()
     {
         if (instance == null)
@@ -45,10 +43,29 @@ public class MenuController : MonoBehaviour
     {
         SetInitialResolution();
         menuPanel.gameObject.SetActive(false);
-        isOpenMenu = false;
+        GameManager.instance.isMenuOpen = false;
+        GameManager.instance.isHowtoOpen = false;
         SetInitialBtn();
         SetFullScreen();
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        SetInitialBtn();
+        GameManager.instance.isMenuOpen = false;
+        GameManager.instance.isHowtoOpen = false;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
+
     private void Update()
     {
         //화면에 보이기/숨기기
@@ -62,7 +79,7 @@ public class MenuController : MonoBehaviour
                 if (!DialogueManager.instance.isShowDlg)
                 {
                     menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
-                    isOpenMenu = menuPanel.gameObject.activeSelf ? true : false;
+                    GameManager.instance.isMenuOpen = menuPanel.gameObject.activeSelf ? true : false;
 
                     if (SceneManager.GetActiveScene().name == "Title")
                     {
@@ -116,7 +133,8 @@ public class MenuController : MonoBehaviour
                 else if (btnIdx == btnList.Length - 1)
                 {
                     menuPanel.gameObject.SetActive(false);
-                    isOpenMenu = false;
+                    GameManager.instance.isMenuOpen = false;
+                    GameManager.instance.isHowtoOpen = false;
                     AudioManager.instance.StopSFXAll();
                     SmartphoneManager.instance.phone.HidePhone();
                     SmartphoneManager.instance.phone.DeleteTalkAll();
@@ -149,6 +167,10 @@ public class MenuController : MonoBehaviour
     void SetInitialBtn()
     {
         btnIdx = 0;
+        for(int i =1; i<btnList.Length; i++)
+        {
+            btnList[i].color = unSelectColor;
+        }
         btnList[btnIdx].color = selectColor;
     }
 
@@ -208,6 +230,7 @@ public class MenuController : MonoBehaviour
     void SetShowOrHideHowToControlling()
     {
         controlExplainScreen.SetActive(!controlExplainScreen.activeSelf);
+        GameManager.instance.isHowtoOpen = controlExplainScreen.activeSelf ? true : false;
     }
 
     void SetInitialResolution()

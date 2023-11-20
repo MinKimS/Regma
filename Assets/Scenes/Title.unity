@@ -4552,6 +4552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMenuOpen: 0
+  isHowtoOpen: 0
 --- !u!4 &633114207
 Transform:
   m_ObjectHideFlags: 0
@@ -6517,7 +6518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -55.2, y: 18}
+  m_AnchoredPosition: {x: -55.19995, y: 18}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &936912589

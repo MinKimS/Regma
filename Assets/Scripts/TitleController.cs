@@ -17,7 +17,7 @@ public class TitleController : MonoBehaviour
     void Update()
     {
         //왼쪽의 버튼으로 이동
-        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))&&!GameManager.instance.isMenuOpen)
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))&&!GameManager.instance.isMenuOpen && !GameManager.instance.isHowtoOpen)
         {
             if(btnSelectIdx < btnLists.Length-1)
             {
@@ -34,7 +34,7 @@ public class TitleController : MonoBehaviour
             }
         }
         //오른쪽의 버튼으로 이동
-        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && !GameManager.instance.isMenuOpen)
+        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && !GameManager.instance.isMenuOpen && !GameManager.instance.isHowtoOpen)
         {
             if(btnSelectIdx > 0)
             {
@@ -51,7 +51,7 @@ public class TitleController : MonoBehaviour
             }
         }
         //선택된 버튼 클릭
-        if(Input.GetKeyDown(KeyCode.Return)&& !GameManager.instance.isMenuOpen)
+        if(Input.GetKeyDown(KeyCode.Return)&& !GameManager.instance.isMenuOpen&& !GameManager.instance.isHowtoOpen)
         {
             if(btnSelectIdx == 2)
             {

@@ -57,4 +57,5 @@ public class GameManager : MonoBehaviour
     //========
 
     [HideInInspector] public bool isMenuOpen = false;
+    [HideInInspector] public bool isHowtoOpen = false;
 }
