@@ -40,6 +40,8 @@ public class MobAppear : MonoBehaviour
     {
         isMobAppear = true;
         mob[1].SetActive(true);
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
         ActivateTrace(1);
     }
 
@@ -48,6 +50,8 @@ public class MobAppear : MonoBehaviour
         isLastMob = true;
         isMobAppear = true;
         mob[2].SetActive(true);
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
         mob[2].transform.position = PlayerInfoData.instance.playerTr.position + Vector3.right * 6f;
         isReadySpawn = false;
         ActivateTrace(2);

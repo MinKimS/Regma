@@ -1552,6 +1552,8 @@ GameObject:
   - component: {fileID: 122648005}
   - component: {fileID: 122648004}
   - component: {fileID: 122648003}
+  - component: {fileID: 122648013}
+  - component: {fileID: 122648014}
   m_Layer: 3
   m_Name: ch 1
   m_TagString: Player
@@ -1851,6 +1853,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122648013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122648002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bba819761d55144c9540bb86e92d11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHide: 0
+  isTryHiding: 0
+--- !u!114 &122648014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122648002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7170794d0a9f8c4db24e2c95a07cc03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &122852209
 GameObject:
   m_ObjectHideFlags: 0
@@ -16904,7 +16932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &752164946
@@ -22336,7 +22364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopTraceTime: 2
   noRecogDis: 10
-  pHide: {fileID: 0}
+  pHide: {fileID: 122648013}
   eventWhenMobDisappear: {fileID: 11400000, guid: 22be2b41f052b164193b473a7227d37a, type: 2}
   appear: {fileID: 0}
 --- !u!4 &1319949916

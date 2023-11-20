@@ -74,7 +74,7 @@ public class Door : MonoBehaviour
             LoadingManager.LoadScene("Kitchen");
             anim.SetBool("isKnock", false);
             AudioManager.instance.StopSFXAll();
-            AudioManager.instance.SFXPlay("Game Sound_Door open");
+            AudioManager.instance.SFXPlay("Game Sound_Door open2");
         }
     }
 

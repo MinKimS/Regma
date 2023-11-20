@@ -172,6 +172,7 @@ public class Pot : MonoBehaviour
 
     public void GetBlanket(ItemData item)
     {
+        AudioManager.instance.SFXPlay("Game Sound_Item get");
         SmartphoneManager.instance.SetInvenItem(item);
         DialogueManager.instance.PlayDlg(dlg[2]);
         door.checkWorkDo++;

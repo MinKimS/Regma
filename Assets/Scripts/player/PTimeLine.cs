@@ -38,34 +38,34 @@ public class PTimeLine : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!isActive)
-                {
-                    print("충돌");
-                    Refrianim.SetBool("OFF", true);
-                    AudioManager.instance.SFXPlay("Kitchen_power off");
-                    Interaction1 = true;
-                    refri2Object.SetActive(true);
-                    power.isBroken = true;
-                    if (mobAppear != null)
-                    {
-                        StartCoroutine(IEMobAppear());
-                    }
-                    isActive = true;
-                }
-                else
-                {
-                    mob.AppearMob();
-                    respawnPoint_Power.gameObject.SetActive(true);
-                }
-            }
-        }
-    }
+    //void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Player") && gameObject.CompareTag("RefriObject"))
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            if (!isActive)
+    //            {
+    //                print("충돌");
+    //                Refrianim.SetBool("OFF", true);
+    //                AudioManager.instance.SFXPlay("Kitchen_power off");
+    //                Interaction1 = true;
+    //                refri2Object.SetActive(true);
+    //                power.isBroken = true;
+    //                if (mobAppear != null)
+    //                {
+    //                    StartCoroutine(IEMobAppear());
+    //                }
+    //                isActive = true;
+    //            }
+    //            else
+    //            {
+    //                mob.AppearMob();
+    //                respawnPoint_Power.gameObject.SetActive(true);
+    //            }
+    //        }
+    //    }
+    //}
 
     public void InteractionPower()
     {

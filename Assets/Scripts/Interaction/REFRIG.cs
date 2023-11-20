@@ -79,6 +79,8 @@ public class REFRIG : MonoBehaviour
         DialogueManager.instance.PlayDlg(iod.objDlg[0]);
         trigger.SetActive(false);
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
         mobAppear.gameObject.SetActive(true);
         respawnPoint_Refrig.gameObject.SetActive(true);
     }

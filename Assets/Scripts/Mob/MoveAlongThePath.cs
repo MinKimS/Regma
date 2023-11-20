@@ -10,7 +10,6 @@ public class MoveAlongThePath : MonoBehaviour
     Transform targetPos;
     public float traceSpeed = 3f;
     Node node = null;
-    Node nextNode = null;
 
     SpriteRenderer sp;
     BoxCollider2D bc;
@@ -73,10 +72,6 @@ public class MoveAlongThePath : MonoBehaviour
             if (path.Count > 0)
             {
                 node = path.Pop();
-                if(path.Count > 0)
-                {
-                    nextNode = path.Peek();
-                }
             }
 
             yield return wait;
@@ -90,10 +85,6 @@ public class MoveAlongThePath : MonoBehaviour
         if (path.Count > 0)
         {
             node = path.Pop();
-            if (path.Count > 0)
-            {
-                nextNode = path.Peek();
-            }
         }
     }
 

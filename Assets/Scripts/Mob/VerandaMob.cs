@@ -15,7 +15,7 @@ public class VerandaMob : MonoBehaviour
 
     private void OnEnable()
     {
-        if(spawnPos != null)
+        if (spawnPos != null)
         {
             transform.position = spawnPos.position;
             StartCoroutine(IETraceMob());
@@ -73,6 +73,8 @@ public class VerandaMob : MonoBehaviour
     public void SetMobVisible(bool value)
     {
         mob.gameObject.SetActive(value);
+        AudioManager.instance.SFXPlay("주방_괴생명체 등장");
+        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

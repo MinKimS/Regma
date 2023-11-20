@@ -57,6 +57,9 @@ public class Phone : MonoBehaviour
     bool isPlayerFirstTalk = true;
     bool isOKSendTalk = false;
 
+    //소리 재생할지 여부
+    bool canPlayTalkSound = true;
+
     //톡을 보내는 것이 가능여부
     [HideInInspector]
     public bool isOkStartTalk = true;
@@ -79,6 +82,9 @@ public class Phone : MonoBehaviour
     //남은 톡을 설정할때 선택지가 있는 톡을 자신이 선택한 톡으로 남기기 위한 용도
     [HideInInspector] public int[] talkSelections = new int[2];
     [HideInInspector] public int talkselectionsIdx = 0;
+
+    public Speaker child;
+
     public bool IsOpenPhone
     {
         get { return isOpenPhone;}
@@ -187,22 +193,25 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
-        AudioManager.instance.StopSFX("Game Sound_카톡타자2");
-        if (talk.talkText.preferredWidth > 500)
+        if(canPlayTalkSound)
         {
-            AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
-        }
-        else if (talk.talkText.preferredWidth > 412.5)
-        {
-            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 60);
-        }
-        else if (talk.talkText.preferredWidth > 260)
-        {
-            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 40);
-        }
-        else
-        {
-            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 20);
+            AudioManager.instance.StopSFX("Game Sound_카톡타자2");
+            if (talk.talkText.preferredWidth > 500)
+            {
+                AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
+            }
+            else if (talk.talkText.preferredWidth > 412.5)
+            {
+                AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 60);
+            }
+            else if (talk.talkText.preferredWidth > 260)
+            {
+                AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 40);
+            }
+            else
+            {
+                AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 20);
+            }
         }
 
         phoneTalkList.Add(talk.talkRT);
@@ -397,6 +406,28 @@ public class Phone : MonoBehaviour
 
         notification.SetHideTalkIconState();
     }
+
+    public void AddVideoTalk(string user)
+    {
+        TalkData talk = Instantiate(videoTalk).GetComponent<TalkData>();
+        talk.transform.SetParent(talkParent.transform, false);
+        talk.userName = user;
+
+        phoneTalkList.Add(talk.talkRT);
+        //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
+        bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
+
+        talk.profile.gameObject.SetActive(!isSameUser);
+        talk.nameText.gameObject.SetActive(!isSameUser);
+        talk.nameText.text = talk.userName;
+
+        lastTalk = talk;
+
+        Invoke("ScrollToBottom", 0.03f);
+        StartCoroutine(FitLayout(talkParentRT));
+
+        notification.SetHideTalkIconState();
+    }
     public void SetNextSendTalk()
     {
         isPlayerFirstTalk = false;
@@ -542,6 +573,7 @@ public class Phone : MonoBehaviour
     //씬마다 남아있는 톡 설정
     public void SetRemainTalks(int idx)
     {
+        canPlayTalkSound = false;
         StartCoroutine(IESetRemainTalks(idx));
     }
 
@@ -624,6 +656,11 @@ public class Phone : MonoBehaviour
                 }
             }
 
+            if(i == 0 && child != null)
+            {
+                AddVideoTalk(child);
+            }
+
             talkIdx = 0;
         }
         
@@ -632,5 +669,7 @@ public class Phone : MonoBehaviour
         IsOKSendTalk = false;
         isOkStartTalk = true;
         isPlayerFirstTalk = true;
+
+        canPlayTalkSound = true;
     }
 }
