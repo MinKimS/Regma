@@ -54,7 +54,7 @@ public class Bookcontrol : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && !isAnimationPlaying)
         {
-            if (clickCount == 0)
+            if (clickCount == 3)
             {
                 TearingSound(); // 찢기 소리 재생
             }
@@ -113,7 +113,7 @@ public class Bookcontrol : MonoBehaviour
 
     void TearingSound()
     {
-        if (clickCount == 0 && tearingSound != null)
+        if (clickCount == 3 && tearingSound != null)
         {
             audioSource.PlayOneShot(tearingSound);
         }
