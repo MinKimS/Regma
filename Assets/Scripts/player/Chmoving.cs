@@ -191,6 +191,8 @@ public class Chmoving : MonoBehaviour
             animator.SetBool("WetIdle", false);
             // "Wet" 애니메이션을 활성화합니다.
             animator.SetBool("Wet", true);
+            //walkAudioSource.Stop();
+            //AudioManager.instance.SFXPlay("주방_개수대 입장");
         }
         
     }
@@ -358,6 +360,7 @@ public class Chmoving : MonoBehaviour
 
             if (moveInputX != 0 && isMoving)
             {
+                
                 MovinginWater = true;
                 //animator.SetBool("Wet", true);
                 animator.SetBool("walk", false);
