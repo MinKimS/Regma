@@ -45,6 +45,7 @@ public class MenuController : MonoBehaviour
     {
         SetInitialResolution();
         menuPanel.gameObject.SetActive(false);
+        isOpenMenu = false;
         SetInitialBtn();
         SetFullScreen();
     }
@@ -61,11 +62,11 @@ public class MenuController : MonoBehaviour
                 if (!DialogueManager.instance.isShowDlg)
                 {
                     menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
-                    isOpenMenu = !isOpenMenu;
-                    GameManager.instance.isMenuOpen = !GameManager.instance.isMenuOpen;
-                    if (isOpenMenu)
+                    isOpenMenu = menuPanel.gameObject.activeSelf ? true : false;
+
+                    if (SceneManager.GetActiveScene().name == "Title")
                     {
-                        btnList[btnList.Length-1].gameObject.SetActive(false);
+                        btnList[btnList.Length - 1].gameObject.SetActive(false);
                     }
                     else
                     {
