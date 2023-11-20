@@ -80,7 +80,6 @@ public class BathMobMovement : MonoBehaviour
     //물 안으로 이동
     void MoveIntoTheWater()
     {
-        data.state = BathMobData.State.InWater;
         StartCoroutine(IEMoveIntoTheWater());
     }
     IEnumerator IEMoveIntoTheWater()
@@ -91,16 +90,13 @@ public class BathMobMovement : MonoBehaviour
             yield return null;
         }
         transform.position = new Vector2(transform.position.x, moveInWaterPos.position.y);
+        data.state = BathMobData.State.InWater;
     }
 
     //물 밖으로 이동
     public void MoveOutOfTheWater(float speed)
     {
         AudioManager.instance.SFXPlay("주방_개수대 입장", 0.05f, 0.7f);
-        if (data.state != BathMobData.State.RuningWild)
-        {
-            data.state = BathMobData.State.OutWater;
-        }
         StartCoroutine(IEMoveOutOfTheWater(speed));
     }
     IEnumerator IEMoveOutOfTheWater(float speed)
@@ -111,6 +107,11 @@ public class BathMobMovement : MonoBehaviour
             yield return null;
         }
         transform.position = new Vector2(transform.position.x, moveOutWaterPos.position.y);
+
+        if (data.state != BathMobData.State.RuningWild)
+        {
+            data.state = BathMobData.State.OutWater;
+        }
         //data.IsMobTryCatch = true;
     }
 

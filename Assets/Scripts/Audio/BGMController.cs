@@ -59,7 +59,7 @@ public class BGMController : MonoBehaviour
         }
     }
 
-    void SetBGM(int num, float volume = 1)
+    public void SetBGM(int num, float volume = 1)
     {
         if(num < bgmList.Length)
         {

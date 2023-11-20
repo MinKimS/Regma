@@ -16172,6 +16172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380afbe1e66bac746b8987ecf5111a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPanel: {fileID: 58663087}
   tutorialText: {fileID: 397683736}
 --- !u!114 &981704618
 MonoBehaviour:

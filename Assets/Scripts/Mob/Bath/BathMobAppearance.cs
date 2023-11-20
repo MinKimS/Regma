@@ -32,6 +32,9 @@ public class BathMobAppearance : MonoBehaviour
         print("appear");
         bmc.movement.SetMobPosInitialPos();
         bmc.Appearance();
+
+        AudioManager.instance.bgm.SetBGM(1);
+
         DialogueManager.instance.PlayDlg(dlg);
 
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);

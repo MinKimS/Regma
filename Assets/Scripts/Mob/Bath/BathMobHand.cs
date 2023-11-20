@@ -114,6 +114,7 @@ public class BathMobHand : MonoBehaviour
     //АјАн
     public void AttackTarget(float readyHandSpeed, float moveHandSpeed)
     {
+        Debug.LogError("ATTACKTARGET");
         isMoveHand = true;
         StartCoroutine(IEAttackTarget(readyHandSpeed, moveHandSpeed));
     }
@@ -139,9 +140,9 @@ public class BathMobHand : MonoBehaviour
         float checkTime = 0;
         while (Vector2.Distance(transform.position, new Vector2(targetPos.position.x, transform.position.y)) > 0.1f || checkTime < 0.6f)
         {
+            Debug.LogError("IEReadyToAttack");
             checkTime = Time.time - startTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, transform.position.y), moveHandSpeed);
-            print("ReadyToAttack");
             yield return null;
         }
 
@@ -163,7 +164,7 @@ public class BathMobHand : MonoBehaviour
         while (Vector2.Distance(transform.position, targetPos.position) > 0.02f && !isCatchSomething)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPos.position, moveHandSpeed);
-            print("IEMoveToTargetAndAttack" + targetPos.name);
+            Debug.LogError("IEMoveToTargetAndAttack" + targetPos.name);
             yield return null;
         }
 
@@ -217,7 +218,7 @@ public class BathMobHand : MonoBehaviour
         }
         if(data.state != BathMobData.State.RuningWild)
         {
-            MoveIntoWater(0.45f);
+            MoveIntoWater(0.1f);
         }
         else
         {

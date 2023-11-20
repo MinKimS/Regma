@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] sfxList;
     int sfxIdx = 0;
 
+    [HideInInspector] public BGMController bgm;
+
     private void Awake() {
         if(instance == null)
         {
@@ -19,6 +21,8 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
+
+        bgm = GetComponentInChildren<BGMController>();
     }
 
     //효과임 재생

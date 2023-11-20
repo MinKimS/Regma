@@ -7671,6 +7671,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a0a513f39b861d4abe0a5775b132ddc, type: 3}
   - {fileID: 8300000, guid: 896a574b902c60948b0f735dda3d4da3, type: 3}
   - {fileID: 8300000, guid: 8308e6c2d8709e64185005cab1735471, type: 3}
+  bgm: {fileID: 0}
 --- !u!82 &959016190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9550,13 +9551,14 @@ MonoBehaviour:
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
-  phoneShowSpeed: 0.15
   phoneTalkList: []
   talkIdx: 0
   sendTalkList:
   - {fileID: 1502439134}
   - {fileID: 1201846800}
   - {fileID: 513253023}
+  talkSelections: 0000000000000000
+  talkselectionsIdx: 0
 --- !u!114 &1140739636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10333,6 +10335,8 @@ MonoBehaviour:
   m_force: 100
   m_offset: {x: 10, y: 10, z: 10}
   shake: {fileID: 0}
+  dlg: []
+  fade: {fileID: 0}
 --- !u!95 &1254502953
 Animator:
   serializedVersion: 5
@@ -18399,6 +18403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380afbe1e66bac746b8987ecf5111a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPanel: {fileID: 1103613372}
   tutorialText: {fileID: 1459264788}
 --- !u!114 &1582422854
 MonoBehaviour:
@@ -19985,7 +19990,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 293526860}
   m_HandleRect: {fileID: 293526859}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
