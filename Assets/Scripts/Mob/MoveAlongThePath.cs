@@ -43,7 +43,7 @@ public class MoveAlongThePath : MonoBehaviour
         transform.position = spawnPos.position;
         if (isReadyToSpawn)
         {
-            AppearMob();
+            //AppearMob();
         }
         isReadyToSpawn = true;
     }
@@ -108,11 +108,11 @@ public class MoveAlongThePath : MonoBehaviour
             //바라보는 방향
             if (node.transform.position.x > transform.position.x)
             {
-                sp.flipX = true;
+                sp.flipX = false;
             }
             else
             {
-                sp.flipX = false;
+                sp.flipX = true;
             }
         }
 

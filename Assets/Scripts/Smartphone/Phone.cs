@@ -187,6 +187,24 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
+        AudioManager.instance.StopSFX("Game Sound_카톡타자2");
+        if (talk.talkText.preferredWidth > 500)
+        {
+            AudioManager.instance.SFXPlay("Game Sound_카톡타자2");
+        }
+        else if (talk.talkText.preferredWidth > 412.5)
+        {
+            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 60);
+        }
+        else if (talk.talkText.preferredWidth > 260)
+        {
+            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 40);
+        }
+        else
+        {
+            AudioManager.instance.SFXPlayTime("Game Sound_카톡타자2", 1, 1, 20);
+        }
+
         phoneTalkList.Add(talk.talkRT);
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부

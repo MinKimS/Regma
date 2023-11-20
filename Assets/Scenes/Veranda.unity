@@ -16178,6 +16178,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1579b97449c5d78458fdde9a1601b17f, type: 3}
   - {fileID: 8300000, guid: b326e1f681e7d244ba2b076fc6a0c444, type: 3}
   - {fileID: 8300000, guid: c4dc0f33dd371614683184f865cc586a, type: 3}
+  bgm: {fileID: 0}
 --- !u!82 &1080101400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16764,7 +16765,6 @@ MonoBehaviour:
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
-  phoneShowSpeed: 0.15
   phoneTalkList: []
   talkIdx: 0
   sendTalkList:
@@ -18085,6 +18085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380afbe1e66bac746b8987ecf5111a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPanel: {fileID: 0}
   tutorialText: {fileID: 1425819642}
 --- !u!114 &1234637496
 MonoBehaviour:
@@ -27439,7 +27440,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4765625, y: 3.3378906}
+    oldSize: {x: 1.6132812, y: 3.3476562}
     newSize: {x: 1.68, y: 2.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -27489,9 +27490,9 @@ SpriteRenderer:
   m_SortingLayerID: 534864275
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 64ba76f5f735e3240a9e37fccd710046, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7444d41ff2a4890449d2faa6c8db87ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.68, y: 2.99}
@@ -32491,7 +32492,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393332238}
   m_HandleRect: {fileID: 1393332237}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

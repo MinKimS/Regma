@@ -54,7 +54,7 @@ public class PTimeLine : MonoBehaviour
                     power.isBroken = true;
                     if (mobAppear != null)
                     {
-                        StartCoroutine(InvokeMobAppear());
+                        StartCoroutine(IEMobAppear());
                     }
                     isActive = true;
                 }
@@ -67,12 +67,35 @@ public class PTimeLine : MonoBehaviour
         }
     }
 
-    IEnumerator InvokeMobAppear()
+    public void InteractionPower()
+    {
+        if (!isActive)
+        {
+            print("충돌");
+            Refrianim.SetBool("OFF", true);
+            AudioManager.instance.SFXPlay("Kitchen_power off");
+            Interaction1 = true;
+            refri2Object.SetActive(true);
+            power.isBroken = true;
+            if (mobAppear != null)
+            {
+                StartCoroutine(IEMobAppear());
+            }
+            isActive = true;
+        }
+        else
+        {
+            mob.AppearMob();
+            respawnPoint_Power.gameObject.SetActive(true);
+        }
+    }
+
+    IEnumerator IEMobAppear()
     {
         DialogueManager.instance.PlayDlg(dlg);
 
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         mobAppear.SetActive(true);
         respawnPoint_Power.SetActive(true);

@@ -41,9 +41,63 @@ public class AudioManager : MonoBehaviour
                 sfxIdx = 0;
             }
         }
-        else
+    }
+
+    public void SFXPlayTime(string sfxName, float volume = 1, float pitch = 1, int length = 100)
+    {
+        SFXPlay(sfxName, volume, pitch);
+        StartCoroutine(IESFXPlayTime(sfxName, length));
+    }
+
+    IEnumerator IESFXPlayTime(string sfxName, int length = 100)
+    {
+        AudioClip clip = FindPlaySFX(sfxName);
+        if(clip != null)
         {
-            Debug.LogWarning(sfxName + "doesn't exist.");
+            float playTime = clip.length;
+            if (length >= 100)
+            {
+                playTime = clip.length;
+            }
+            else if (length >= 90)
+            {
+                playTime = clip.length * 0.9f;
+            }
+            else if (length >= 80)
+            {
+                playTime = clip.length * 0.8f;
+            }
+            else if (length >= 70)
+            {
+                playTime = clip.length * 0.7f;
+            }
+            else if (length >= 60)
+            {
+                playTime = clip.length * 0.6f;
+            }
+            else if (length >= 50)
+            {
+                playTime = clip.length * 0.5f;
+            }
+            else if (length >= 40)
+            {
+                playTime = clip.length * 0.4f;
+            }
+            else if (length >= 30)
+            {
+                playTime = clip.length * 0.3f;
+            }
+            else if (length >= 20)
+            {
+                playTime = clip.length * 0.2f;
+            }
+            else
+            {
+                playTime = clip.length * 0.1f;
+            }
+
+            yield return new WaitForSeconds(playTime);
+            StopSFX(sfxName);
         }
     }
 
@@ -61,10 +115,6 @@ public class AudioManager : MonoBehaviour
             {
                 sfxIdx = 0;
             }
-        }
-        else
-        {
-            Debug.LogWarning(sfxName + "doesn't exist.");
         }
     }
 
@@ -87,10 +137,6 @@ public class AudioManager : MonoBehaviour
                     break;
                 }
             }
-        }
-        else
-        {
-            Debug.LogWarning(sfxName + "doesn't exist.");
         }
 
     }

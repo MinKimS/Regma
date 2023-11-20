@@ -75,8 +75,18 @@ public class MobRecognizingPlayer : MonoBehaviour
         if(isExiting)
         {
             print("exiting");
-            GetComponentInChildren<SpriteRenderer>().flipX = true;
-            transform.position = Vector2.MoveTowards(transform.position, transform.position + Vector3.right, matp.traceSpeed*Time.deltaTime);
+            SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+
+            if(PlayerInfoData.instance.playerTr.position.x > transform.position.x)
+            {
+                sr.flipX = true;
+                transform.position = Vector2.MoveTowards(transform.position, transform.position + Vector3.left, matp.traceSpeed * Time.deltaTime);
+            }
+            else
+            {
+                sr.flipX = false;
+                transform.position = Vector2.MoveTowards(transform.position, transform.position + Vector3.right, matp.traceSpeed * Time.deltaTime);
+            }
 
             if(disToPlayer > noRecogDis + 0.1f)
             {
