@@ -21,7 +21,7 @@ public class Diary : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
+        if((Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.Escape)) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
         {
             inven.HideDiary();
         }

@@ -28,4 +28,9 @@ MonoBehaviour:
   - speakerIdx: 0
     dlgTexts: "\uC9C0\uB098\uAC00\uBCF4\uC790..."
     eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "\uADF8\uB098\uC800\uB098 \uC800 \uC7A5\uB09C\uAC10 \uCEE4\uC11C <b><color=#d32222>\uC228\uC73C\uBA74</color=#d32222>
+      \uC544\uBB34\uB3C4 \uBAA8\uB974\uACA0\uB294\uAC78</b>"
+    eventType: 0
   nextDlg: {fileID: 0}
+  gmEvent: {fileID: 0}

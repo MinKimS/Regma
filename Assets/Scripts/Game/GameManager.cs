@@ -21,9 +21,17 @@ public class GameManager : MonoBehaviour
     bool isEndingTwo = false;
     string lastScene = "Title";
 
+    //use bath scene
+    bool isMeetBathMob = false;
+
     public bool _isEndingTwo
     {
         get { return isEndingTwo; }
+    }
+    public bool _isMeetBathMob
+    {
+        get { return isMeetBathMob; }
+        set { isMeetBathMob = value;}
     }
 
     //엔딩 루트 설정

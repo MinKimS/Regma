@@ -15,6 +15,7 @@ public class REFRIG : MonoBehaviour
 
     bool isOpened = false;
     [HideInInspector] public bool isActivateEvent = false;
+    [HideInInspector] public bool isGetSquid = false;
 
     public BoxCollider2D powerBc;
 
@@ -86,12 +87,13 @@ public class REFRIG : MonoBehaviour
     }
     IEnumerator GetSquid()
     {
+        isGetSquid = true;
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         TimelineManager.instance.timelineController.SetTimelineStart("GetSquid");
         AudioManager.instance.SFXPlay("Game Sound_Item get");
         yield return new WaitWhile(() => TimelineManager.instance._Tlstate != TimelineManager.TlState.End);
-        talkStarting.gameObject.SetActive(true);
-        talkStarting.position = PlayerInfoData.instance.playerTr.position;
+        //talkStarting.gameObject.SetActive(true);
+        //talkStarting.position = PlayerInfoData.instance.playerTr.position;
     }
     private void Update()
     {

@@ -70,7 +70,10 @@ public class MenuController : MonoBehaviour
     {
         //화면에 보이기/숨기기
         bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene"
-            && SceneManager.GetActiveScene().name != "Ending";
+            && SceneManager.GetActiveScene().name != "Ending"
+            && !SmartphoneManager.instance.phone.IsOpenPhone
+            && !SmartphoneManager.instance.inven.IsOpenInven
+            && TimelineManager.instance.tlstate == TimelineManager.TlState.End;
 
 
         if (canInput)

@@ -11,19 +11,15 @@ public class TimelineController : MonoBehaviour
     [HideInInspector]
     public int curPD = 0;
 
-    SmartPhoneTimeline phone;
-    DialogueTimeline dlg;
-
 
     private void Start()
     {
         TimelineManager.instance.timelineController = this;
-        if(SceneManager.GetActiveScene().name != "Veranda")
+        if(SceneManager.GetActiveScene().name != "Veranda"
+            || (!GameManager.instance._isMeetBathMob && SceneManager.GetActiveScene().name == "Bath"))
         {
             SetTimelineStart(0);
         }
-        phone = GetComponent<SmartPhoneTimeline>();
-        dlg = GetComponent<DialogueTimeline>();
     }
 
     public void SetTimelineStart(string timelineName)
@@ -56,10 +52,13 @@ public class TimelineController : MonoBehaviour
 
     public void SetTimelineStart(int playTimelineIdx)
     {
-        cutSceneAppearence.SetBool("isRunCutScene", true);
-        curPD = playTimelineIdx;
-        pd[curPD].Play();
-        TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
+        if (pd[curPD].state != PlayState.Playing)
+        {
+            cutSceneAppearence.SetBool("isRunCutScene", true);
+            curPD = playTimelineIdx;
+            pd[curPD].Play();
+            TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
+        }
     }
 
     public void SetTimelinePause()

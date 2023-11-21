@@ -336,7 +336,7 @@ public class DialogueManager : MonoBehaviour
 
         //이미지 설정
         //이미지가 있는 경우에만 설정
-        if(dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite != null)
+        if(setenceIdx < dlg.sentences.Count && dlg.sentences[setenceIdx].speakerIdx < dlg.speakers.Count && dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite != null)
         {
             if(!speakerImg.enabled){speakerImg.enabled = true;}
             speakerImg.sprite = dlg.speakers[dlg.sentences[setenceIdx].speakerIdx].speakerSprite;

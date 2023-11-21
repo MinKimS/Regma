@@ -13,12 +13,7 @@ public class BathMobController : MonoBehaviour
 
     public Transform fRod;
     public Transform drawnPos;
-    
-    //---
 
-    //물 안밖으로 나가는 텀
-    public float waterInWaitTime = 2f;
-    public float waterOutWaitTime = 4f;
     //빠르게 지나가는 순간
     public int toyIdxToRunWild = 4;
 

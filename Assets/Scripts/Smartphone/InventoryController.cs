@@ -109,6 +109,7 @@ public class InventoryController : MonoBehaviour
     //인벤 보이기
     public void ShowInven()
     {
+        SetFilesActive(true);
         invenOption[1].color = Color.white;
         invenOption[0].color = Color.gray;
         gameObject.SetActive(true);

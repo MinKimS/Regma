@@ -184,7 +184,7 @@ MonoBehaviour:
   mobInitialPos: {fileID: 214644169}
   data: {fileID: 0}
   lastMovingPos: {fileID: 522716198}
-  waterInWaitTime: 2
+  waterInWaitTime: 4
   waterOutWaitTime: 4
   water: {fileID: 225364826}
 --- !u!114 &18965506
@@ -205,8 +205,6 @@ MonoBehaviour:
   water: {fileID: 225364826}
   fRod: {fileID: 715932482}
   drawnPos: {fileID: 938387252}
-  waterInWaitTime: 3
-  waterOutWaitTime: 3
   toyIdxToRunWild: 4
   playerHide: {fileID: 561195408}
   isTracingStart: 0
@@ -10934,7 +10932,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 5e7dbf35fd5584f4fb5896bb098a3188, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0

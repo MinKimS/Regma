@@ -8,12 +8,15 @@ public class IntroController : MonoBehaviour
 {
     public Image introImg;
     public Sprite[] introImgs;
+    public GameObject[] dlgImg;
     int introImgidx = 0;
     int introDlgIdx = 0;
 
     public TextMeshProUGUI dlgText;
     public float typingSpeed = 0.5f;
     bool isTyping = false;
+
+    public Transform dowon;
 
     //인트로에 나오는 대사
     List<string> dlgIntro = new List<string>();
@@ -26,20 +29,23 @@ public class IntroController : MonoBehaviour
     {
         if(isTyping == false && Input.GetKeyDown(KeyCode.Return))
         {
+            print(introImgidx);
             dlgText.text = "";
-            if(introImgidx < introImgs.Length)
+            if(introImgidx < 27)
             {
-                ChgImg();
-                if(introImgidx>4&&introImgidx!=11&&introImgidx!=16&&introImgidx!=20&&introImgidx!=23&&introImgidx!=24)
+                if(introImgidx != 24)
                 {
-                    StartCoroutine(TypingDlg(dlgIntro[introDlgIdx++]));
-                }
-                if(introImgidx==23)
-                {
-                    Invoke("ChgImg", 0.5f);
-                }
-                if (introImgidx < introImgs.Length)
+                    ChgImg();
+                    if (introImgidx > 4 && introImgidx != 11 && introImgidx != 16 && introImgidx != 20 && introImgidx != 23 && introImgidx < 24)
+                    {
+                        StartCoroutine(TypingDlg(dlgIntro[introDlgIdx++]));
+                    }
                     introImgidx++;
+                    if (introImgidx == 24)
+                    {
+                        Invoke("ChgImg", 1f);
+                    }
+                }
             }
             else
             {
@@ -48,9 +54,105 @@ public class IntroController : MonoBehaviour
         }
     }
 
+    //시간 관계상 이렇게 구현
     void ChgImg()
     {
-        introImg.sprite =  introImgs[introImgidx];
+        if (introImgidx < 5)
+        {
+            introImg.sprite = introImgs[introImgidx];
+        }
+        else if (introImgidx == 5)
+        {
+            introImg.sprite = introImgs[5];
+        }
+        else if (introImgidx == 11)
+        {
+            introImg.sprite = introImgs[9];
+        }
+        else if (introImgidx == 12)
+        {
+            introImg.sprite = introImgs[6];
+        }
+        else if (introImgidx == 16)
+        {
+            introImg.sprite = introImgs[10];
+        }
+        else if (introImgidx == 17)
+        {
+            introImg.sprite = introImgs[7];
+        }
+        else if (introImgidx == 20)
+        {
+            introImg.sprite = introImgs[11];
+        }
+        else if (introImgidx == 21)
+        {
+            introImg.sprite = introImgs[8];
+        }
+        else if (introImgidx == 23)
+        {
+            introImg.sprite = introImgs[8];
+        }
+        else if (introImgidx == 24)
+        {
+            introImg.sprite = introImgs[12];
+            introImgidx++;
+        }
+        else if (introImgidx == 25)
+        {
+            introImg.sprite = introImgs[13];
+        }
+        else if (introImgidx == 26)
+        {
+            introImg.sprite = introImgs[14];
+        }
+
+
+        if (introImgidx == 3)
+        {
+            dowon.gameObject.SetActive(true);
+        }
+        else
+        {
+            dowon.gameObject.SetActive(false);
+        }
+
+        //dowon
+        if (introImgidx == 8 || introImgidx == 15 || introImgidx == 19)
+        {
+            dlgImg[0].SetActive(true);
+        }
+        else
+        {
+            dlgImg[0].SetActive(false);
+        }
+        //jiae
+        if (introImgidx == 5 || introImgidx == 10 || introImgidx == 17 || introImgidx == 21)
+        {
+            dlgImg[1].SetActive(true);
+        }
+        else
+        {
+            dlgImg[1].SetActive(false);
+        }
+        //aho
+        if (introImgidx == 6 || introImgidx == 9 || introImgidx == 13 || introImgidx == 14 || introImgidx == 18 || introImgidx == 22)
+        {
+            dlgImg[2].SetActive(true);
+        }
+        else
+        {
+            dlgImg[2].SetActive(false);
+        }
+        //imjung
+        if (introImgidx == 7 || introImgidx == 12)
+        {
+            dlgImg[3].SetActive(true);
+        }
+        else
+        {
+            dlgImg[3].SetActive(false);
+        }
     }
 
     private IEnumerator TypingDlg(string text)

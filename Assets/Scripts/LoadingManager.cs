@@ -11,14 +11,15 @@ public class LoadingManager : MonoBehaviour
     //로딩이 진행된 현황을 볼 수 있는 이미지
     public Image progressImg;
     public Transform progressChrTr;
+    public Image blackImg;
 
     float leftX, rightX, newX;
     void Start()
     {
-        float imgWidth = progressImg.rectTransform.rect.width;
         leftX = -643.9296f;
         rightX = 643.9296f;
-
+        if(nextScene == "Ending") { blackImg.enabled = true; }
+        else { blackImg.enabled = false; }
         StartCoroutine(LoadScene());
     }
     
@@ -27,7 +28,10 @@ public class LoadingManager : MonoBehaviour
         nextScene = sceneName;
         print(nextScene + "으로 이동");
         AudioManager.instance.StopSFXAll();
-        AudioManager.instance.SFXPlay("Game Sound_Door open2");
+        if (nextScene != "Ending")
+        {
+            AudioManager.instance.SFXPlay("Game Sound_Door open2");
+        }
         SceneManager.LoadScene("LoadingScene");
     }
 

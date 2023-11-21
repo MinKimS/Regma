@@ -37,15 +37,6 @@ public class MirrorControl : MonoBehaviour
         MirrorImage.enabled = false;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E) && !hasOpened)
-        {
-            hasOpened = true;
-            StartMirror();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(!hasOpened)

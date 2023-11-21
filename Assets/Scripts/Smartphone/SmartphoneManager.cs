@@ -76,6 +76,11 @@ public class SmartphoneManager : MonoBehaviour
                 && SceneManager.GetActiveScene().name != "Title"
                 && SceneManager.GetActiveScene().name != "Intro")
             {
+                if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (inven.IsOpenInven) { inven.HideInven(); }
+                    phone.HidePhone();
+                }
                 //폰 열기
                 if (Input.GetKeyDown(KeyCode.P) && !GameManager.instance.isMenuOpen)
                 {
@@ -224,13 +229,13 @@ public class SmartphoneManager : MonoBehaviour
                 }
                 if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !GameManager.instance.isMenuOpen)
                 {
-                    //파일 선택
-                    if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
-                    {
-                        inven.SelectedInvenOption = 0;
-                        inven.invenOption[1].color = Color.white;
-                        inven.invenOption[0].color = Color.gray;
-                    }
+                    ////파일 선택
+                    //if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
+                    //{
+                    //    inven.SelectedInvenOption = 0;
+                    //    inven.invenOption[1].color = Color.white;
+                    //    inven.invenOption[0].color = Color.gray;
+                    //}
                     //얻은 아이템 항목 선택
                     if (inven.SelectedOption % 2 == 0 && (inven.IsOpenFiles || inven.IsOpenPictures))
                     {
@@ -247,13 +252,13 @@ public class SmartphoneManager : MonoBehaviour
                 }
                 if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !GameManager.instance.isMenuOpen)
                 {
-                    //사진 선택
-                    if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
-                    {
-                        inven.SelectedInvenOption = 1;
-                        inven.invenOption[0].color = Color.white;
-                        inven.invenOption[1].color = Color.gray;
-                    }
+                    ////사진 선택
+                    //if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
+                    //{
+                    //    inven.SelectedInvenOption = 1;
+                    //    inven.invenOption[0].color = Color.white;
+                    //    inven.invenOption[1].color = Color.gray;
+                    //}
                     //얻은 아이템 항목 선택
                     if (inven.SelectedOption % 2 != 0 && (inven.IsOpenFiles || inven.IsOpenPictures))
                     {
@@ -273,35 +278,35 @@ public class SmartphoneManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End && !TutorialController.instance.IsTutorialShowing
                      && !GameManager.instance.isMenuOpen)
                 {
-                    //파일과 사진 중 선택
-                    if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
-                    {
-                        if (inven.SelectedInvenOption == 0)
-                        {
-                            inven.SetFilesActive(true);
-                            inven.SetPicsActive(false);
-                        }
-                        if (inven.SelectedInvenOption == 1)
-                        {
-                            inven.SetPicsActive(true);
-                            inven.SetFilesActive(false);
-                        }
-                    }
+                    ////파일과 사진 중 선택
+                    //if (inven.IsOpenInven && !inven.IsOpenFiles && !inven.IsOpenPictures)
+                    //{
+                    //    if (inven.SelectedInvenOption == 0)
+                    //    {
+                    //        inven.SetFilesActive(true);
+                    //        inven.SetPicsActive(false);
+                    //    }
+                    //    if (inven.SelectedInvenOption == 1)
+                    //    {
+                    //        inven.SetPicsActive(true);
+                    //        inven.SetFilesActive(false);
+                    //    }
+                    //}
                     //파일에서 아이템 사용
-                    else if (inven.IsOpenFiles && inven.MaxFilesSlot != 0)
+                    if (inven.IsOpenFiles && inven.MaxFilesSlot != 0)
                     {
                         itemUsage.UseItem(inven.filesInven.slotDataList[inven.SelectedOption - 1].item);
 
                         if (inven.IsOpenInven) { inven.HideInven(); }
                         phone.HidePhone();
                     }
-                    //사진에서 아이템 사용
-                    else if (inven.IsOpenPictures && inven.MaxPicSlot != 0)
-                    {
-                        print(inven.picsInven.slotDataList[inven.SelectedOption - 1].item.itemName);
-                        gmEventList[inven.SelectedOption - 1].Raise();
-                        print(inven.SelectedOption - 1);
-                    }
+                    ////사진에서 아이템 사용
+                    //else if (inven.IsOpenPictures && inven.MaxPicSlot != 0)
+                    //{
+                    //    print(inven.picsInven.slotDataList[inven.SelectedOption - 1].item.itemName);
+                    //    gmEventList[inven.SelectedOption - 1].Raise();
+                    //    print(inven.SelectedOption - 1);
+                    //}
 
                     if (phone.curTalk != null && phone.curTalk.answerTalk == null)
                     {

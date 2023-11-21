@@ -22,6 +22,7 @@ public class BathMobAppearance : MonoBehaviour
             else
             {
                 bmc.StartTracingPlayer();
+                GameManager.instance._isMeetBathMob = true;
                 Destroy(gameObject);
             }
         }
@@ -35,12 +36,15 @@ public class BathMobAppearance : MonoBehaviour
 
         AudioManager.instance.bgm.SetBGM(5);
 
-        DialogueManager.instance.PlayDlg(dlg);
+        if (!GameManager.instance._isMeetBathMob)
+        {
+            DialogueManager.instance.PlayDlg(dlg);
 
-        yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+            yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
+        }
 
         bmc.hand.SetTargetToy(0);
-        bmc.hand.AttackTarget(0.05f, 0.1f);
+        bmc.hand.AttackTarget(0.05f, 0.05f);
         
         Destroy(gameObject);
     }

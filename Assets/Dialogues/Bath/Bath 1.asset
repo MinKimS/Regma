@@ -16,10 +16,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d54b7512c9c7ae4784202c27b79a9c9, type: 2}
   sentences:
   - speakerIdx: 0
-    dlgTexts: "<size=200%>\uAE84\uC544\uC544\uC544\uC545!</size=200%>"
+    dlgTexts: "<size=150%>\uAE84\uC544\uC544\uC544\uC545!</size=150%>"
     eventType: 0
   - speakerIdx: 0
-    dlgTexts: "<size=200%>\uC800\uAC8C \uBB50\uC57C!!!</size=200%>"
+    dlgTexts: "<size=150%>\uC800\uAC8C \uBB50\uC57C!!!</size=150%>"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "<size=150%>\uC73C\uC545 \uC5EC\uAE38 \uACF5\uACA9\uD558\uB824\uACE0
+      \uD558\uC796\uC544!!!</size=150%>"
+    eventType: 0
+  - speakerIdx: 0
+    dlgTexts: "<size=150%>\uBE68\uB9AC \uB2E4\uC74C \uC7A5\uB09C\uAC10\uC73C\uB85C
+      <b><color=#d32222>\uB118\uC5B4\uAC00\uC57C\uD574!!!</b></color=#d32222></size=150%>"
     eventType: 0
   nextDlg: {fileID: 0}
   gmEvent: {fileID: 0}
