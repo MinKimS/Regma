@@ -12,7 +12,8 @@ public class DialogueController : MonoBehaviour
         //다음 대화로 넘어가기
         //대화 출력중에는 넘어가지 못함
         if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance._dlgState == DialogueManager.DlgState.DONE && DialogueManager.instance._dlgState != DialogueManager.DlgState.End
-            && !GameManager.instance.isMenuOpen)
+            && !GameManager.instance.isMenuOpen
+            && !GameManager.instance.isHowtoOpen)
         {
             if (!DialogueManager.instance.isSingleDlg)
             {

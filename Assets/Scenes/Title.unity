@@ -3466,7 +3466,7 @@ MonoBehaviour:
   - {fileID: 1831888402}
   talkSelections: 0000000000000000
   talkselectionsIdx: 0
-  child: {fileID: 0}
+  child: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
 --- !u!114 &488003779
 MonoBehaviour:
   m_ObjectHideFlags: 0

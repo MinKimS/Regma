@@ -39,23 +39,6 @@ public class EndingController : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.Return) && !isGoingTitle)
-    //    {
-    //        if(!isShowingEnding && !isFirstEnding)
-    //        {
-    //            isShowingEnding = true;
-    //            StartCoroutine(IEEndingTwo());
-    //        }
-
-    //        if (isFirstEnding)
-    //        {
-    //            StartCoroutine(IEGoToTitle());
-    //        }
-    //    }
-    //}
-
     IEnumerator IEEndingTwo()
     {
         yield return new WaitForSeconds(1f);

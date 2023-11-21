@@ -17,39 +17,43 @@ public class DialogueSelection : MonoBehaviour
     }
     void Update()
     {
-        //위의 버튼으로 이동
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (!GameManager.instance.isMenuOpen
+            && !GameManager.instance.isHowtoOpen)
         {
-            if (selectIdx > 0)
+            //위의 버튼으로 이동
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                selectIdx--;
-                SelectBtn();
+                if (selectIdx > 0)
+                {
+                    selectIdx--;
+                    SelectBtn();
+                }
             }
-        }
-        //아래의 버튼으로 이동
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (selectIdx < btnLists.Length - 1)
+            //아래의 버튼으로 이동
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                selectIdx++;
-                SelectBtn();
+                if (selectIdx < btnLists.Length - 1)
+                {
+                    selectIdx++;
+                    SelectBtn();
+                }
             }
-        }
-        //선택된 버튼 클릭
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if(selectIdx == 0)
+            //선택된 버튼 클릭
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                frame.isOnlyChild = true;
+                if (selectIdx == 0)
+                {
+                    frame.isOnlyChild = true;
+                }
+                else if (selectIdx == 1)
+                {
+                    frame.isOnlyChild = false;
+                }
+                DialogueManager.instance._dlgState = DialogueManager.DlgState.End;
+                DialogueManager.instance.PlayDlg(dlg);
+                frame.isOkErase = true;
+                gameObject.SetActive(false);
             }
-            else if(selectIdx == 1)
-            {
-                frame.isOnlyChild = false;
-            }
-            DialogueManager.instance._dlgState = DialogueManager.DlgState.End;
-            DialogueManager.instance.PlayDlg(dlg);
-            frame.isOkErase = true;
-            gameObject.SetActive(false);
         }
     }
 
