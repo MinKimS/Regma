@@ -84,7 +84,7 @@ public class BathMobMovement : MonoBehaviour
     }
     IEnumerator IEMoveIntoTheWater()
     {
-        while (Mathf.Abs(transform.position.y - moveInWaterPos.position.y) > 0.02f && data.state == BathMobData.State.InWater)
+        while (Mathf.Abs(transform.position.y - moveInWaterPos.position.y) > 0.02f)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, moveInWaterPos.position.y), 0.2f);
             yield return null;
