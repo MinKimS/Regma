@@ -37,6 +37,8 @@ public class EndingController : MonoBehaviour
                 StartCoroutine(IEGoToTitle());
             }
         }
+
+        AudioManager.instance.StopSFXAll();
     }
 
     IEnumerator IEEndingTwo()

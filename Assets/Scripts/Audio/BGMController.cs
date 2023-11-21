@@ -52,7 +52,7 @@ public class BGMController : MonoBehaviour
                 SetBGM(3, 1f);
                 break;
             case "Ending":
-                SetBGM(4, 0.1f);
+                SetBGM(4, 0.5f);
                 break;
             default:
                 break;
