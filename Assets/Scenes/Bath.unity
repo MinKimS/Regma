@@ -205,8 +205,8 @@ MonoBehaviour:
   water: {fileID: 225364826}
   fRod: {fileID: 715932482}
   drawnPos: {fileID: 938387252}
-  waterInWaitTime: 1.7
-  waterOutWaitTime: 2
+  waterInWaitTime: 3
+  waterOutWaitTime: 3
   toyIdxToRunWild: 4
   playerHide: {fileID: 561195408}
   isTracingStart: 0
@@ -21884,7 +21884,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672205641}
   m_HandleRect: {fileID: 1672205640}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -10593,7 +10593,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1209707524}
   m_HandleRect: {fileID: 1209707523}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -29292,10 +29292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explain:
-  - "Shift\uD0A4\uB85C \uB2EC\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\nCtrl\uD0A4\uB85C
-    \uC549\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\nSpace\uD0A4\uB85C \uC810\uD504\uD560
-    \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n\uCE90\uB9AD\uD130\uC640 \uB79C\uD134\uC744
-    \uC870\uC791\uD558\uC5EC \uD53C\uD558\uACE0, \uB3C4\uB9DD\uCE58\uC2ED\uC2DC\uC624."
+  - "\uCE90\uB9AD\uD130\uC640 \uB79C\uD134\uC744 \uC870\uC791\uD558\uC5EC \uD53C\uD558\uACE0,
+    \uB3C4\uB9DD\uCE58\uC2ED\uC2DC\uC624."
 --- !u!1 &699982000
 GameObject:
   m_ObjectHideFlags: 0
@@ -29655,7 +29653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718743348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.899746, y: 0.37493122, z: -10}
+  m_LocalPosition: {x: -27.896229, y: 0.374946, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43431,7 +43429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0d7197848131a4ba1d8212ec6da3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceSpeed: 3.5
+  traceSpeed: 2
   fromPosToGroundDist: 0.1
   groundLayer:
     serializedVersion: 2
