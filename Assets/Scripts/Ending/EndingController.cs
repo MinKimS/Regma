@@ -80,6 +80,7 @@ public class EndingController : MonoBehaviour
 
     IEnumerator IEGoToTitle()
     {
+        yield return new WaitForSeconds(4f);
         isGoingTitle = true;
         fade.SetFadeOut(0.00001f);
         yield return new WaitForSeconds(2f);

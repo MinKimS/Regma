@@ -74,7 +74,6 @@ public class VerandaMob : MonoBehaviour
     {
         mob.gameObject.SetActive(value);
         AudioManager.instance.SFXPlay("주방_괴생명체 등장");
-        AudioManager.instance.SFXPlay("주방_괴생명체1 음성");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

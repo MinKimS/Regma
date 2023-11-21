@@ -81,11 +81,13 @@ public class SceneMapMenuController : MonoBehaviour
 
     public void ReadyToSceneChange()
     {
-        if(TimelineManager.instance._Tlstate != TimelineManager.TlState.End)
+        if(TimelineManager.instance != null &&
+            TimelineManager.instance.timelineController != null &&
+            TimelineManager.instance._Tlstate != TimelineManager.TlState.End)
         {
             TimelineManager.instance.timelineController.SetTimelineEnd();
         }
-        if(DialogueManager.instance._dlgState != DialogueManager.DlgState.End)
+        if(DialogueManager.instance != null && DialogueManager.instance._dlgState != DialogueManager.DlgState.End)
         {
             DialogueManager.instance.DialogueHide();
         }

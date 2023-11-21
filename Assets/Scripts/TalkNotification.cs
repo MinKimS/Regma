@@ -31,7 +31,7 @@ public class TalkNotification : MonoBehaviour
     }
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "LoadingScene" && scene.name != "Title" && scene.name != "Intro" && scene != null)
+        if (SmartphoneManager.instance != null)
         {
             SetHideTalkIconState();
         }
