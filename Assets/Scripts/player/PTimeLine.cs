@@ -95,7 +95,7 @@ public class PTimeLine : MonoBehaviour
         DialogueManager.instance.PlayDlg(dlg);
 
         yield return new WaitUntil(() => DialogueManager.instance._dlgState == DialogueManager.DlgState.End);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         mobAppear.SetActive(true);
         respawnPoint_Power.SetActive(true);
