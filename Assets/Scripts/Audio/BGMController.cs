@@ -37,8 +37,11 @@ public class BGMController : MonoBehaviour
         switch (sc.name)
         {
             case "Title":
+                SetBGM(6, 0.4f);
+                break;
             case "SampleScene":
             case "SampleScene 2":
+            case "Intro":
                 SetBGM(0, 0.4f);
                 break;
             case "Kitchen":
@@ -52,7 +55,7 @@ public class BGMController : MonoBehaviour
                 SetBGM(3, 1f);
                 break;
             case "Ending":
-                SetBGM(4, 0.1f);
+                SetBGM(4, 0.5f);
                 break;
             default:
                 break;

@@ -37,24 +37,9 @@ public class EndingController : MonoBehaviour
                 StartCoroutine(IEGoToTitle());
             }
         }
+
+        AudioManager.instance.StopSFXAll();
     }
-
-    //private void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.Return) && !isGoingTitle)
-    //    {
-    //        if(!isShowingEnding && !isFirstEnding)
-    //        {
-    //            isShowingEnding = true;
-    //            StartCoroutine(IEEndingTwo());
-    //        }
-
-    //        if (isFirstEnding)
-    //        {
-    //            StartCoroutine(IEGoToTitle());
-    //        }
-    //    }
-    //}
 
     IEnumerator IEEndingTwo()
     {

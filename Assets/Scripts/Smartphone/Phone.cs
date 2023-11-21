@@ -607,7 +607,10 @@ public class Phone : MonoBehaviour
                     }
                     else
                     {
-                        curSendTalk = talk.answerTalk[talkSelections[talkselectionsIdx]];
+                        if(talk.answerTalk.Length > talkselectionsIdx)
+                        {
+                            curSendTalk = talk.answerTalk[talkSelections[talkselectionsIdx]];
+                        }
                     }
                     AddTalk(curSendTalk.talkText);
                     while (curSendTalk.nextSendTalk != null)

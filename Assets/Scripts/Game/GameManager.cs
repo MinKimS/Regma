@@ -42,18 +42,6 @@ public class GameManager : MonoBehaviour
         return lastScene;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Home))
-        {
-            SetEndingRoute(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.End))
-        {
-            SetEndingRoute(true);
-        }
-    }
-
     //========
 
     [HideInInspector] public bool isMenuOpen = false;

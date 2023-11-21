@@ -52,7 +52,9 @@ public class Bookcontrol : MonoBehaviour
         //    }
         //}
 
-        if (Input.GetKeyDown(KeyCode.E) && !isAnimationPlaying)
+        if (Input.GetKeyDown(KeyCode.E) && !isAnimationPlaying
+            && !GameManager.instance.isMenuOpen
+            && !GameManager.instance.isHowtoOpen)
         {
             if (clickCount == 3)
             {

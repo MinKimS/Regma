@@ -3466,7 +3466,7 @@ MonoBehaviour:
   - {fileID: 1831888402}
   talkSelections: 0000000000000000
   talkselectionsIdx: 0
-  child: {fileID: 0}
+  child: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
 --- !u!114 &488003779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7805,7 +7805,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 09d639348ec1f604db25a56e2db48a5f, type: 3}
   - {fileID: 8300000, guid: f45bfe767931695449298db443b07bd7, type: 3}
   - {fileID: 8300000, guid: 7ef913931fcee5e40be532a568f3f51f, type: 3}
-  - {fileID: 8300000, guid: f0408e4d020cbac48bd7a74d2b212ef2, type: 3}
+  - {fileID: 8300000, guid: 3e1a9b900c594cf4aa2a28e27b4709db, type: 3}
+  - {fileID: 8300000, guid: fb114161b7d55bb4fb2abdb580969305, type: 3}
 --- !u!82 &1094832556
 AudioSource:
   m_ObjectHideFlags: 0
