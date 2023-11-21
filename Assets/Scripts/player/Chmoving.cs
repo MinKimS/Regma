@@ -54,11 +54,6 @@ public class Chmoving : MonoBehaviour
         Gizmos.DrawWireSphere(pos.position, checkRadius * transform.localScale.y);
     }
 
-    //private void FixedUpdate()
-    //{
-    //    Debug.Log(rb.gravityScale);
-    //}
-
     private void Update()
     {
         isGround = Physics2D.OverlapCircle(pos.position, checkRadius * transform.localScale.y, islayer);
@@ -67,7 +62,9 @@ public class Chmoving : MonoBehaviour
         bool canMove = DialogueManager.instance._dlgState == DialogueManager.DlgState.End &&
                        !SmartphoneManager.instance.phone.IsOpenPhone &&
                        TimelineManager.instance._Tlstate == TimelineManager.TlState.End &&
-                       !TutorialController.instance.IsTutorialShowing;
+                       !TutorialController.instance.IsTutorialShowing
+                       && !GameManager.instance.isMenuOpen
+                       && !GameManager.instance.isHowtoOpen;
         if (canMove)
         {
             // 점프 관련 입력 처리
@@ -86,6 +83,12 @@ public class Chmoving : MonoBehaviour
         {
             // 플레이어가 움직일 수 없을 때 정지
             rb.velocity = new Vector2(0f, rb.velocity.y);
+
+            if (Input.GetAxisRaw("Horizontal") == 0)
+            {
+                animator.SetBool("walk", false);
+            }
+
             StopWalkSound();
         }
 

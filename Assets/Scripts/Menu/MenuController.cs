@@ -69,7 +69,8 @@ public class MenuController : MonoBehaviour
     private void Update()
     {
         //화면에 보이기/숨기기
-        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene";
+        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene"
+            && SceneManager.GetActiveScene().name != "Ending";
 
 
         if (canInput)

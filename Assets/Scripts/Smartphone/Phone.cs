@@ -239,7 +239,10 @@ public class Phone : MonoBehaviour
 
         phoneTalkList.Add(talk.talkRT);
 
-        if (!isAnnouncement) talk.userName = user.talkName;
+        if (!isAnnouncement)
+        {
+            talk.userName = user.talkName;
+        }
 
         //최근 톡의 사람이 지금 톡을 보낸 사람과 같은지여부
         bool isSameUser = lastTalk != null && lastTalk.userName == talk.userName;
