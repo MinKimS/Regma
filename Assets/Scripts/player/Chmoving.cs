@@ -27,6 +27,8 @@ public class Chmoving : MonoBehaviour
     private float moveInputY;
     float defaultGravityScale;
     private bool isClimbingLadder = false;
+    private bool isRespawning = false;
+
     [SerializeField] float climbSpeed = 5f;
 
     // int jumpCnt;
@@ -300,10 +302,32 @@ public class Chmoving : MonoBehaviour
 
     #region 리스폰
     public IEnumerator RespawnCharacterAfterWhile(Transform targetPosition, float delay)
-    { 
+    {
+        //    yield return new WaitForSeconds(delay);
+        //    AudioManager.instance.StopSFXAll();
+        //    transform.position = targetPosition.position;
+
+        //}
+
+        if (isRespawning)
+            yield break;  // 이미 리스폰 중이면 중복 실행 방지
+
+        isRespawning = true;
+
         yield return new WaitForSeconds(delay);
-        //AudioManager.instance.StopSFXAll();
+        AudioManager.instance.StopSFXAll();
         transform.position = targetPosition.position;
+
+        // 리스폰 후에 고정으로 idle 애니메이션 작동
+        animator.SetBool("Idle", true);
+        animator.SetBool("walk", false);
+        animator.SetBool("jump", false);
+        animator.SetBool("isSit", false);
+        animator.SetBool("OntheLadder", false);
+        animator.SetBool("Wet", false);
+        animator.SetBool("WetIdle", false);
+
+        isRespawning = false;
     }
 
     #endregion
