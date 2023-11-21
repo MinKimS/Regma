@@ -80,6 +80,7 @@ public class PlayerHanging : MonoBehaviour
 
             transform.rotation = Quaternion.identity;
             animator.SetBool("IsHanging", false);
+            //animator.SetBool("Idle", true);
             ho.EndSwing();
 
             isHaging = false;
