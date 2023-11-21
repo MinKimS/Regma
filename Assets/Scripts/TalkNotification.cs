@@ -23,6 +23,24 @@ public class TalkNotification : MonoBehaviour
         curTr.anchoredPosition = hidePos;
     }
 
+
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene" && scene.name != "Title" && scene.name != "Intro" && scene != null)
+        {
+            SetHideTalkIconState();
+        }
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
+
     //톡 알림 표시 상태 설정
     public void SetShowTalkIconState()
     {

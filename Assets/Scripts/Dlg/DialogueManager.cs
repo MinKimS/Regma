@@ -117,6 +117,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (scene.buildIndex - 1 > -1 && scene.buildIndex - 1 < dialogueList.Count)
             {
+                _dlgState = DlgState.End;
                 SetCurDlg(scene.buildIndex - 1);
             }
         }

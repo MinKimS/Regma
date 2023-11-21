@@ -122,11 +122,15 @@ public class MoveAlongThePath : MonoBehaviour
         }
     }
 
-    void InvokeChangePos()
+    public void InvokeChangePos()
     {
-        isNeedChangePos = false;
-        bc.enabled = true;
-        transform.position = PlayerInfoData.instance.playerTr.position + Vector3.right * 20f;
+        if (isNeedChangePos)
+        {
+            isNeedChangePos = false;
+            bc.enabled = true;
+            transform.position = PlayerInfoData.instance.playerTr.position + Vector3.right * 20f;
+            print("change pos");
+        }
     }
 
     private void Update()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static TimelineManager;
 using static UnityEngine.Rendering.VolumeComponent;
 
 public class SmartphoneManager : MonoBehaviour
@@ -46,6 +47,23 @@ public class SmartphoneManager : MonoBehaviour
         inven.HideInven();
         phone.HidePhone();
 
+    }
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (inven != null && phone != null)
+        {
+            inven.HideInven();
+            phone.HidePhone();
+        }
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
     private void Update() {

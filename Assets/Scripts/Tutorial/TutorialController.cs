@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
 {
@@ -43,12 +44,28 @@ public class TutorialController : MonoBehaviour
     {
         CloseTutorialScreen();
     }
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        CloseTutorialScreen();
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
 
     private void Update()
     {
         if(IsTutorialShowing && Input.GetKeyDown(KeyCode.E))
         {
-            CloseTutorialScreen();
+            animator.SetBool("isShow", false);
+            backgroundPanel.SetActive(false);
+            isTutorialShowing = false;
+            tutorialText.text = "";
         }
     }
 

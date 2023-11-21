@@ -41,4 +41,20 @@ public class TimelineManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnEnable()
+    {
+        //이거 켜져 있으면 각각 씬에서 대사 테스트 안됨
+        SceneManager.sceneLoaded += LoadSceneEvent;
+    }
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "LoadingScene" && scene.name != "Title" && scene.name != "Intro" && scene != null)
+        {
+            _Tlstate = TlState.End;
+        }
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
+    }
 }

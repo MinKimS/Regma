@@ -26,6 +26,7 @@ public class LoadingManager : MonoBehaviour
     {
         nextScene = sceneName;
         print(nextScene + "으로 이동");
+        AudioManager.instance.StopSFXAll();
         AudioManager.instance.SFXPlay("Game Sound_Door open2");
         SceneManager.LoadScene("LoadingScene");
     }

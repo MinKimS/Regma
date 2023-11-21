@@ -26,10 +26,6 @@ public class TimelineController : MonoBehaviour
         dlg = GetComponent<DialogueTimeline>();
     }
 
-    //public void SetPlayableDirector()
-    //{
-    //    pd = GetComponentsInChildren<PlayableDirector>();
-    //}
     public void SetTimelineStart(string timelineName)
     {
         cutSceneAppearence.SetBool("isRunCutScene", true);
