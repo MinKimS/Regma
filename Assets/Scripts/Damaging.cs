@@ -34,14 +34,24 @@ public class Damaging : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public void Damage(int damageAmount = 1)
     {
-        Color c = img.color;
-        c.a += 0.35f;
-        img.color = c;
-        damageCount++;
+        if (damageAmount > 2)
+        {
+            Color c = img.color;
+            c.a = 1f;
+            img.color = c;
+            damageCount = 3;
+        }
+        else
+        {
+            Color c = img.color;
+            c.a += 0.35f;
+            img.color = c;
+            damageCount++;
+        }
 
-        if(damageCount >= maxDamaging)
+        if (damageCount >= maxDamaging)
         {
             if (RespawnManager.Instance != null)
             {

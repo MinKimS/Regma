@@ -8,11 +8,14 @@ public class PlayAudioWithDlg : MonoBehaviour
     public Dialogue dlg;
     public void PlayAudio(string audio)
     {
-        TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
-        TimelineManager.instance.timelineController.cutSceneAppearence.SetBool("isRunCutScene", true);
+        if(!RespawnManager.isGameOver)
+        {
+            TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
+            TimelineManager.instance.timelineController.cutSceneAppearence.SetBool("isRunCutScene", true);
 
-        AudioManager.instance.SFXPlay(audio);
-        StartCoroutine(IEPlayAudio(audio));
+            AudioManager.instance.SFXPlay(audio);
+            StartCoroutine(IEPlayAudio(audio));
+        }
     }
 
     IEnumerator IEPlayAudio(string audio)

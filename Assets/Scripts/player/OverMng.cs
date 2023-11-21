@@ -23,6 +23,12 @@ public class OverMng : MonoBehaviour
         if(RespawnManager.isGameOver)
         {
             go_BaseUI.SetActive(true);
+            AudioManager.instance.StopSFXAll();
+            if(!
+            AudioManager.instance.CheckAudioPlaying("주방_괴생명체1 도원발견"))
+            {
+                AudioManager.instance.SFXPlay("주방_괴생명체1 도원발견");
+            }    
             //print("게임오버");
             Time.timeScale = 0f;
         }

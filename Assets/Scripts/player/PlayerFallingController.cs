@@ -42,7 +42,16 @@ public class PlayerFallingController : MonoBehaviour
             //낙뎀 부하 여부
             if(!isNoFallingDamage && Mathf.Abs(jumpedPosY-transform.position.y) > damageHeight)
             {
-                Debug.LogWarning("DAMAGE!!!!");
+                Debug.LogWarning("DAMAGE!!!! : " + Mathf.Abs(jumpedPosY - transform.position.y) + " " + damageHeight);
+                //높은 곳에서 떨어지면 큰 데미지
+                //if(Mathf.Abs(jumpedPosY - transform.position.y) > 8)
+                //{
+                //    damaging.Damage(3);
+                //}
+                //else
+                //{
+                //    damaging.Damage();
+                //}
                 damaging.Damage();
             }
             isNoFallingDamage = false;

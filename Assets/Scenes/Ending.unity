@@ -966,6 +966,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5bef884a8ba9cf9479a69dfdb7e947d9, type: 3}
   - {fileID: 8300000, guid: 98d2839f4207c5a4f84b00839f1fe37a, type: 3}
   - {fileID: 8300000, guid: c4dc0f33dd371614683184f865cc586a, type: 3}
+  bgm: {fileID: 0}
 --- !u!82 &114481765
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4127,7 +4128,6 @@ MonoBehaviour:
   curSendTalk: {fileID: 0}
   isOkStartTalk: 1
   isTalkNeedToBeSend: 0
-  phoneShowSpeed: 0.15
   phoneTalkList: []
   talkIdx: 0
   sendTalkList:
@@ -4136,6 +4136,7 @@ MonoBehaviour:
   - {fileID: 981415006}
   talkSelections: 0000000000000000
   talkselectionsIdx: 0
+  child: {fileID: 0}
 --- !u!114 &544910391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5619,7 +5620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6141,6 +6142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMenuOpen: 0
+  isHowtoOpen: 0
 --- !u!4 &815612838
 Transform:
   m_ObjectHideFlags: 0
@@ -6233,7 +6235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7305,7 +7307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083500950024216797, guid: ea172c73adb14a448ba3f5afd95d0094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7699,6 +7701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMenuOpen: 0
+  isHowtoOpen: 0
 --- !u!4 &1058899449
 Transform:
   m_ObjectHideFlags: 0
@@ -9706,7 +9709,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1824834187}
   m_HandleRect: {fileID: 1824834186}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11053,6 +11056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380afbe1e66bac746b8987ecf5111a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPanel: {fileID: 0}
   tutorialText: {fileID: 161911818}
 --- !u!114 &1601640633
 MonoBehaviour:
@@ -13351,7 +13355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 489.9512, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2046654477

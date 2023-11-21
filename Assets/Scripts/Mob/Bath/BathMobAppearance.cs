@@ -33,7 +33,7 @@ public class BathMobAppearance : MonoBehaviour
         bmc.movement.SetMobPosInitialPos();
         bmc.Appearance();
 
-        AudioManager.instance.bgm.SetBGM(5);
+        //AudioManager.instance.bgm.SetBGM(5);
 
         DialogueManager.instance.PlayDlg(dlg);
 

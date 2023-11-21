@@ -23,13 +23,10 @@ public class EndingController : MonoBehaviour
     private void Start()
     {
         SetEnding();
-    }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Return) && !isGoingTitle)
+        if (!isGoingTitle)
         {
-            if(!isShowingEnding && !isFirstEnding)
+            if (!isShowingEnding && !isFirstEnding)
             {
                 isShowingEnding = true;
                 StartCoroutine(IEEndingTwo());
@@ -41,6 +38,23 @@ public class EndingController : MonoBehaviour
             }
         }
     }
+
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Return) && !isGoingTitle)
+    //    {
+    //        if(!isShowingEnding && !isFirstEnding)
+    //        {
+    //            isShowingEnding = true;
+    //            StartCoroutine(IEEndingTwo());
+    //        }
+
+    //        if (isFirstEnding)
+    //        {
+    //            StartCoroutine(IEGoToTitle());
+    //        }
+    //    }
+    //}
 
     IEnumerator IEEndingTwo()
     {
@@ -68,7 +82,7 @@ public class EndingController : MonoBehaviour
     {
         isGoingTitle = true;
         fade.SetFadeOut(0.00001f);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         LoadingManager.LoadScene("Title");
     }
 
