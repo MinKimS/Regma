@@ -83,7 +83,6 @@ public class BathMobHand : MonoBehaviour
         if (targetToy != null)
         {
             targetPos = targetToy.transform;
-            Debug.LogError("target : " + targetToy.name);
         }
     }
     public void SetTargetToy(int idx)
@@ -114,7 +113,6 @@ public class BathMobHand : MonoBehaviour
     //АјАн
     public void AttackTarget(float readyHandSpeed, float moveHandSpeed)
     {
-        Debug.LogError("ATTACKTARGET");
         isMoveHand = true;
         StartCoroutine(IEAttackTarget(readyHandSpeed, moveHandSpeed));
     }
@@ -140,7 +138,6 @@ public class BathMobHand : MonoBehaviour
         float checkTime = 0;
         while (Vector2.Distance(transform.position, new Vector2(targetPos.position.x, transform.position.y)) > 0.1f || checkTime < 0.6f)
         {
-            Debug.LogError("IEReadyToAttack");
             checkTime = Time.time - startTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector2(targetPos.position.x, transform.position.y), moveHandSpeed);
             yield return null;
@@ -164,7 +161,6 @@ public class BathMobHand : MonoBehaviour
         while (Vector2.Distance(transform.position, targetPos.position) > 0.02f && !isCatchSomething)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPos.position, moveHandSpeed);
-            Debug.LogError("IEMoveToTargetAndAttack" + targetPos.name);
             yield return null;
         }
 
@@ -208,7 +204,6 @@ public class BathMobHand : MonoBehaviour
         animator.SetBool("isCatching", true);
 
         targetPos.SetParent(transform);
-        Debug.LogWarning(targetPos.name + " CatchSomething");
         target.GetComponentInParent<Collider2D>().enabled = false;
 
         if (isPlayer)

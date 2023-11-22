@@ -29,7 +29,6 @@ public class IntroController : MonoBehaviour
     {
         if(isTyping == false && Input.GetKeyDown(KeyCode.Return))
         {
-            print(introImgidx);
             dlgText.text = "";
             if(introImgidx < 27)
             {
