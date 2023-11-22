@@ -299,11 +299,11 @@ public class Chmoving : MonoBehaviour
             Debug.Log("Walk sound stopped");
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hanging"))
-        {
-            walkAudioSource.Stop();
-            Debug.Log("Walk sound stopped");
-        }
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hanging"))
+        //{
+        //    walkAudioSource.Stop();
+        //    Debug.Log("Walk sound stopped");
+        //}
     }
 
     #region 리스폰

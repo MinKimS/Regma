@@ -9,7 +9,8 @@ public class PlayerHanging : MonoBehaviour
     bool isHaging = false;
     HangedObj ho;
     public Animator animator;
-    
+    bool hangingMob = false;
+
     [HideInInspector] public Transform hangingPos;
 
     public bool IsHanging
@@ -34,6 +35,8 @@ public class PlayerHanging : MonoBehaviour
                 EndHanging();
             }
         }
+
+        
     }
 
     public void StartPlayerAnimation()
@@ -84,6 +87,24 @@ public class PlayerHanging : MonoBehaviour
             ho.EndSwing();
 
             isHaging = false;
+        }
+
+
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Mob"))
+            {
+
+                hangingMob = true;
+                print("매달리고 있는데 몹과 마주침");
+
+            if (hangingMob && isHaging)
+            {
+                EndHanging();
+            }
+
+        }
         }
 
 }
