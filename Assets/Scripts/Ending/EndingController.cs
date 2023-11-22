@@ -49,32 +49,25 @@ public class EndingController : MonoBehaviour
         //시연을 위해 엔터를 통해 엔딩 넘기는 기능
         if (Input.GetKeyDown(KeyCode.Return) && !isGoingTitle && isOkEnter)
         {
-            if(isFirstEnding)
+            //시간 관계상 다음과 같이 구현
+            if (endingIdx == 0)
             {
+                ShowImage(2);
+            }
+            else if (endingIdx == 1)
+            {
+                ShowImage(3);
+            }
+            else if (endingIdx == 2)
+            {
+                ShowImage(4);
+            }
+            else if (endingIdx == 3)
+            {
+                isOkEnter = false;
                 StartCoroutine(IEGoToTitle());
             }
-            else
-            {
-                //시간 관계상 다음과 같이 구현
-                if(endingIdx == 0)
-                {
-                    ShowImage(2);
-                }
-                else if(endingIdx == 1)
-                {
-                    ShowImage(3);
-                }
-                else if(endingIdx == 2)
-                {
-                    ShowImage(4);
-                }
-                else if (endingIdx == 3)
-                {
-                    isOkEnter = false;
-                    StartCoroutine(IEGoToTitle());
-                }
-                endingIdx++;
-            }
+            endingIdx++;
         }
     }
 
