@@ -94,8 +94,8 @@ public class TalkNotification : MonoBehaviour
 
     public void SetHideTalkIconStateForcing()
     {
-        talkIcon.enabled = false;
-        curTr.anchoredPosition = hidePos;
+        if(talkIcon != null) { talkIcon.enabled = false; }
+        if(curTr != null) { curTr.anchoredPosition = hidePos; }
         isTalkIconShow = false;
     }
     
