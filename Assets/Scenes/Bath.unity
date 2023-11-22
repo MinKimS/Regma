@@ -185,7 +185,7 @@ MonoBehaviour:
   data: {fileID: 0}
   lastMovingPos: {fileID: 522716198}
   waterInWaitTime: 4
-  waterOutWaitTime: 4
+  waterOutWaitTime: 2.5
   water: {fileID: 225364826}
 --- !u!114 &18965506
 MonoBehaviour:
