@@ -21,7 +21,7 @@ public class SceneMapMenuController : MonoBehaviour
     public void MoveScene(string sceneName)
     {
         btnObj.SetActive(false);
-
+        GameManager.instance._isMeetBathMob = false;
         ReadyToSceneChange();
         SetInvenNeededItemAtCurrentScene(sceneName);
 

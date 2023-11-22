@@ -33,7 +33,7 @@ public class TalkNotification : MonoBehaviour
     {
         if (SmartphoneManager.instance != null)
         {
-            SetHideTalkIconState();
+            SetHideTalkIconStateForcing();
         }
     }
     private void OnDisable()
@@ -90,6 +90,13 @@ public class TalkNotification : MonoBehaviour
             curTr.anchoredPosition = hidePos;
             isTalkIconShow = false;
         }
+    }
+
+    public void SetHideTalkIconStateForcing()
+    {
+        talkIcon.enabled = false;
+        curTr.anchoredPosition = hidePos;
+        isTalkIconShow = false;
     }
     
     private IEnumerator MoveTalkPos(Vector2 targetPos)

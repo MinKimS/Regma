@@ -127,6 +127,7 @@ public class Phone : MonoBehaviour
 
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
+        StopAllCoroutines();
         if (scene.name != "LoadingScene" && scene.name != "Bathroom" && scene.name != "Bath" && scene.name != "Title" && scene.name != "Intro" && scene != null)
         {
             switch (scene.name)
@@ -144,8 +145,9 @@ public class Phone : MonoBehaviour
                     curTalk = talkList[3];
                     break;
             }
-            HidePhone();
         }
+        HidePhone();
+        notification.SetHideTalkIconState();
     }
 
     public void SetCurTalk()
@@ -577,7 +579,102 @@ public class Phone : MonoBehaviour
     public void SetRemainTalks(int idx)
     {
         canPlayTalkSound = false;
-        StartCoroutine(IESetRemainTalks(idx));
+
+        Talk talk = talkList[0];
+        talkselectionsIdx = 0;
+
+        for (int i = 0; i < idx + 1; i++)
+        {
+            talk = talkList[i];
+
+            while (talk.nextTalk != null && talk.nextTalk.Length > 0)
+            {
+                if (talk.TalkContexts.Count > 0)
+                {
+                    while (talk.TalkContexts.Count > talkIdx)
+                    {
+                        AddTalk(false, talk.TalkContexts[talkIdx].user, talk.TalkContexts[talkIdx++].talkText);
+                    }
+                }
+                if (talk.answerTalk.Length > 0)
+                {
+                    if (talk.answerTalk.Length < 2)
+                    {
+                        curSendTalk = talk.answerTalk[0];
+                    }
+                    else
+                    {
+                        if (talk.answerTalk.Length > talkselectionsIdx)
+                        {
+                            curSendTalk = talk.answerTalk[talkSelections[talkselectionsIdx]];
+                        }
+                    }
+                    AddTalk(curSendTalk.talkText);
+                    while (curSendTalk.nextSendTalk != null)
+                    {
+                        if (curSendTalk.nextSendTalk != null)
+                        {
+                            SetNextSendTalk();
+                        }
+                        AddTalk(curSendTalk.talkText);
+                    }
+                }
+
+                talkIdx = 0;
+                if (talk.nextTalk != null && talk.nextTalk.Length > 0)
+                {
+                    if (talk.answerTalk.Length < 2)
+                    {
+                        talk = talk.nextTalk[0];
+                    }
+                    else
+                    {
+                        talk = talk.nextTalk[talkSelections[talkselectionsIdx]];
+                        if (talkselectionsIdx < talkSelections.Length) { talkselectionsIdx++; }
+                    }
+                }
+            }
+
+            if (talk.TalkContexts.Count > 0)
+            {
+                while (talk.TalkContexts.Count > talkIdx)
+                {
+                    AddTalk(false, talk.TalkContexts[talkIdx].user, talk.TalkContexts[talkIdx++].talkText);
+                }
+            }
+            if (talk.answerTalk.Length > 0)
+            {
+                curSendTalk = talk.answerTalk[0];
+                AddTalk(curSendTalk.talkText);
+                while (curSendTalk.nextSendTalk != null)
+                {
+                    if (curSendTalk.nextSendTalk != null)
+                    {
+                        SetNextSendTalk();
+                    }
+                    AddTalk(curSendTalk.talkText);
+                }
+            }
+
+            if (i == 0 && child != null)
+            {
+                AddVideoTalk(child);
+            }
+
+            talkIdx = 0;
+        }
+
+        HideSendTalk();
+        if (SceneManager.GetActiveScene().name == "Ending")
+        {
+            talkInputArea.SetActive(false);
+        }
+        isTalkNeedToBeSend = false;
+        IsOKSendTalk = false;
+        isOkStartTalk = true;
+        isPlayerFirstTalk = true;
+
+        canPlayTalkSound = true;
     }
 
     IEnumerator IESetRemainTalks(int idx)

@@ -12,6 +12,7 @@ public class LoadingManager : MonoBehaviour
     public Image progressImg;
     public Transform progressChrTr;
     public Image blackImg;
+    public static bool isLoading = false;
 
     float leftX, rightX, newX;
     void Start()
@@ -26,6 +27,7 @@ public class LoadingManager : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
+        isLoading = true;
         print(nextScene + "으로 이동");
         AudioManager.instance.StopSFXAll();
         if (nextScene != "Ending")
@@ -62,6 +64,7 @@ public class LoadingManager : MonoBehaviour
                 if (progressImg.fillAmount == 1.0f)
                 {
                     asOp.allowSceneActivation=true;
+                    isLoading = false;
                     yield break;
                 }
             }
