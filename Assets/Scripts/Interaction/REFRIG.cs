@@ -12,6 +12,7 @@ public class REFRIG : MonoBehaviour
     public Transform talkStarting;
     public MoveAlongThePath mob;
     public MobAppear appear;
+    public GameObject refrigAnim;
 
     bool isOpened = false;
     [HideInInspector] public bool isActivateEvent = false;
@@ -88,6 +89,7 @@ public class REFRIG : MonoBehaviour
     IEnumerator GetSquid()
     {
         isGetSquid = true;
+        if(!refrigAnim.activeSelf) { refrigAnim.SetActive(true); }
         yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         TimelineManager.instance.timelineController.SetTimelineStart("GetSquid");
         AudioManager.instance.SFXPlay("Game Sound_Item get");

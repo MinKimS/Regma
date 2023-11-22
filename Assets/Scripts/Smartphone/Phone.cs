@@ -193,7 +193,7 @@ public class Phone : MonoBehaviour
         talk.transform.SetParent(talkParent.transform, false);
         talk.talkText.text = text;
 
-        if(canPlayTalkSound)
+        if(canPlayTalkSound && SceneManager.GetActiveScene().name != "Ending")
         {
             AudioManager.instance.StopSFX("Game Sound_Ä«ÅåÅ¸ÀÚ2");
             if (talk.talkText.preferredWidth > 500)
@@ -671,6 +671,10 @@ public class Phone : MonoBehaviour
         }
         
         HideSendTalk();
+        if(SceneManager.GetActiveScene().name == "Ending")
+        {
+            talkInputArea.SetActive(false);
+        }
         isTalkNeedToBeSend = false;
         IsOKSendTalk = false;
         isOkStartTalk = true;

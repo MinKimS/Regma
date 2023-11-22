@@ -49,114 +49,114 @@ public class MenuController : MonoBehaviour
         SetFullScreen();
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += LoadSceneEvent;
-    }
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += LoadSceneEvent;
+    //}
 
-    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
-    {
-        SetInitialBtn();
-        GameManager.instance.isMenuOpen = false;
-        GameManager.instance.isHowtoOpen = false;
-    }
+    //private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    //{
+    //    SetInitialBtn();
+    //    GameManager.instance.isMenuOpen = false;
+    //    GameManager.instance.isHowtoOpen = false;
+    //}
 
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= LoadSceneEvent;
-    }
+    //private void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= LoadSceneEvent;
+    //}
 
-    private void Update()
-    {
-        //화면에 보이기/숨기기
-        bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene"
-            && SceneManager.GetActiveScene().name != "Ending"
-            && !SmartphoneManager.instance.phone.IsOpenPhone
-            && !SmartphoneManager.instance.inven.IsOpenInven
-            && TimelineManager.instance.tlstate == TimelineManager.TlState.End;
+    //private void Update()
+    //{
+    //    //화면에 보이기/숨기기
+    //    bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene"
+    //        && SceneManager.GetActiveScene().name != "Ending"
+    //        && !SmartphoneManager.instance.phone.IsOpenPhone
+    //        && !SmartphoneManager.instance.inven.IsOpenInven
+    //        && TimelineManager.instance.tlstate == TimelineManager.TlState.End;
 
 
-        if (canInput)
-        {
-            if(!controlExplainScreen.activeSelf)
-            {
-                if (!DialogueManager.instance.isShowDlg)
-                {
-                    menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
-                    GameManager.instance.isMenuOpen = menuPanel.gameObject.activeSelf ? true : false;
+    //    if (canInput)
+    //    {
+    //        if(!controlExplainScreen.activeSelf)
+    //        {
+    //            if (!DialogueManager.instance.isShowDlg)
+    //            {
+    //                menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
+    //                GameManager.instance.isMenuOpen = menuPanel.gameObject.activeSelf ? true : false;
 
-                    if (SceneManager.GetActiveScene().name == "Title")
-                    {
-                        btnList[btnList.Length - 1].gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        btnList[btnList.Length - 1].gameObject.SetActive(true);
-                    }
-                }
-            }
-            else
-            {
-                SetShowOrHideHowToControlling();
-            }
-        }
+    //                if (SceneManager.GetActiveScene().name == "Title")
+    //                {
+    //                    btnList[btnList.Length - 1].gameObject.SetActive(false);
+    //                }
+    //                else
+    //                {
+    //                    btnList[btnList.Length - 1].gameObject.SetActive(true);
+    //                }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            SetShowOrHideHowToControlling();
+    //        }
+    //    }
 
-        if(menuPanel.gameObject.activeSelf)
-        {
-            //변경하고자 하는 세팅 선택
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            {
-                if (btnIdx > 0)
-                {
-                    SetBtn(false);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-            {
-                if (btnIdx < btnList.Length - 1 && btnList[btnList.Length - 1].gameObject.activeSelf || btnIdx < btnList.Length -2 && !btnList[btnList.Length - 1].gameObject.activeSelf)
-                {
-                    SetBtn(true);
-                }
-            }
-            //선택한 세팅 변경
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            {
-                SetSetting(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            {
-                SetSetting(true);
-            }
+    //    if(menuPanel.gameObject.activeSelf)
+    //    {
+    //        //변경하고자 하는 세팅 선택
+    //        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+    //        {
+    //            if (btnIdx > 0)
+    //            {
+    //                SetBtn(false);
+    //            }
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+    //        {
+    //            if (btnIdx < btnList.Length - 1 && btnList[btnList.Length - 1].gameObject.activeSelf || btnIdx < btnList.Length -2 && !btnList[btnList.Length - 1].gameObject.activeSelf)
+    //            {
+    //                SetBtn(true);
+    //            }
+    //        }
+    //        //선택한 세팅 변경
+    //        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+    //        {
+    //            SetSetting(false);
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+    //        {
+    //            SetSetting(true);
+    //        }
 
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                if (btnIdx == 2)
-                {
-                    SetShowOrHideHowToControlling();
-                }
-                else if (btnIdx == btnList.Length - 1)
-                {
-                    menuPanel.gameObject.SetActive(false);
-                    GameManager.instance.isMenuOpen = false;
-                    GameManager.instance.isHowtoOpen = false;
-                    AudioManager.instance.StopSFXAll();
-                    SmartphoneManager.instance.phone.HidePhone();
-                    SmartphoneManager.instance.phone.DeleteTalkAll();
-                    SmartphoneManager.instance.phone.HideSendTalk();
-                    SmartphoneManager.instance.phone.SetCurTalk(0);
-                    if(DialogueManager.instance.isShowDlg)
-                    {
-                        DialogueManager.instance.DialogueHide();
-                    }
-                    DialogueManager.instance.SetCurDlg(0);
-                    TutorialController.instance.CloseTutorialScreen();
-                    GameManager.instance.SetLastScene(SceneManager.GetActiveScene().name);
+    //        if (Input.GetKeyDown(KeyCode.Return))
+    //        {
+    //            if (btnIdx == 2)
+    //            {
+    //                SetShowOrHideHowToControlling();
+    //            }
+    //            else if (btnIdx == btnList.Length - 1)
+    //            {
+    //                menuPanel.gameObject.SetActive(false);
+    //                GameManager.instance.isMenuOpen = false;
+    //                GameManager.instance.isHowtoOpen = false;
+    //                AudioManager.instance.StopSFXAll();
+    //                SmartphoneManager.instance.phone.HidePhone();
+    //                SmartphoneManager.instance.phone.DeleteTalkAll();
+    //                SmartphoneManager.instance.phone.HideSendTalk();
+    //                SmartphoneManager.instance.phone.SetCurTalk(0);
+    //                if(DialogueManager.instance.isShowDlg)
+    //                {
+    //                    DialogueManager.instance.DialogueHide();
+    //                }
+    //                DialogueManager.instance.SetCurDlg(0);
+    //                TutorialController.instance.CloseTutorialScreen();
+    //                GameManager.instance.SetLastScene(SceneManager.GetActiveScene().name);
 
-                    LoadingManager.LoadScene("Title");
-                }
-            }
-        }
-    }
+    //                LoadingManager.LoadScene("Title");
+    //            }
+    //        }
+    //    }
+    //}
 
     void SetBtn(bool isPlus)
     {
