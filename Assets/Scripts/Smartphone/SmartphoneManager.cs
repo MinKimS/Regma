@@ -64,7 +64,7 @@ public class SmartphoneManager : MonoBehaviour
         SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
-    private void Update() {
+    private void LateUpdate() {
         if (!GameManager.instance.isMenuOpen
             && !GameManager.instance.isHowtoOpen)
         {
