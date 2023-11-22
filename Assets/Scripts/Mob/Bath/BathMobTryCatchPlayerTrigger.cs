@@ -10,6 +10,7 @@ public class BathMobTryCatchPlayerTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             bmc.isStop = true;
+            bmc.movement.MoveIntoTheWater();
         }
     }
 }

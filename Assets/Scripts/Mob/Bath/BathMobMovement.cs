@@ -78,19 +78,19 @@ public class BathMobMovement : MonoBehaviour
     }
 
     //물 안으로 이동
-    void MoveIntoTheWater()
+    public void MoveIntoTheWater()
     {
         StartCoroutine(IEMoveIntoTheWater());
     }
     IEnumerator IEMoveIntoTheWater()
     {
+        data.state = BathMobData.State.InWater;
         while (Mathf.Abs(transform.position.y - moveInWaterPos.position.y) > 0.02f && data.state != BathMobData.State.RuningWild)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, moveInWaterPos.position.y), 0.2f);
             yield return null;
         }
         transform.position = new Vector2(transform.position.x, moveInWaterPos.position.y);
-        data.state = BathMobData.State.InWater;
     }
 
     //물 밖으로 이동

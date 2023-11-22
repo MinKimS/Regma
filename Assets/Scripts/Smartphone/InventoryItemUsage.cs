@@ -51,7 +51,7 @@ public class InventoryItemUsage : MonoBehaviour
     {
         Scene sc = SceneManager.GetActiveScene();
         yield return new WaitWhile(() => sc.name == "LoadingScene");
-        if(PlayerInfoData.instance != null)
+        if(PlayerInfoData.instance != null && PlayerInfoData.instance.playerTr != null)
             pfc = PlayerInfoData.instance.playerTr.GetComponent<PlayerFallingController>();
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +49,26 @@ public class GameManager : MonoBehaviour
     public string GetLastScene()
     {
         return lastScene;
+    }
+    private void OnEnable()
+    {
+        if (LoadingManager.nextScene != "Ending" || SceneManager.GetActiveScene().name != "Ending")
+        {
+            SceneManager.sceneLoaded += LoadSceneEvent;
+        }
+    }
+
+    private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            isMeetBathMob = false;
+        }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
     //========

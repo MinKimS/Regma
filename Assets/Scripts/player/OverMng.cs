@@ -60,7 +60,20 @@ public class OverMng : MonoBehaviour
     public void OnClickExit()
     {
         //메인메뉴씬으로 이동?
-        SceneManager.LoadScene("Title");
+        //SceneManager.LoadScene("Title");
+        if (respawnManager != null && respawnManager.respawnPositionByType[RespawnManager.ChangeMethod.MobBased] != null) // Null 체크를 추가하여 오류 방지
+        {
+            respawnManager.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, respawnManager.respawnPositionByType[RespawnManager.ChangeMethod.MobBased]);
+        }
+        else
+        {
+            RespawnManager.Instance.OnUpdateRespawnPoint.Invoke(RespawnManager.ChangeMethod.MobBased, transform);
+            Debug.LogWarning("RespawnManager나 respawnPosition이 null입니다.");
+        }
+
+        Time.timeScale = 1f;
+        go_BaseUI.SetActive(false);
+        SceneMapMenuController.instance.MoveScene("Title");
         Debug.Log("나가기");
     }
 }

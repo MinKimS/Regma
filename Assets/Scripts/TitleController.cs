@@ -61,7 +61,8 @@ public class TitleController : MonoBehaviour
             {
                 if(GameManager.instance.GetLastScene() != SceneManager.GetActiveScene().name)
                 {
-                    LoadingManager.LoadScene(GameManager.instance.GetLastScene());
+                    SceneMapMenuController.instance.MoveScene(GameManager.instance.GetLastScene());
+                    //LoadingManager.LoadScene(GameManager.instance.GetLastScene());
                 }
             }
             else

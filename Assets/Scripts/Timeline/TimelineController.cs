@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -15,8 +16,14 @@ public class TimelineController : MonoBehaviour
     private void Start()
     {
         TimelineManager.instance.timelineController = this;
-        if(SceneManager.GetActiveScene().name != "Veranda"
-            || (!GameManager.instance._isMeetBathMob && SceneManager.GetActiveScene().name == "Bath"))
+        StartCoroutine(IESetTimeline());
+    }
+
+    IEnumerator IESetTimeline()
+    {
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name != "LoadingScene");
+
+        if (SceneManager.GetActiveScene().name != "Veranda" && SceneManager.GetActiveScene().name != "Bath")
         {
             SetTimelineStart(0);
         }
@@ -52,12 +59,14 @@ public class TimelineController : MonoBehaviour
 
     public void SetTimelineStart(int playTimelineIdx)
     {
+        cutSceneAppearence.SetBool("isRunCutScene", true);
         if (pd[curPD].state != PlayState.Playing)
         {
-            cutSceneAppearence.SetBool("isRunCutScene", true);
             curPD = playTimelineIdx;
             pd[curPD].Play();
-            TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
+
+            if (pd[curPD].state == PlayState.Playing)
+                TimelineManager.instance.tlstate = TimelineManager.TlState.Play;
         }
     }
 

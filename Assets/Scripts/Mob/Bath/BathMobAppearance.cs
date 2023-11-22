@@ -19,12 +19,12 @@ public class BathMobAppearance : MonoBehaviour
                 collision.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 StartCoroutine(AppearMob());
             }
-            else
-            {
-                bmc.StartTracingPlayer();
-                GameManager.instance._isMeetBathMob = true;
-                Destroy(gameObject);
-            }
+            //else
+            //{
+            //    bmc.StartTracingPlayer();
+            //    GameManager.instance._isMeetBathMob = true;
+            //    Destroy(gameObject);
+            //}
         }
     }
 
@@ -43,9 +43,11 @@ public class BathMobAppearance : MonoBehaviour
             yield return new WaitWhile(() => DialogueManager.instance._dlgState != DialogueManager.DlgState.End);
         }
 
-        bmc.hand.SetTargetToy(0);
-        bmc.hand.AttackTarget(0.05f, 0.05f);
-        
+        //GameManager.instance._isMeetBathMob = true;
+        //bmc.hand.SetTargetToy(0);
+        //bmc.hand.AttackTarget(0.05f, 0.05f);
+        bmc.StartTracingPlayer();
+
         Destroy(gameObject);
     }
 }

@@ -39,7 +39,10 @@ public class PlayerInfoData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(SceneManager.GetActiveScene().name != "Title")
+        {
             StartCoroutine(SetPlayerInfo());
+        }
     }
 
     private void OnDisable()

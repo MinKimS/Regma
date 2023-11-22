@@ -41,6 +41,14 @@ public class EndingController : MonoBehaviour
         AudioManager.instance.StopSFXAll();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+
+        }
+    }
+
     IEnumerator IEEndingTwo()
     {
         yield return new WaitForSeconds(1f);
