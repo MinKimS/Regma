@@ -12,6 +12,9 @@ public class EndingController : MonoBehaviour
     bool isFirstEnding = false;
     bool isShowingEnding = false;
     bool isGoingTitle = false;
+    bool isOkEnter = true;
+
+    int endingIdx = 0;
 
     public Fade fade;
 
@@ -24,29 +27,72 @@ public class EndingController : MonoBehaviour
     {
         SetEnding();
 
-        if (!isGoingTitle)
-        {
-            if (!isShowingEnding && !isFirstEnding)
-            {
-                isShowingEnding = true;
-                StartCoroutine(IEEndingTwo());
-            }
+        //if (!isGoingTitle)
+        //{
+        //    if (!isShowingEnding && !isFirstEnding)
+        //    {
+        //        isShowingEnding = true;
+        //        StartCoroutine(IEEndingTwo());
+        //    }
 
-            if (isFirstEnding)
-            {
-                StartCoroutine(IEGoToTitle());
-            }
-        }
+        //    if (isFirstEnding)
+        //    {
+        //        StartCoroutine(IEGoToTitle());
+        //    }
+        //}
 
         AudioManager.instance.StopSFXAll();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        //시연을 위해 엔터를 통해 엔딩 넘기는 기능
+        if (Input.GetKeyDown(KeyCode.Return) && !isGoingTitle && isOkEnter)
         {
-
+            if(isFirstEnding)
+            {
+                StartCoroutine(IEGoToTitle());
+            }
+            else
+            {
+                //시간 관계상 다음과 같이 구현
+                if(endingIdx == 0)
+                {
+                    ShowImage(2);
+                }
+                else if(endingIdx == 1)
+                {
+                    ShowImage(3);
+                }
+                else if(endingIdx == 2)
+                {
+                    ShowImage(4);
+                }
+                else if (endingIdx == 3)
+                {
+                    isOkEnter = false;
+                    StartCoroutine(IEGoToTitle());
+                }
+                endingIdx++;
+            }
         }
+    }
+
+    IEnumerator IEEndingTwoPhone()
+    {
+        isOkEnter = false;
+        SmartphoneManager.instance.phone.ShowPhone();
+
+        yield return new WaitForSeconds(0.1f);
+
+        SmartphoneManager.instance.phone.DeleteTalks();
+
+        yield return new WaitUntil(() => !SmartphoneManager.instance.phone.phoneTalkList[0].gameObject.activeSelf);
+        yield return new WaitForSeconds(0.1f);
+        SmartphoneManager.instance.phone.HidePhone();
+        endingImg.color = Color.white;
+        endingImg.sprite = endingSPs[1];
+        isOkEnter = true;
     }
 
     IEnumerator IEEndingTwo()
@@ -96,13 +142,14 @@ public class EndingController : MonoBehaviour
     {
         isFirstEnding = true;
         endingImg.sprite = endingSPs[0];
+        endingImg.color = Color.white;
     }
 
     //두번째 루트로 엔딩 설정
     void SetEndingTwo()
     {
         isFirstEnding = false;
-        endingImg.sprite = endingSPs[1];
+        StartCoroutine(IEEndingTwoPhone());
     }
 
     void ShowImage(int num)
