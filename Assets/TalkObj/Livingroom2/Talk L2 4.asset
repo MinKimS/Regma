@@ -17,7 +17,7 @@ MonoBehaviour:
   runEvent: {fileID: 0}
   TalkContexts:
   - user: {fileID: 11400000, guid: b1981026ca5b3914dbdfb0cc7a812e83, type: 2}
-    talkText: "\uB098\uB791 \uAC70\uAE30\uC11C \uC790\uB974\uAE30 \uB180\uC774 \uD560\uB798?"
+    talkText: "\uB098\uB791 \uAC70\uAE30\uC11C \uC9C0\uC6B0\uAE30 \uB180\uC774 \uD560\uB798?"
     TalkSendDelay: 1
   answerTalk:
   - {fileID: 11400000, guid: f4c29f50169e9934884284ebfca91197, type: 2}
