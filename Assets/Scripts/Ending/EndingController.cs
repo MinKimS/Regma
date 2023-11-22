@@ -65,10 +65,10 @@ public class EndingController : MonoBehaviour
 
     IEnumerator IEGoToTitle()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2.5f);
         isGoingTitle = true;
-        fade.SetFadeOut(0.00001f);
-        yield return new WaitForSeconds(2f);
+        fade.SetFadeOut(0.000005f);
+        yield return new WaitForSeconds(2.2f);
         LoadingManager.LoadScene("Title");
     }
 

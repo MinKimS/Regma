@@ -3052,7 +3052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262545101}
   m_LocalRotation: {x: -0, y: -0, z: -0.0001972528, w: 1}
-  m_LocalPosition: {x: -145.4, y: 20.2, z: 0}
+  m_LocalPosition: {x: -145.58, y: 16.14, z: 0}
   m_LocalScale: {x: 3.1000001, y: 3.1, z: 3.1000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29990,6 +29990,7 @@ MonoBehaviour:
   talkStarting: {fileID: 311905217}
   mob: {fileID: 359101127}
   appear: {fileID: 300801641}
+  refrigAnim: {fileID: 1535648894}
   isActivateEvent: 0
   isGetSquid: 0
   powerBc: {fileID: 1803614433}
@@ -31205,6 +31206,12 @@ MonoBehaviour:
   - m_Hash: -1645136366
     m_ParentHash: 756556552
   - m_Hash: -179742472
+    m_ParentHash: 756556552
+  - m_Hash: 887509277
+    m_ParentHash: 756556552
+  - m_Hash: 857872208
+    m_ParentHash: 756556552
+  - m_Hash: -873665216
     m_ParentHash: 756556552
 --- !u!4 &813541343
 Transform:
@@ -37238,7 +37245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902349702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -174.7, y: 17.36, z: 0}
+  m_LocalPosition: {x: -171.9, y: 14.8, z: 0}
   m_LocalScale: {x: 4.328358, y: 4.328358, z: 4.328358}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42206,7 +42213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207620908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -146.5, y: 21.08, z: 0}
+  m_LocalPosition: {x: -147.93, y: 20.99, z: 0}
   m_LocalScale: {x: 1.4925371, y: 1.4925373, z: 1.4925371}
   m_ConstrainProportionsScale: 1
   m_Children: []
