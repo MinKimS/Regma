@@ -94,8 +94,6 @@ public class REFRIG : MonoBehaviour
         TimelineManager.instance.timelineController.SetTimelineStart("GetSquid");
         AudioManager.instance.SFXPlay("Game Sound_Item get");
         yield return new WaitWhile(() => TimelineManager.instance._Tlstate != TimelineManager.TlState.End);
-        //talkStarting.gameObject.SetActive(true);
-        //talkStarting.position = PlayerInfoData.instance.playerTr.position;
     }
     private void Update()
     {
@@ -103,8 +101,6 @@ public class REFRIG : MonoBehaviour
         {
             respawnPoint_Refrig.gameObject.SetActive(true);
             appear.isReadySpawn = true;
-            talkStarting.position = RespawnManager.Instance.respawnPositionByType[RespawnManager.ChangeMethod.MobBased].position;
-            talkStarting.gameObject.SetActive(true);
             appear.isMobAppear = false;
         }
     }

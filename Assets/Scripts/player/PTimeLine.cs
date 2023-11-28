@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PTimeLine : MonoBehaviour
 {
 
-    
+    InteractionObjData iod;
 
     public Animator Refrianim;
 
@@ -36,6 +36,8 @@ public class PTimeLine : MonoBehaviour
             refri2Object.SetActive(false);
 
         }
+
+        iod = GetComponent<InteractionObjData>();
     }
 
     //void OnTriggerStay2D(Collider2D other)
@@ -75,6 +77,7 @@ public class PTimeLine : MonoBehaviour
             Refrianim.SetBool("OFF", true);
             AudioManager.instance.SFXPlay("Kitchen_power off");
             Interaction1 = true;
+            iod.IsOkInteracting = false;
             refri2Object.SetActive(true);
             power.isBroken = true;
             if (mobAppear != null)
