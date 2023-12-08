@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     //use bath scene
     bool isMeetBathMob = false;
 
+    bool canOpenMenu = false;
+
     public bool _isEndingTwo
     {
         get { return isEndingTwo; }
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
         get { return isMeetBathMob; }
         set { isMeetBathMob = value;}
     }
+
+    public bool _canOpenMenu { get { return canOpenMenu; }  set { canOpenMenu = value; } }
 
     //엔딩 루트 설정
     public void SetEndingRoute(bool b)

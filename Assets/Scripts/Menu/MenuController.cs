@@ -66,7 +66,7 @@ public class MenuController : MonoBehaviour
         SceneManager.sceneLoaded -= LoadSceneEvent;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         //화면에 보이기/숨기기
         bool canInput = Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "LoadingScene"

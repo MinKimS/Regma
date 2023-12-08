@@ -68,7 +68,6 @@ public class InventoryItemUsage : MonoBehaviour
 
     void Diary()
     {
-        print("Diary");
         if(diary != null)
         {
             diary.ShowDiary();

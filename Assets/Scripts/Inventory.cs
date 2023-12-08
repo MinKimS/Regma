@@ -45,6 +45,12 @@ public class Inventory : MonoBehaviour
         if(tv != null && tv.GmEventIdx < 1) {tv.GmEventIdx++;}
         diary.HideDiary();
         isInvenItemActive = false;
+        Invoke("ChgDiaryState", 1f);
     }
 
+
+    void ChgDiaryState()
+    {
+        GameManager.instance._canOpenMenu = true;
+    }
 }

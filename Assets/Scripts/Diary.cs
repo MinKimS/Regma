@@ -24,6 +24,7 @@ public class Diary : MonoBehaviour
         if((Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.Escape)) && DialogueManager.instance._dlgState == DialogueManager.DlgState.End)
         {
             inven.HideDiary();
+            print("Diary");
         }
     }
 
@@ -62,6 +63,7 @@ public class Diary : MonoBehaviour
         flipPage.rotation = Quaternion.identity;
         img.sprite = book[0];
         gameObject.SetActive(true);
+        GameManager.instance._canOpenMenu = false;
     }
 
     public void HideDiary()
