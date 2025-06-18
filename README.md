@@ -34,8 +34,9 @@
 
 ---
 
-## 🎮 게임플레이 영상  
-> [Regma ](https://youtu.be/r3BiK9WE83c?si=oI2hy80r05uNIs-K)
+## 🎬 게임플레이 영상
+
+[![Regma Gameplay Video](https://img.youtube.com/vi/x2TXFDd59c0/maxresdefault.jpg)](https://youtu.be/x2TXFDd59c0)
 
 ---
 
