@@ -72,16 +72,27 @@
 
 ---
 
-## 🖼️ 게임 결과 화면
+<h2>🖼️ 게임 결과 화면</h2>
 
-| 플레이어 상호작용 | 오브젝트 상호작용 |
-|------------------|------------------|
-| ![](C:\Users\user\Desktop\Regma\Bath.gif) | ![](assets/Camera.gif) |
-| 몹 출현 | 카카오톡 대화 내용 |
-| ![](assets/Hanging.gif) | ![](assets/kakao_script.gif) |
+<table>
+  <tr>
+    <th>플레이어 상호작용</th>
+    <th>오브젝트 상호작용</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/cbdc9853-c12a-49dd-bf50-1cd73eff91fb" width="100%"></td>
+    <td><img src="https://github.com/user-attachments/assets/4c91161f-8ef8-460e-b6a3-85263059f8fe" width="100%"></td>
+  </tr>
+  <tr>
+    <th>몹 출현</th>
+    <th>카카오톡 대화 내용</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/ce9a076b-66f5-4dcb-8768-1c771c112e90" width="100%"></td>
+    <td><img src="https://github.com/user-attachments/assets/cbdc9853-c12a-49dd-bf50-1cd73eff91fb" width="100%"></td>
+  </tr>
+</table>
 
-> 위 스크린샷은 게임 내 실제 플레이 장면입니다.
-
-
+<p align="center">※ 위 스크린샷은 게임 내 실제 플레이 장면입니다.</p>
 
 
