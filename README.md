@@ -34,12 +34,6 @@
 
 ---
 
-## 🎬 게임플레이 영상
-
-[![Regma Gameplay Video](https://img.youtube.com/vi/x2TXFDd59c0/maxresdefault.jpg)](https://youtu.be/x2TXFDd59c0)
-
----
-
 ## 🧩 주요 기능
 
 ### 🎮 플레이어 상호작용 시스템
